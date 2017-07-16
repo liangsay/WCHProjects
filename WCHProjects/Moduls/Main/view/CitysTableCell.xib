@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8dv-Up-e30" customClass="CitysTableCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8dv-Up-e30" id="dr8-z1-Mls">
+                <frame key="frameInset" width="375" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zt-5J-tjf">
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.17183756829999999" green="0.1961080134" blue="0.20038428899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TOy-Fr-63j">
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.64651149510000006" green="0.66255348920000001" blue="0.67916089300000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TOy-Fr-63j" firstAttribute="leading" secondItem="dr8-z1-Mls" secondAttribute="leadingMargin" constant="15" id="D62-D6-X5j"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="TOy-Fr-63j" secondAttribute="trailing" constant="15" id="Fzx-2U-VBi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5Zt-5J-tjf" secondAttribute="trailing" constant="15" id="Tej-Vt-1W3"/>
+                    <constraint firstItem="5Zt-5J-tjf" firstAttribute="top" secondItem="dr8-z1-Mls" secondAttribute="topMargin" constant="10" id="eON-p1-OUX"/>
+                    <constraint firstItem="5Zt-5J-tjf" firstAttribute="leading" secondItem="dr8-z1-Mls" secondAttribute="leadingMargin" constant="15" id="lkg-y1-nm1"/>
+                    <constraint firstItem="TOy-Fr-63j" firstAttribute="top" secondItem="5Zt-5J-tjf" secondAttribute="bottom" constant="5" id="nv5-MI-LWe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cityLabel" destination="5Zt-5J-tjf" id="Imy-KX-qyx"/>
+                <outlet property="provinceLabel" destination="TOy-Fr-63j" id="8fC-tH-h2O"/>
+            </connections>
+            <point key="canvasLocation" x="40" y="143"/>
+        </tableViewCell>
+    </objects>
+</document>

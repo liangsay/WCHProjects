@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchAddressViewController">
+            <connections>
+                <outlet property="cityTxtField" destination="NZq-DR-aOx" id="wLT-ah-0jy"/>
+                <outlet property="searchBar" destination="D92-hB-ej0" id="sfp-F3-afD"/>
+                <outlet property="tableView" destination="Kah-T9-IcI" id="78S-r5-h65"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NZq-DR-aOx">
+                    <rect key="frame" x="10" y="10" width="355" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="oKU-eB-h8c"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="00c-39-hAE"/>
+                    </connections>
+                </textField>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="D92-hB-ej0">
+                    <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="AK2-h4-xxx"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="WDs-fw-83s"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kah-T9-IcI" customClass="BaseTableView">
+                    <rect key="frame" x="0.0" y="99" width="375" height="568"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="KA3-D9-Dav"/>
+                        <outlet property="delegate" destination="-1" id="Q3v-Xa-v3G"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Kah-T9-IcI" secondAttribute="trailing" id="2J2-Es-33X"/>
+                <constraint firstAttribute="bottom" secondItem="Kah-T9-IcI" secondAttribute="bottom" id="JJ1-WS-pTV"/>
+                <constraint firstItem="Kah-T9-IcI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RFr-GY-DN5"/>
+                <constraint firstItem="D92-hB-ej0" firstAttribute="top" secondItem="NZq-DR-aOx" secondAttribute="bottom" constant="5" id="Wqg-DF-PwT"/>
+                <constraint firstAttribute="trailing" secondItem="NZq-DR-aOx" secondAttribute="trailing" constant="10" id="buM-jL-7DL"/>
+                <constraint firstItem="Kah-T9-IcI" firstAttribute="top" secondItem="D92-hB-ej0" secondAttribute="bottom" constant="5" id="eMc-i6-ss3"/>
+                <constraint firstItem="NZq-DR-aOx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="f1A-JH-0aQ"/>
+                <constraint firstItem="NZq-DR-aOx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="jXg-e0-6GR"/>
+                <constraint firstItem="D92-hB-ej0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ndq-VM-fdj"/>
+                <constraint firstAttribute="trailing" secondItem="D92-hB-ej0" secondAttribute="trailing" id="ywV-LG-Nec"/>
+            </constraints>
+            <point key="canvasLocation" x="205.5" y="190.5"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,6 @@
+framework module jrswizzle_Pinka {
+  umbrella header "jrswizzle-Pinka-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CallCarTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="109.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7m-HH-3DK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aid-gm-JSx">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="99.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBq-zV-0qh">
+                                <rect key="frame" x="246" y="11.5" width="64" height="17"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="0">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.029831843470767838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                            <font key="NSOriginalFont" size="14" name=".AppleSystemUIFont"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="元">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.029831843470767838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
+                                            <font key="NSOriginalFont" size="14" name=".PingFangSC-Regular"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="(">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="0">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name=".AppleSystemUIFont"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="公里)">
+                                        <attributes>
+                                            <font key="NSFont" size="12" name=".PingFangSC-Regular"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="冷藏车" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiY-46-1qX">
+                                <rect key="frame" x="130" y="10" width="49" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="载重：1吨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vk-nK-xfy">
+                                <rect key="frame" x="130" y="39" width="180" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.4979824423789978" green="0.49807190895080566" blue="0.49797677993774414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长*宽*高：0*0*0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFr-d6-cWR">
+                                <rect key="frame" x="130" y="58.5" width="180" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.4979824424" green="0.49807190899999998" blue="0.4979767799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超公里费用：5元/公里" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wX8-tA-bxY">
+                                <rect key="frame" x="130" y="78" width="180" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.4979824424" green="0.49807190899999998" blue="0.4979767799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WBq-zV-0qh" firstAttribute="centerY" secondItem="jiY-46-1qX" secondAttribute="centerY" id="0h9-1A-F81"/>
+                            <constraint firstAttribute="trailing" secondItem="KFr-d6-cWR" secondAttribute="trailing" constant="10" id="1Uk-aJ-ISd"/>
+                            <constraint firstItem="jiY-46-1qX" firstAttribute="leading" secondItem="Aid-gm-JSx" secondAttribute="trailing" constant="10" id="3J3-OR-RXa"/>
+                            <constraint firstItem="Aid-gm-JSx" firstAttribute="width" secondItem="G7m-HH-3DK" secondAttribute="width" multiplier="3/8" id="8iX-oz-ZIT"/>
+                            <constraint firstItem="jiY-46-1qX" firstAttribute="top" secondItem="G7m-HH-3DK" secondAttribute="top" constant="10" id="CyK-t0-D6S"/>
+                            <constraint firstItem="Aid-gm-JSx" firstAttribute="leading" secondItem="G7m-HH-3DK" secondAttribute="leading" id="GPl-wf-EE3"/>
+                            <constraint firstItem="7Vk-nK-xfy" firstAttribute="top" secondItem="jiY-46-1qX" secondAttribute="bottom" constant="10" id="GkC-QX-EmE"/>
+                            <constraint firstAttribute="trailing" secondItem="WBq-zV-0qh" secondAttribute="trailing" constant="10" id="Kmw-wg-Op2"/>
+                            <constraint firstItem="Aid-gm-JSx" firstAttribute="top" secondItem="G7m-HH-3DK" secondAttribute="top" id="Rhj-Io-OsL"/>
+                            <constraint firstItem="7Vk-nK-xfy" firstAttribute="leading" secondItem="Aid-gm-JSx" secondAttribute="trailing" constant="10" id="Tct-a6-Rg1"/>
+                            <constraint firstAttribute="trailing" secondItem="wX8-tA-bxY" secondAttribute="trailing" constant="10" id="aHj-WT-7x7"/>
+                            <constraint firstItem="wX8-tA-bxY" firstAttribute="leading" secondItem="Aid-gm-JSx" secondAttribute="trailing" constant="10" id="bPc-to-s7d"/>
+                            <constraint firstItem="KFr-d6-cWR" firstAttribute="top" secondItem="7Vk-nK-xfy" secondAttribute="bottom" constant="5" id="jr3-0g-BUO"/>
+                            <constraint firstItem="wX8-tA-bxY" firstAttribute="top" secondItem="KFr-d6-cWR" secondAttribute="bottom" constant="5" id="kKF-TI-HW3"/>
+                            <constraint firstItem="KFr-d6-cWR" firstAttribute="leading" secondItem="Aid-gm-JSx" secondAttribute="trailing" constant="10" id="l5A-dC-S1h"/>
+                            <constraint firstAttribute="trailing" secondItem="7Vk-nK-xfy" secondAttribute="trailing" constant="10" id="ss5-EG-kIK"/>
+                            <constraint firstAttribute="bottom" secondItem="Aid-gm-JSx" secondAttribute="bottom" id="yjR-np-ORM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="G7m-HH-3DK" secondAttribute="trailing" id="SOT-Bt-bkc"/>
+                    <constraint firstItem="G7m-HH-3DK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="WFo-AF-4N1"/>
+                    <constraint firstAttribute="bottom" secondItem="G7m-HH-3DK" secondAttribute="bottom" constant="10" id="ZUh-M5-Vsj"/>
+                    <constraint firstItem="G7m-HH-3DK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="coh-e2-8yj"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+</document>

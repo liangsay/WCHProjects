@@ -257,16 +257,18 @@
         [NSString toast:@"拨打的电话号码不能为空"];
         return;
     }
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",numberAfterClear];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 //    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",numberAfterClear];
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-    NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", numberAfterClear]];
+    /*NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", numberAfterClear]];
     //NSLog(@"make call, URL=%@", phoneNumberURL);
     
     UIWebView*callWebview =[[UIWebView alloc] init];
     
     [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
     //记得添加到view上
-    [self addSubview:callWebview];
+    [self addSubview:callWebview];*/
 }
 
 

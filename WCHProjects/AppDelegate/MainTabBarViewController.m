@@ -83,6 +83,7 @@ const CGFloat kMainTabBarContentHeight = 98 / 2;
     MainNavigationViewController *navVC4 = [[MainNavigationViewController alloc] initWithRootViewController:tabVC4];
     
     MineViewController *tabVC5 = [[MineViewController alloc] initWithNibName:@"MineViewController" bundle:nil];
+    tabVC5.navigationItem.title = @"个人中心";
     MainNavigationViewController *navVC5 = [[MainNavigationViewController alloc] initWithRootViewController:tabVC5];
     
     NSArray *navs = @[navVC1, navVC2, navVC3,navVC4,navVC5];

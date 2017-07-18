@@ -102,6 +102,20 @@
 		7F830BB31DA400FC00F50B64 /* AboutUsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F830BB21DA400FC00F50B64 /* AboutUsTableCell.m */; };
 		7F830BB61DA4085B00F50B64 /* SystemMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F830BB51DA4085B00F50B64 /* SystemMessageTableCell.m */; };
 		7F880D1A1DA747DC00E087F2 /* MyBMKPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F880D191DA747DC00E087F2 /* MyBMKPointAnnotation.m */; };
+		7F8F294F1F1D036F00C5DFF9 /* RentCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F294D1F1D036F00C5DFF9 /* RentCarTableViewCell.m */; };
+		7F8F29501F1D036F00C5DFF9 /* RentCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F294E1F1D036F00C5DFF9 /* RentCarTableViewCell.xib */; };
+		7F8F29541F1D096700C5DFF9 /* OCallCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F29521F1D096700C5DFF9 /* OCallCarViewController.m */; };
+		7F8F29551F1D096700C5DFF9 /* OCallCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F29531F1D096700C5DFF9 /* OCallCarViewController.xib */; };
+		7F8F29591F1D097C00C5DFF9 /* ORentCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F29571F1D097C00C5DFF9 /* ORentCarViewController.m */; };
+		7F8F295A1F1D097C00C5DFF9 /* ORentCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F29581F1D097C00C5DFF9 /* ORentCarViewController.xib */; };
+		7F8F295E1F1D098C00C5DFF9 /* OBuyCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F295C1F1D098C00C5DFF9 /* OBuyCarViewController.m */; };
+		7F8F295F1F1D098C00C5DFF9 /* OBuyCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F295D1F1D098C00C5DFF9 /* OBuyCarViewController.xib */; };
+		7F8F29631F1D0A8400C5DFF9 /* OCallCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F29611F1D0A8400C5DFF9 /* OCallCarTableViewCell.m */; };
+		7F8F29641F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F29621F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib */; };
+		7F8F29681F1D0A9100C5DFF9 /* ORentCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F29661F1D0A9100C5DFF9 /* ORentCarTableViewCell.m */; };
+		7F8F29691F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F29671F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib */; };
+		7F8F296D1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F296B1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m */; };
+		7F8F296E1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F296C1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib */; };
 		7FA96C481DA9484F00F5E00E /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA96C461DA9484F00F5E00E /* ForgetViewController.m */; };
 		7FA96C491DA9484F00F5E00E /* ForgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA96C471DA9484F00F5E00E /* ForgetViewController.xib */; };
 		7FAACA9F1D902F0E0028D0D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAACA9E1D902F0E0028D0D6 /* main.m */; };
@@ -359,6 +373,27 @@
 		7F830BB51DA4085B00F50B64 /* SystemMessageTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageTableCell.m; sourceTree = "<group>"; };
 		7F880D181DA747DC00E087F2 /* MyBMKPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBMKPointAnnotation.h; sourceTree = "<group>"; };
 		7F880D191DA747DC00E087F2 /* MyBMKPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBMKPointAnnotation.m; sourceTree = "<group>"; };
+		7F8F294C1F1D036F00C5DFF9 /* RentCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RentCarTableViewCell.h; sourceTree = "<group>"; };
+		7F8F294D1F1D036F00C5DFF9 /* RentCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentCarTableViewCell.m; sourceTree = "<group>"; };
+		7F8F294E1F1D036F00C5DFF9 /* RentCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentCarTableViewCell.xib; sourceTree = "<group>"; };
+		7F8F29511F1D096700C5DFF9 /* OCallCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCallCarViewController.h; sourceTree = "<group>"; };
+		7F8F29521F1D096700C5DFF9 /* OCallCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCallCarViewController.m; sourceTree = "<group>"; };
+		7F8F29531F1D096700C5DFF9 /* OCallCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OCallCarViewController.xib; sourceTree = "<group>"; };
+		7F8F29561F1D097C00C5DFF9 /* ORentCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORentCarViewController.h; sourceTree = "<group>"; };
+		7F8F29571F1D097C00C5DFF9 /* ORentCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORentCarViewController.m; sourceTree = "<group>"; };
+		7F8F29581F1D097C00C5DFF9 /* ORentCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ORentCarViewController.xib; sourceTree = "<group>"; };
+		7F8F295B1F1D098C00C5DFF9 /* OBuyCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBuyCarViewController.h; sourceTree = "<group>"; };
+		7F8F295C1F1D098C00C5DFF9 /* OBuyCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBuyCarViewController.m; sourceTree = "<group>"; };
+		7F8F295D1F1D098C00C5DFF9 /* OBuyCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBuyCarViewController.xib; sourceTree = "<group>"; };
+		7F8F29601F1D0A8400C5DFF9 /* OCallCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCallCarTableViewCell.h; sourceTree = "<group>"; };
+		7F8F29611F1D0A8400C5DFF9 /* OCallCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCallCarTableViewCell.m; sourceTree = "<group>"; };
+		7F8F29621F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OCallCarTableViewCell.xib; sourceTree = "<group>"; };
+		7F8F29651F1D0A9100C5DFF9 /* ORentCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORentCarTableViewCell.h; sourceTree = "<group>"; };
+		7F8F29661F1D0A9100C5DFF9 /* ORentCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORentCarTableViewCell.m; sourceTree = "<group>"; };
+		7F8F29671F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ORentCarTableViewCell.xib; sourceTree = "<group>"; };
+		7F8F296A1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBuyCarTableViewCell.h; sourceTree = "<group>"; };
+		7F8F296B1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBuyCarTableViewCell.m; sourceTree = "<group>"; };
+		7F8F296C1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBuyCarTableViewCell.xib; sourceTree = "<group>"; };
 		7FA96C451DA9484F00F5E00E /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
 		7FA96C461DA9484F00F5E00E /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
 		7FA96C471DA9484F00F5E00E /* ForgetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetViewController.xib; sourceTree = "<group>"; };
@@ -656,6 +691,15 @@
 				7F4FB4BA1F0D404300B707DF /* OrderListViewController.h */,
 				7F4FB4BB1F0D404300B707DF /* OrderListViewController.m */,
 				7F4FB4BC1F0D404300B707DF /* OrderListViewController.xib */,
+				7F8F29511F1D096700C5DFF9 /* OCallCarViewController.h */,
+				7F8F29521F1D096700C5DFF9 /* OCallCarViewController.m */,
+				7F8F29531F1D096700C5DFF9 /* OCallCarViewController.xib */,
+				7F8F29561F1D097C00C5DFF9 /* ORentCarViewController.h */,
+				7F8F29571F1D097C00C5DFF9 /* ORentCarViewController.m */,
+				7F8F29581F1D097C00C5DFF9 /* ORentCarViewController.xib */,
+				7F8F295B1F1D098C00C5DFF9 /* OBuyCarViewController.h */,
+				7F8F295C1F1D098C00C5DFF9 /* OBuyCarViewController.m */,
+				7F8F295D1F1D098C00C5DFF9 /* OBuyCarViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -663,6 +707,15 @@
 		7F4FB49F1F0D3C5100B707DF /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7F8F29601F1D0A8400C5DFF9 /* OCallCarTableViewCell.h */,
+				7F8F29611F1D0A8400C5DFF9 /* OCallCarTableViewCell.m */,
+				7F8F29621F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib */,
+				7F8F29651F1D0A9100C5DFF9 /* ORentCarTableViewCell.h */,
+				7F8F29661F1D0A9100C5DFF9 /* ORentCarTableViewCell.m */,
+				7F8F29671F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib */,
+				7F8F296A1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.h */,
+				7F8F296B1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m */,
+				7F8F296C1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -689,6 +742,9 @@
 		7F4FB4A21F0D3C5100B707DF /* view */ = {
 			isa = PBXGroup;
 			children = (
+				7F8F294C1F1D036F00C5DFF9 /* RentCarTableViewCell.h */,
+				7F8F294D1F1D036F00C5DFF9 /* RentCarTableViewCell.m */,
+				7F8F294E1F1D036F00C5DFF9 /* RentCarTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1408,6 +1464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FE9AC6D1DA1D0CE00B4077B /* CarRecruitViewController.xib in Resources */,
+				7F8F29501F1D036F00C5DFF9 /* RentCarTableViewCell.xib in Resources */,
 				7F830B9E1DA37CE800F50B64 /* loading-13@2x.png in Resources */,
 				7F4FB4B41F0D3C8100B707DF /* RentCarViewController.xib in Resources */,
 				7F5CD9591F1121D400E37652 /* ShopDetailWebViewController.xib in Resources */,
@@ -1417,6 +1474,7 @@
 				7FCC1A2E1DA085B90001E342 /* RegisterViewController.xib in Resources */,
 				7F4FB4AA1F0D3C6100B707DF /* CallCarViewController.xib in Resources */,
 				7F0F7B5D1DB790E200977A20 /* CitysViewController.xib in Resources */,
+				7F8F29691F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib in Resources */,
 				7F830BA11DA37CE800F50B64 /* loading-16@2x.png in Resources */,
 				7FE0E8021DDE146F008F5B0D /* b27_icon_star_yellow@2x.png in Resources */,
 				7FEB1FFB1D9EC010001E5F10 /* LoginViewController.xib in Resources */,
@@ -1426,6 +1484,7 @@
 				7F830B9F1DA37CE800F50B64 /* loading-14@2x.png in Resources */,
 				7FE9AC5E1DA1C8F100B4077B /* MyRouteViewController.xib in Resources */,
 				7FA96C491DA9484F00F5E00E /* ForgetViewController.xib in Resources */,
+				7F8F29641F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib in Resources */,
 				7F830BA31DA37CE800F50B64 /* loading-1@2x.png in Resources */,
 				7FE501D61DAD3D3E002CF3CC /* WalletTableCell.xib in Resources */,
 				7F830BA01DA37CE800F50B64 /* loading-15@2x.png in Resources */,
@@ -1438,6 +1497,7 @@
 				7F4FB4C11F0E99E800B707DF /* Category.plist in Resources */,
 				7FEB1FFD1D9EC010001E5F10 /* MainViewController.xib in Resources */,
 				7FEB20011D9EC010001E5F10 /* SearchAddressViewController.xib in Resources */,
+				7F8F295A1F1D097C00C5DFF9 /* ORentCarViewController.xib in Resources */,
 				7F5CD9541F11210D00E37652 /* ShopDetailViewController.xib in Resources */,
 				7FAACAAD1D902F0E0028D0D6 /* LaunchScreen.storyboard in Resources */,
 				7F5CD9631F11220500E37652 /* ShopCommentViewController.xib in Resources */,
@@ -1449,9 +1509,11 @@
 				7FCC0A001EB392BB00D110F3 /* PersonSetViewController.xib in Resources */,
 				7F7ADADB1F17B2830023882C /* CallCarTableViewCell.xib in Resources */,
 				7F830BA61DA37CE800F50B64 /* loading-4@2x.png in Resources */,
+				7F8F29551F1D096700C5DFF9 /* OCallCarViewController.xib in Resources */,
 				7FE9AC771DA1D10400B4077B /* CouponViewController.xib in Resources */,
 				7FCABBCC1DB13451006EDD11 /* CarRecruitPhotoViewController.xib in Resources */,
 				7F66D7561DAFEA1E0076F204 /* MyPayTypeViewController.xib in Resources */,
+				7F8F296E1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib in Resources */,
 				7F4FB4DF1F0EA42F00B707DF /* ShopCollectionViewCell.xib in Resources */,
 				7F4FB4C71F0E9A9100B707DF /* CommodityTableViewCell.xib in Resources */,
 				7F830B9C1DA37CE800F50B64 /* loading-11@2x.png in Resources */,
@@ -1460,6 +1522,7 @@
 				7F830BA41DA37CE800F50B64 /* loading-2@2x.png in Resources */,
 				7FE0E8011DDE146F008F5B0D /* b27_icon_star_gray@2x.png in Resources */,
 				7FAACAA81D902F0E0028D0D6 /* Main.storyboard in Resources */,
+				7F8F295F1F1D098C00C5DFF9 /* OBuyCarViewController.xib in Resources */,
 				7F830BA51DA37CE800F50B64 /* loading-3@2x.png in Resources */,
 				7F830BA91DA37CE800F50B64 /* loading-7@2x.png in Resources */,
 				7FAACC271D9036460028D0D6 /* desc in Resources */,
@@ -1555,6 +1618,7 @@
 				7F30ECCD1DB110700083A311 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
 				7FA96C481DA9484F00F5E00E /* ForgetViewController.m in Sources */,
 				7FAACC211D9036460028D0D6 /* desc.md in Sources */,
+				7F8F29591F1D097C00C5DFF9 /* ORentCarViewController.m in Sources */,
 				7FE9AC761DA1D10400B4077B /* CouponViewController.m in Sources */,
 				7FAACC181D9036460028D0D6 /* UIImage+ICCategory.m in Sources */,
 				7FC4103C1DB88FE9000250F1 /* EndOrderLocationServer.m in Sources */,
@@ -1574,6 +1638,7 @@
 				7FAACC2B1D9036460028D0D6 /* desc.md in Sources */,
 				7F4FB4CA1F0E9C8E00B707DF /* UIBarButtonItem+Extension.m in Sources */,
 				7F4FB4991F0D3B7800B707DF /* MainTabBarViewController.m in Sources */,
+				7F8F294F1F1D036F00C5DFF9 /* RentCarTableViewCell.m in Sources */,
 				7F830BB31DA400FC00F50B64 /* AboutUsTableCell.m in Sources */,
 				7FEB1FFC1D9EC010001E5F10 /* MainViewController.mm in Sources */,
 				7F5CD9961F112D5A00E37652 /* ProductDetailViewController.m in Sources */,
@@ -1582,12 +1647,14 @@
 				7FAACC2D1D9036460028D0D6 /* desc.md in Sources */,
 				7F7ACCB81DA54C4F00B1968F /* OrderTableCell.m in Sources */,
 				7FAACC1A1D9036460028D0D6 /* UILabel+Category.m in Sources */,
+				7F8F295E1F1D098C00C5DFF9 /* OBuyCarViewController.m in Sources */,
 				7FAACC201D9036460028D0D6 /* ToastView.m in Sources */,
 				7F830BB01DA381B400F50B64 /* HttpUrlClient.m in Sources */,
 				7FAACC081D9036460028D0D6 /* NSDate+Category.m in Sources */,
 				7FCABBCB1DB13451006EDD11 /* CarRecruitPhotoViewController.m in Sources */,
 				7F6D737F1F0FC7FD00371FC2 /* NSObject+Property.m in Sources */,
 				7F66D7501DAFE8E90076F204 /* AppraiseViewController.m in Sources */,
+				7F8F29541F1D096700C5DFF9 /* OCallCarViewController.m in Sources */,
 				7FAACC0B1D9036460028D0D6 /* NSMutableArray+Category.m in Sources */,
 				7FEB200D1D9EC0AB001E5F10 /* BaseTableView.m in Sources */,
 				7F5CD98E1F112D3A00E37652 /* UIScrollView+JYPaging.m in Sources */,
@@ -1600,6 +1667,7 @@
 				7FAACC221D9036460028D0D6 /* HttpClient.m in Sources */,
 				7F5CD9711F11272500E37652 /* MLMSegmentManager.m in Sources */,
 				7FAACC1F1D9036460028D0D6 /* AppStoreUpdateView.m in Sources */,
+				7F8F296D1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m in Sources */,
 				7F4FB4B81F0D3C8E00B707DF /* ShopViewController.m in Sources */,
 				7F30ECCC1DB110700083A311 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
 				7FE9AC561DA1BDD500B4077B /* TYLaunchBaseAnimation.m in Sources */,
@@ -1611,6 +1679,8 @@
 				7FB313911DA93703005AFD2F /* SearchAddressTableCell.m in Sources */,
 				7FAACC0E1D9036460028D0D6 /* NSObject+Category.m in Sources */,
 				7FAACC0D1D9036460028D0D6 /* NSMutableDictionary+Category.m in Sources */,
+				7F8F29681F1D0A9100C5DFF9 /* ORentCarTableViewCell.m in Sources */,
+				7F8F29631F1D0A8400C5DFF9 /* OCallCarTableViewCell.m in Sources */,
 				7F4FB4A91F0D3C6100B707DF /* CallCarViewController.m in Sources */,
 				7FAACC061D9036460028D0D6 /* BaseViewServer.m in Sources */,
 				7F7ACCB21DA4CBEA00B1968F /* CouponTableCell.m in Sources */,

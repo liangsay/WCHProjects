@@ -42,7 +42,7 @@
     _segHead.headColor = [UIColor clearColor];
     _segHead.selectColor = [UIColor mainColor];
     _segHead.lineColor = [UIColor mainColor];
-    _segHead.fontScale = 1.1;
+    _segHead.fontScale = 1.0;
     _segHead.fontSize = 14;
     _segHead.lineScale = .5;
     _segHead.equalSize = YES;

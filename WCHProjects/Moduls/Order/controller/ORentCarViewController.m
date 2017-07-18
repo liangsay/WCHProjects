@@ -1,20 +1,22 @@
 //
-//  RentCarViewController.m
+//  ORentCarViewController.m
 //  WCHProjects
 //
-//  Created by liujinliang on 2017/7/5.
+//  Created by liujinliang on 2017/7/17.
 //  Copyright © 2017年 liujinliang. All rights reserved.
 //
 
-#import "RentCarViewController.h"
+#import "ORentCarViewController.h"
 #import "BaseTableView.h"
-#import "RentCarTableViewCell.h"
-@interface RentCarViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "ORentCarTableViewCell.h"
+@interface ORentCarViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+
 @end
 
-@implementation RentCarViewController
+@implementation ORentCarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,8 +25,8 @@
 }
 
 - (void)setupTableViewSet {
-    [self.tableView registerNib:[UINib nibWithNibName:@"RentCarTableViewCell" bundle:nil] forCellReuseIdentifier:kRentCarTableViewCellID];
-    self.tableView.rowHeight = kRentCarTableViewCellHeight;
+    [self.tableView registerNib:[UINib nibWithNibName:@"ORentCarTableViewCell" bundle:nil] forCellReuseIdentifier:kORentCarTableViewCellID];
+    self.tableView.rowHeight = kORentCarTableViewCellHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor backgroundColor];
 }
@@ -54,39 +56,14 @@
     return self.dataArray.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.dataArray.count) {
-        UIView *headV = [UIView new];
-        headV.backgroundColor = [UIColor backgroundColor];
-        return headV;
-    }
-    return nil;
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RentCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRentCarTableViewCellID forIndexPath:indexPath];
+    ORentCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kORentCarTableViewCellID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Configure the cell...
-    
+    OrderInfoObj *orderObj = _dataArray[indexPath.row];
+    [cell setupCellInfoWithObj:orderObj];
     return cell;
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGFloat sectionHeaderHeight =10;// 25;
-    if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0)
-    {
-        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-    }
-    else if (scrollView.contentOffset.y >= sectionHeaderHeight)
-    {
-        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-    }
 }
 
 

@@ -9,7 +9,7 @@
 #import "MineTableViewCell.h"
 #import "BaseViewServer.h"
 NSString * const kMineTableViewCellID = @"kMineTableViewCellID";
-CGFloat const kMineTableViewCellHeight = 40;
+CGFloat const kMineTableViewCellHeight = 44;
 
 @implementation MineCellModel
 
@@ -27,11 +27,7 @@ CGFloat const kMineTableViewCellHeight = 40;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setupUIViews];
-        self.backgroundColor = [UIColor blackColor];
-        self.backgroundView.backgroundColor = [UIColor blackColor];
-        self.backgroundBtnView.backgroundColor = [UIColor blackColor];
-//        [self.backgroundBtnView setBackgroundImageColor:[UIColor whiteColor]];
-        self.contentView.backgroundColor = [UIColor blackColor];
+        
     }
     return self;
 }
@@ -41,11 +37,11 @@ CGFloat const kMineTableViewCellHeight = 40;
     _typeImageView = [BaseViewServer addImageViewInView:self.contentView image:kIMAGE(@"icon_work_notice") contentMode:UIViewContentModeScaleAspectFit mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(kMargin);
         make.centerY.equalTo(weakSelf);
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(0);
     }];
     _typeImageView.backgroundColor = [UIColor clearColor];
     
-    _typeLabel = [BaseViewServer addLabelInView:self.contentView font:[UIFont fontContent] text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _typeLabel = [BaseViewServer addLabelInView:self.contentView font:[UIFont fontContent] text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.typeImageView.mas_right).offset(kPadding);
         make.top.bottom.right.offset(0);
     }];

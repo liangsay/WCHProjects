@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
+#import "MLMSegmentManager.h"
 @interface OrderListViewController : BaseViewController
-
+@property (nonatomic, assign) MLMSegmentHeadStyle style;
+@property (nonatomic, assign) MLMSegmentLayoutStyle layout;
 @end

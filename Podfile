@@ -33,4 +33,21 @@ target "WCHProjects" do
     pod 'JWNetAutoCache'
     #iOS图片、文字轮播器
     pod 'SDCycleScrollView'
+    
+    #友盟统计
+    #pod 'UMengAnalytics'
+    pod 'UMengAnalytics-NO-IDFA'
+    #友盟社会化分享
+    #pod 'UMengSocial'#, '~> 4.4'
+    #pod 'UMengUShare/Social'
+    # 集成QQ
+    pod 'UMengUShare/Social/QQ'
+    # 集成新浪微博
+    #pod 'UMengUShare/Social/Sina'
+    ## 集成微信
+    #pod 'UMengUShare/Social/WeChat'
+    # 集成邮件
+    pod 'UMengUShare/Social/Email'
+    # 集成短信
+    pod 'UMengUShare/Social/SMS'
 end

@@ -116,6 +116,8 @@
 		7F8F29691F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F29671F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib */; };
 		7F8F296D1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F296B1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m */; };
 		7F8F296E1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F296C1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib */; };
+		7F991EC21F1E6EC100B57437 /* JiKeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F991EC01F1E6EC100B57437 /* JiKeViewController.m */; };
+		7F991EC31F1E6EC100B57437 /* JiKeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F991EC11F1E6EC100B57437 /* JiKeViewController.xib */; };
 		7FA96C481DA9484F00F5E00E /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA96C461DA9484F00F5E00E /* ForgetViewController.m */; };
 		7FA96C491DA9484F00F5E00E /* ForgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA96C471DA9484F00F5E00E /* ForgetViewController.xib */; };
 		7FAACA9F1D902F0E0028D0D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FAACA9E1D902F0E0028D0D6 /* main.m */; };
@@ -394,6 +396,9 @@
 		7F8F296A1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBuyCarTableViewCell.h; sourceTree = "<group>"; };
 		7F8F296B1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBuyCarTableViewCell.m; sourceTree = "<group>"; };
 		7F8F296C1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBuyCarTableViewCell.xib; sourceTree = "<group>"; };
+		7F991EBF1F1E6EC100B57437 /* JiKeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiKeViewController.h; sourceTree = "<group>"; };
+		7F991EC01F1E6EC100B57437 /* JiKeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiKeViewController.m; sourceTree = "<group>"; };
+		7F991EC11F1E6EC100B57437 /* JiKeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JiKeViewController.xib; sourceTree = "<group>"; };
 		7FA96C451DA9484F00F5E00E /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
 		7FA96C461DA9484F00F5E00E /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
 		7FA96C471DA9484F00F5E00E /* ForgetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetViewController.xib; sourceTree = "<group>"; };
@@ -1362,6 +1367,9 @@
 				7FCC09FC1EB392BB00D110F3 /* PersonSetViewController.h */,
 				7FCC09FD1EB392BB00D110F3 /* PersonSetViewController.m */,
 				7FCC09FE1EB392BB00D110F3 /* PersonSetViewController.xib */,
+				7F991EBF1F1E6EC100B57437 /* JiKeViewController.h */,
+				7F991EC01F1E6EC100B57437 /* JiKeViewController.m */,
+				7F991EC11F1E6EC100B57437 /* JiKeViewController.xib */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -1512,6 +1520,7 @@
 				7F8F29551F1D096700C5DFF9 /* OCallCarViewController.xib in Resources */,
 				7FE9AC771DA1D10400B4077B /* CouponViewController.xib in Resources */,
 				7FCABBCC1DB13451006EDD11 /* CarRecruitPhotoViewController.xib in Resources */,
+				7F991EC31F1E6EC100B57437 /* JiKeViewController.xib in Resources */,
 				7F66D7561DAFEA1E0076F204 /* MyPayTypeViewController.xib in Resources */,
 				7F8F296E1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib in Resources */,
 				7F4FB4DF1F0EA42F00B707DF /* ShopCollectionViewCell.xib in Resources */,
@@ -1659,6 +1668,7 @@
 				7FEB200D1D9EC0AB001E5F10 /* BaseTableView.m in Sources */,
 				7F5CD98E1F112D3A00E37652 /* UIScrollView+JYPaging.m in Sources */,
 				7FEB1FFE1D9EC010001E5F10 /* OrderViewController.m in Sources */,
+				7F991EC21F1E6EC100B57437 /* JiKeViewController.m in Sources */,
 				7FAACC231D9036460028D0D6 /* HttpLoadServer.m in Sources */,
 				7F830B881DA33F3800F50B64 /* MyRouteTableCell.m in Sources */,
 				7FC4406E1DBBC84C006A3993 /* OrderPointAnnotation.m in Sources */,

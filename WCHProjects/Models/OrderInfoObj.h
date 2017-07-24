@@ -206,4 +206,17 @@
                           failedBlock:(RequestSessionCompletedBlock)failedBlock;
 
 
+#pragma mark --V3.0版本-----------------------
+#pragma mark --物流车源
++ (void)sendFreighttoCallWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                            failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --租车车源
++ (void)sendFreighttoRentWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                            failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --品牌
++ (void)sendBrandtoCustomListWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
 @end

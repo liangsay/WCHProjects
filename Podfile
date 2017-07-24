@@ -29,6 +29,7 @@ target "WCHProjects" do
     pod 'ActionSheetPicker-3.0'
     pod 'AlipaySDK-2.0'
     pod 'WeChat'
+    
     #iOS web资源缓存解决方案、异步后台更新。离线缓
     pod 'JWNetAutoCache'
     #iOS图片、文字轮播器

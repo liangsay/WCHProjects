@@ -313,4 +313,116 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         failedBlock(request,response);
     }];
 }
+
+#pragma mark --V3.0版本-----------------------
+#pragma mark --物流车源
++ (void)sendFreighttoCallWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                          failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_FreighttoCall() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --租车车源
++ (void)sendFreighttoRentWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                            failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_FreighttoRent() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --品牌
++ (void)sendBrandtoCustomListWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                            failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_BrandtoCustomList() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --车系
++ (void)sendSerietoCustomListWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_SerietoCustomList() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --添加购物车
++ (void)sendMallorderdoAddCarWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_MallorderdoAddCar() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --查询商品信息
++ (void)sendMallordertoViewWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_MallordertoView() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --查询品牌、车系下的数据
++ (void)sendMallgoodstoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_MallgoodstoCustom() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --添加收藏
++ (void)sendCollectdoCollectWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_CollectdoCollect() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --删除收藏
++ (void)sendCollectdoDeleteWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_CollectdoDelete() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --查询个人收藏
++ (void)sendCollecttoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_CollecttoCustom() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
 @end

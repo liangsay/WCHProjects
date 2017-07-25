@@ -19,7 +19,6 @@ FOUNDATION_EXPORT CGFloat const kCouponTableCellHeight;
 @end
 
 @interface CouponTableCell : BaseTableCell
-@property (nonatomic, strong) UIImageView *iconImgV;
 @property (nonatomic, strong) UILabel *typeLab;//类型
 @property (nonatomic, strong) UILabel *moneyLab;//优惠金额
 @property (nonatomic, strong) UILabel *timeLab;//时间

@@ -33,20 +33,32 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     [self.typeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.typeBtn setLayerCornerRadius:round(25/2)];
     
-    self.timeLab.text = [NSString stringWithFormat:@"下单时间:%@",@"2017-09-01 12:12:12"];
-    self.typeLab.text = @"箱货";
+    self.timeLab.text = [NSString stringWithFormat:@"下单时间:%@",orderObj.createTimef];
+    self.typeLab.text = orderObj.modelNamef;
     
-    self.startLab.text = @"沪松路440号(南区交警大队旁)";
-    self.endLab.text = @"湘东建材市场";
-    NSString *price = @"100.50";
+    self.startLab.text = orderObj.startAddrNamef;
+    self.endLab.text = orderObj.endAddrNamef;
+    NSString *price = orderObj.pricef;
     NSString *priceStr = [NSString stringWithFormat:@"运价：%@",price];
     NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:priceStr];
     NSRange priceRange = [priceStr rangeOfString:price];
     [priceAtt setTextColor:[UIColor priceColor] range:priceRange];
     self.priceLab.attributedText = priceAtt;
     
-    self.statueLab.text = @"未接单";
-    
+    self.statueLab.text = orderObj.statusTextf;
+    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    NSInteger statusf = orderObj.statusf.integerValue;
+    if (statusf==1 || statusf==0) {//在已接单状态，司机或货主可取消订单
+        self.typeBtn.alpha = 1;
+        [self.typeBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(60);
+        }];
+    }else{
+        self.typeBtn.alpha = 0;
+        [self.typeBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(0);
+        }];
+    }
 }
 
 

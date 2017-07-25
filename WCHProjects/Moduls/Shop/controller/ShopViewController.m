@@ -9,10 +9,10 @@
 #import "ShopViewController.h"
 #import "BaseTableView.h"
 #import "ShopCollectionViewCell.h"
-#import "GridListModel.h"
+#import "OrderInfoObj.h"
 #import "NSObject+Property.h"
 #import "ShopDetailViewController.h"
-
+#import "MJRefresh.h"
 @interface ShopViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
@@ -37,7 +37,7 @@
     //设置table数据源
     [self setupTableViewSet];
     //初始化数据
-    [self initData];
+    [self sendMallgoodstoCustom_API];
 }
 
 - (void)setupTableViewSet {
@@ -60,7 +60,42 @@
     [_collectionView setBackgroundColor:[UIColor clearColor]];
     //注册cell
     [_collectionView registerClass:[ShopCollectionViewCell class] forCellWithReuseIdentifier:kShopCollectionViewCellID];
+    [self addHeaderRefreshTarget:self action:@selector(sendMallgoodstoCustom_API)];
 }
+
+#pragma mark 顶部刷新
+- (void)addHeaderRefreshTarget:(id)target action:(SEL)action
+{
+    
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:target refreshingAction:action];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    
+    NSMutableArray *idleImages = [NSMutableArray array];
+    for (int i=1; i<19; i++) {
+        NSString *loadStr = [NSString stringWithFormat:@"loading-gray-%d",i];
+        UIImage *loadImg = kIMAGE(loadStr);
+        [idleImages addObject:[loadImg imageByScalingToSize:(CGSize){loadImg.size.width/2,loadImg.size.height/2}]];
+    }
+    // 设置普通状态的动画图片
+    [header setImages:idleImages forState:MJRefreshStateIdle|MJRefreshStatePulling|MJRefreshStateRefreshing];
+    header.backgroundColor = [UIColor backgroundColor];
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    
+    //    [header setImages:pullingImages forState:MJRefreshStatePulling];
+    
+    // 设置正在刷新状态的动画图片
+    
+    //    [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
+    
+    self.collectionView.mj_header = header;
+    //        if (self.mj_header && [self.mj_header isKindOfClass:[MJRefreshHeader class]]) return;
+    //
+    //        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
+    
+    
+}
+
 #pragma mark 加载数据
 -(void)initData{
     
@@ -155,6 +190,24 @@
     } else {
         [self.swithBtn setImage:[UIImage imageNamed:@"product_list_grid_btn"] forState:0];
     }
+}
+
+#pragma mark --查询品牌、车系下的数据
+/**
+ 查询品牌、车系下的数据
+ */
+- (void)sendMallgoodstoCustom_API{
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:[LocationServer shared].cityf forKey:@"vo.cityf"];
+    [params addUnEmptyString:[LocationServer shared].provincef forKey:@"vo.provincef"];
+    [OrderInfoObj sendMallgoodstoCustomWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        weakSelf.dataSource = [NSMutableArray arrayWithArray:response.responseModel];
+        [weakSelf.collectionView reloadData];
+        [weakSelf.collectionView.mj_header endRefreshing];
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [weakSelf.collectionView.mj_header endRefreshing];
+    }];
 }
 
 

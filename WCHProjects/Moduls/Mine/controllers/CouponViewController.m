@@ -81,7 +81,7 @@
 - (void)sendDiscoupontoUser {
     WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObject:[UserInfoObj model].mobilePhonef forKey:@"queryMap.phonef"];
-    [params addUnEmptyString:@"0" forKey:@"isUsef"];
+    [params addUnEmptyString:@"0" forKey:@"queryMap.isUsef"];
     [CoupontoUserObj sendDiscoupontoUserWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         
         weakSelf.dataArray = response.responseModel;

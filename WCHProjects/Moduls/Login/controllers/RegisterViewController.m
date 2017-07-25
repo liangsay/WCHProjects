@@ -185,7 +185,7 @@
         [weakSelf.getCodeBtn setTheCountdownButton:weakSelf.getCodeBtn startWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:[UIColor mainColor] countColor:[UIColor backgroundColor]];
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

@@ -97,7 +97,7 @@
 #pragma mark --用于查询司机的收入
 + (void)sendOrdertoIncomeWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                             failedBlock:(RequestSessionCompletedBlock)failedBlock {
-    [self sendRequestWithAPI:kAPI_OrdertoIncome() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_OrdertoIncome() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
@@ -229,7 +229,7 @@
 #pragma mark --用于获得待接订单
 + (void)sendOrdertoDoneWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                failedBlock:(RequestSessionCompletedBlock)failedBlock{
-    [self sendRequestWithAPI:kAPI_OrdertoDone() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_OrdertoDone() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
@@ -417,6 +417,17 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
 + (void)sendCollecttoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock {
     [self sendRequestWithAPI:kAPI_CollecttoCustom() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --订单租车
++ (void)sendRentordertoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                              failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_RentordertoCustom() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {

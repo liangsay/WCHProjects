@@ -176,7 +176,7 @@
     [OrderInfoObj sendDriverinfotoUploadWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

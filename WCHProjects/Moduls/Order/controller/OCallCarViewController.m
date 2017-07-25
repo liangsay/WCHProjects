@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
+    [self refreshHeaderData];
 }
 
 - (void)setupTableViewSet {
@@ -28,16 +29,16 @@
     self.tableView.rowHeight = kOCallCarTableViewCellHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor backgroundColor];
+    [self.tableView addHeaderRefreshTarget:self action:@selector(refreshHeaderData)];
+}
+
+- (void)refreshHeaderData {
+    [self sendOrdertoRoute_API];
 }
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray new];
-        
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
     }
     return _dataArray;
 }
@@ -65,6 +66,23 @@
     return cell;
 }
 
+#pragma mark --用于查询我的行程
+/**
+ 用于查询我的行程
+ */
+- (void)sendOrdertoRoute_API{
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"queryMap.ownerIdf"];
+    [OrderInfoObj sendOrdertoRouteWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        weakSelf.dataArray = [NSMutableArray arrayWithArray:response.responseModel];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView endHeaderRefreshing];
+        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [weakSelf.tableView endHeaderRefreshing];
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

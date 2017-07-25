@@ -36,19 +36,30 @@ target "WCHProjects" do
     pod 'SDCycleScrollView'
     
     #友盟统计
-    #pod 'UMengAnalytics'
-    pod 'UMengAnalytics-NO-IDFA'
+    # U-Share SDK UI模块（分享面板，建议添加）
+    pod 'UMengUShare/UI'
+    # 集成微信(精简版0.2M)
+    pod 'UMengUShare/Social/ReducedWeChat'
+    # 集成QQ/QZone/TIM(精简版0.5M)
+    pod 'UMengUShare/Social/ReducedQQ'
+    # 集成新浪微博(精简版1M)
+    pod 'UMengUShare/Social/ReducedSina'
+    
+    # 集成微信(精简版0.2M)
+    pod ‘UMengUShare/Social/ReducedWeChat'
+#    pod 'UMengAnalytics'
+#    pod 'UMengAnalytics-NO-IDFA'
     #友盟社会化分享
     #pod 'UMengSocial'#, '~> 4.4'
     #pod 'UMengUShare/Social'
     # 集成QQ
-    pod 'UMengUShare/Social/QQ'
-    # 集成新浪微博
-    #pod 'UMengUShare/Social/Sina'
-    ## 集成微信
-    #pod 'UMengUShare/Social/WeChat'
-    # 集成邮件
-    pod 'UMengUShare/Social/Email'
-    # 集成短信
-    pod 'UMengUShare/Social/SMS'
+#    pod 'UMengUShare/Social/QQ'
+#    # 集成新浪微博
+#    pod 'UMengUShare/Social/Sina'
+#    # 集成微信
+#    pod 'UMengUShare/Social/WeChat'
+#    # 集成邮件
+#    pod 'UMengUShare/Social/Email'
+#    # 集成短信
+#    pod 'UMengUShare/Social/SMS'
 end

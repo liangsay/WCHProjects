@@ -92,7 +92,7 @@
         [UserInfoObj model].emailf= self.emailTxtF.text;
         [[UserInfoObj model] cache];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

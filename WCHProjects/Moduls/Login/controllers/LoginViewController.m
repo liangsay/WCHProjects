@@ -21,7 +21,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registBtn;
-@property (weak, nonatomic) IBOutlet UIButton *showBtn;
+@property (weak, nonatomic) IBOutlet UIButton *codeBtn;
+@property (nonatomic, strong) NSString *codeNum;
+
+/** 定时器(这里不用带*，因为dispatch_source_t就是个类，内部已经包含了*) */
+@property (nonatomic, strong) dispatch_source_t timer;
 
 @end
 
@@ -33,7 +37,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupViewsStyle];
 #if DEBUG
-    self.userNameTxtF.text = @"18202536913";//@"13922163927";
+    self.userNameTxtF.text = @"13820633188";//@"18202536913";//@"13922163927";
     self.passwordTxtF.text = @"123456";//@"888888";
 #endif
 }
@@ -59,16 +63,81 @@
 //    [self.registBtn setLayerCornerRadius:4];
 //    [self.registBtn setLayerBorderWidth:.5 color:[UIColor mainColor]];
     
-    [_showBtn setImage:kIMAGE(@"不显示密码") forState:UIControlStateNormal];
-    [_showBtn setImage:kIMAGE(@"显示密码") forState:UIControlStateSelected];
+   
 }
 
 #pragma mark --显示或隐藏密码
-- (IBAction)showBtnAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    _passwordTxtF.secureTextEntry = !sender.isSelected;
+- (IBAction)codeBtnAction:(UIButton *)sender {
+    [self sendSmstoSend];
+    
+    
 }
 
+- (void)downTimeSet {
+    __block int count = 60;
+    WEAKSELF
+    // 获得队列
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    
+    // 创建一个定时器(dispatch_source_t本质还是个OC对象)
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    
+    // 设置定时器的各种属性（几时开始任务，每隔多长时间执行一次）
+    // GCD的时间参数，一般是纳秒（1秒 == 10的9次方纳秒）
+    // 何时开始执行第一个任务
+    // dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC) 比当前时间晚3秒
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+    uint64_t interval = (uint64_t)(1.0 * NSEC_PER_SEC);
+    dispatch_source_set_timer(self.timer, start, interval, 0);
+    
+    // 设置回调
+    dispatch_source_set_event_handler(self.timer, ^{
+        NSLog(@"------------%@", [NSThread currentThread]);
+        count -= 1;
+        
+        if (count <= 0 ) {
+            // 取消定时器
+            dispatch_cancel(weakSelf.timer);
+            weakSelf.timer = nil;
+            weakSelf.codeBtn.enabled = YES;
+            weakSelf.codeBtn.userInteractionEnabled = YES;
+            [weakSelf.codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        }else{
+            weakSelf.codeBtn.enabled = NO;
+            weakSelf.codeBtn.userInteractionEnabled = NO;
+            NSString *tit = [NSString stringWithFormat:@"%ds",count];
+            [weakSelf.codeBtn setTitle:tit forState:UIControlStateNormal];
+        }
+    });
+    
+    // 启动定时器
+    dispatch_resume(self.timer);
+}
+
+#pragma mark --发送短信的接口
+/**
+ 发送短信的接口
+ */
+- (void)sendSmstoSend {
+    [self.view endEditing:YES];
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:@"1" forKey:@"vo.smsTypef"];
+    [params addUnEmptyString:self.userNameTxtF.text forKey:@"vo.mobilef"];
+    [UserInfoObj sendSmstoSendWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        weakSelf.codeNum = response.result;
+        [weakSelf downTimeSet];
+        NSString *msg = [NSString stringWithFormat:@"验证码已发送至手机号为%@，请注意查收并登陆/注册使用",weakSelf.userNameTxtF.text];
+        [NSString toast:msg];
+#ifdef DEBUG
+        DLog(@"response.result:%@",response.result);
+        [NSString toast:weakSelf.codeNum];
+#endif
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:response.responseMsg];
+    }];
+}
 
 #pragma mark --登录
 - (IBAction)loginBtnAction:(id)sender {
@@ -77,14 +146,18 @@
         return;
     }
     if (self.passwordTxtF.text.isEmpty) {
-        [NSString toast:@"请输入密码"];
+        [NSString toast:@"请输入验证码"];
         return;
     }
+    if (self.passwordTxtF.text != self.codeNum) {
+        [NSString toast:@"请输入正确的验证码"];
+        return;
+    }
+    
     [self.view endEditing:YES];
     WEAKSELF
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       self.userNameTxtF.text,@"vo.userNamef",
-                                       self.passwordTxtF.text,@"vo.userPwdf", nil];
+                                       self.userNameTxtF.text,@"vo.userNamef", nil];
     [UserInfoObj sendLoginRequestWithParameters:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (weakSelf.loginAction) {
             weakSelf.loginAction(1);

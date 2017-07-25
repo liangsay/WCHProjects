@@ -8,7 +8,7 @@
 
 #import "ORentCarTableViewCell.h"
 NSString * const kORentCarTableViewCellID = @"kORentCarTableViewCellID";
-CGFloat const kORentCarTableViewCellHeight = 85;
+CGFloat const kORentCarTableViewCellHeight = 145;
 @implementation ORentCarTableViewCell
 
 - (void)awakeFromNib {
@@ -16,6 +16,8 @@ CGFloat const kORentCarTableViewCellHeight = 85;
     // Initialization code
     self.contentView.backgroundColor = [UIColor backgroundColor];
     self.nameLab.textColor = [UIColor mainColor];
+    [self.typeBtn setBackgroundImageColor:[UIColor mainColor]];
+    [self.typeBtn setLayerCornerRadius:5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -26,16 +28,21 @@ CGFloat const kORentCarTableViewCellHeight = 85;
 
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj {
     self.orderObj = orderObj;
-    self.nameLab.text = @"六六微货";
-    self.startLab.text = @"2016-12-10";
-    self.endLab.text = @"2017-10-11";
-    NSString *address = @"天津市北辰区韩家墅海吉星农产品批发市场";
-    NSString *addressStr = [NSString stringWithFormat:@"取/还车地址 %@",address];
+    self.nameLab.text = orderObj.vehicleModelTypef;
+    self.startLab.text = orderObj.pickupDatef;
+    self.endLab.text = orderObj.returnDatef;
+    self.typeLab.text = orderObj.statusTextf;
+    NSString *address = orderObj.returnLocationf;
+    NSString *addressStr = [NSString stringWithFormat:@"取/还车地址:%@",address];
     NSMutableAttributedString *addrAtt = [[NSMutableAttributedString alloc] initWithString:addressStr];
     NSRange addressRange = [addressStr rangeOfString:address];
     [addrAtt setTextColor:[UIColor fontGray]];
     [addrAtt setTextColor:[UIColor fontBlack] range:addressRange];
+    [addrAtt setFont:[UIFont fontAssistant]];
     self.addressLab.attributedText = addrAtt;
     
+}
+
+- (IBAction)typeBtnAction:(UIButton *)sender {
 }
 @end

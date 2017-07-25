@@ -1734,7 +1734,7 @@ MyPayTypeViewDelegate>
         }
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 
@@ -1756,7 +1756,7 @@ MyPayTypeViewDelegate>
         
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 
@@ -1977,7 +1977,7 @@ MyPayTypeViewDelegate>
             
         } origin:weakSelf.navigationController.view];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 
@@ -1997,7 +1997,7 @@ MyPayTypeViewDelegate>
         }
         [weakSelf addMapPointViewWithArray:response.responseModel];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

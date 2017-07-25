@@ -246,3 +246,13 @@ CG_INLINE NSString *kAPI_CollectdoDelete() {
 CG_INLINE NSString *kAPI_CollecttoCustom() {
     return @"CollecttoCustom.shtml";
 }
+
+#pragma mark --
+CG_INLINE NSString *kAPI_UsertoLogin4App() {
+    return @"UsertoLogin4App.shtml";
+}
+
+#pragma mark --订单租车
+CG_INLINE NSString *kAPI_RentordertoCustom() {
+    return @"RentordertoCustom.shtml";
+}

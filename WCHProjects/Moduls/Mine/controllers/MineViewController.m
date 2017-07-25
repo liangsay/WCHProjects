@@ -23,6 +23,8 @@
 #import "UIAlertController+Blocks.h"
 #import "MainViewController.h"
 #import "PersonSetViewController.h"
+#import "UIAlertController+Blocks.h"
+#import <UShareUI/UShareUI.h>
 
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate>
 {
@@ -33,15 +35,22 @@
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeaderImgV;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLab;
+@property (weak, nonatomic) IBOutlet UIButton *outBtn;
 
 @end
 
 @implementation MineViewController
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self.outBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
+    [self.outBtn setLayerCornerRadius:5];
     _userNameLab.text = [UserInfoObj model].trueNamef;
     
 //    if ([UserInfoObj model].userTypef.integerValue!=2) {
@@ -70,6 +79,17 @@
 
 }
 
+#pragma mark    --退出登陆
+- (IBAction)loginOutBtnAction:(UIButton *)sender {
+    WEAKSELF
+    [UIAlertController showAlertInViewController:self withTitle:@"退出提示" message:@"您是否要退出登陆?" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+        if (buttonIndex == 2) {
+            [kAppDelegate showLoginVCWithLoginAction:^(NSInteger index) {
+                
+            }];
+        }
+    }];
+}
 
 #pragma mark - Table view data source
 
@@ -128,7 +148,11 @@
             kPushNav(vc, YES);
         }else if (row==1){
             //分享
-            
+            [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_WechatSession)]];
+            [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+                // 根据获取的platformType确定所选平台进行下一步操作
+                
+            }];
         }else if (row==2){
             //司机招募
             CarRecruitViewController *vc = [[CarRecruitViewController alloc] initWithNibName:@"CarRecruitViewController" bundle:nil];
@@ -136,7 +160,7 @@
             kPushNav(vc, YES);
         }else if (row==3){
             //我的收入
-            MyRouteViewController *vc = [[MyRouteViewController alloc] initWithNibName:@"MyRouteViewController" bundle:nil];
+            MyIncomeViewController *vc = [[MyIncomeViewController alloc] initWithNibName:@"MyIncomeViewController" bundle:nil];
             vc.navigationItem.title = @"我的收入";
             kPushNav(vc, YES);
         }else if (row==4){

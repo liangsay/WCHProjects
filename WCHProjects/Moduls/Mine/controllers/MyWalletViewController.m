@@ -277,7 +277,7 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
         [weakSelf.tableView reloadData];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 
@@ -289,7 +289,7 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
     [OrderInfoObj sendRechargetoBalanceWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         weakSelf.totalLabel.text = kDoubleToString([response.result doubleValue]);
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 
@@ -319,7 +319,7 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
         weakSelf.payKey = response.result;
         weakSelf.idf = [NSString stringWithFormat:@"%@_%@",response.result,[UserInfoObj model].mobilePhonef];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

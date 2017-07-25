@@ -53,6 +53,17 @@ PODS:
   - UIImage-Helpers (0.0.3)
   - UITableView+FDTemplateLayoutCell (1.4)
   - UMengAnalytics (4.1.0)
+  - UMengUShare/Core (6.4.2):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.2)
+  - UMengUShare/Social/ReducedQQ (6.4.2):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedSina (6.4.2):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedWeChat (6.4.2):
+    - UMengUShare/Core
+  - UMengUShare/UI (6.4.2):
+    - UMengUShare/Core
   - WeChat (1.0.1)
 
 DEPENDENCIES:
@@ -80,6 +91,10 @@ DEPENDENCIES:
   - UIImage-Helpers
   - UITableView+FDTemplateLayoutCell
   - UMengAnalytics
+  - UMengUShare/Social/ReducedQQ
+  - UMengUShare/Social/ReducedSina
+  - UMengUShare/Social/ReducedWeChat
+  - UMengUShare/UI
   - WeChat
 
 SPEC CHECKSUMS:
@@ -107,8 +122,9 @@ SPEC CHECKSUMS:
   UIImage-Helpers: 06b04a42bdd222844035602e87e936765c80f620
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
   UMengAnalytics: 19b28253793d77dff10fb7d502faad1fb6b8ce4a
+  UMengUShare: 740664d1dd5cc2fb2cc3325d61e4b35539aa9c78
   WeChat: 93915b3be360b5bdfe48e8a9d64ff0315a28c240
 
-PODFILE CHECKSUM: 129cd1f896720c36a0f18d7207a6d790878c58cb
+PODFILE CHECKSUM: a88a344fc5b747af0e3971b2eeb06649d36e6faa
 
 COCOAPODS: 1.2.1

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MineViewController">
             <connections>
+                <outlet property="outBtn" destination="LUD-OX-yvz" id="cNd-G4-Ath"/>
                 <outlet property="tableView" destination="13Y-U7-9vF" id="E8X-62-QGT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="8rG-tL-Yhy"/>
             </connections>
@@ -23,6 +24,27 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="13Y-U7-9vF" customClass="BaseTableView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="GfV-UI-kYK">
+                        <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUD-OX-yvz">
+                                <rect key="frame" x="15" y="5" width="345" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="立即退出"/>
+                                <connections>
+                                    <action selector="loginOutBtnAction:" destination="-1" eventType="touchUpInside" id="IV4-4w-YWj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LUD-OX-yvz" firstAttribute="top" secondItem="GfV-UI-kYK" secondAttribute="top" constant="5" id="IoU-X0-Ay2"/>
+                            <constraint firstItem="LUD-OX-yvz" firstAttribute="leading" secondItem="GfV-UI-kYK" secondAttribute="leading" constant="15" id="WFK-gc-moL"/>
+                            <constraint firstAttribute="bottom" secondItem="LUD-OX-yvz" secondAttribute="bottom" constant="5" id="hYv-q6-uaU"/>
+                            <constraint firstAttribute="trailing" secondItem="LUD-OX-yvz" secondAttribute="trailing" constant="15" id="mmK-F9-1QZ"/>
+                        </constraints>
+                    </view>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="VR7-dg-ja3"/>
                         <outlet property="delegate" destination="-1" id="aMe-Up-oZn"/>
@@ -36,7 +58,7 @@
                 <constraint firstItem="13Y-U7-9vF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fp1-lT-bp4"/>
                 <constraint firstAttribute="trailing" secondItem="13Y-U7-9vF" secondAttribute="trailing" id="hyT-OK-nnR"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="154"/>
+            <point key="canvasLocation" x="138.5" y="153.5"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

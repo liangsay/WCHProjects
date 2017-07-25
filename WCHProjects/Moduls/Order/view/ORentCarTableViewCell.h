@@ -14,7 +14,9 @@ FOUNDATION_EXPORT CGFloat const kORentCarTableViewCellHeight;
 @property (weak, nonatomic) IBOutlet UILabel *startLab;
 @property (weak, nonatomic) IBOutlet UILabel *endLab;
 @property (weak, nonatomic) IBOutlet UILabel *addressLab;
+@property (weak, nonatomic) IBOutlet UILabel *typeLab;
 
+@property (weak, nonatomic) IBOutlet UIButton *typeBtn;
 @property (nonatomic, strong) OrderInfoObj *orderObj;
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj;
 @end

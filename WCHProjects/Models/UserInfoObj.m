@@ -25,7 +25,7 @@
  *  @since <#1.0#>
  */
 + (void)sendLoginRequestWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock failedBlock:(RequestSessionCompletedBlock)failedBlock{
-    [self sendRequestWithAPI:kAPI_Login params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_UsertoLogin4App() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         UserInfoObj *model =  response.responseModel;
         if (kIsObjectEmpty(model.mobilePhonef)) {
             model.mobilePhonef = model.userNamef;
@@ -78,7 +78,7 @@
 
 #pragma mark --发送短信的接口
 + (void)sendSmstoSendWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock failedBlock:(RequestSessionCompletedBlock)failedBlock{
-    [self sendRequestWithAPI:kAPI_SmstoSend() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_SmstoSend() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {

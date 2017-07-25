@@ -118,7 +118,7 @@
         weakSelf.scoreLab.text = [NSString stringWithFormat:@"评分：%.1f",orderObj.scoref.doubleValue];
         weakSelf.countLab.text = [NSString stringWithFormat:@"订单数：%@",orderObj.orderCountf];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

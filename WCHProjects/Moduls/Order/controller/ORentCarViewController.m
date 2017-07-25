@@ -22,6 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
+    [self refreshHeaderData];
 }
 
 - (void)setupTableViewSet {
@@ -29,16 +30,16 @@
     self.tableView.rowHeight = kORentCarTableViewCellHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor backgroundColor];
+    [self.tableView addHeaderRefreshTarget:self action:@selector(refreshHeaderData)];
+}
+
+- (void)refreshHeaderData {
+    [self sendRentordertoCustom_API];
 }
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray new];
-        
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
     }
     return _dataArray;
 }
@@ -66,6 +67,22 @@
     return cell;
 }
 
+#pragma mark --订单租车
+/**
+ 订单租车
+ */
+- (void)sendRentordertoCustom_API{
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [OrderInfoObj sendRentordertoCustomWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        weakSelf.dataArray = [NSMutableArray arrayWithArray:response.responseModel];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView endHeaderRefreshing];
+        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [weakSelf.tableView endHeaderRefreshing];
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

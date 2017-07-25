@@ -79,13 +79,14 @@ NSString * const kShopCollectionViewCellID = @"kShopCollectionViewCellID";
     }
 }
 
-- (void)setModel:(GridListModel *)model
+- (void)setModel:(OrderInfoObj *)model
 {
     _model = model;
     
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.imageurl] placeholderImage:nil];
-    _titleLabel.text = model.wname;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%.2f",model.jdPrice];
+    NSString *diskFilePathf = [NSString stringWithFormat:@"%@%@",apiBaseURLString,model.diskFilePathf];
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:diskFilePathf] placeholderImage:nil];
+    _titleLabel.text = model.carNamef;
+    _priceLabel.text = [NSString stringWithFormat:@"￥%@",model.pricef];
 }
 
 @end

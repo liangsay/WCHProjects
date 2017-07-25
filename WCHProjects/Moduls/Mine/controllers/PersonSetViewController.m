@@ -155,7 +155,7 @@
         [UserInfoObj model].emailf= self.emailTxtF.text;
         [[UserInfoObj model] cache];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 
@@ -199,7 +199,7 @@
         }
         [NSString toast:@"上班打卡失败!"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 
@@ -221,7 +221,7 @@
         }
         [NSString toast:@"下班打卡失败!"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

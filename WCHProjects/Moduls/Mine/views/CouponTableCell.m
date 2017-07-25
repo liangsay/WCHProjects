@@ -13,7 +13,7 @@
 @end
 
 NSString * const kCouponTableCellID = @"kCouponTableCellID";
-CGFloat const kCouponTableCellHeight = 80;
+CGFloat const kCouponTableCellHeight = 70;
 
 @implementation CouponTableCell
 
@@ -33,7 +33,8 @@ CGFloat const kCouponTableCellHeight = 80;
         self.contentView.backgroundColor = [UIColor backgroundColor];
         self.backgroundView.backgroundColor = [UIColor backgroundColor];
         self.backgroundBtnView.userInteractionEnabled = YES;
-        [self.backgroundBtnView setBackgroundImageColor:[UIColor whiteColor]];
+        [self.backgroundBtnView setBackgroundImageColor:[UIColor mainColor]];
+        
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
@@ -42,7 +43,7 @@ CGFloat const kCouponTableCellHeight = 80;
 - (void)layoutSubviews {
     [super layoutSubviews];
     [super layoutIfNeeded];
-    [self.backgroundBtnView setLayerCornerRadius:4];
+    [self.backgroundBtnView setLayerCornerRadius:10];
     WEAKSELF
     [self.backgroundBtnView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(0, kPadding, 0, kPadding));
@@ -52,27 +53,19 @@ CGFloat const kCouponTableCellHeight = 80;
 
 - (void)initUIViews {
     WEAKSELF
-    UIImage *iconImg = kIMAGE(@"形状-1-拷贝-2");
-    
-    _iconImgV = [BaseViewServer addImageViewInView:self.backgroundBtnView image:[iconImg stretchableImageWithLeftCapWidth:20 topCapHeight:0] contentMode:UIViewContentModeScaleAspectFit mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(kMargin);
-        make.centerY.equalTo(weakSelf.backgroundBtnView);
-        make.width.mas_equalTo(120);
-        make.height.mas_equalTo(50);
-    }];
     
     _moneyLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentCenter mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.equalTo(weakSelf.iconImgV);
-        make.edges.equalTo(_iconImgV).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.left.equalTo(@15);
+        make.centerY.equalTo(weakSelf.backgroundBtnView);
     }];
     
-    _typeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(32) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _typeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kMargin);
 //        make.left.equalTo(weakSelf.iconImgV.mas_right).offset(kPadding);
         make.top.mas_equalTo(kPadding);
     }];
     
-    _timeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _timeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kMargin);
 //        make.left.equalTo(weakSelf.iconImgV.mas_right).offset(kPadding);
         make.bottom.mas_equalTo(-kPadding);
@@ -91,15 +84,23 @@ CGFloat const kCouponTableCellHeight = 80;
  *  @since <#1.0#>
  */
 - (void)setupCellInfoWith:(CoupontoUserObj *)model {
-    if (model.isUsef.integerValue==1) {
-        self.typeLab.text = [NSString stringWithFormat:@"%@[已使用]",model.titlef];
-        self.typeLab.textColor = [UIColor fontGray];
-    }else{
-        self.typeLab.textColor = [UIColor fontBlack];
+//    if (model.isUsef.integerValue==1) {
+//        self.typeLab.text = [NSString stringWithFormat:@"%@[已使用]",model.titlef];
+//        self.typeLab.textColor = [UIColor fontGray];
+//    }else{
+//        self.typeLab.textColor = [UIColor fontBlack];
         self.typeLab.text = model.titlef;
-    }
-    self.moneyLab.text = [NSString stringWithFormat:@"%.2f元",model.couponCountf];
-    self.timeLab.text = [NSString stringWithFormat:@"有效期:%@",model.expiryDatef];
+//    }
+//    self.moneyLab.text = [NSString stringWithFormat:@"%.2f元",model.couponCountf];
+    
+    NSString *priceStr = [NSString stringWithFormat:@"￥%.1f",model.couponCountf];
+    NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:priceStr];
+    NSRange priceRange = [priceStr rangeOfString:@"￥"];
+    [priceAtt setFont:kFont(72)];
+    [priceAtt setFont:[UIFont fontAssistant] range:priceRange];
+    self.moneyLab.attributedText = priceAtt;
+    
+    self.timeLab.text = [NSString stringWithFormat:@"到期时间:%@",model.expiryDatef];
 }
 
 @end

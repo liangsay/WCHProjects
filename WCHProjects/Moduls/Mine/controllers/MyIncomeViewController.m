@@ -26,9 +26,9 @@
     // Do any additional setup after loading the view from its nib.
     [self setupBackButton];
     [self setupTableViewSet];
-    if (self.viewType==2) {
+//    if (self.viewType==2) {
         [self sendOrdertoIncome];
-    }
+//    }
 }
 
 - (void)setupTableViewSet {
@@ -157,7 +157,7 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
         [weakSelf sendCalculateInCome];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        
+        [NSString toast:response.responseMsg];
     }];
 }
 

@@ -15,5 +15,5 @@ FOUNDATION_EXPORT NSString * const kShopCollectionViewCellID;
  0：列表视图，1：格子视图
  */
 @property (nonatomic, assign) BOOL isGrid;
-@property (nonatomic, strong) GridListModel *model;
+@property (nonatomic, strong) OrderInfoObj *model;
 @end

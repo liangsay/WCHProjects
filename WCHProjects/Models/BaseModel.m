@@ -370,10 +370,11 @@ static NSMutableDictionary *_cahceDict;
 #pragma mark --优惠劵查询接口
 + (void) sendDiscoupontoUserWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                failedBlock:(RequestSessionCompletedBlock)failedBlock{
-    [self sendRequestWithAPI:kAPI_DiscoupontoUser() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_DiscoupontoUser() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:response.responseMsg];
         failedBlock(request,response);
     }];
 }

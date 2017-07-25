@@ -58,6 +58,7 @@
 @property (nonatomic, strong) NSString *bankNof;// "";
 @property (nonatomic, strong) NSString *carImage;// "fdceaa01-9867-4190-b8f2-bcacb5a6afae.jpg";
 @property (nonatomic, strong) NSString *carNof;// b88888;
+@property (nonatomic, strong) NSString *carNamef;// b88888;
 @property (nonatomic, strong) NSString *checkReasonf;// "";
 @property (nonatomic, strong) NSString *checkResultf;// "-1";
 
@@ -65,6 +66,7 @@
 @property (nonatomic, strong) NSString *dealerNamef;// "";
 
 @property (nonatomic, strong) NSString *driverCarImage;// "7e2f6953-e7f1-4d91-8f97-05bb2392e4f7.jpg";
+@property (nonatomic, strong) NSString *diskFilePathf;
 @property (nonatomic, strong) NSString *driverNamef;// liuliu;
 @property (nonatomic, strong) NSString *idImage;// "7f07bede-255c-4ea7-8198-bfc70dd47098.jpg";
 @property (nonatomic, strong) NSString *idNof;// 445222198812111212;
@@ -108,6 +110,11 @@
 
 @property (nonatomic, strong) NSString *tonf;// 0;
 @property (nonatomic, strong) NSString *remarkf;// 0;
+@property (nonatomic, strong) NSString *vehicleModelTypef;
+@property (nonatomic, strong) NSString *pickupDatef;
+@property (nonatomic, strong) NSString *returnDatef;
+@property (nonatomic, strong) NSString *returnLocationf;
+
 
 #pragma mark --订单添加接口
 + (void)sendOrderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
@@ -249,4 +256,8 @@
 #pragma mark --查询个人收藏
 + (void)sendCollecttoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                               failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --订单租车
++ (void)sendRentordertoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end

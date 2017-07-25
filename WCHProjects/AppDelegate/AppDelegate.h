@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "MainNavigationViewController.h"
 #import "MainViewController.h"
+#import "LocationServer.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     BMKMapManager* _mapManager;

@@ -32,6 +32,7 @@ typedef void(^RequestCompletedBlock)(HttpRequest *request, HttpResponse *respons
  *  @since <#1.0#>
  */
 + (void)sendRequestWithAPI:(NSString *)api params:(NSMutableDictionary *)params successBlock:(RequestCompletedBlock)successBlock failedBlock:(RequestCompletedBlock)failedBlock;
++ (void)sendRequestWithAPI:(NSString *)api isApp:(BOOL)isApp params:(NSMutableDictionary *)params successBlock:(RequestCompletedBlock)successBlock failedBlock:(RequestCompletedBlock)failedBlock;
 
 #pragma mark - 归档
 /**

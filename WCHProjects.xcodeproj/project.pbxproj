@@ -179,6 +179,7 @@
 		7FCC0A001EB392BB00D110F3 /* PersonSetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCC09FE1EB392BB00D110F3 /* PersonSetViewController.xib */; };
 		7FCC1A2D1DA085B90001E342 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCC1A2B1DA085B90001E342 /* RegisterViewController.m */; };
 		7FCC1A2E1DA085B90001E342 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCC1A2C1DA085B90001E342 /* RegisterViewController.xib */; };
+		7FD81DBD1F2645FF00D029F4 /* LocationServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD81DBC1F2645FF00D029F4 /* LocationServer.m */; };
 		7FE0E8011DDE146F008F5B0D /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0E7FD1DDE146F008F5B0D /* b27_icon_star_gray@2x.png */; };
 		7FE0E8021DDE146F008F5B0D /* b27_icon_star_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0E7FE1DDE146F008F5B0D /* b27_icon_star_yellow@2x.png */; };
 		7FE0E8031DDE146F008F5B0D /* CWStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0E8001DDE146F008F5B0D /* CWStarRateView.m */; };
@@ -518,6 +519,8 @@
 		7FCC1A2A1DA085B90001E342 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		7FCC1A2B1DA085B90001E342 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		7FCC1A2C1DA085B90001E342 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		7FD81DBB1F2645FF00D029F4 /* LocationServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationServer.h; sourceTree = "<group>"; };
+		7FD81DBC1F2645FF00D029F4 /* LocationServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationServer.m; sourceTree = "<group>"; };
 		7FE0E7FD1DDE146F008F5B0D /* b27_icon_star_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_gray@2x.png"; sourceTree = "<group>"; };
 		7FE0E7FE1DDE146F008F5B0D /* b27_icon_star_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_yellow@2x.png"; sourceTree = "<group>"; };
 		7FE0E7FF1DDE146F008F5B0D /* CWStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStarRateView.h; sourceTree = "<group>"; };
@@ -955,6 +958,8 @@
 				7FAACB961D9036460028D0D6 /* BaseViewController.m */,
 				7FAACB971D9036460028D0D6 /* BaseViewServer.h */,
 				7FAACB981D9036460028D0D6 /* BaseViewServer.m */,
+				7FD81DBB1F2645FF00D029F4 /* LocationServer.h */,
+				7FD81DBC1F2645FF00D029F4 /* LocationServer.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -1724,6 +1729,7 @@
 				7F5CD9731F11272500E37652 /* UIView+EasyFrame.m in Sources */,
 				7FE9AC711DA1D0EE00B4077B /* MyWalletViewController.m in Sources */,
 				7FEB20001D9EC010001E5F10 /* SearchAddressViewController.m in Sources */,
+				7FD81DBD1F2645FF00D029F4 /* LocationServer.m in Sources */,
 				7FAACC291D9036460028D0D6 /* UpdateVersion.m in Sources */,
 				7FAACC1B1D9036460028D0D6 /* UINavigationBar+Category.m in Sources */,
 				7FAACC141D9036460028D0D6 /* UIColor+Category.m in Sources */,

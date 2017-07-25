@@ -9,6 +9,7 @@
 #import "CallCarViewController.h"
 #import "CallCarTableViewCell.h"
 #import "BaseTableView.h"
+#import "LocationServer.h"
 @interface CallCarViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
+    [self sendFreighttoCall_API];
 }
 
 - (void)setupTableViewSet {
@@ -27,16 +29,16 @@
     self.tableView.rowHeight = kCallCarTableViewCellHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor backgroundColor];
+    [self.tableView addHeaderRefreshTarget:self action:@selector(refreshHeaderData)];
+}
+
+- (void)refreshHeaderData {
+    [self sendFreighttoCall_API];
 }
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray new];
-        
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
-        [_dataArray addObject:[OrderInfoObj new]];
     }
     return _dataArray;
 }
@@ -72,7 +74,8 @@
     CallCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCallCarTableViewCellID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Configure the cell...
-    
+    OrderInfoObj *orderObj = self.dataArray[indexPath.row];
+    [cell setupCellInfoWith:orderObj];
     return cell;
 }
 
@@ -87,6 +90,25 @@
     {
         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
+}
+
+#pragma mark --物流车源
+/**
+ 物流车源
+ */
+- (void)sendFreighttoCall_API{
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:[LocationServer shared].cityf forKey:@"vo.cityf"];
+    [params addUnEmptyString:[LocationServer shared].provincef forKey:@"vo.provincef"];
+    [OrderInfoObj sendFreighttoCallWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        weakSelf.dataArray = [NSMutableArray arrayWithArray:response.responseModel];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView endHeaderRefreshing];
+        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [weakSelf.tableView endHeaderRefreshing];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

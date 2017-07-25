@@ -131,6 +131,71 @@ MJCodingImplementation
     }];
 }
 
++ (void)sendRequestWithAPI:(NSString *)api isApp:(BOOL)isApp params:(NSMutableDictionary *)params successBlock:(RequestCompletedBlock)successBlock failedBlock:(RequestCompletedBlock)failedBlock{
+    DLog(@"params:%@",params);
+    if (isApp) {
+        [params addUnEmptyString:@"app" forKey:@"requestType"];
+    }
+    [[HttpClient sharedClient] getObjectWithDic:params apiName:api successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.isSuccess) {
+            id data = response.result;
+            if (kISKIND_OF_CLASS_NSARRAY(data)) {
+                NSArray *dataArr = data;
+                if (dataArr.count) {
+                    NSMutableArray *datas = [NSMutableArray array];
+                    @try {
+                        for (NSDictionary *dict in dataArr) {
+                            
+                            BaseModel *model = [self mj_objectWithKeyValues:dict];
+                            if ([[dict valueForKey:@"id"] integerValue]>0) {
+                                model.myID = [dict valueForKey:@"id"];
+                            }
+                            [datas addObject:model];
+                        }
+                    } @catch (NSException *exception) {
+                        
+                    } @finally {
+                        
+                    }
+                    
+                    response.responseModel = datas;
+                }
+            }else if (kISKIND_OF_CLASS_NSDICTIONARY(data)){
+                NSDictionary *dataDic = data;
+                if (dataDic.count) {
+                    @try {
+                        BaseModel *model = [self mj_objectWithKeyValues:dataDic];
+                        if ([[dataDic valueForKey:@"id"] integerValue]>0) {
+                            model.myID = [dataDic valueForKey:@"id"];
+                        }
+                        response.responseModel = model;
+                    } @catch (NSException *exception) {
+                        
+                    } @finally {
+                        
+                    }
+                    
+                }
+            }else{
+                response.responseModel = data;
+            }
+            successBlock(request,response);
+        }else{
+            //            [response.responseMsg toast];
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.responseCode==6) {
+            
+            [kAppDelegate showLoginVCWithLoginAction:^(NSInteger index) {
+                
+            }];
+            //            [NSString toast:response.responseMsg];
+            return;
+        }
+        failedBlock(request,response);
+    }];
+}
+
 + (NSString *)paramsStringWithParams:(NSDictionary *)params
 {
     NSMutableString *paramsString = [NSMutableString string];

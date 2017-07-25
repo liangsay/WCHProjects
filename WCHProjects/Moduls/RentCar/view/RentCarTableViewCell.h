@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderInfoObj.h"
 FOUNDATION_EXPORT NSString * const kRentCarTableViewCellID;
 FOUNDATION_EXPORT CGFloat const kRentCarTableViewCellHeight;
 @interface RentCarTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *typeImgV;
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *priceLab;
+@property (weak, nonatomic) IBOutlet UILabel *tonfLab;
+@property (weak, nonatomic) IBOutlet UILabel *remarkfLab;
 
+@property (nonatomic, strong) OrderInfoObj *orderObj;
+- (void)setupCellInfoWith:(OrderInfoObj *)oderObj;
 @end

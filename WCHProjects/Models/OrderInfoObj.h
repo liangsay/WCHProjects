@@ -36,6 +36,7 @@
 @property (nonatomic, strong) NSString *idf;// "57e537e1-17ab-4fa1-b3c6-b47e376704bb";
 @property (nonatomic, strong) NSString *couponIdf;
 @property (nonatomic, strong) NSString *isInvoicef;// 0;
+
 @property (nonatomic, strong) NSString *kmCountf;// 9;
 @property (nonatomic, strong) NSString *modelNamef;// "金杯";
 @property (nonatomic, strong) NSString *orderNof;// 14759423932680;
@@ -105,6 +106,8 @@
 @property (nonatomic, strong) NSString *typeTextf;// @"建材城"
 //@property (nonatomic, strong) NSString *idf;// @"05b28376-5585-4934-990c-89841d68a467"
 
+@property (nonatomic, strong) NSString *tonf;// 0;
+@property (nonatomic, strong) NSString *remarkf;// 0;
 
 #pragma mark --订单添加接口
 + (void)sendOrderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
@@ -219,4 +222,31 @@
 + (void)sendBrandtoCustomListWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock;
 
+#pragma mark --车系
++ (void)sendSerietoCustomListWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --添加购物车
++ (void)sendMallorderdoAddCarWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --查询商品信息
++ (void)sendMallordertoViewWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                              failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --查询品牌、车系下的数据
++ (void)sendMallgoodstoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --添加收藏
++ (void)sendCollectdoCollectWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                               failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --删除收藏
++ (void)sendCollectdoDeleteWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                              failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --查询个人收藏
++ (void)sendCollecttoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                              failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end

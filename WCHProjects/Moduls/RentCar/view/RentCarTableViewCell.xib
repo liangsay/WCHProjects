@@ -30,14 +30,14 @@
                                 <attributedString key="attributedText">
                                     <fragment content="0">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="0.029831843470000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="1" green="0.029831843470767838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" metaFont="system" size="14"/>
                                             <font key="NSOriginalFont" size="14" name=".AppleSystemUIFont"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="元">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="0.029831843470000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="1" green="0.029831843470767838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="14" name=".PingFangSC-Regular"/>
                                             <font key="NSOriginalFont" size="14" name=".PingFangSC-Regular"/>
                                         </attributes>
@@ -107,6 +107,13 @@
                     <constraint firstItem="gSk-Vh-zK9" firstAttribute="leading" secondItem="rlU-2O-qLt" secondAttribute="leading" id="z2w-IC-sBo"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLab" destination="iIj-2W-8VF" id="3TL-7a-vZw"/>
+                <outlet property="priceLab" destination="lH9-b2-moA" id="hRA-fz-TQ3"/>
+                <outlet property="remarkfLab" destination="YNq-dg-wva" id="PK4-S6-Hvu"/>
+                <outlet property="tonfLab" destination="tXa-JO-4Fm" id="iV2-Vp-qwh"/>
+                <outlet property="typeImgV" destination="vYD-4W-mAq" id="6aM-Sq-YZ9"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

@@ -60,6 +60,11 @@ static NSString *kLaunchImg = @"kLaunchImg";
     [self setupStartLaunchAnimation];
     [self checkLoginStateWithShowVC];
     
+    //开启定位服务
+    [[LocationServer shared] setupLocationServiceWithComplete:^(OrderInfoObj *oderObj) {
+        DLog(@"定位结果oderObj:%@-%@",oderObj.provincef,oderObj.cityf);
+    }];
+    
     //向微信注册appid.
     //Description :  更新后的api 没有什么作用,只是给开发者一种解释作用.
     [WXApi registerApp:kWXAppId() withDescription:@"微信支付"];

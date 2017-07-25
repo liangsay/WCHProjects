@@ -114,6 +114,14 @@
                     <constraint firstItem="G7m-HH-3DK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="coh-e2-8yj"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="kmPricefLab" destination="wX8-tA-bxY" id="0FY-3N-RPo"/>
+                <outlet property="nameLab" destination="jiY-46-1qX" id="5Ss-04-anC"/>
+                <outlet property="priceLab" destination="WBq-zV-0qh" id="khC-Mq-bSW"/>
+                <outlet property="remarkfLab" destination="KFr-d6-cWR" id="cvI-Yn-1NM"/>
+                <outlet property="tonfLab" destination="7Vk-nK-xfy" id="oNz-uC-nRO"/>
+                <outlet property="typeImgV" destination="Aid-gm-JSx" id="dds-Sh-pdu"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

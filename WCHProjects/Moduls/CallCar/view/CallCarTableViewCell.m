@@ -23,4 +23,22 @@ CGFloat const kCallCarTableViewCellHeight = 110;
     // Configure the view for the selected state
 }
 
+- (void)setupCellInfoWith:(OrderInfoObj *)oderObj {
+    self.orderObj = oderObj;
+    self.nameLab.text = oderObj.namef;
+    
+    NSString *startPricef = oderObj.startPricef;
+    NSString *price = [NSString stringWithFormat:@"￥%@元(%@公里)",startPricef,oderObj.startKmf];
+    NSRange priceR = [price rangeOfString:startPricef];
+    NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:price];
+    [priceAtt setTextColor:[UIColor fontGray]];
+    [priceAtt setTextColor:[UIColor priceColor] range:priceR];
+    [priceAtt setFont:[UIFont fontAssistant]];
+    [priceAtt setFont:[UIFont fontContent] range:priceR];
+    self.priceLab.attributedText = priceAtt;
+    
+    self.tonfLab.text = [NSString stringWithFormat:@"载重:%@吨",oderObj.tonf];
+    self.remarkfLab.text = [NSString stringWithFormat:@"长*宽*高:%@", oderObj.remarkf];
+    self.kmPricefLab.text = [NSString stringWithFormat:@"超公里费:%@元/公里",oderObj.kmPricef];
+}
 @end

@@ -83,8 +83,8 @@ NSString * const kShopCollectionViewCellID = @"kShopCollectionViewCellID";
 {
     _model = model;
     
-    NSString *diskFilePathf = [NSString stringWithFormat:@"%@%@",apiBaseURLString,model.diskFilePathf];
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:diskFilePathf] placeholderImage:nil];
+    NSURL *imgUrl = kURLFromString(fullImageUrl(model.diskFilePathf));
+    [_imageV sd_setImageWithURL:imgUrl placeholderImage:nil];
     _titleLabel.text = model.carNamef;
     _priceLabel.text = [NSString stringWithFormat:@"￥%@",model.pricef];
 }

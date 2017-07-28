@@ -7,6 +7,7 @@
 //
 
 #import "CallCarTableViewCell.h"
+#import "UIImageView+WebCache.h"
 NSString * const kCallCarTableViewCellID = @"kCallCarTableViewCellID";
 CGFloat const kCallCarTableViewCellHeight = 110;
 @implementation CallCarTableViewCell
@@ -40,5 +41,8 @@ CGFloat const kCallCarTableViewCellHeight = 110;
     self.tonfLab.text = [NSString stringWithFormat:@"载重:%@吨",oderObj.tonf];
     self.remarkfLab.text = [NSString stringWithFormat:@"长*宽*高:%@", oderObj.remarkf];
     self.kmPricefLab.text = [NSString stringWithFormat:@"超公里费:%@元/公里",oderObj.kmPricef];
+    
+    NSURL *imgUrl = kURLFromString(fullImageUrl(oderObj.diskFilePathf));
+    [self.typeImgV sd_setImageWithURL:imgUrl placeholderImage:nil];
 }
 @end

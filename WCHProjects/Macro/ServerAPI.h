@@ -14,6 +14,9 @@ static NSString * const apiBaseURLString = @"http://139.224.209.235:9080/";
 //商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再在APP里面调起支付。
 static NSString * const wxUnifiedorder = @"https://api.mch.weixin.qq.com/pay/unifiedorder";
 
+CG_INLINE NSString *fullImageUrl(NSString * imageurl) {
+    return [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString,imageurl];
+}
 ///登陆接口
 #define kAPI_Login          [NSString stringWithFormat:@"Login.shtml"]
 #pragma mark    --发送短信的接口

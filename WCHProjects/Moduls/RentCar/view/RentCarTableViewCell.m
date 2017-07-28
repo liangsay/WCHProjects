@@ -7,6 +7,7 @@
 //
 
 #import "RentCarTableViewCell.h"
+#import "UIImageView+WebCache.h"
 NSString * const kRentCarTableViewCellID = @"kRentCarTableViewCellID";
 CGFloat const kRentCarTableViewCellHeight = 90;
 @implementation RentCarTableViewCell
@@ -24,6 +25,8 @@ CGFloat const kRentCarTableViewCellHeight = 90;
 }
 
 - (void)setupCellInfoWith:(OrderInfoObj *)oderObj {
+    NSURL *imgUrl = kURLFromString(fullImageUrl(oderObj.diskFilePathf));
+    [self.typeImgV sd_setImageWithURL:imgUrl placeholderImage:nil];
     self.orderObj = oderObj;
     self.nameLab.text = oderObj.namef;
     

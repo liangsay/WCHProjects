@@ -151,10 +151,10 @@
             [NSString toast:@"订单取消失败或因司机已接单了"];
             return ;
         }
-        kAppDelegate.mainViewController.isReciveState = NO;
-        if ([kAppDelegate.mainViewController.reciveOrder.orderNof isEqual:orderNof]) {
-            [kAppDelegate.mainViewController pCarorderBtnAction:nil];
-        }
+//        kAppDelegate.mainViewController.isReciveState = NO;
+//        if ([kAppDelegate.mainViewController.reciveOrder.orderNof isEqual:orderNof]) {
+//            [kAppDelegate.mainViewController pCarorderBtnAction:nil];
+//        }
         [weakSelf sendOrdertoRoute];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [NSString toast:@"网络请求异常"];

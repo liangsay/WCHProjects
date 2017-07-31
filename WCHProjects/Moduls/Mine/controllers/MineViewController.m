@@ -35,7 +35,9 @@
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeaderImgV;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLab;
+@property (weak, nonatomic) IBOutlet UILabel *mobileLab;
 @property (weak, nonatomic) IBOutlet UIButton *outBtn;
+
 
 @end
 
@@ -52,6 +54,7 @@
     [self.outBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     [self.outBtn setLayerCornerRadius:5];
     _userNameLab.text = [UserInfoObj model].trueNamef;
+    _mobileLab.text = [UserInfoObj model].mobilePhonef;
     
 //    if ([UserInfoObj model].userTypef.integerValue!=2) {
 //        _typesArray = @[@"我的行程",@"个人资料",@"车主招募",@"我的钱包",@"优惠券",@"系统通知",@"联系我们",@"周边地址",@"退出登录"];

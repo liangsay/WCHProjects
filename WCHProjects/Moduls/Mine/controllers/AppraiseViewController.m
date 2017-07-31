@@ -67,7 +67,7 @@
 }
 
 - (void)onBackButton {
-    kAppDelegate.mainViewController.orderNof = @"";
+//    kAppDelegate.mainViewController.orderNof = @"";
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

@@ -9,7 +9,15 @@
 #import "BaseModel.h"
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
-
+@property (nonatomic, strong) NSString *days;
+@property (nonatomic, strong) NSString *numf;
+@property (nonatomic, strong) NSString *iconName;
+@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, assign) BOOL isMust;
+@property (nonatomic, assign) BOOL isTxt;
+@property (nonatomic, assign) BOOL isSelDate;
+@property (nonatomic, strong) NSString *cabPeopleNumf;
 @property (nonatomic, strong) OrderInfoObj *driverinfoVo;
 @property (nonatomic, strong) OrderInfoObj *order;
 @property (nonatomic, strong) CLLocation *starLocation;
@@ -17,6 +25,7 @@
 @property (nonatomic, strong) NSString *amountf;
 @property (nonatomic, strong) NSString *kmPricef;//;// "2.8";
 @property (nonatomic, strong) NSString *namef;//;// "\U5c0f\U9762";
+
 @property (nonatomic, strong) NSString *startKmf;//;// 6;
 @property (nonatomic, strong) NSString *startPricef;//;// 39;
 @property (nonatomic, strong) NSString *accountSignf;// 0;
@@ -245,6 +254,10 @@
 + (void)sendMallgoodstoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock;
 
+#pragma mark --查询购车的个人订单
++ (void)sendMallordertoMemberWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
 #pragma mark --添加收藏
 + (void)sendCollectdoCollectWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
@@ -259,5 +272,13 @@
 
 #pragma mark --订单租车
 + (void)sendRentordertoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --添加租车订单
++ (void)sendRentorderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --取消订单租车
++ (void)sendRentorderdoCancelWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end

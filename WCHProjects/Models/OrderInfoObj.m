@@ -392,6 +392,17 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
     }];
 }
 
+#pragma mark --查询购车的个人订单
++ (void)sendMallordertoMemberWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_MallordertoMember() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
 #pragma mark --添加收藏
 + (void)sendCollectdoCollectWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock {
@@ -435,4 +446,26 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
     }];
 }
 
+#pragma mark --取消订单租车
++ (void)sendRentorderdoCancelWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock {
+    [self sendRequestWithAPI:kAPI_RentorderdoCancel() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --添加租车订单
++ (void)sendRentorderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock{
+    [self sendRequestWithAPI:kAPI_RentorderdoInsert() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"数据请求异常"];
+        failedBlock(request,response);
+    }];
+}
 @end

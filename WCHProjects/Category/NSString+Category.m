@@ -586,4 +586,5 @@ UIColor* colorFromHexRGB(NSString *inColorString){
     
     return CGSizeMake(ceil(expectedLabelSize.width), ceil(expectedLabelSize.height));
 }
+
 @end

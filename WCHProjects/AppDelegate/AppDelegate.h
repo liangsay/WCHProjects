@@ -13,6 +13,7 @@
 #import "MainNavigationViewController.h"
 #import "MainViewController.h"
 #import "LocationServer.h"
+#import "CallCarViewController.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     BMKMapManager* _mapManager;
@@ -22,6 +23,7 @@
 @property (strong, nonatomic) LoginViewController *loginVC;
 @property (strong, nonatomic) UIViewController *currentViewController;
 @property (strong, nonatomic) MainViewController *mainViewController;
+@property (strong, nonatomic) CallCarViewController *callCarVC;
 @property (nonatomic, assign) NSInteger payType;//1，充值，2，支付
 + (AppDelegate *)delegate;
 

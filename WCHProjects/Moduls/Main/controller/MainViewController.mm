@@ -195,7 +195,7 @@ MyPayTypeViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    kAppDelegate.mainViewController = self;
+//    kAppDelegate.mainViewController = self;
     [self initNavigationBarWithIconName:@"菜单" navLeft:@"" navLeftAction:@selector(showMineCenterViewControllerWithAction:) ];
     if ([UserInfoObj model].userTypef.integerValue==2) {
         [self initNavigationBarWithLogoName:nil navTitle:@"六六微货" navRight:@"查看订单" navRightAction:@selector(viewOrderWithAction:)];
@@ -1115,7 +1115,6 @@ MyPayTypeViewDelegate>
     }
     OrderViewController *orderVC = [[OrderViewController alloc] initWithNibName:@"OrderViewController" bundle:nil];
     self.orderVC = orderVC;
-    orderVC.startLocationf = _startLocationf;
     orderVC.delegate = self;
     kPushNav(orderVC, YES);
 }

@@ -12,7 +12,7 @@
 #import "BaseTableView.h"
 @interface OrderViewController ()
 <UITableViewDelegate,UITableViewDataSource,OrderTableCellDelegate>
-@property (nonatomic, strong) NSMutableArray *dataArray;
+
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 
 @end
@@ -29,8 +29,12 @@
     [self headerRefresh];
 }
 
+- (void)reloadOrderData {
+    
+}
+
 - (void)onBackButton {
-    kAppDelegate.mainViewController.orderVC = nil;
+//    kAppDelegate.mainViewController.orderVC = nil;
     [super onBackButton];
 }
 
@@ -90,29 +94,6 @@
     [self sendOrderdoTakeWithOrderObj:orderObj];
 }
 
-- (void)headerRefresh {
-    [self sendOrdertoDone];
-}
-
-#pragma mark --用于获得待接订单
-- (void)sendOrdertoDone {
-    WEAKSELF
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.ownerIdf"];
-    [params addUnEmptyString:[UserInfoObj model].provincef forKey:@"vo.provincef"];
-    [params addUnEmptyString:[UserInfoObj model].cityf forKey:@"vo.cityf"];
-    [params addUnEmptyString:self.startLocationf forKey:@"vo.startLocationf"];
-    [params addUnEmptyString:@"YES" forKey:kIsHideLoadingView];
-    [OrderInfoObj sendOrdertoDoneWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
-        weakSelf.dataArray = response.responseModel;
-        [weakSelf.tableView reloadData];
-        [weakSelf.tableView endHeaderRefreshing];
-        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
-    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
-        [weakSelf.tableView endFooterRefreshing];
-    }];
-}
 
 #pragma mark --用于接单
 - (void)sendOrderdoTakeWithOrderObj:(OrderInfoObj *)orderObj{

@@ -81,6 +81,7 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [weakSelf.tableView endHeaderRefreshing];
+        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
 }
 

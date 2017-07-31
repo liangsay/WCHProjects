@@ -10,4 +10,6 @@
 
 @interface CallCarViewController : BaseViewController
 
+//去掉定时器
+- (void)cancelTimer;
 @end

@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 FOUNDATION_EXPORT NSString * const kORentCarTableViewCellID;
 FOUNDATION_EXPORT CGFloat const kORentCarTableViewCellHeight;
-@interface ORentCarTableViewCell : UITableViewCell
+@class ORentCarTableViewCell;
+@protocol ORentCarTableViewCellDelegate <NSObject>
+
+- (void)oRentCarTableViewCell:(ORentCarTableViewCell *)oRentCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj;
+
+@end
+
+@interface ORentCarTableViewCell : BaseTableCell
+@property (weak, nonatomic) IBOutlet UIView *pressView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
 @property (weak, nonatomic) IBOutlet UILabel *startLab;
 @property (weak, nonatomic) IBOutlet UILabel *endLab;
@@ -17,6 +25,10 @@ FOUNDATION_EXPORT CGFloat const kORentCarTableViewCellHeight;
 @property (weak, nonatomic) IBOutlet UILabel *typeLab;
 
 @property (weak, nonatomic) IBOutlet UIButton *typeBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *typeBtnHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *typeBtnBottom;
+
+@property (nonatomic, assign) id<ORentCarTableViewCellDelegate> oDelegate;
 @property (nonatomic, strong) OrderInfoObj *orderObj;
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj;
 @end

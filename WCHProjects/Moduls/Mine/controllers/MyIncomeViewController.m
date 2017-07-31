@@ -98,7 +98,7 @@
          closeDrawerAnimated:YES completion:^(BOOL finished) {
              [weakSelf.navigationController popToRootViewControllerAnimated:YES];
          }];
-        [kAppDelegate.mainViewController reciveOrderWithOrderObj:orderObj];
+//        [kAppDelegate.mainViewController reciveOrderWithOrderObj:orderObj];
     }
     
 }

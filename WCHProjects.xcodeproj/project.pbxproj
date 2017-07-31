@@ -15,6 +15,8 @@
 		7F1E508B1DAE6D0200103422 /* PayTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1E50891DAE6D0200103422 /* PayTypeViewController.m */; };
 		7F1E508C1DAE6D0200103422 /* PayTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F1E508A1DAE6D0200103422 /* PayTypeViewController.xib */; };
 		7F23F6F41DAA984000587870 /* OrderInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23F6F31DAA984000587870 /* OrderInfoObj.m */; };
+		7F29066C1F2F002100216041 /* StoretoLocObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F29066B1F2F002100216041 /* StoretoLocObj.m */; };
+		7F29066E1F2F443100216041 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F29066D1F2F443100216041 /* CoreLocation.framework */; };
 		7F2CC1F21F13276700A7E65B /* UITableView+HYBCacheHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1EF1F13276700A7E65B /* UITableView+HYBCacheHeight.m */; };
 		7F2CC1F31F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1F11F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.m */; };
 		7F2CC1FE1F13298400A7E65B /* ShopCommontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1FD1F13298400A7E65B /* ShopCommontCell.m */; };
@@ -25,6 +27,12 @@
 		7F30ECCC1DB110700083A311 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F30ECC71DB110700083A311 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m */; };
 		7F30ECCD1DB110700083A311 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F30ECC91DB110700083A311 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */; };
 		7F30ECCE1DB110700083A311 /* WXMediaMessage+messageConstruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F30ECCB1DB110700083A311 /* WXMediaMessage+messageConstruct.m */; };
+		7F3E80771F2DAB4E0020A969 /* RentCarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E80751F2DAB4E0020A969 /* RentCarDetailViewController.m */; };
+		7F3E80781F2DAB4E0020A969 /* RentCarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3E80761F2DAB4E0020A969 /* RentCarDetailViewController.xib */; };
+		7F3E807C1F2DAD170020A969 /* RentCarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E807A1F2DAD170020A969 /* RentCarDetailCell.m */; };
+		7F3E807D1F2DAD170020A969 /* RentCarDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3E807B1F2DAD170020A969 /* RentCarDetailCell.xib */; };
+		7F3E80811F2DB3AF0020A969 /* RentCarDetailOtherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E807F1F2DB3AF0020A969 /* RentCarDetailOtherCell.m */; };
+		7F3E80821F2DB3AF0020A969 /* RentCarDetailOtherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3E80801F2DB3AF0020A969 /* RentCarDetailOtherCell.xib */; };
 		7F4D38701DB50C6F003C2E4B /* OrderTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4D386F1DB50C6F003C2E4B /* OrderTableCell.xib */; };
 		7F4D38721DB517E4003C2E4B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4D38711DB517E4003C2E4B /* AVFoundation.framework */; };
 		7F4D38741DB5182C003C2E4B /* order.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7F4D38731DB5182C003C2E4B /* order.mp3 */; };
@@ -239,6 +247,9 @@
 		7F1E508A1DAE6D0200103422 /* PayTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayTypeViewController.xib; sourceTree = "<group>"; };
 		7F23F6F21DAA984000587870 /* OrderInfoObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderInfoObj.h; sourceTree = "<group>"; };
 		7F23F6F31DAA984000587870 /* OrderInfoObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderInfoObj.m; sourceTree = "<group>"; };
+		7F29066A1F2F002100216041 /* StoretoLocObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoretoLocObj.h; sourceTree = "<group>"; };
+		7F29066B1F2F002100216041 /* StoretoLocObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoretoLocObj.m; sourceTree = "<group>"; };
+		7F29066D1F2F443100216041 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7F2CC1EE1F13276700A7E65B /* UITableView+HYBCacheHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+HYBCacheHeight.h"; sourceTree = "<group>"; };
 		7F2CC1EF1F13276700A7E65B /* UITableView+HYBCacheHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HYBCacheHeight.m"; sourceTree = "<group>"; };
 		7F2CC1F01F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+HYBMasonryAutoCellHeight.h"; sourceTree = "<group>"; };
@@ -260,6 +271,15 @@
 		7F30ECC91DB110700083A311 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SendMessageToWXReq+requestWithTextOrMediaMessage.m"; sourceTree = "<group>"; };
 		7F30ECCA1DB110700083A311 /* WXMediaMessage+messageConstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXMediaMessage+messageConstruct.h"; sourceTree = "<group>"; };
 		7F30ECCB1DB110700083A311 /* WXMediaMessage+messageConstruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WXMediaMessage+messageConstruct.m"; sourceTree = "<group>"; };
+		7F3E80741F2DAB4E0020A969 /* RentCarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RentCarDetailViewController.h; sourceTree = "<group>"; };
+		7F3E80751F2DAB4E0020A969 /* RentCarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentCarDetailViewController.m; sourceTree = "<group>"; };
+		7F3E80761F2DAB4E0020A969 /* RentCarDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentCarDetailViewController.xib; sourceTree = "<group>"; };
+		7F3E80791F2DAD170020A969 /* RentCarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RentCarDetailCell.h; sourceTree = "<group>"; };
+		7F3E807A1F2DAD170020A969 /* RentCarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentCarDetailCell.m; sourceTree = "<group>"; };
+		7F3E807B1F2DAD170020A969 /* RentCarDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentCarDetailCell.xib; sourceTree = "<group>"; };
+		7F3E807E1F2DB3AF0020A969 /* RentCarDetailOtherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RentCarDetailOtherCell.h; sourceTree = "<group>"; };
+		7F3E807F1F2DB3AF0020A969 /* RentCarDetailOtherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentCarDetailOtherCell.m; sourceTree = "<group>"; };
+		7F3E80801F2DB3AF0020A969 /* RentCarDetailOtherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RentCarDetailOtherCell.xib; sourceTree = "<group>"; };
 		7F4D386F1DB50C6F003C2E4B /* OrderTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableCell.xib; sourceTree = "<group>"; };
 		7F4D38711DB517E4003C2E4B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7F4D38731DB5182C003C2E4B /* order.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = order.mp3; sourceTree = "<group>"; };
@@ -597,6 +617,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F29066E1F2F443100216041 /* CoreLocation.framework in Frameworks */,
 				7FF673A21DCCFF66000C4A97 /* MapKit.framework in Frameworks */,
 				7F4D38721DB517E4003C2E4B /* AVFoundation.framework in Frameworks */,
 				3DCB13910BA9509A6E7B3A00 /* Pods_WCHProjects.framework in Frameworks */,
@@ -743,6 +764,9 @@
 				7F4FB4B01F0D3C8100B707DF /* RentCarViewController.h */,
 				7F4FB4B11F0D3C8100B707DF /* RentCarViewController.m */,
 				7F4FB4B21F0D3C8100B707DF /* RentCarViewController.xib */,
+				7F3E80741F2DAB4E0020A969 /* RentCarDetailViewController.h */,
+				7F3E80751F2DAB4E0020A969 /* RentCarDetailViewController.m */,
+				7F3E80761F2DAB4E0020A969 /* RentCarDetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -753,6 +777,12 @@
 				7F8F294C1F1D036F00C5DFF9 /* RentCarTableViewCell.h */,
 				7F8F294D1F1D036F00C5DFF9 /* RentCarTableViewCell.m */,
 				7F8F294E1F1D036F00C5DFF9 /* RentCarTableViewCell.xib */,
+				7F3E80791F2DAD170020A969 /* RentCarDetailCell.h */,
+				7F3E807A1F2DAD170020A969 /* RentCarDetailCell.m */,
+				7F3E807B1F2DAD170020A969 /* RentCarDetailCell.xib */,
+				7F3E807E1F2DB3AF0020A969 /* RentCarDetailOtherCell.h */,
+				7F3E807F1F2DB3AF0020A969 /* RentCarDetailOtherCell.m */,
+				7F3E80801F2DB3AF0020A969 /* RentCarDetailOtherCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1091,6 +1121,8 @@
 				7FAACBEB1D9036460028D0D6 /* UserInfoObj.m */,
 				7F23F6F21DAA984000587870 /* OrderInfoObj.h */,
 				7F23F6F31DAA984000587870 /* OrderInfoObj.m */,
+				7F29066A1F2F002100216041 /* StoretoLocObj.h */,
+				7F29066B1F2F002100216041 /* StoretoLocObj.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1402,6 +1434,7 @@
 		8E68273C72F51EE7213E77C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F29066D1F2F443100216041 /* CoreLocation.framework */,
 				7FF673A11DCCFF66000C4A97 /* MapKit.framework */,
 				7F4D38711DB517E4003C2E4B /* AVFoundation.framework */,
 				27A0B67A91E3F80693961864 /* Pods_WCHProjects.framework */,
@@ -1480,6 +1513,7 @@
 				7F8F29501F1D036F00C5DFF9 /* RentCarTableViewCell.xib in Resources */,
 				7F830B9E1DA37CE800F50B64 /* loading-13@2x.png in Resources */,
 				7F4FB4B41F0D3C8100B707DF /* RentCarViewController.xib in Resources */,
+				7F3E80781F2DAB4E0020A969 /* RentCarDetailViewController.xib in Resources */,
 				7F5CD9591F1121D400E37652 /* ShopDetailWebViewController.xib in Resources */,
 				7FC4406B1DBBC154006A3993 /* OtherWebViewController.xib in Resources */,
 				7F5CD9971F112D5A00E37652 /* ProductDetailViewController.xib in Resources */,
@@ -1535,12 +1569,14 @@
 				7F1E508C1DAE6D0200103422 /* PayTypeViewController.xib in Resources */,
 				7F830BA41DA37CE800F50B64 /* loading-2@2x.png in Resources */,
 				7FE0E8011DDE146F008F5B0D /* b27_icon_star_gray@2x.png in Resources */,
+				7F3E807D1F2DAD170020A969 /* RentCarDetailCell.xib in Resources */,
 				7FAACAA81D902F0E0028D0D6 /* Main.storyboard in Resources */,
 				7F8F295F1F1D098C00C5DFF9 /* OBuyCarViewController.xib in Resources */,
 				7F830BA51DA37CE800F50B64 /* loading-3@2x.png in Resources */,
 				7F830BA91DA37CE800F50B64 /* loading-7@2x.png in Resources */,
 				7FAACC271D9036460028D0D6 /* desc in Resources */,
 				7F830BAA1DA37CE800F50B64 /* loading-8@2x.png in Resources */,
+				7F3E80821F2DB3AF0020A969 /* RentCarDetailOtherCell.xib in Resources */,
 				7F6D737C1F0FC7A600371FC2 /* product.json in Resources */,
 				7F5CD95E1F1121F100E37652 /* ShopDetailOneViewController.xib in Resources */,
 				7FE9AC631DA1CFCE00B4077B /* MyIncomeViewController.xib in Resources */,
@@ -1658,6 +1694,7 @@
 				7F5CD9961F112D5A00E37652 /* ProductDetailViewController.m in Sources */,
 				7F0F7B5C1DB790E200977A20 /* CitysViewController.m in Sources */,
 				7F5CD9771F112ABA00E37652 /* UIWebView+Clean.m in Sources */,
+				7F3E80771F2DAB4E0020A969 /* RentCarDetailViewController.m in Sources */,
 				7FAACC2D1D9036460028D0D6 /* desc.md in Sources */,
 				7F7ACCB81DA54C4F00B1968F /* OrderTableCell.m in Sources */,
 				7FAACC1A1D9036460028D0D6 /* UILabel+Category.m in Sources */,
@@ -1682,6 +1719,7 @@
 				7FAACC221D9036460028D0D6 /* HttpClient.m in Sources */,
 				7F5CD9711F11272500E37652 /* MLMSegmentManager.m in Sources */,
 				7FAACC1F1D9036460028D0D6 /* AppStoreUpdateView.m in Sources */,
+				7F29066C1F2F002100216041 /* StoretoLocObj.m in Sources */,
 				7F8F296D1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m in Sources */,
 				7F4FB4B81F0D3C8E00B707DF /* ShopViewController.m in Sources */,
 				7F30ECCC1DB110700083A311 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
@@ -1707,6 +1745,7 @@
 				7F5CD9581F1121D400E37652 /* ShopDetailWebViewController.m in Sources */,
 				7FAACC131D9036460028D0D6 /* UIButton+Category.m in Sources */,
 				7FAACC101D9036460028D0D6 /* NSString+ICCategory.m in Sources */,
+				7F3E807C1F2DAD170020A969 /* RentCarDetailCell.m in Sources */,
 				7FAACC0F1D9036460028D0D6 /* NSString+Category.m in Sources */,
 				7F2CC1F21F13276700A7E65B /* UITableView+HYBCacheHeight.m in Sources */,
 				7F4FB4D01F0E9DD200B707DF /* CategoryMeunModel.m in Sources */,
@@ -1735,6 +1774,7 @@
 				7FAACC141D9036460028D0D6 /* UIColor+Category.m in Sources */,
 				7FAACC1E1D9036460028D0D6 /* UIView+Category.m in Sources */,
 				7FEB1FFA1D9EC010001E5F10 /* LoginViewController.m in Sources */,
+				7F3E80811F2DB3AF0020A969 /* RentCarDetailOtherCell.m in Sources */,
 				7F4FB4DA1F0EA3FA00B707DF /* ShopCollectionViewLayout.m in Sources */,
 				7F5CD9531F11210D00E37652 /* ShopDetailViewController.m in Sources */,
 				7F830BB61DA4085B00F50B64 /* SystemMessageTableCell.m in Sources */,

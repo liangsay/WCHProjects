@@ -16,6 +16,7 @@ CGFloat const kRentCarTableViewCellHeight = 90;
     [super awakeFromNib];
     // Initialization code
     self.contentView.backgroundColor = [UIColor backgroundColor];
+    self.nameLab.textColor = [UIColor mainColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -31,7 +32,7 @@ CGFloat const kRentCarTableViewCellHeight = 90;
     self.nameLab.text = oderObj.namef;
     
     NSString *startPricef = oderObj.startPricef;
-    NSString *price = [NSString stringWithFormat:@"￥%@元(%@公里)",startPricef,oderObj.startKmf];
+    NSString *price = [NSString stringWithFormat:@"￥%@元日均",startPricef];
     NSRange priceR = [price rangeOfString:startPricef];
     NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:price];
     [priceAtt setTextColor:[UIColor fontGray]];

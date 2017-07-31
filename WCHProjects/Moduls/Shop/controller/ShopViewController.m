@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _isGrid = NO;
+    _isGrid = YES;
     //设置导航栏
     [self setupNavigationItem];
     //设置table数据源
@@ -205,8 +205,10 @@
         weakSelf.dataSource = [NSMutableArray arrayWithArray:response.responseModel];
         [weakSelf.collectionView reloadData];
         [weakSelf.collectionView.mj_header endRefreshing];
+        
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [weakSelf.collectionView.mj_header endRefreshing];
+        
     }];
 }
 

@@ -323,4 +323,18 @@
  *  @since <#version number#>
  */
 - (NSString *)converDateTimeWith:(NSString *)format;
+
+//获取当前的时间
+
++(NSString*)getCurrentTimes;
+//获取当前时间戳有两种方法(以秒为单位)
+
++(NSString *)getNowTimeTimestamp;
++(NSString *)getNowTimeTimestamp2;
+//获取当前时间戳  （以毫秒为单位）
+
++(NSString *)getNowTimeTimestamp3;
+#pragma mark --/**任意两天相差天数*/
+/**任意两天相差天数*/
++ (NSInteger)getTheCountOfTwoDaysWithBeginDate:(NSString *)beginDate endDate:(NSString *)endDate;
 @end

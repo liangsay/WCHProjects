@@ -136,6 +136,7 @@ MJCodingImplementation
     if (isApp) {
         [params addUnEmptyString:@"app" forKey:@"requestType"];
     }
+    
     [[HttpClient sharedClient] getObjectWithDic:params apiName:api successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.isSuccess) {
             id data = response.result;

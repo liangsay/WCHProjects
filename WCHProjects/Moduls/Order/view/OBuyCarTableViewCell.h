@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+FOUNDATION_EXPORT NSString * const kOBuyCarTableViewCellID;
+FOUNDATION_EXPORT CGFloat const kOBuyCarTableViewCellHeight;
+
 
 @interface OBuyCarTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *typeImgV;
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *priceLab;
+@property (weak, nonatomic) IBOutlet UILabel *numLab;
+@property (weak, nonatomic) IBOutlet UILabel *typeLab;
+
+@property (nonatomic, strong) OrderInfoObj *orderObj;
+
+- (void)setupCellInfoWith:(OrderInfoObj *)orderObj;
 @end

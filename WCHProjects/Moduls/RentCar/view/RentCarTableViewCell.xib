@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vYD-4W-mAq">
-                                <rect key="frame" x="0.0" y="0.0" width="80" height="79.5"/>
+                                <rect key="frame" x="10" y="0.0" width="80" height="79.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lH9-b2-moA">
                                 <rect key="frame" x="246" y="33.5" width="64" height="17"/>
@@ -61,19 +61,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="冷藏车" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIj-2W-8VF">
-                                <rect key="frame" x="90" y="10" width="49" height="19.5"/>
+                                <rect key="frame" x="100" y="10" width="49" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="载重：1吨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXa-JO-4Fm">
-                                <rect key="frame" x="90" y="35" width="55" height="15"/>
+                                <rect key="frame" x="100" y="35" width="55" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.4979824424" green="0.49807190899999998" blue="0.4979767799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长*宽*高：0*0*0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNq-dg-wva">
-                                <rect key="frame" x="90" y="55" width="95.5" height="14.5"/>
+                                <rect key="frame" x="100" y="55" width="95.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.4979824424" green="0.49807190899999998" blue="0.4979767799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                         <constraints>
                             <constraint firstItem="lH9-b2-moA" firstAttribute="centerY" secondItem="tXa-JO-4Fm" secondAttribute="centerY" id="1xZ-GB-fzX"/>
                             <constraint firstItem="vYD-4W-mAq" firstAttribute="top" secondItem="gSk-Vh-zK9" secondAttribute="top" id="9qv-ye-YXg"/>
-                            <constraint firstItem="vYD-4W-mAq" firstAttribute="leading" secondItem="gSk-Vh-zK9" secondAttribute="leading" id="B9j-GS-xwO"/>
+                            <constraint firstItem="vYD-4W-mAq" firstAttribute="leading" secondItem="gSk-Vh-zK9" secondAttribute="leading" constant="10" id="B9j-GS-xwO"/>
                             <constraint firstItem="tXa-JO-4Fm" firstAttribute="top" secondItem="iIj-2W-8VF" secondAttribute="bottom" constant="5" id="D8G-fJ-r6s"/>
                             <constraint firstAttribute="trailing" secondItem="lH9-b2-moA" secondAttribute="trailing" constant="10" id="H2W-0c-fpE"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iIj-2W-8VF" secondAttribute="trailing" constant="10" id="Mvj-XI-sEj"/>

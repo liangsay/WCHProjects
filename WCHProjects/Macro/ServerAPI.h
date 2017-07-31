@@ -10,6 +10,7 @@
 
 static NSString * const apiBaseURLString = @"http://139.224.209.235:9080/";
 //static NSString *const apiBaseURLString = @"http://www.66weihuo.com/";
+//static NSString *const apiBaseURLString = @"http://www.66wch.com.cn/";
 //static NSString *const apiBaseURLString = @"http://106.14.238.209/";
 //商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再在APP里面调起支付。
 static NSString * const wxUnifiedorder = @"https://api.mch.weixin.qq.com/pay/unifiedorder";
@@ -235,6 +236,11 @@ CG_INLINE NSString *kAPI_MallgoodstoCustom() {
     return @"MallgoodstoCustom.shtml";
 }
 
+#pragma mark    --查询购车的个人订单
+CG_INLINE NSString *kAPI_MallordertoMember() {
+    return @"MallordertoMember.shtml";
+}
+
 #pragma mark    --添加收藏
 CG_INLINE NSString *kAPI_CollectdoCollect() {
     return @"CollectdoCollect.shtml";
@@ -258,4 +264,19 @@ CG_INLINE NSString *kAPI_UsertoLogin4App() {
 #pragma mark --订单租车
 CG_INLINE NSString *kAPI_RentordertoCustom() {
     return @"RentordertoCustom.shtml";
+}
+
+#pragma mark --查询该城市里的门店
+CG_INLINE NSString *kAPI_StoretoLoc() {
+    return @"StoretoLoc.shtml";
+}
+
+#pragma mark --添加租车订单
+CG_INLINE NSString *kAPI_RentorderdoInsert() {
+    return @"RentorderdoInsert.shtml";
+}
+
+#pragma mark --取消租车订单
+CG_INLINE NSString *kAPI_RentorderdoCancel() {
+    return @"RentorderdoCancel.shtml";
 }

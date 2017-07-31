@@ -9,6 +9,7 @@
 #import "RentCarViewController.h"
 #import "BaseTableView.h"
 #import "RentCarTableViewCell.h"
+#import "RentCarDetailViewController.h"
 @interface RentCarViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -75,7 +76,15 @@
     // Configure the cell...
     OrderInfoObj *orderObj = self.dataArray[indexPath.row];
     [cell setupCellInfoWith:orderObj];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RentCarDetailViewController *rentVC = [[RentCarDetailViewController alloc] initWithNibName:@"RentCarDetailViewController" bundle:nil];
+    rentVC.navigationItem.title = @"完善租车";
+    rentVC.orderObj = self.dataArray[indexPath.row];
+    kPushNav(rentVC, YES);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -107,6 +116,7 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [weakSelf.tableView endHeaderRefreshing];
+        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
 }
 

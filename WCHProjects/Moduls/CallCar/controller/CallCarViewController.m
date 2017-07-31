@@ -10,17 +10,23 @@
 #import "CallCarTableViewCell.h"
 #import "BaseTableView.h"
 #import "LocationServer.h"
-@interface CallCarViewController () <UITableViewDelegate,UITableViewDataSource>
+#import "OrderViewController.h"
+@interface CallCarViewController () <UITableViewDelegate,UITableViewDataSource,OrderViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 /** 定时器(这里不用带*，因为dispatch_source_t就是个类，内部已经包含了*) */
 @property (nonatomic, strong) dispatch_source_t timer;
+@property (nonatomic, assign) BOOL isReciveState;
+
+@property (nonatomic, strong) OrderViewController *orderVC;
+@property (nonatomic, strong) NSMutableArray *orders;
 @end
 
 @implementation CallCarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    kAppDelegate.callCarVC = self;
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
     [self sendFreighttoCall_API];
@@ -40,11 +46,25 @@
 
 #pragma mark    --查看未接订单列表
 - (void)orderBtnAction:(UIButton *)sender{
-    
+    if (self.isReciveState) {
+        [NSString toast:@"您的订单正在进行中，不能继续接单哦"];
+        return;
+    }
+    if (self.orderVC != nil) {
+        self.orderVC.dataArray = self.orders;
+        kPushNav(self.orderVC, YES);
+        return;
+    }
+    OrderViewController *orderVC = [[OrderViewController alloc] initWithNibName:@"OrderViewController" bundle:nil];
+    orderVC.delegate = self;
+    orderVC.dataArray = self.orders;
+    self.orderVC = orderVC;
+    kPushNav(orderVC, YES);
 }
 
 #pragma mark    --定时请求当前订单
 - (void)setupOrderCountSet{
+    [self cancelTimer];
     WEAKSELF
     // 获得队列
     dispatch_queue_t queue = dispatch_get_main_queue();
@@ -74,6 +94,14 @@
     
 }
 
+//去掉定时器
+- (void)cancelTimer {
+    if (self.timer) {
+        dispatch_cancel(self.timer);
+        self.timer = nil;
+    }
+}
+
 - (void)refreshHeaderData {
     [self sendFreighttoCall_API];
 }
@@ -85,6 +113,14 @@
     return _dataArray;
 }
 
+#pragma mark --OrderViewControllerDelegate抢单成功后的回调处理----
+- (void)orderViewController:(OrderViewController *)orderViewController orderObj:(OrderInfoObj *)orderObj isOrderRecive:(BOOL)isOrderRecive {
+    self.isReciveState = YES;
+    if (isOrderRecive) {
+        
+    }
+    
+}
 
 #pragma mark - Table view data source
 
@@ -150,6 +186,7 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [weakSelf.tableView endHeaderRefreshing];
+        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
 }
 
@@ -164,6 +201,10 @@
     [params addUnEmptyString:[LocationServer shared].cityf forKey:@"vo.cityf"];
     [params addUnEmptyString:@"YES" forKey:kIsHideLoadingView];
     [OrderInfoObj sendOrdertoDoneWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        weakSelf.orders = [NSMutableArray arrayWithArray:response.rows];
+        if (weakSelf.orderVC) {
+            [weakSelf.orderVC reloadOrderData];
+        }
         kNAV_INIT_TITLEWIHTRIGHT(self, @"叫车", kIntToString(response.totalCount), @selector(orderBtnAction:));
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         

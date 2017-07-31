@@ -11,8 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MineViewController">
             <connections>
+                <outlet property="mobileLab" destination="I5T-x5-Q3M" id="ea0-8h-osG"/>
                 <outlet property="outBtn" destination="LUD-OX-yvz" id="cNd-G4-Ath"/>
                 <outlet property="tableView" destination="13Y-U7-9vF" id="E8X-62-QGT"/>
+                <outlet property="userNameLab" destination="qh5-te-bYD" id="N3a-Hp-Zot"/>
                 <outlet property="view" destination="iN0-l3-epB" id="8rG-tL-Yhy"/>
             </connections>
         </placeholder>
@@ -24,6 +26,42 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="13Y-U7-9vF" customClass="BaseTableView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableHeaderView" contentMode="scaleToFill" id="8Nc-Je-AH5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_call" translatesAutoresizingMaskIntoConstraints="NO" id="bWy-tY-pie">
+                                <rect key="frame" x="20" y="24" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="JeJ-Db-Hr1"/>
+                                    <constraint firstAttribute="width" constant="20" id="d3p-7s-1Rs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh5-te-bYD">
+                                <rect key="frame" x="50" y="12" width="315" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.1112378612" green="0.57033985850000002" blue="0.99387389420000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5T-x5-Q3M">
+                                <rect key="frame" x="50" y="36.5" width="315" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="I5T-x5-Q3M" firstAttribute="trailing" secondItem="qh5-te-bYD" secondAttribute="trailing" id="0Tz-Tq-Ckk"/>
+                            <constraint firstItem="qh5-te-bYD" firstAttribute="leading" secondItem="bWy-tY-pie" secondAttribute="trailing" constant="10" id="0uB-iX-PH2"/>
+                            <constraint firstItem="qh5-te-bYD" firstAttribute="top" secondItem="8Nc-Je-AH5" secondAttribute="top" constant="12" id="7hR-Ez-CVw"/>
+                            <constraint firstItem="I5T-x5-Q3M" firstAttribute="top" secondItem="qh5-te-bYD" secondAttribute="bottom" constant="5" id="KJM-9J-rof"/>
+                            <constraint firstItem="bWy-tY-pie" firstAttribute="centerY" secondItem="8Nc-Je-AH5" secondAttribute="centerY" id="dgB-bw-DBF"/>
+                            <constraint firstItem="bWy-tY-pie" firstAttribute="leading" secondItem="8Nc-Je-AH5" secondAttribute="leading" constant="20" id="iZx-39-nqA"/>
+                            <constraint firstItem="I5T-x5-Q3M" firstAttribute="leading" secondItem="qh5-te-bYD" secondAttribute="leading" id="lTc-bA-FZG"/>
+                            <constraint firstAttribute="trailing" secondItem="qh5-te-bYD" secondAttribute="trailing" constant="10" id="x1r-eT-FkH"/>
+                        </constraints>
+                    </view>
                     <view key="tableFooterView" contentMode="scaleToFill" id="GfV-UI-kYK">
                         <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,6 +99,9 @@
             <point key="canvasLocation" x="138.5" y="153.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_call" width="20" height="20"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -32,7 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    kAppDelegate.mainViewController.orderNof = @"";
+//    kAppDelegate.mainViewController.orderNof = @"";
 }
 
 - (void)viewDidLoad {
@@ -51,7 +51,7 @@
         [UIAlertView alertViewWithTitle:@"提示：" message:@"您还的订单未完成支付哦" cancelButtonTitle:@"取消" otherButtonTitles:@[@"立即支付"] onDismiss:^(NSInteger buttonIndex) {
             
         } onCancel:^{
-            kAppDelegate.mainViewController.orderNof = @"";
+//            kAppDelegate.mainViewController.orderNof = @"";
             [kNotificationCenter() removeObserver:weakSelf];
             [super onBackButton];
         }];
@@ -67,7 +67,7 @@
     [kNotificationCenter() addObserver:self selector:@selector(aliPayAction:) name:kNotificationALiPayStatus() object:nil];
 }
 - (IBAction)cancelBtnAction:(id)sender {
-    kAppDelegate.mainViewController.orderNof = @"";
+//    kAppDelegate.mainViewController.orderNof = @"";
     [self onBackButton];
 //    [self sendOrderdoCancelWithOrderNof:self.orderObj.orderNof cancelManf:@""];
  
@@ -82,7 +82,7 @@
  */
 - (void)wxPayAction:(NSNotification *)sender {
     if ([sender.object isEqualToString:@"1"]) {
-        kAppDelegate.mainViewController.orderNof = @"";
+//        kAppDelegate.mainViewController.orderNof = @"";
         [self sendDiscoupontoUse];
         self.isFinish = YES;
         if (self.delegate && [self.delegate respondsToSelector:@selector(myPayTypeViewController:payStatus:orderObj:)]) {
@@ -105,7 +105,7 @@
  */
 - (void)aliPayAction:(NSNotification *)sender {
     self.isFinish = YES;
-    kAppDelegate.mainViewController.orderNof = @"";
+//    kAppDelegate.mainViewController.orderNof = @"";
     [self sendDiscoupontoUse];
     if (self.delegate && [self.delegate respondsToSelector:@selector(myPayTypeViewController:payStatus:orderObj:)]) {
         [self.delegate myPayTypeViewController:self payStatus:1 orderObj:self.orderObj];

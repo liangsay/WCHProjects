@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RentCarDetailViewController">
+            <connections>
+                <outlet property="submitBtn" destination="T0k-6v-xsB" id="tZ4-qR-zVu"/>
+                <outlet property="tableView" destination="5UE-CC-JyT" id="hA3-K6-V8p"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5UE-CC-JyT" customClass="BaseTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="XXo-56-5bQ">
+                        <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0k-6v-xsB">
+                                <rect key="frame" x="15" y="10" width="345" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="提交"/>
+                                <connections>
+                                    <action selector="submitBtnAction:" destination="-1" eventType="touchUpInside" id="hno-AT-OTL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T0k-6v-xsB" firstAttribute="top" secondItem="XXo-56-5bQ" secondAttribute="top" constant="10" id="AVa-YC-n5t"/>
+                            <constraint firstAttribute="bottom" secondItem="T0k-6v-xsB" secondAttribute="bottom" constant="10" id="Tyv-SL-rim"/>
+                            <constraint firstAttribute="trailing" secondItem="T0k-6v-xsB" secondAttribute="trailing" constant="15" id="ZHo-fG-WVw"/>
+                            <constraint firstItem="T0k-6v-xsB" firstAttribute="leading" secondItem="XXo-56-5bQ" secondAttribute="leading" constant="15" id="kQy-in-jDB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="6qy-6y-vIJ"/>
+                        <outlet property="delegate" destination="-1" id="iam-Iz-ZRQ"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5UE-CC-JyT" secondAttribute="trailing" id="2Gt-us-RsZ"/>
+                <constraint firstAttribute="bottom" secondItem="5UE-CC-JyT" secondAttribute="bottom" id="65W-RL-hgR"/>
+                <constraint firstItem="5UE-CC-JyT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BGo-Mv-d5Q"/>
+                <constraint firstItem="5UE-CC-JyT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="nKq-0L-REh"/>
+            </constraints>
+            <point key="canvasLocation" x="107.5" y="155.5"/>
+        </view>
+    </objects>
+</document>

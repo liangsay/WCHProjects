@@ -63,7 +63,7 @@
     //数据初始化
     self.isSuccess = self.responseCode==1?YES:NO;
     
-    
+    self.totalCount = response[@"totalCount"] == nil ? 0 : [response[@"totalCount"] integerValue];
     id res = [response objectForKey:@"result"];
     if (kISKIND_OF_CLASS_NSSTRING(res) || [res isKindOfClass:[NSNumber class]]) {
         self.result = res;

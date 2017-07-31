@@ -24,6 +24,7 @@
 #import <UMMobClick/MobClick.h>
 #import <UMSocialCore/UMSocialManager.h>
 #import "MainNavigationViewController.h"
+#import "StoretoLocObj.h"
 @interface AppDelegate ()<WXApiDelegate>
 
 @end
@@ -68,6 +69,20 @@ static NSString *kLaunchImg = @"kLaunchImg";
     //开启定位服务
     [[LocationServer shared] setupLocationServiceWithComplete:^(OrderInfoObj *oderObj) {
         DLog(@"定位结果oderObj:%@-%@",oderObj.provincef,oderObj.cityf);
+
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params addUnEmptyString:oderObj.cityf forKey:@"vo.cityf"];
+        [params addUnEmptyString:oderObj.provincef forKey:@"vo.provincef"];
+        [StoretoLocObj sendStoretoLocWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+            StoretoLocObj *obj = response.responseModel;
+            if (obj) {
+                [obj cache];
+            }else{
+                [[StoretoLocObj new] cache];
+            }
+        } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+            [[StoretoLocObj new] cache];
+        }];
     }];
     
     //向微信注册appid.
@@ -255,6 +270,9 @@ static NSString *kLaunchImg = @"kLaunchImg";
  *  @since <#1.0#>
  */
 - (void)setupLoginViewControllerWithNotification:(NSNotification *)noti loginAction:(LoginVCAction)loginAction{
+    if (self.callCarVC) {
+        [self.callCarVC cancelTimer];
+    }
     LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     loginVC.loginAction = loginAction;
     

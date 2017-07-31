@@ -34,7 +34,12 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     [self.typeBtn setLayerCornerRadius:round(25/2)];
     
     self.timeLab.text = [NSString stringWithFormat:@"下单时间:%@",orderObj.createTimef];
-    self.typeLab.text = orderObj.modelNamef;
+    if (!kIsObjectEmpty(orderObj.modelNamef)) {
+        self.typeLab.text = orderObj.modelNamef;
+        self.typeView.alpha = 1;
+    }else{
+        self.typeView.alpha = 0;
+    }
     
     self.startLab.text = orderObj.startAddrNamef;
     self.endLab.text = orderObj.endAddrNamef;

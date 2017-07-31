@@ -126,10 +126,12 @@
     [params addUnEmptyString:self.userNameTxtF.text forKey:@"vo.mobilef"];
     [UserInfoObj sendSmstoSendWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         weakSelf.codeNum = response.result;
+
         [weakSelf downTimeSet];
         NSString *msg = [NSString stringWithFormat:@"验证码已发送至手机号为%@，请注意查收并登陆/注册使用",weakSelf.userNameTxtF.text];
         [NSString toast:msg];
 #ifdef DEBUG
+        weakSelf.passwordTxtF.text = response.result;
         DLog(@"response.result:%@",response.result);
         [NSString toast:weakSelf.codeNum];
 #endif

@@ -198,6 +198,7 @@
             [NSString toast:@"请先选择取车时间"];
             return;
         }
+        
         [self showSelectDateViewIn:indexPath];
     }
 }
@@ -216,7 +217,9 @@
     NSDate *maximumDate = nil;
     if (self.outTime.length && row == 3) {
         //还车时间不能小于借车时间，所以需要最小时间
-        minimumDate = [NSDate dateWithString:self.outTime formatString:@"yyyy-MM-dd"];
+        double addTime = [NSDate converDatetimeToTimeIntervalWith:self.outTime format:@"yyyy-MM-dd"].doubleValue + 24 * 3600;
+        NSString *inTime = [NSDate timeIntervalToDataString:addTime formate:@"yyyy-MM-dd"];
+        minimumDate = [NSDate dateWithString:inTime formatString:@"yyyy-MM-dd"];
     }
     __block OrderInfoObj *order = self.dataArray[row];
     if (order.content) {
@@ -226,6 +229,19 @@
         if (row == 2) {
             weakSelf.outTime = [selectedDate formattedDateWithFormatString:@"yyyy-MM-dd"];
             order.content = weakSelf.outTime;
+            
+            NSInteger days = ABS([NSDate getTheCountOfTwoDaysWithBeginDate:weakSelf.inTime endDate:order.content]);
+            if (days<1) {
+                //还车时间不能小于借车+1的时间，所以需要最小时间
+                double addTime = [NSDate converDatetimeToTimeIntervalWith:order.content format:@"yyyy-MM-dd"].doubleValue + 24 * 3600;
+                NSString *inTime = [NSDate timeIntervalToDataString:addTime formate:@"yyyy-MM-dd"];
+                self.inTime = inTime;
+                OrderInfoObj *oInfo = weakSelf.dataArray[row+1];
+                oInfo.content = inTime;
+                [weakSelf.dataArray replaceObjectAtIndex:row+1 withObject:oInfo];
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row+1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            
         }else{
             weakSelf.inTime = [selectedDate formattedDateWithFormatString:@"yyyy-MM-dd"];
             order.content = weakSelf.inTime;

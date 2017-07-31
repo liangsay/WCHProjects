@@ -17,6 +17,7 @@
 		7F23F6F41DAA984000587870 /* OrderInfoObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F23F6F31DAA984000587870 /* OrderInfoObj.m */; };
 		7F29066C1F2F002100216041 /* StoretoLocObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F29066B1F2F002100216041 /* StoretoLocObj.m */; };
 		7F29066E1F2F443100216041 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F29066D1F2F443100216041 /* CoreLocation.framework */; };
+		7F2906711F2F956F00216041 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2906701F2F956F00216041 /* UIButton+EnlargeTouchArea.m */; };
 		7F2CC1F21F13276700A7E65B /* UITableView+HYBCacheHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1EF1F13276700A7E65B /* UITableView+HYBCacheHeight.m */; };
 		7F2CC1F31F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1F11F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.m */; };
 		7F2CC1FE1F13298400A7E65B /* ShopCommontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1FD1F13298400A7E65B /* ShopCommontCell.m */; };
@@ -250,6 +251,8 @@
 		7F29066A1F2F002100216041 /* StoretoLocObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoretoLocObj.h; sourceTree = "<group>"; };
 		7F29066B1F2F002100216041 /* StoretoLocObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoretoLocObj.m; sourceTree = "<group>"; };
 		7F29066D1F2F443100216041 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7F29066F1F2F956F00216041 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
+		7F2906701F2F956F00216041 /* UIButton+EnlargeTouchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeTouchArea.m"; sourceTree = "<group>"; };
 		7F2CC1EE1F13276700A7E65B /* UITableView+HYBCacheHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+HYBCacheHeight.h"; sourceTree = "<group>"; };
 		7F2CC1EF1F13276700A7E65B /* UITableView+HYBCacheHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HYBCacheHeight.m"; sourceTree = "<group>"; };
 		7F2CC1F01F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+HYBMasonryAutoCellHeight.h"; sourceTree = "<group>"; };
@@ -997,6 +1000,8 @@
 		7FAACB991D9036460028D0D6 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				7F29066F1F2F956F00216041 /* UIButton+EnlargeTouchArea.h */,
+				7F2906701F2F956F00216041 /* UIButton+EnlargeTouchArea.m */,
 				7F5CD9751F112ABA00E37652 /* UIWebView+Clean.h */,
 				7F5CD9761F112ABA00E37652 /* UIWebView+Clean.m */,
 				7F4FB4C81F0E9C8E00B707DF /* UIBarButtonItem+Extension.h */,
@@ -1668,6 +1673,7 @@
 				7F30ECCD1DB110700083A311 /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
 				7FA96C481DA9484F00F5E00E /* ForgetViewController.m in Sources */,
 				7FAACC211D9036460028D0D6 /* desc.md in Sources */,
+				7F2906711F2F956F00216041 /* UIButton+EnlargeTouchArea.m in Sources */,
 				7F8F29591F1D097C00C5DFF9 /* ORentCarViewController.m in Sources */,
 				7FE9AC761DA1D10400B4077B /* CouponViewController.m in Sources */,
 				7FAACC181D9036460028D0D6 /* UIImage+ICCategory.m in Sources */,

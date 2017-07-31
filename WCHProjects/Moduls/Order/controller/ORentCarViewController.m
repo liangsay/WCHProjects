@@ -10,7 +10,8 @@
 #import "BaseTableView.h"
 #import "ORentCarTableViewCell.h"
 #import "UIAlertController+Blocks.h"
-@interface ORentCarViewController ()<UITableViewDelegate,UITableViewDataSource,ORentCarTableViewCellDelegate>
+#import "MyPayTypeViewController.h"
+@interface ORentCarViewController ()<UITableViewDelegate,UITableViewDataSource,ORentCarTableViewCellDelegate,MyPayTypeViewDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -81,6 +82,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
+    OrderInfoObj *orderObj = self.dataArray[row];
+    if ([orderObj.statusf isEqualToString:@"0"]) {
+        MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
+        payVC.title = @"支付方式";
+        payVC.delegate = self;
+        payVC.orderObj = orderObj;
+        kPushNav(payVC, YES);
+    }
+}
+
+#pragma mark --MyPayTypeViewDelegate----------
+- (void)myPayTypeViewController:(MyPayTypeViewController *)myPayTypeViewController payStatus:(NSInteger)payStatus orderObj:(OrderInfoObj *)orderObj {
+    
 }
 
 

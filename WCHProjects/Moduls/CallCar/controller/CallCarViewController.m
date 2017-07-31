@@ -11,6 +11,7 @@
 #import "BaseTableView.h"
 #import "LocationServer.h"
 #import "OrderViewController.h"
+#import "UIButton+EnlargeTouchArea.h"
 @interface CallCarViewController () <UITableViewDelegate,UITableViewDataSource,OrderViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -20,6 +21,7 @@
 
 @property (nonatomic, strong) OrderViewController *orderVC;
 @property (nonatomic, strong) NSMutableArray *orders;
+@property (nonatomic, strong) UIButton *orderBtn;
 @end
 
 @implementation CallCarViewController
@@ -31,7 +33,8 @@
     [self setupTableViewSet];
     [self sendFreighttoCall_API];
     [self setupOrderCountSet];
-    kNAV_INIT_TITLEWIHTRIGHT(self, @"叫车", @"0", @selector(orderBtnAction:));
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.orderBtn];
+    [self.orderBtn setTitle:@"0" forState:UIControlStateNormal];
 }
 
 - (void)setupTableViewSet {
@@ -42,7 +45,20 @@
     [self.tableView addHeaderRefreshTarget:self action:@selector(refreshHeaderData)];
 }
 
-
+- (UIButton *)orderBtn {
+    if (!_orderBtn) {
+        _orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_orderBtn setTitleColor:[UIColor mainColor] forState:UIControlStateNormal];
+        [_orderBtn.titleLabel setFont:kFont(28)];
+        [_orderBtn setFrame:(CGRect){0,0,20,20}];
+        [_orderBtn setLayerCornerRadius:10];
+        [_orderBtn addTarget:self action:@selector(orderBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
+        [_orderBtn setLayerBorderWidth:0.5 color:[UIColor mainColor]];
+        [_orderBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+        
+    }
+    return _orderBtn;
+}
 
 #pragma mark    --查看未接订单列表
 - (void)orderBtnAction:(UIButton *)sender{
@@ -205,7 +221,7 @@
         if (weakSelf.orderVC) {
             [weakSelf.orderVC reloadOrderData];
         }
-        kNAV_INIT_TITLEWIHTRIGHT(self, @"叫车", kIntToString(response.totalCount), @selector(orderBtnAction:));
+        [weakSelf.orderBtn setTitle:kIntegerToString(response.totalCount) forState:UIControlStateNormal];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         
     }];

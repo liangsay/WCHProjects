@@ -15,6 +15,7 @@
 typedef NS_ENUM(NSUInteger, SearchAddressType) {
     SearchAddressTypeStart,//起点
     SearchAddressTypeEnd,//终点
+    SearchAddressTypeCallCar,
 };
 
 @class SearchAddressViewController;

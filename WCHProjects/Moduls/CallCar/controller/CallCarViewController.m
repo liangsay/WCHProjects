@@ -12,6 +12,7 @@
 #import "LocationServer.h"
 #import "OrderViewController.h"
 #import "UIButton+EnlargeTouchArea.h"
+#import "CallCarDetailViewController.h"
 @interface CallCarViewController () <UITableViewDelegate,UITableViewDataSource,OrderViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -52,7 +53,7 @@
         [_orderBtn.titleLabel setFont:kFont(28)];
         [_orderBtn setFrame:(CGRect){0,0,20,20}];
         [_orderBtn setLayerCornerRadius:10];
-        [_orderBtn addTarget:self action:@selector(orderBtnAction:) forControlEvents:UIControlEventTouchUpOutside];
+        [_orderBtn addTarget:self action:@selector(orderBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         [_orderBtn setLayerBorderWidth:0.5 color:[UIColor mainColor]];
         [_orderBtn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
         
@@ -173,6 +174,15 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    OrderInfoObj *orderO = self.dataArray[row];
+    CallCarDetailViewController *detailVC = [[CallCarDetailViewController alloc] initWithNibName:@"CallCarDetailViewController" bundle:nil];
+    detailVC.navigationItem.title = @"完善订单信息";
+    detailVC.orderObj = orderO;
+    kPushNav(detailVC, YES);
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat sectionHeaderHeight =10;// 25;
@@ -217,8 +227,9 @@
     [params addUnEmptyString:[LocationServer shared].cityf forKey:@"vo.cityf"];
     [params addUnEmptyString:@"YES" forKey:kIsHideLoadingView];
     [OrderInfoObj sendOrdertoDoneWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
-        weakSelf.orders = [NSMutableArray arrayWithArray:response.rows];
+        weakSelf.orders = response.responseModel;
         if (weakSelf.orderVC) {
+            weakSelf.dataArray = weakSelf.orders;
             [weakSelf.orderVC reloadOrderData];
         }
         [weakSelf.orderBtn setTitle:kIntegerToString(response.totalCount) forState:UIControlStateNormal];

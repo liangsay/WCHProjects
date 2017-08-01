@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+
 @property (nonatomic, strong) NSString *outTime;//借车时间
 @property (nonatomic, strong) NSString *inTime;//还车时间
 @property (nonatomic, strong) StoretoLocObj *storeObj;
@@ -101,8 +102,6 @@
     
 }
 
-
-
 //设置表
 - (void)setupTableSet {
     [self.tableView registerNib:[UINib nibWithNibName:@"RentCarDetailCell" bundle:nil] forCellReuseIdentifier:kRentCarDetailCellID];
@@ -118,6 +117,7 @@
     }
     return _dataArray;
 }
+
 
 #pragma mark --UITextFieldDelegate-------
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

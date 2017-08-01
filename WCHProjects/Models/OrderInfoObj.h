@@ -9,12 +9,14 @@
 #import "BaseModel.h"
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
+@property (nonatomic, strong) NSString *positionf;
 @property (nonatomic, strong) NSString *days;
 @property (nonatomic, strong) NSString *numf;
 @property (nonatomic, strong) NSString *iconName;
 @property (nonatomic, strong) NSString *placeholder;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, assign) BOOL isMust;
+@property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) BOOL isTxt;
 @property (nonatomic, assign) BOOL isSelDate;
 @property (nonatomic, strong) NSString *cabPeopleNumf;

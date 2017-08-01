@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallCarDetailViewController">
+            <connections>
+                <outlet property="addBtn" destination="9gE-FK-7vL" id="gCw-NN-onE"/>
+                <outlet property="descLab" destination="VjK-nJ-Bzx" id="cqb-Fa-lwj"/>
+                <outlet property="submitBtn" destination="4dA-PO-Hqx" id="BKc-Gf-3xz"/>
+                <outlet property="tableView" destination="mxo-c7-2nO" id="GPR-g9-c4W"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mxo-c7-2nO" customClass="BaseTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="tableFooterView" contentMode="scaleToFill" id="3LA-HS-yuf">
+                        <rect key="frame" x="0.0" y="527" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加途经点请安卸货顺序填写" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-nJ-Bzx">
+                                <rect key="frame" x="107" y="18" width="253" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.4979824424" green="0.49807190899999998" blue="0.4979767799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gE-FK-7vL">
+                                <rect key="frame" x="15" y="10" width="82" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="1hi-zQ-yaU"/>
+                                    <constraint firstAttribute="height" constant="30" id="9Ha-B1-Cab"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="添加途经点"/>
+                                <connections>
+                                    <action selector="addBtnAction:" destination="-1" eventType="touchUpInside" id="GYd-dS-Clz"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORx-qy-fxK">
+                                <rect key="frame" x="0.0" y="49.5" width="375" height="0.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="Bsq-1t-35t"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ORx-qy-fxK" secondAttribute="bottom" id="343-OK-cFN"/>
+                            <constraint firstItem="9gE-FK-7vL" firstAttribute="leading" secondItem="3LA-HS-yuf" secondAttribute="leading" constant="15" id="EIs-Ns-gxz"/>
+                            <constraint firstItem="9gE-FK-7vL" firstAttribute="leading" secondItem="3LA-HS-yuf" secondAttribute="leading" constant="15" id="H3K-OQ-PGT"/>
+                            <constraint firstAttribute="trailing" secondItem="VjK-nJ-Bzx" secondAttribute="trailing" constant="15" id="Hzm-mj-por"/>
+                            <constraint firstItem="VjK-nJ-Bzx" firstAttribute="leading" secondItem="9gE-FK-7vL" secondAttribute="trailing" constant="10" id="Jhe-S8-FhH"/>
+                            <constraint firstItem="ORx-qy-fxK" firstAttribute="leading" secondItem="3LA-HS-yuf" secondAttribute="leading" id="byW-7J-yXz"/>
+                            <constraint firstAttribute="trailing" secondItem="ORx-qy-fxK" secondAttribute="trailing" id="fY0-V8-kWz"/>
+                            <constraint firstItem="9gE-FK-7vL" firstAttribute="top" secondItem="3LA-HS-yuf" secondAttribute="top" constant="10" id="qeI-9N-Tji"/>
+                            <constraint firstItem="VjK-nJ-Bzx" firstAttribute="centerY" secondItem="9gE-FK-7vL" secondAttribute="centerY" id="vFv-Ts-Ap4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="7rm-OL-jpA"/>
+                        <outlet property="delegate" destination="-1" id="Bkm-4E-DrL"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L5a-tO-YxE">
+                    <rect key="frame" x="0.0" y="577" width="375" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAz-ob-wja">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="yzi-GR-Mwo"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dA-PO-Hqx">
+                            <rect key="frame" x="15" y="34.5" width="345" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="E2j-SF-ef6"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="提交"/>
+                            <connections>
+                                <action selector="submitBtnAction:" destination="-1" eventType="touchUpInside" id="Bmf-Kk-ANM"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际价格会因实际情况而有所变化" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-Yf-HK3">
+                            <rect key="frame" x="15" y="10" width="345" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Hat-Yf-HK3" secondAttribute="trailing" constant="15" id="71U-DO-VKh"/>
+                        <constraint firstItem="Hat-Yf-HK3" firstAttribute="leading" secondItem="L5a-tO-YxE" secondAttribute="leading" constant="15" id="Kds-BQ-aMj"/>
+                        <constraint firstItem="4dA-PO-Hqx" firstAttribute="leading" secondItem="L5a-tO-YxE" secondAttribute="leading" constant="15" id="TO2-7b-YVu"/>
+                        <constraint firstAttribute="height" constant="90" id="aOp-VE-TmM"/>
+                        <constraint firstAttribute="trailing" secondItem="rAz-ob-wja" secondAttribute="trailing" id="bBT-lI-X3F"/>
+                        <constraint firstItem="rAz-ob-wja" firstAttribute="top" secondItem="L5a-tO-YxE" secondAttribute="top" id="dgu-qd-zfO"/>
+                        <constraint firstItem="rAz-ob-wja" firstAttribute="leading" secondItem="L5a-tO-YxE" secondAttribute="leading" id="fkC-aZ-IpN"/>
+                        <constraint firstItem="4dA-PO-Hqx" firstAttribute="top" secondItem="Hat-Yf-HK3" secondAttribute="bottom" constant="10" id="jPQ-lI-rmM"/>
+                        <constraint firstItem="Hat-Yf-HK3" firstAttribute="top" secondItem="L5a-tO-YxE" secondAttribute="top" constant="10" id="uzA-Yn-VqU"/>
+                        <constraint firstAttribute="trailing" secondItem="4dA-PO-Hqx" secondAttribute="trailing" constant="15" id="zuD-ZP-sKM"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="L5a-tO-YxE" firstAttribute="top" secondItem="mxo-c7-2nO" secondAttribute="bottom" id="7zK-LI-cbj"/>
+                <constraint firstItem="mxo-c7-2nO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HqA-hS-kn4"/>
+                <constraint firstItem="L5a-tO-YxE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y7z-ZZ-Hq0"/>
+                <constraint firstAttribute="trailing" secondItem="L5a-tO-YxE" secondAttribute="trailing" id="ZK9-Ys-0YH"/>
+                <constraint firstItem="mxo-c7-2nO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ntk-eE-79H"/>
+                <constraint firstAttribute="trailing" secondItem="mxo-c7-2nO" secondAttribute="trailing" id="o3B-Vi-cm7"/>
+                <constraint firstAttribute="bottom" secondItem="L5a-tO-YxE" secondAttribute="bottom" id="wUH-2w-sDC"/>
+            </constraints>
+            <point key="canvasLocation" x="64.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

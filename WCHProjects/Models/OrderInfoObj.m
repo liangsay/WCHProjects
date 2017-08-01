@@ -18,7 +18,7 @@
 
 + (void)sendOrderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                             failedBlock:(RequestSessionCompletedBlock)failedBlock {
-    [self sendRequestWithAPI:kAPI_OrderdoInsert() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_OrderdoInsert() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {

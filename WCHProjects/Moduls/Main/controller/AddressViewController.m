@@ -1,19 +1,19 @@
 //
-//  SearchAddressViewController.m
+//  AddressViewController.m
 //  WCHProjects
 //
 //  Created by liujinliang on 2016/9/30.
 //  Copyright © 2016年 liujinliang. All rights reserved.
 //
 
-#import "SearchAddressViewController.h"
+#import "AddressViewController.h"
 #import "BaseTableView.h"
 #import "CitysViewController.h"
 #import "LocationServer.h"
 CG_INLINE int kPageSize() {
     return 15;
 }
-@interface SearchAddressViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate,
+@interface AddressViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate,
 UITextFieldDelegate,CitysViewControllerDelegate>
 {
     int _curPage;
@@ -30,7 +30,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
 
 @end
 
-@implementation SearchAddressViewController
+@implementation AddressViewController
 
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -81,13 +81,8 @@ UITextFieldDelegate,CitysViewControllerDelegate>
 }
 
 - (void)setupNavigator{
-    if (self.searchType==SearchAddressTypeStart) {
-        self.title = @"起点位置";
-    }else if (self.searchType == SearchAddressTypeEnd){
-        self.title = @"终点位置";
-    }else if (self.searchType == SearchAddressTypeCallCar){
-        self.navigationItem.title = @"搜索地址";
-    }
+    self.navigationItem.title = @"搜索地址";
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.cityBtn];
 }
 
@@ -99,18 +94,16 @@ UITextFieldDelegate,CitysViewControllerDelegate>
 
 #pragma mark --UIButtonAction---------
 - (IBAction)submitBtnAction:(UIButton *)sender {
-    [self.view endEditing:YES];
-    if (kIsObjectEmpty(self.nameTxtField.text)) {
+    if (kIsObjectEmpty(self.cityTxtField.text)) {
         [NSString toast:self.nameTxtField.placeholder];
         return;
     }
-    if (kIsObjectEmpty(self.mobileTxtField.text)) {
-        [NSString toast:self.nameTxtField.placeholder];
+    if (kIsObjectEmpty(self.cityObj.addrf)) {
+        [NSString toast:@"请从地址列表选择您途径的地点"];
         return;
     }
-
-    if (_delegate && [_delegate respondsToSelector:@selector(searchAddressViewController:searchAddressObj:selType:)]) {
-        [_delegate searchAddressViewController:self searchAddressObj:self.cityObj selType:self.searchType];
+    if (_delegate && [_delegate respondsToSelector:@selector(addressViewController:searchAddressObj:selType:)]) {
+        [_delegate addressViewController:self searchAddressObj:self.cityObj selType:0];
     }
     [self onBackButton];
 }
@@ -273,25 +266,10 @@ UITextFieldDelegate,CitysViewControllerDelegate>
 - (void)cell:(BaseTableCell *)cell tableView:(UITableView *)tableView didSelectAtIndexPath:(NSIndexPath *)indexPath {
     
     SearchAddressObj *addObj = _dataArray[indexPath.row];
-    if (self.searchType == SearchAddressTypeCallCar) {
-        
-        self.cityObj.addrf = addObj.detail;
-        self.cityObj.namef = self.nameTxtField.text;
-        self.cityObj.modelf = self.mobileTxtField.text;
-        self.cityObj.positionf = [NSString stringWithFormat:@"%.f,%.f",addObj.coordinate.latitude,addObj.coordinate.longitude];
-//        SearchAddressObj *obj = [SearchAddressObj new];
-//        obj.province = self.provinceName;
-//        obj.city = poi.city;
-//        obj.title = poi.name;
-//        obj.detail = poi.address;
-//        obj.coordinate = poi.pt;
-        [self submitBtnAction:nil];
-    }else{
-        if (_delegate && [_delegate respondsToSelector:@selector(searchAddressViewController:searchAddressObj:selType:)]) {
-            [_delegate searchAddressViewController:self searchAddressObj:_dataArray[indexPath.row] selType:self.searchType==SearchAddressTypeStart?0:1];
-        }
-        [self onBackButton];
+    if (_delegate && [_delegate respondsToSelector:@selector(addressViewController:searchAddressObj:selType:)]) {
+        [_delegate addressViewController:self searchAddressObj:addObj selType:0];
     }
+    [self onBackButton];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

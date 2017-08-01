@@ -25,12 +25,10 @@
     self.title = @"订单";
     
     [self setupTableViewSet];
-    
-    [self headerRefresh];
 }
 
 - (void)reloadOrderData {
-    
+    [self.tableView reloadData];
 }
 
 - (void)onBackButton {

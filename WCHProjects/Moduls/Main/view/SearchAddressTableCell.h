@@ -16,6 +16,11 @@ FOUNDATION_EXPORT CGFloat const kSearchAddressTableCellHeight;
 @property(nonatomic, strong) NSString *province;
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) NSString *detail;
+
+@property(nonatomic, strong) NSString *addrf;
+@property(nonatomic, strong) NSString *namef;
+@property(nonatomic, strong) NSString *modelf;
+@property(nonatomic, strong) NSString *positionf;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @end
 

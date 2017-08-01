@@ -18,6 +18,10 @@
 		7F29066C1F2F002100216041 /* StoretoLocObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F29066B1F2F002100216041 /* StoretoLocObj.m */; };
 		7F29066E1F2F443100216041 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F29066D1F2F443100216041 /* CoreLocation.framework */; };
 		7F2906711F2F956F00216041 /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2906701F2F956F00216041 /* UIButton+EnlargeTouchArea.m */; };
+		7F2906751F30197800216041 /* CallCarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2906731F30197800216041 /* CallCarDetailViewController.m */; };
+		7F2906761F30197800216041 /* CallCarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F2906741F30197800216041 /* CallCarDetailViewController.xib */; };
+		7F29067A1F302B1500216041 /* CallCarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2906781F302B1500216041 /* CallCarDetailCell.m */; };
+		7F29067B1F302B1500216041 /* CallCarDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F2906791F302B1500216041 /* CallCarDetailCell.xib */; };
 		7F2CC1F21F13276700A7E65B /* UITableView+HYBCacheHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1EF1F13276700A7E65B /* UITableView+HYBCacheHeight.m */; };
 		7F2CC1F31F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1F11F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.m */; };
 		7F2CC1FE1F13298400A7E65B /* ShopCommontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F2CC1FD1F13298400A7E65B /* ShopCommontCell.m */; };
@@ -59,6 +63,8 @@
 		7F4FB4DA1F0EA3FA00B707DF /* ShopCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FB4D91F0EA3FA00B707DF /* ShopCollectionViewLayout.m */; };
 		7F4FB4DE1F0EA42F00B707DF /* ShopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FB4DC1F0EA42F00B707DF /* ShopCollectionViewCell.m */; };
 		7F4FB4DF1F0EA42F00B707DF /* ShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FB4DD1F0EA42F00B707DF /* ShopCollectionViewCell.xib */; };
+		7F57EDDC1F30CCE600E82F87 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F57EDDA1F30CCE600E82F87 /* AddressViewController.m */; };
+		7F57EDDD1F30CCE600E82F87 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F57EDDB1F30CCE600E82F87 /* AddressViewController.xib */; };
 		7F5CD9531F11210D00E37652 /* ShopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CD9511F11210D00E37652 /* ShopDetailViewController.m */; };
 		7F5CD9541F11210D00E37652 /* ShopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F5CD9521F11210D00E37652 /* ShopDetailViewController.xib */; };
 		7F5CD9581F1121D400E37652 /* ShopDetailWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5CD9561F1121D400E37652 /* ShopDetailWebViewController.m */; };
@@ -253,6 +259,12 @@
 		7F29066D1F2F443100216041 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7F29066F1F2F956F00216041 /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
 		7F2906701F2F956F00216041 /* UIButton+EnlargeTouchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeTouchArea.m"; sourceTree = "<group>"; };
+		7F2906721F30197800216041 /* CallCarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallCarDetailViewController.h; sourceTree = "<group>"; };
+		7F2906731F30197800216041 /* CallCarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallCarDetailViewController.m; sourceTree = "<group>"; };
+		7F2906741F30197800216041 /* CallCarDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallCarDetailViewController.xib; sourceTree = "<group>"; };
+		7F2906771F302B1500216041 /* CallCarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallCarDetailCell.h; sourceTree = "<group>"; };
+		7F2906781F302B1500216041 /* CallCarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallCarDetailCell.m; sourceTree = "<group>"; };
+		7F2906791F302B1500216041 /* CallCarDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallCarDetailCell.xib; sourceTree = "<group>"; };
 		7F2CC1EE1F13276700A7E65B /* UITableView+HYBCacheHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+HYBCacheHeight.h"; sourceTree = "<group>"; };
 		7F2CC1EF1F13276700A7E65B /* UITableView+HYBCacheHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HYBCacheHeight.m"; sourceTree = "<group>"; };
 		7F2CC1F01F13276700A7E65B /* UITableViewCell+HYBMasonryAutoCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+HYBMasonryAutoCellHeight.h"; sourceTree = "<group>"; };
@@ -322,6 +334,9 @@
 		7F4FB4DB1F0EA42F00B707DF /* ShopCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCollectionViewCell.h; sourceTree = "<group>"; };
 		7F4FB4DC1F0EA42F00B707DF /* ShopCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCollectionViewCell.m; sourceTree = "<group>"; };
 		7F4FB4DD1F0EA42F00B707DF /* ShopCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCollectionViewCell.xib; sourceTree = "<group>"; };
+		7F57EDD91F30CCE600E82F87 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		7F57EDDA1F30CCE600E82F87 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		7F57EDDB1F30CCE600E82F87 /* AddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
 		7F5CD9501F11210D00E37652 /* ShopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailViewController.h; sourceTree = "<group>"; };
 		7F5CD9511F11210D00E37652 /* ShopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailViewController.m; sourceTree = "<group>"; };
 		7F5CD9521F11210D00E37652 /* ShopDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopDetailViewController.xib; sourceTree = "<group>"; };
@@ -694,6 +709,9 @@
 				7F4FB4A61F0D3C6100B707DF /* CallCarViewController.h */,
 				7F4FB4A71F0D3C6100B707DF /* CallCarViewController.m */,
 				7F4FB4A81F0D3C6100B707DF /* CallCarViewController.xib */,
+				7F2906721F30197800216041 /* CallCarDetailViewController.h */,
+				7F2906731F30197800216041 /* CallCarDetailViewController.m */,
+				7F2906741F30197800216041 /* CallCarDetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -704,6 +722,9 @@
 				7F7ADAD71F17B2830023882C /* CallCarTableViewCell.h */,
 				7F7ADAD81F17B2830023882C /* CallCarTableViewCell.m */,
 				7F7ADAD91F17B2830023882C /* CallCarTableViewCell.xib */,
+				7F2906771F302B1500216041 /* CallCarDetailCell.h */,
+				7F2906781F302B1500216041 /* CallCarDetailCell.m */,
+				7F2906791F302B1500216041 /* CallCarDetailCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1315,6 +1336,9 @@
 		7FEB1FE91D9EC00F001E5F10 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				7F57EDD91F30CCE600E82F87 /* AddressViewController.h */,
+				7F57EDDA1F30CCE600E82F87 /* AddressViewController.m */,
+				7F57EDDB1F30CCE600E82F87 /* AddressViewController.xib */,
 				7FEB1FEA1D9EC00F001E5F10 /* MainViewController.h */,
 				7FEB1FEB1D9EC00F001E5F10 /* MainViewController.mm */,
 				7FEB1FEC1D9EC00F001E5F10 /* MainViewController.xib */,
@@ -1523,10 +1547,13 @@
 				7FC4406B1DBBC154006A3993 /* OtherWebViewController.xib in Resources */,
 				7F5CD9971F112D5A00E37652 /* ProductDetailViewController.xib in Resources */,
 				7FEB1FFF1D9EC010001E5F10 /* OrderViewController.xib in Resources */,
+				7F29067B1F302B1500216041 /* CallCarDetailCell.xib in Resources */,
 				7FCC1A2E1DA085B90001E342 /* RegisterViewController.xib in Resources */,
 				7F4FB4AA1F0D3C6100B707DF /* CallCarViewController.xib in Resources */,
 				7F0F7B5D1DB790E200977A20 /* CitysViewController.xib in Resources */,
+				7F2906761F30197800216041 /* CallCarDetailViewController.xib in Resources */,
 				7F8F29691F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib in Resources */,
+				7F57EDDD1F30CCE600E82F87 /* AddressViewController.xib in Resources */,
 				7F830BA11DA37CE800F50B64 /* loading-16@2x.png in Resources */,
 				7FE0E8021DDE146F008F5B0D /* b27_icon_star_yellow@2x.png in Resources */,
 				7FEB1FFB1D9EC010001E5F10 /* LoginViewController.xib in Resources */,
@@ -1709,6 +1736,7 @@
 				7F830BB01DA381B400F50B64 /* HttpUrlClient.m in Sources */,
 				7FAACC081D9036460028D0D6 /* NSDate+Category.m in Sources */,
 				7FCABBCB1DB13451006EDD11 /* CarRecruitPhotoViewController.m in Sources */,
+				7F2906751F30197800216041 /* CallCarDetailViewController.m in Sources */,
 				7F6D737F1F0FC7FD00371FC2 /* NSObject+Property.m in Sources */,
 				7F66D7501DAFE8E90076F204 /* AppraiseViewController.m in Sources */,
 				7F8F29541F1D096700C5DFF9 /* OCallCarViewController.m in Sources */,
@@ -1745,6 +1773,7 @@
 				7F7ACCB21DA4CBEA00B1968F /* CouponTableCell.m in Sources */,
 				7FAACC111D9036460028D0D6 /* NSUserDefaults+Category.m in Sources */,
 				7FEB200F1D9EC0AB001E5F10 /* BaseTableViewController.m in Sources */,
+				7F29067A1F302B1500216041 /* CallCarDetailCell.m in Sources */,
 				7FE9AC591DA1BDD500B4077B /* UIView+TYLaunchAnimation.m in Sources */,
 				7FE501D41DAD3D31002CF3CC /* WalletTableCell.m in Sources */,
 				7FE0E8031DDE146F008F5B0D /* CWStarRateView.m in Sources */,
@@ -1766,6 +1795,7 @@
 				7FCC1A2D1DA085B90001E342 /* RegisterViewController.m in Sources */,
 				7FC4406A1DBBC154006A3993 /* OtherWebViewController.m in Sources */,
 				7F4D38791DB6257F003C2E4B /* UIImage+Rotate.m in Sources */,
+				7F57EDDC1F30CCE600E82F87 /* AddressViewController.m in Sources */,
 				7FE9AC7B1DA1D11300B4077B /* SystemNoticViewController.m in Sources */,
 				7FAACC371D9044EE0028D0D6 /* MainNavigationViewController.m in Sources */,
 				7F4FB4C61F0E9A9100B707DF /* CommodityTableViewCell.m in Sources */,

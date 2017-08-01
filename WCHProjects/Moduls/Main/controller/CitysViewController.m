@@ -73,6 +73,10 @@
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
+}
+
 #pragma mark --用于查询城市
 - (void)sendCitystoCustom {
     WEAKSELF

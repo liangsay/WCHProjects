@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 FOUNDATION_EXPORT NSString * const kRentCarDetailCellID;
 FOUNDATION_EXPORT CGFloat const kRentCarDetailCellHeight;
-@interface RentCarDetailCell : UITableViewCell
+@interface RentCarDetailCell : BaseTableCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *typeImgV;
 @property (weak, nonatomic) IBOutlet UITextField *contentLab;
-
 - (void)setupCellInfoWith:(OrderInfoObj *)orderObj;
 @end

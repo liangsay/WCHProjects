@@ -33,7 +33,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="提交"/>
                                 <connections>
-                                    <action selector="submitBtnAction:" destination="-1" eventType="touchUpInside" id="hno-AT-OTL"/>
+                                    <action selector="submitBtnAction:" destination="-1" eventType="touchUpInside" id="f4D-j5-yIZ"/>
                                 </connections>
                             </button>
                         </subviews>

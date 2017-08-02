@@ -236,6 +236,11 @@
 		7FEB200F1D9EC0AB001E5F10 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB200C1D9EC0AB001E5F10 /* BaseTableViewController.m */; };
 		7FEB20151D9EC1C5001E5F10 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB20141D9EC1C5001E5F10 /* MineTableViewCell.m */; };
 		7FEC7E1D1F3182E800B070DC /* OCallCarAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */; };
+		7FEC7E271F31FD9B00B070DC /* JiKeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEC7E251F31FD9B00B070DC /* JiKeTableViewCell.m */; };
+		7FEC7E281F31FD9B00B070DC /* JiKeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FEC7E261F31FD9B00B070DC /* JiKeTableViewCell.xib */; };
+		7FEC7E2C1F3201C900B070DC /* PunchingTCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEC7E2A1F3201C900B070DC /* PunchingTCViewController.m */; };
+		7FEC7E2D1F3201C900B070DC /* PunchingTCViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FEC7E2B1F3201C900B070DC /* PunchingTCViewController.xib */; };
+		7FEC7E2F1F3204E800B070DC /* ShopCommontCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FEC7E2E1F3204E800B070DC /* ShopCommontCell.xib */; };
 		7FF673A21DCCFF66000C4A97 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF673A11DCCFF66000C4A97 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -627,6 +632,13 @@
 		7FEB20141D9EC1C5001E5F10 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		7FEC7E1A1F3182E800B070DC /* OCallCarAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCallCarAddressCell.h; sourceTree = "<group>"; };
 		7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCallCarAddressCell.m; sourceTree = "<group>"; };
+		7FEC7E241F31FD9B00B070DC /* JiKeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JiKeTableViewCell.h; sourceTree = "<group>"; };
+		7FEC7E251F31FD9B00B070DC /* JiKeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiKeTableViewCell.m; sourceTree = "<group>"; };
+		7FEC7E261F31FD9B00B070DC /* JiKeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JiKeTableViewCell.xib; sourceTree = "<group>"; };
+		7FEC7E291F3201C900B070DC /* PunchingTCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PunchingTCViewController.h; sourceTree = "<group>"; };
+		7FEC7E2A1F3201C900B070DC /* PunchingTCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PunchingTCViewController.m; sourceTree = "<group>"; };
+		7FEC7E2B1F3201C900B070DC /* PunchingTCViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PunchingTCViewController.xib; sourceTree = "<group>"; };
+		7FEC7E2E1F3204E800B070DC /* ShopCommontCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCommontCell.xib; sourceTree = "<group>"; };
 		7FF673A11DCCFF66000C4A97 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8834F21109378FBF43995B3 /* Pods-WCHProjects.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCHProjects.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCHProjects/Pods-WCHProjects.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -856,11 +868,12 @@
 				7F4FB4C51F0E9A9100B707DF /* CommodityTableViewCell.xib */,
 				7F4FB4D81F0EA3FA00B707DF /* ShopCollectionViewLayout.h */,
 				7F4FB4D91F0EA3FA00B707DF /* ShopCollectionViewLayout.m */,
+				7F4FB4DD1F0EA42F00B707DF /* ShopCollectionViewCell.xib */,
 				7F4FB4DB1F0EA42F00B707DF /* ShopCollectionViewCell.h */,
 				7F4FB4DC1F0EA42F00B707DF /* ShopCollectionViewCell.m */,
-				7F4FB4DD1F0EA42F00B707DF /* ShopCollectionViewCell.xib */,
 				7F2CC1FC1F13298400A7E65B /* ShopCommontCell.h */,
 				7F2CC1FD1F13298400A7E65B /* ShopCommontCell.m */,
+				7FEC7E2E1F3204E800B070DC /* ShopCommontCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1438,6 +1451,9 @@
 				7F991EBF1F1E6EC100B57437 /* JiKeViewController.h */,
 				7F991EC01F1E6EC100B57437 /* JiKeViewController.m */,
 				7F991EC11F1E6EC100B57437 /* JiKeViewController.xib */,
+				7FEC7E291F3201C900B070DC /* PunchingTCViewController.h */,
+				7FEC7E2A1F3201C900B070DC /* PunchingTCViewController.m */,
+				7FEC7E2B1F3201C900B070DC /* PunchingTCViewController.xib */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -1458,6 +1474,9 @@
 				7FE501D21DAD3D31002CF3CC /* WalletTableCell.h */,
 				7FE501D31DAD3D31002CF3CC /* WalletTableCell.m */,
 				7FE501D51DAD3D3E002CF3CC /* WalletTableCell.xib */,
+				7FEC7E241F31FD9B00B070DC /* JiKeTableViewCell.h */,
+				7FEC7E251F31FD9B00B070DC /* JiKeTableViewCell.m */,
+				7FEC7E261F31FD9B00B070DC /* JiKeTableViewCell.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1554,6 +1573,7 @@
 				7F4FB4AA1F0D3C6100B707DF /* CallCarViewController.xib in Resources */,
 				7F0F7B5D1DB790E200977A20 /* CitysViewController.xib in Resources */,
 				7F2906761F30197800216041 /* CallCarDetailViewController.xib in Resources */,
+				7FEC7E2D1F3201C900B070DC /* PunchingTCViewController.xib in Resources */,
 				7F8F29691F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib in Resources */,
 				7F57EDDD1F30CCE600E82F87 /* AddressViewController.xib in Resources */,
 				7F830BA11DA37CE800F50B64 /* loading-16@2x.png in Resources */,
@@ -1584,6 +1604,7 @@
 				7F4FB4B91F0D3C8E00B707DF /* ShopViewController.xib in Resources */,
 				7FE9AC811DA1D13900B4077B /* LinkmanUsViewController.xib in Resources */,
 				7FE9AC681DA1D09D00B4077B /* MyInfoViewController.xib in Resources */,
+				7FEC7E281F31FD9B00B070DC /* JiKeTableViewCell.xib in Resources */,
 				7FAACAAA1D902F0E0028D0D6 /* Assets.xcassets in Resources */,
 				7F4FB4BE1F0D404300B707DF /* OrderListViewController.xib in Resources */,
 				7FCC0A001EB392BB00D110F3 /* PersonSetViewController.xib in Resources */,
@@ -1615,6 +1636,7 @@
 				7FE9AC631DA1CFCE00B4077B /* MyIncomeViewController.xib in Resources */,
 				7F830B9D1DA37CE800F50B64 /* loading-12@2x.png in Resources */,
 				7F4D38701DB50C6F003C2E4B /* OrderTableCell.xib in Resources */,
+				7FEC7E2F1F3204E800B070DC /* ShopCommontCell.xib in Resources */,
 				7F830BAD1DA37D6800F50B64 /* loading.gif in Resources */,
 				7F830B9B1DA37CE800F50B64 /* loading-10@2x.png in Resources */,
 				7F4FB4C21F0E99E800B707DF /* Commodity.plist in Resources */,
@@ -1792,7 +1814,9 @@
 				7F880D1A1DA747DC00E087F2 /* MyBMKPointAnnotation.m in Sources */,
 				7F4FB4DE1F0EA42F00B707DF /* ShopCollectionViewCell.m in Sources */,
 				7F4FB4D11F0E9DD200B707DF /* CommodityModel.m in Sources */,
+				7FEC7E2C1F3201C900B070DC /* PunchingTCViewController.m in Sources */,
 				7F5CD95D1F1121F100E37652 /* ShopDetailOneViewController.m in Sources */,
+				7FEC7E271F31FD9B00B070DC /* JiKeTableViewCell.m in Sources */,
 				7F30ECCE1DB110700083A311 /* WXMediaMessage+messageConstruct.m in Sources */,
 				7FCC1A2D1DA085B90001E342 /* RegisterViewController.m in Sources */,
 				7FC4406A1DBBC154006A3993 /* OtherWebViewController.m in Sources */,

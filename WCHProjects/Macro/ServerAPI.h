@@ -280,3 +280,8 @@ CG_INLINE NSString *kAPI_RentorderdoInsert() {
 CG_INLINE NSString *kAPI_RentorderdoCancel() {
     return @"RentorderdoCancel.shtml";
 }
+
+#pragma mark --查询商品评价
+CG_INLINE NSString *kAPI_AssesstoCustom() {
+    return @"AssesstoCustom.shtml";
+}

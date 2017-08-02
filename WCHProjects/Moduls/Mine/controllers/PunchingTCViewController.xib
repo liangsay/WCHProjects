@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PunchingTCViewController">
+            <connections>
+                <outlet property="distanceLab" destination="FVA-oB-AFx" id="LsP-VW-ivA"/>
+                <outlet property="locationBtn" destination="UAF-dg-1da" id="u1g-Pf-tmo"/>
+                <outlet property="offWorkBtn" destination="Vu0-8Z-fio" id="3ID-dx-cAq"/>
+                <outlet property="onWorkBtn" destination="2Qx-Zy-A5t" id="dEA-G1-7x0"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvm-yu-igU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTP-nl-Vfx">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="212"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVA-oB-AFx">
+                                    <rect key="frame" x="15" y="15" width="345" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAF-dg-1da">
+                                    <rect key="frame" x="15" y="47" width="345" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="VY2-SO-Ddf"/>
+                                    </constraints>
+                                    <state key="normal" title="重新定位"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="locationBtnAction:" destination="-1" eventType="touchUpInside" id="pOt-JX-xak"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Qx-Zy-A5t">
+                                    <rect key="frame" x="15" y="107" width="345" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="pdD-rf-1VX"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <state key="normal" title="上班打卡"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="goWorkBtnAction:" destination="-1" eventType="touchUpInside" id="Xit-72-JG9"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vu0-8Z-fio">
+                                    <rect key="frame" x="15" y="157" width="345" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="iV4-6A-m9r"/>
+                                    </constraints>
+                                    <state key="normal" title="下班打卡"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="offWorkBtnAction:" destination="-1" eventType="touchUpInside" id="nMa-oP-r3v"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="FVA-oB-AFx" firstAttribute="top" secondItem="VTP-nl-Vfx" secondAttribute="top" constant="15" id="1kr-9o-Tjg"/>
+                                <constraint firstAttribute="trailing" secondItem="FVA-oB-AFx" secondAttribute="trailing" constant="15" id="5Wy-aw-Erx"/>
+                                <constraint firstItem="FVA-oB-AFx" firstAttribute="leading" secondItem="VTP-nl-Vfx" secondAttribute="leading" constant="15" id="86G-Ty-8jJ"/>
+                                <constraint firstItem="UAF-dg-1da" firstAttribute="top" secondItem="FVA-oB-AFx" secondAttribute="bottom" constant="15" id="Svw-3d-Ft4"/>
+                                <constraint firstAttribute="trailing" secondItem="2Qx-Zy-A5t" secondAttribute="trailing" constant="15" id="UZu-kF-tfg"/>
+                                <constraint firstAttribute="bottom" secondItem="Vu0-8Z-fio" secondAttribute="bottom" constant="15" id="VyZ-vS-i9r"/>
+                                <constraint firstItem="Vu0-8Z-fio" firstAttribute="top" secondItem="2Qx-Zy-A5t" secondAttribute="bottom" constant="10" id="Y7u-8m-7XV"/>
+                                <constraint firstAttribute="trailing" secondItem="UAF-dg-1da" secondAttribute="trailing" constant="15" id="eBu-Cy-uH1"/>
+                                <constraint firstItem="2Qx-Zy-A5t" firstAttribute="top" secondItem="UAF-dg-1da" secondAttribute="bottom" constant="20" id="eOP-MV-D0Z"/>
+                                <constraint firstAttribute="trailing" secondItem="Vu0-8Z-fio" secondAttribute="trailing" constant="15" id="ezd-0k-pYH"/>
+                                <constraint firstItem="Vu0-8Z-fio" firstAttribute="leading" secondItem="VTP-nl-Vfx" secondAttribute="leading" constant="15" id="puI-8C-nY9"/>
+                                <constraint firstItem="2Qx-Zy-A5t" firstAttribute="leading" secondItem="VTP-nl-Vfx" secondAttribute="leading" constant="15" id="wnh-pJ-0BI"/>
+                                <constraint firstItem="UAF-dg-1da" firstAttribute="leading" secondItem="VTP-nl-Vfx" secondAttribute="leading" constant="15" id="xDE-HW-w0i"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="VTP-nl-Vfx" firstAttribute="leading" secondItem="Uvm-yu-igU" secondAttribute="leading" id="2Lq-eU-gdj"/>
+                        <constraint firstAttribute="bottom" secondItem="VTP-nl-Vfx" secondAttribute="bottom" id="3Z1-Z1-KtQ"/>
+                        <constraint firstItem="VTP-nl-Vfx" firstAttribute="top" secondItem="Uvm-yu-igU" secondAttribute="top" id="hkg-nk-rKg"/>
+                        <constraint firstItem="VTP-nl-Vfx" firstAttribute="width" secondItem="Uvm-yu-igU" secondAttribute="width" id="lfd-4c-u1X"/>
+                        <constraint firstAttribute="trailing" secondItem="VTP-nl-Vfx" secondAttribute="trailing" id="neN-D4-bEN"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Uvm-yu-igU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OVw-tl-z6x"/>
+                <constraint firstAttribute="bottom" secondItem="Uvm-yu-igU" secondAttribute="bottom" id="X2U-nh-9yO"/>
+                <constraint firstAttribute="trailing" secondItem="Uvm-yu-igU" secondAttribute="trailing" id="YCt-0N-dWy"/>
+                <constraint firstItem="Uvm-yu-igU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hZ7-QN-vwl"/>
+            </constraints>
+            <point key="canvasLocation" x="93.5" y="121.5"/>
+        </view>
+    </objects>
+</document>

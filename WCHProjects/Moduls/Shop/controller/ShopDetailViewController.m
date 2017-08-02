@@ -67,17 +67,20 @@
     NSMutableArray *arr = [NSMutableArray array];
     ShopDetailOneViewController *one = [[ShopDetailOneViewController alloc]initWithNibName:@"ShopDetailOneViewController" bundle:nil];
     one.title = @"商品";
+    one.orderObj = self.orderObj;
     one.index = 0;
     [arr addObject:one];
     
     ShopDetailWebViewController *two = [[ShopDetailWebViewController alloc]initWithNibName:@"ShopDetailWebViewController" bundle:nil];
     two.title = @"详情";
     two.index = 1;
+    two.orderObj = self.orderObj;
     two.webUrlString = @"https://item.m.jd.com/product/2342601.html?sid=2b9de11ccb92d808eb2e1a39460f585d";
     [arr addObject:two];
     
     ShopCommentViewController *three = [[ShopCommentViewController alloc]initWithNibName:@"ShopCommentViewController" bundle:nil];
     three.title = @"评价";
+    three.orderObj = self.orderObj;
     three.index = 2;
     [arr addObject:three];
 //    for (NSInteger i = 0; i < count; i ++) {

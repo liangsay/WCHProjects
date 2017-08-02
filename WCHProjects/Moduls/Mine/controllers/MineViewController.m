@@ -25,6 +25,8 @@
 #import "PersonSetViewController.h"
 #import "UIAlertController+Blocks.h"
 #import <UShareUI/UShareUI.h>
+#import "JiKeViewController.h"
+#import "PunchingTCViewController.h"
 
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate>
 {
@@ -183,9 +185,14 @@
     }else{
         if (row==0){
             //考勤打卡
+            PunchingTCViewController *tcVC = [[PunchingTCViewController alloc] initWithNibName:@"PunchingTCViewController" bundle:nil];
+            tcVC.navigationItem.title = @"考勤打卡";
+            kPushNav(tcVC, YES);
         }else if(row==1){
             //集客
-            
+            JiKeViewController *jikeVC = [[JiKeViewController alloc] initWithNibName:@"JiKeViewController" bundle:nil];
+            jikeVC.navigationItem.title = @"集客";
+            kPushNav(jikeVC, YES);
         }
     }
 }

@@ -13,7 +13,7 @@
 NSString * const kOCallCarTableViewCellID = @"kOCallCarTableViewCellID";
 CGFloat const kOCallCarTableViewCellHeight = 110;
 
-@interface OCallCarTableViewCell()<UITableViewDelegate,UITableViewDataSource>
+@interface OCallCarTableViewCell()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 @implementation OCallCarTableViewCell
@@ -21,7 +21,6 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor whiteColor];
         [self setupViewsSet];
         [self setupContraintSet];
@@ -44,17 +43,27 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     }
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    // 若点击了tableViewCell，则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
+}
+
+
 - (void)setupViewsSet {
     
     //添加长按手势
     UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+    longPressGesture.delegate = self;
     longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
     [self.contentView addGestureRecognizer:longPressGesture];
     self.longPressGesture = longPressGesture;
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
-    tapGesture.numberOfTapsRequired = 1;
-    [self.contentView addGestureRecognizer:tapGesture];
+//    
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
+//    [self.contentView addGestureRecognizer:tapGesture];
     
     UILabel *timeLab = [UILabel new];
     timeLab.font = [UIFont fontContent];

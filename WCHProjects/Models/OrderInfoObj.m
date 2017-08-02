@@ -472,4 +472,17 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         failedBlock(request,response);
     }];
 }
+
+
+#pragma mark --查询商品评价
++ (void)sendAssesstoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                             failedBlock:(RequestSessionCompletedBlock)failedBlock{
+    [self sendRequestWithAPI:kAPI_AssesstoCustom() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"数据请求异常"];
+        failedBlock(request,response);
+    }];
+}
 @end

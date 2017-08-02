@@ -18,7 +18,7 @@ CGFloat const kOBuyCarTableViewCellHeight = 90;
     self.nameLab.textColor = [UIColor mainColor];
     self.numLab.textColor = [UIColor fontGray];
     self.typeLab.textColor = [UIColor priceColor];
-
+    self.contentView.backgroundColor = [UIColor backgroundColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

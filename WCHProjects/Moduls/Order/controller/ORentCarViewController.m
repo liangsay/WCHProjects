@@ -11,6 +11,7 @@
 #import "ORentCarTableViewCell.h"
 #import "UIAlertController+Blocks.h"
 #import "MyPayTypeViewController.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 @interface ORentCarViewController ()<UITableViewDelegate,UITableViewDataSource,ORentCarTableViewCellDelegate,MyPayTypeViewDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -60,12 +61,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OrderInfoObj *orderObj = _dataArray[indexPath.row];
-    if (orderObj.statusf.integerValue == -1) {
-        return 105;
-    }else{
-        return kORentCarTableViewCellHeight;
-    }
+    __block OrderInfoObj *orderObj = _dataArray[indexPath.row];
+    CGFloat height = [self.tableView fd_heightForCellWithIdentifier:kORentCarTableViewCellID configuration:^(id cell) {
+        ORentCarTableViewCell *_cell = cell;
+        [_cell setupCellInfoWithObj:orderObj];
+    }];
+    return height;
 }
 
 

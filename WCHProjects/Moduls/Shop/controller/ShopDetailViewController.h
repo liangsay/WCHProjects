@@ -11,4 +11,5 @@
 @interface ShopDetailViewController : BaseViewController
 @property (nonatomic, assign) MLMSegmentHeadStyle style;
 @property (nonatomic, assign) MLMSegmentLayoutStyle layout;
+@property (nonatomic, strong) OrderInfoObj *orderObj;
 @end

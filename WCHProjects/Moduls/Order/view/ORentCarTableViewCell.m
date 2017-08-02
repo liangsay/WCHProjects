@@ -19,7 +19,20 @@ CGFloat const kORentCarTableViewCellHeight = 145;
     [self.typeBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     [self.typeBtn addTarget:self action:@selector(typeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.typeBtn setLayerCornerRadius:5];
+    self.addressLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15;
+
 }
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    // 若点击了tableViewCell，则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

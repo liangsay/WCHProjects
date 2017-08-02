@@ -9,6 +9,8 @@
 #import "BaseModel.h"
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
+
+
 @property (nonatomic, assign) CGFloat cellheight;
 @property (nonatomic, strong) NSMutableArray *orderPointList;
 @property (nonatomic, strong) NSString *positionf;
@@ -133,6 +135,15 @@
 @property (nonatomic, strong) NSString *pickupDatef;
 @property (nonatomic, strong) NSString *returnDatef;
 @property (nonatomic, strong) NSString *returnLocationf;
+
+@property (nonatomic, strong) NSString *assessContentf;//": "上篇介绍了service及其生命周期，这里scheduleAtFixedRate介绍java api中可直接查；这里写一个后台定时执行任务的例子，直接上代码",
+
+@property (nonatomic, strong) NSString *goodIdf;//": "0a3d5b19-5ac8-4f7d-a17a-516d2b5b4991",
+@property (nonatomic, strong) NSString *mobilef;//": "13922163927",
+@property (nonatomic, strong) NSString *objTypef;//": 3,
+@property (nonatomic, strong) NSString *orderIdf;//": "10371501320194005",
+@property (nonatomic, strong) NSString *replyContentf;//": "",
+
 
 
 #pragma mark --订单添加接口
@@ -290,5 +301,9 @@
 
 #pragma mark --取消订单租车
 + (void)sendRentorderdoCancelWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --查询商品评价
++ (void)sendAssesstoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end

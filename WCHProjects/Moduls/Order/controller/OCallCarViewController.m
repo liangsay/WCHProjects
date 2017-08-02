@@ -82,6 +82,20 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OrderInfoObj *orderObj = self.dataArray[indexPath.row];
+    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    NSInteger statusf = orderObj.statusf.integerValue;
+    if (statusf==3) {
+        //已支付
+        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+        appraiseVC.orderObj =orderObj;
+        appraiseVC.viewType = 1;
+        kPushNav(appraiseVC, YES);
+    }
+}
+
 #pragma mark --用于查询我的行程
 /**
  用于查询我的行程
@@ -105,14 +119,14 @@
 
 - (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell tapGesture:(BOOL)tapGesture orderObj:(OrderInfoObj *)orderObj {
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
-    NSInteger statusf = orderObj.statusf.integerValue;
-    if (statusf==3) {
-        //已支付
-        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
-        appraiseVC.orderObj =orderObj;
-        appraiseVC.viewType = 1;
-        kPushNav(appraiseVC, YES);
-    }
+//    NSInteger statusf = orderObj.statusf.integerValue;
+//    if (statusf==3) {
+//        //已支付
+//        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+//        appraiseVC.orderObj =orderObj;
+//        appraiseVC.viewType = 1;
+//        kPushNav(appraiseVC, YES);
+//    }
 }
 
 - (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj {

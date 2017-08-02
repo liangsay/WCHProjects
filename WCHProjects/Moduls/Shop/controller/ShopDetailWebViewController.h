@@ -11,4 +11,5 @@
 @interface ShopDetailWebViewController : BaseViewController
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) NSString* webUrlString;
+@property (nonatomic, strong) OrderInfoObj *orderObj;
 @end

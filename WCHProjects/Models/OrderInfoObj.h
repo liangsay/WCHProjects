@@ -9,7 +9,17 @@
 #import "BaseModel.h"
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
+
+@property (nonatomic, strong) NSMutableArray *orderPointList;
 @property (nonatomic, strong) NSString *positionf;
+@property (nonatomic, strong) NSString *addressf;// = "育梁路4号";
+@property (nonatomic, strong) NSString *createTimef;// = "2017-07-30 00:32:12";
+@property (nonatomic, strong) NSString *dataSortNumf;// = 0;
+@property (nonatomic, strong) NSString *deptIdf;// = "2_38";
+@property (nonatomic, strong) NSString *idf;// = "3e83c414-9347-4d00-91b5-5fd33fbc29ae";
+@property (nonatomic, strong) NSString *logisticsIdf;// = 1501345932368310;
+@property (nonatomic, strong) NSString *orderf;// = 0;
+
 @property (nonatomic, strong) NSString *days;
 @property (nonatomic, strong) NSString *numf;
 @property (nonatomic, strong) NSString *iconName;
@@ -38,13 +48,11 @@
 @property (nonatomic, strong) NSString *cityf;// "天津市";
 @property (nonatomic, strong) NSString *count;// 0;
 @property (nonatomic, strong) NSString *createIdf;// 0;
-@property (nonatomic, strong) NSString *createTimef;// "2016-10-08 23:59:53";
-@property (nonatomic, strong) NSString *dataSortNumf;// 1475942393268;
-@property (nonatomic, strong) NSString *deptIdf;// 0;
+
 @property (nonatomic, strong) NSString *driverIdf;// 13922163927;
 @property (nonatomic, strong) NSString *endAddrNamef;// "中国兰州牛肉面(律纬路店)";
 @property (nonatomic, strong) NSString *endLocationf;// "39.171149,117.212097";
-@property (nonatomic, strong) NSString *idf;// "57e537e1-17ab-4fa1-b3c6-b47e376704bb";
+
 @property (nonatomic, strong) NSString *couponIdf;
 @property (nonatomic, strong) NSString *isInvoicef;// 0;
 

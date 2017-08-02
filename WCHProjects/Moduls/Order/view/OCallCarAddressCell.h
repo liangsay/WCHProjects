@@ -1,0 +1,21 @@
+//
+//  OCallCarAddressCell.h
+//  WCHProjects
+//
+//  Created by liujinliang on 2017/8/2.
+//  Copyright © 2017年 liujinliang. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+FOUNDATION_EXPORT NSString * const kOCallCarAddressCellID;
+FOUNDATION_EXPORT CGFloat const kOCallCarAddressCellHeight;
+
+@interface OCallCarAddressCell : BaseTableCell
+@property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UILabel *mobileLab;
+@property (weak, nonatomic) IBOutlet UILabel *addressLab;
+
+@property (nonatomic, strong) OrderInfoObj *orderObj;
+- (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj;
+
+@end

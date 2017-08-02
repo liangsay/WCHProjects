@@ -236,6 +236,8 @@
 		7FEB200E1D9EC0AB001E5F10 /* BaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB200A1D9EC0AB001E5F10 /* BaseTableCell.m */; };
 		7FEB200F1D9EC0AB001E5F10 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB200C1D9EC0AB001E5F10 /* BaseTableViewController.m */; };
 		7FEB20151D9EC1C5001E5F10 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB20141D9EC1C5001E5F10 /* MineTableViewCell.m */; };
+		7FEC7E1D1F3182E800B070DC /* OCallCarAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */; };
+		7FEC7E1E1F3182E800B070DC /* OCallCarAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FEC7E1C1F3182E800B070DC /* OCallCarAddressCell.xib */; };
 		7FF673A21DCCFF66000C4A97 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF673A11DCCFF66000C4A97 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -626,6 +628,9 @@
 		7FEB200C1D9EC0AB001E5F10 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		7FEB20131D9EC1C5001E5F10 /* MineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineTableViewCell.h; sourceTree = "<group>"; };
 		7FEB20141D9EC1C5001E5F10 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
+		7FEC7E1A1F3182E800B070DC /* OCallCarAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCallCarAddressCell.h; sourceTree = "<group>"; };
+		7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCallCarAddressCell.m; sourceTree = "<group>"; };
+		7FEC7E1C1F3182E800B070DC /* OCallCarAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OCallCarAddressCell.xib; sourceTree = "<group>"; };
 		7FF673A11DCCFF66000C4A97 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8834F21109378FBF43995B3 /* Pods-WCHProjects.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCHProjects.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCHProjects/Pods-WCHProjects.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -769,6 +774,9 @@
 				7F8F296A1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.h */,
 				7F8F296B1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m */,
 				7F8F296C1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib */,
+				7FEC7E1A1F3182E800B070DC /* OCallCarAddressCell.h */,
+				7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */,
+				7FEC7E1C1F3182E800B070DC /* OCallCarAddressCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1570,6 +1578,7 @@
 				7FE9AC7C1DA1D11300B4077B /* SystemNoticViewController.xib in Resources */,
 				7FEB20031D9EC010001E5F10 /* MineViewController.xib in Resources */,
 				7F830BA21DA37CE800F50B64 /* loading-17@2x.png in Resources */,
+				7FEC7E1E1F3182E800B070DC /* OCallCarAddressCell.xib in Resources */,
 				7F830BA81DA37CE800F50B64 /* loading-6@2x.png in Resources */,
 				7F4D38741DB5182C003C2E4B /* order.mp3 in Resources */,
 				7FE9AC721DA1D0EE00B4077B /* MyWalletViewController.xib in Resources */,
@@ -1782,6 +1791,7 @@
 				7FAACC101D9036460028D0D6 /* NSString+ICCategory.m in Sources */,
 				7F3E807C1F2DAD170020A969 /* RentCarDetailCell.m in Sources */,
 				7FAACC0F1D9036460028D0D6 /* NSString+Category.m in Sources */,
+				7FEC7E1D1F3182E800B070DC /* OCallCarAddressCell.m in Sources */,
 				7F2CC1F21F13276700A7E65B /* UITableView+HYBCacheHeight.m in Sources */,
 				7F4FB4D01F0E9DD200B707DF /* CategoryMeunModel.m in Sources */,
 				7FAACA9F1D902F0E0028D0D6 /* main.m in Sources */,

@@ -11,7 +11,11 @@
 
 @implementation OrderInfoObj
 
-
+// 实现这个方法的目的：告诉MJExtension框架appInfo数组里面装的是什么模型
++ (NSDictionary *)mj_objectClassInArray {
+    return @{@"orderPointList":[OrderInfoObj class]};
+    
+}
 #pragma mark --订单添加接口
 
 

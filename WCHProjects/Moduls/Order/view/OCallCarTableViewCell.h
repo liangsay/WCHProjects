@@ -7,20 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BaseTableView.h"
 FOUNDATION_EXPORT NSString * const kOCallCarTableViewCellID;
 FOUNDATION_EXPORT CGFloat const kOCallCarTableViewCellHeight;
 
-@interface OCallCarTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *timeLab;
-@property (weak, nonatomic) IBOutlet UILabel *typeLab;
-@property (weak, nonatomic) IBOutlet UIView *typeView;
-@property (weak, nonatomic) IBOutlet UILabel *startLab;
+@class OCallCarTableViewCell;
+@protocol OCallCarTableViewCellDelegate <NSObject>
 
-@property (weak, nonatomic) IBOutlet UIButton *typeBtn;
-@property (weak, nonatomic) IBOutlet UILabel *endLab;
-@property (weak, nonatomic) IBOutlet UILabel *priceLab;
-@property (weak, nonatomic) IBOutlet UILabel *statueLab;
+- (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj;
+
+@end
+
+@interface OCallCarTableViewCell : BaseTableCell
+@property (nonatomic, assign) id<OCallCarTableViewCellDelegate> oDelegate;
+@property (nonatomic, strong) UIView *bgView;
+
+@property (nonatomic, strong) BaseTableView *tableView;
+
+@property (strong, nonatomic) UILabel *timeLab;
+@property (strong, nonatomic) UILabel *typeLab;
+@property (strong, nonatomic) UIView *typeView;
+
+@property (strong, nonatomic) UIImageView *startImgV;
+@property (strong, nonatomic) UILabel *startLab;
+
+@property (strong, nonatomic) UIImageView *endImgV;
+@property (strong, nonatomic) UILabel *endLab;
+@property (strong, nonatomic) UILabel *priceLab;
+@property (strong, nonatomic) UILabel *statueLab;
 
 @property (nonatomic, strong) OrderInfoObj *orderObj;
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj;

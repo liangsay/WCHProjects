@@ -9,7 +9,8 @@
 #import "OCallCarViewController.h"
 #import "BaseTableView.h"
 #import "OCallCarTableViewCell.h"
-@interface OCallCarViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "UITableViewCell+HYBMasonryAutoCellHeight.h"
+@interface OCallCarViewController ()<UITableViewDelegate,UITableViewDataSource,OCallCarTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -25,7 +26,7 @@
 }
 
 - (void)setupTableViewSet {
-    [self.tableView registerNib:[UINib nibWithNibName:@"OCallCarTableViewCell" bundle:nil] forCellReuseIdentifier:kOCallCarTableViewCellID];
+    [self.tableView registerClass:NSClassFromString(@"OCallCarTableViewCell") forCellReuseIdentifier:kOCallCarTableViewCellID];
     self.tableView.rowHeight = kOCallCarTableViewCellHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor backgroundColor];
@@ -56,13 +57,36 @@
     return self.dataArray.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    __block OrderInfoObj *orderObj = self.dataArray[indexPath.row];
+    CGFloat height = [OCallCarTableViewCell hyb_heightForTableView:self.tableView config:^(UITableViewCell *sourceCell) {
+        OCallCarTableViewCell *_cell = (OCallCarTableViewCell *)sourceCell;
+        [_cell setupCellInfoWithObj:orderObj];
+    } cache:^NSDictionary *{
+        NSDictionary *cache = @{kHYBCacheUniqueKey : @"",
+                                kHYBCacheStateKey : @"",
+                                kHYBRecalculateForStateKey : @(YES)};
+        return cache;
+        
+    }];
+    if (height<kOCallCarTableViewCellHeight) {
+        height = kOCallCarTableViewCellHeight;
+    }
+    return height;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OCallCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kOCallCarTableViewCellID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
+    cell.cellIndexPath = indexPath;
+    cell.oDelegate = self;
     [cell setupCellInfoWithObj:orderObj];
+    cell.contentView.backgroundColor = [UIColor backgroundColor];
+    cell.backgroundColor = [UIColor backgroundColor];
     return cell;
 }
 
@@ -84,6 +108,40 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
 }
+
+#pragma mark --OCallCarTableViewCellDelegate--------
+- (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj {
+    WEAKSELF
+    [UIAlertController showAlertInViewController:self withTitle:@"取消订单" message:@"您确定要取消订单吗？" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+        if (buttonIndex==2) {
+//            //取消订单
+//            [weakSelf sendRentorderdoCancel_API:orderObj indexPath:oRentCarTableViewCell.cellIndexPath];
+        }
+    }];
+}
+
+#pragma mark --取消订单租车
+/**
+ 取消订单租车
+ */
+- (void)sendRentorderdoCancel_API:(OrderInfoObj *)orderObj indexPath:(NSIndexPath *)indexPath{
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:orderObj.idf forKey:@"vo.idf"];
+    [OrderInfoObj sendRentorderdoCancelWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.isSuccess) {
+            orderObj.statusf = @"-1";
+            orderObj.statusTextf = @"订单取消";
+            [weakSelf.dataArray replaceObjectAtIndex:indexPath.row withObject:orderObj];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }else{
+            [NSString toast:@"取消失败"];
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"取消失败"];
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

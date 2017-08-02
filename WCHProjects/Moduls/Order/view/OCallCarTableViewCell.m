@@ -8,7 +8,6 @@
 
 #import "OCallCarTableViewCell.h"
 #import "OCallCarAddressCell.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 #import "UITableViewCell+HYBMasonryAutoCellHeight.h"
 
 NSString * const kOCallCarTableViewCellID = @"kOCallCarTableViewCellID";
@@ -22,11 +21,12 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor backgroundColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor whiteColor];
         [self setupViewsSet];
         [self setupContraintSet];
-        self.hyb_lastViewInCell = self.bgView;
-        self.hyb_bottomOffsetToCell = 10;
+        self.hyb_lastViewInCell = self.lineV;
+        self.hyb_bottomOffsetToCell = 0;
     }
     
     return self;
@@ -38,34 +38,38 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     }
 }
 
+- (IBAction)tapGestureAction:(UIGestureRecognizer *)sender {
+    if ([self.oDelegate respondsToSelector:@selector(oCallCarTableViewCell:tapGesture:orderObj:)]) {
+        [self.oDelegate oCallCarTableViewCell:self tapGesture:YES orderObj:self.orderObj];
+    }
+}
+
 - (void)setupViewsSet {
-    
-    UIView *bgView = [UIView new];
-    bgView.backgroundColor = [UIColor whiteColor];
-    [self.contentView addSubview:bgView];
-    self.bgView = bgView;
     
     //添加长按手势
     UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+    longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
+    [self.contentView addGestureRecognizer:longPressGesture];
+    self.longPressGesture = longPressGesture;
     
-    longPressGesture.minimumPressDuration=1.5f;//设置长按 时间
-    [bgView addGestureRecognizer:longPressGesture];
-    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
+    tapGesture.numberOfTapsRequired = 1;
+    [self.contentView addGestureRecognizer:tapGesture];
     
     UILabel *timeLab = [UILabel new];
     timeLab.font = [UIFont fontContent];
     timeLab.textColor = [UIColor fontBlack];
-    [bgView addSubview:timeLab];
+    [self.contentView addSubview:timeLab];
     self.timeLab = timeLab;
     
     UILabel *typeLab = [UILabel new];
     typeLab.font = [UIFont fontContent];
     typeLab.textColor = [UIColor mainColor];
-    [bgView addSubview:typeLab];
+    [self.contentView addSubview:typeLab];
     self.typeLab = typeLab;
     
     UIImageView *startImgV = [[UIImageView alloc] initWithImage:kIMAGE(@"出发地")];
-    [bgView addSubview:startImgV];
+    [self.contentView addSubview:startImgV];
     self.startImgV = startImgV;
     
     UILabel *startLab = [UILabel new];
@@ -73,23 +77,21 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     startLab.textColor = [UIColor fontGray];
     startLab.numberOfLines = 0;
     startLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15 - 12 -10;
-    [bgView addSubview:startLab];
+    [self.contentView addSubview:startLab];
     self.startLab = startLab;
     
     BaseTableView *tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.scrollEnabled = NO;
     tableView.userInteractionEnabled = NO;
-    tableView.dataSource = self;
     [tableView setLayerCornerRadius:5];
     [tableView setLayerBorderWidth:0.5 color:[UIColor borderColor]];
-    tableView.delegate = self;
-    [tableView registerNib:[UINib nibWithNibName:@"OCallCarAddressCell" bundle:nil] forCellReuseIdentifier:kOCallCarAddressCellID];
-    [bgView addSubview:tableView];
+    [tableView registerClass:NSClassFromString(@"OCallCarAddressCell") forCellReuseIdentifier:kOCallCarAddressCellID];
+    [self.contentView addSubview:tableView];
     self.tableView = tableView;
     
     UIImageView *endImgV = [[UIImageView alloc] initWithImage:kIMAGE(@"目的地")];
-    [bgView addSubview:endImgV];
+    [self.contentView addSubview:endImgV];
     self.endImgV = endImgV;
     
     UILabel *endLab = [UILabel new];
@@ -97,29 +99,36 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     endLab.textColor = [UIColor fontGray];
     endLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15 - 12 -10;
     endLab.numberOfLines = 0;
-    [bgView addSubview:endLab];
+    [self.contentView addSubview:endLab];
     self.endLab = endLab;
     
     UILabel *priceLab = [UILabel new];
     priceLab.font = [UIFont fontAssistant];
     priceLab.textColor = [UIColor fontBlack];
-    [bgView addSubview:priceLab];
+    [self.contentView addSubview:priceLab];
     self.priceLab = priceLab;
     
     UILabel *statueLab = [UILabel new];
     statueLab.font = [UIFont fontAssistant];
     statueLab.textColor = [UIColor priceColor];
-    [bgView addSubview:statueLab];
+    [self.contentView addSubview:statueLab];
     self.statueLab = statueLab;
+    
+    
+    UIView *bgView = [UIView new];
+    bgView.backgroundColor = [UIColor backgroundColor];
+    [self.contentView addSubview:bgView];
+    self.bgView = bgView;
+    
+    UIView *lineV = [UIView new];
+    lineV.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:lineV];
+    self.lineV = lineV;
     
 }
 
 - (void)setupContraintSet{
     WEAKSELF
-    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(0, 0, 10, 0));
-//        make.left.right.top.equalTo(@0);
-    }];
     
     [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
@@ -128,13 +137,13 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     
     [self.typeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@-15);
-        make.centerY.equalTo(weakSelf.timeLab);
+        make.top.equalTo(@10);
         make.left.greaterThanOrEqualTo(weakSelf.timeLab.mas_right).offset(10);
     }];
     
     [self.startImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
-        make.top.equalTo(weakSelf.timeLab.mas_bottom).offset(7);
+        make.top.equalTo(weakSelf.timeLab.mas_bottom).offset(5);
         make.width.height.equalTo(@12);
     }];
     
@@ -148,24 +157,43 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
         make.left.equalTo(@15);
         make.right.equalTo(@-15);
         make.top.equalTo(weakSelf.startImgV.mas_bottom).offset(10);
-        make.height.equalTo(@0);
     }];
     
     [self.endImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
-        make.top.equalTo(weakSelf.tableView.mas_bottom).offset(8);
+        make.top.equalTo(weakSelf.tableView.mas_bottom).offset(10);
         make.width.height.equalTo(@12);
     }];
     
     [self.endLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.startImgV.mas_right).offset(10);
+        make.left.equalTo(weakSelf.endImgV.mas_right).offset(10);
         make.top.equalTo(weakSelf.endImgV);
         make.right.equalTo(@-15);
-        make.bottom.equalTo(@-10);
+//        make.bottom.equalTo(@-10);
     }];
     
+    [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@15);
+        make.top.equalTo(weakSelf.endLab.mas_bottom).offset(10);
+    }];
     
+    [self.statueLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@-15);
+        make.centerY.equalTo(weakSelf.priceLab);
+        make.left.greaterThanOrEqualTo(weakSelf.priceLab.mas_right).offset(10);
+    }];
     
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.offset(0);
+        make.top.equalTo(weakSelf.priceLab.mas_bottom).offset(10);
+        make.height.equalTo(@10);
+    }];
+    
+    [self.lineV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(@0);
+        make.top.equalTo(weakSelf.bgView.mas_bottom).offset(0);
+        make.height.equalTo(@0.5);
+    }];
 
 }
 
@@ -176,15 +204,6 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     return _dataArray;
 }
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-    self.contentView.backgroundColor = [UIColor backgroundColor];
-    self.typeView.backgroundColor = [UIColor mainColor];
-    self.typeLab.textColor = [UIColor whiteColor];
-    [self.typeView setLayerCornerRadius:5];
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -193,25 +212,39 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj {
     self.orderObj = orderObj;
-    
+    WEAKSELF
     __block CGFloat tableviewHeight = 0;
     self.dataArray = orderObj.orderPointList;
-    for (OrderInfoObj *ordObj in self.dataArray) {
-        CGFloat cellheight = [self.tableView fd_heightForCellWithIdentifier:kOCallCarAddressCellID configuration:^(id cell) {
-            OCallCarAddressCell *_cell = cell;
-            [_cell setupCellInfoWithObj:ordObj];
-        }];
-        tableviewHeight += cellheight;
+    if (self.dataArray.count) {
+        for (NSInteger i = 0;i<self.dataArray.count; i++) {
+            OrderInfoObj *ordObj = self.dataArray[i];
+            CGFloat cellheight = [OCallCarAddressCell hyb_heightForTableView:self.tableView config:^(UITableViewCell *sourceCell) {
+                OCallCarAddressCell *_cell = (OCallCarAddressCell *)sourceCell;
+                [_cell setupCellInfoWithObj:ordObj];
+            } cache:^NSDictionary *{
+                NSDictionary *cache = @{kHYBCacheUniqueKey : @"",
+                                        kHYBCacheStateKey : @"",
+                                        kHYBRecalculateForStateKey : @(YES)};
+                return cache;
+            }];
+            tableviewHeight += cellheight;
+        }
     }
-    [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@(tableviewHeight));
+    
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
+        make.height.mas_equalTo(tableviewHeight);
+        if (tableviewHeight==0) {
+            make.top.equalTo(weakSelf.startImgV.mas_bottom).offset(0);
+        }else{
+            make.top.equalTo(weakSelf.startImgV.mas_bottom).offset(10);
+        }
     }];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView reloadData];
-    
-    
     
     self.timeLab.text = [NSString stringWithFormat:@"下单时间:%@",orderObj.createTimef];
     if (!kIsObjectEmpty(orderObj.modelNamef)) {
@@ -233,13 +266,13 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
     
-}
-
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    
+    if (statusf==1 || statusf==0) {//在已接单状态，司机或货主可取消订单
+        //可以加入长按取消订单
+        self.longPressGesture.enabled = YES;
+    }else{
+        self.longPressGesture.enabled = NO;
+        
+    }
 }
 
 #pragma mark - Table view data source
@@ -255,18 +288,18 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat tableviewHeight = 0;
-    __block OrderInfoObj *orderObj = self.dataArray[indexPath.row];
-    tableviewHeight = [self.tableView fd_heightForCellWithIdentifier:kOCallCarAddressCellID configuration:^(id cell) {
-        OCallCarAddressCell *_cell = cell;
-        [_cell setupCellInfoWithObj:orderObj];
+    __block OrderInfoObj *ordObj = self.dataArray[indexPath.row];
+    CGFloat cellheight = [OCallCarAddressCell hyb_heightForTableView:self.tableView config:^(UITableViewCell *sourceCell) {
+        OCallCarAddressCell *_cell = (OCallCarAddressCell *)sourceCell;
+        [_cell setupCellInfoWithObj:ordObj];
+    } cache:^NSDictionary *{
+        NSDictionary *cache = @{kHYBCacheUniqueKey : @"",
+                                kHYBCacheStateKey : @"",
+                                kHYBRecalculateForStateKey : @(YES)};
+        return cache;
     }];
     
-    if (tableviewHeight < kOCallCarAddressCellHeight) {
-        tableviewHeight = kOCallCarAddressCellHeight;
-    }
-    return tableviewHeight;
-    
+    return cellheight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

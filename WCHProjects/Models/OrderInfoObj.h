@@ -9,7 +9,7 @@
 #import "BaseModel.h"
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
-
+@property (nonatomic, assign) CGFloat cellheight;
 @property (nonatomic, strong) NSMutableArray *orderPointList;
 @property (nonatomic, strong) NSString *positionf;
 @property (nonatomic, strong) NSString *addressf;// = "育梁路4号";

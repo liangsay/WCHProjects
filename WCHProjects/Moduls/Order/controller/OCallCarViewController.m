@@ -10,6 +10,7 @@
 #import "BaseTableView.h"
 #import "OCallCarTableViewCell.h"
 #import "UITableViewCell+HYBMasonryAutoCellHeight.h"
+#import "AppraiseViewController.h"
 @interface OCallCarViewController ()<UITableViewDelegate,UITableViewDataSource,OCallCarTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -27,7 +28,6 @@
 
 - (void)setupTableViewSet {
     [self.tableView registerClass:NSClassFromString(@"OCallCarTableViewCell") forCellReuseIdentifier:kOCallCarTableViewCellID];
-    self.tableView.rowHeight = kOCallCarTableViewCellHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor backgroundColor];
     [self.tableView addHeaderRefreshTarget:self action:@selector(refreshHeaderData)];
@@ -63,32 +63,24 @@
     CGFloat height = [OCallCarTableViewCell hyb_heightForTableView:self.tableView config:^(UITableViewCell *sourceCell) {
         OCallCarTableViewCell *_cell = (OCallCarTableViewCell *)sourceCell;
         [_cell setupCellInfoWithObj:orderObj];
-    } cache:^NSDictionary *{
-        NSDictionary *cache = @{kHYBCacheUniqueKey : @"",
-                                kHYBCacheStateKey : @"",
-                                kHYBRecalculateForStateKey : @(YES)};
-        return cache;
-        
     }];
-    if (height<kOCallCarTableViewCellHeight) {
-        height = kOCallCarTableViewCellHeight;
-    }
+   
     return height;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OCallCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kOCallCarTableViewCellID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     cell.cellIndexPath = indexPath;
     cell.oDelegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell setupCellInfoWithObj:orderObj];
-    cell.contentView.backgroundColor = [UIColor backgroundColor];
-    cell.backgroundColor = [UIColor backgroundColor];
+    
     return cell;
 }
+
 
 #pragma mark --用于查询我的行程
 /**
@@ -110,6 +102,19 @@
 }
 
 #pragma mark --OCallCarTableViewCellDelegate--------
+
+- (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell tapGesture:(BOOL)tapGesture orderObj:(OrderInfoObj *)orderObj {
+    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    NSInteger statusf = orderObj.statusf.integerValue;
+    if (statusf==3) {
+        //已支付
+        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+        appraiseVC.orderObj =orderObj;
+        appraiseVC.viewType = 1;
+        kPushNav(appraiseVC, YES);
+    }
+}
+
 - (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj {
     WEAKSELF
     [UIAlertController showAlertInViewController:self withTitle:@"取消订单" message:@"您确定要取消订单吗？" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {

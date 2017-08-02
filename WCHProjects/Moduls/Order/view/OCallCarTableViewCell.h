@@ -15,13 +15,14 @@ FOUNDATION_EXPORT CGFloat const kOCallCarTableViewCellHeight;
 @protocol OCallCarTableViewCellDelegate <NSObject>
 
 - (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj;
+- (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell tapGesture:(BOOL)tapGesture orderObj:(OrderInfoObj *)orderObj;
 
 @end
 
 @interface OCallCarTableViewCell : BaseTableCell
 @property (nonatomic, assign) id<OCallCarTableViewCellDelegate> oDelegate;
 @property (nonatomic, strong) UIView *bgView;
-
+@property (strong, nonatomic) UIView *lineV;
 @property (nonatomic, strong) BaseTableView *tableView;
 
 @property (strong, nonatomic) UILabel *timeLab;
@@ -37,5 +38,8 @@ FOUNDATION_EXPORT CGFloat const kOCallCarTableViewCellHeight;
 @property (strong, nonatomic) UILabel *statueLab;
 
 @property (nonatomic, strong) OrderInfoObj *orderObj;
+
+@property (nonatomic, strong) UILongPressGestureRecognizer * longPressGesture;
+
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj;
 @end

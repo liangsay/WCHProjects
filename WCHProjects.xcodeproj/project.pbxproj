@@ -126,7 +126,6 @@
 		7F8F295E1F1D098C00C5DFF9 /* OBuyCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F295C1F1D098C00C5DFF9 /* OBuyCarViewController.m */; };
 		7F8F295F1F1D098C00C5DFF9 /* OBuyCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F295D1F1D098C00C5DFF9 /* OBuyCarViewController.xib */; };
 		7F8F29631F1D0A8400C5DFF9 /* OCallCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F29611F1D0A8400C5DFF9 /* OCallCarTableViewCell.m */; };
-		7F8F29641F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F29621F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib */; };
 		7F8F29681F1D0A9100C5DFF9 /* ORentCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F29661F1D0A9100C5DFF9 /* ORentCarTableViewCell.m */; };
 		7F8F29691F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8F29671F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib */; };
 		7F8F296D1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F296B1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.m */; };
@@ -237,7 +236,6 @@
 		7FEB200F1D9EC0AB001E5F10 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB200C1D9EC0AB001E5F10 /* BaseTableViewController.m */; };
 		7FEB20151D9EC1C5001E5F10 /* MineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB20141D9EC1C5001E5F10 /* MineTableViewCell.m */; };
 		7FEC7E1D1F3182E800B070DC /* OCallCarAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */; };
-		7FEC7E1E1F3182E800B070DC /* OCallCarAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FEC7E1C1F3182E800B070DC /* OCallCarAddressCell.xib */; };
 		7FF673A21DCCFF66000C4A97 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF673A11DCCFF66000C4A97 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -430,7 +428,6 @@
 		7F8F295D1F1D098C00C5DFF9 /* OBuyCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBuyCarViewController.xib; sourceTree = "<group>"; };
 		7F8F29601F1D0A8400C5DFF9 /* OCallCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCallCarTableViewCell.h; sourceTree = "<group>"; };
 		7F8F29611F1D0A8400C5DFF9 /* OCallCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCallCarTableViewCell.m; sourceTree = "<group>"; };
-		7F8F29621F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OCallCarTableViewCell.xib; sourceTree = "<group>"; };
 		7F8F29651F1D0A9100C5DFF9 /* ORentCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORentCarTableViewCell.h; sourceTree = "<group>"; };
 		7F8F29661F1D0A9100C5DFF9 /* ORentCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORentCarTableViewCell.m; sourceTree = "<group>"; };
 		7F8F29671F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ORentCarTableViewCell.xib; sourceTree = "<group>"; };
@@ -630,7 +627,6 @@
 		7FEB20141D9EC1C5001E5F10 /* MineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineTableViewCell.m; sourceTree = "<group>"; };
 		7FEC7E1A1F3182E800B070DC /* OCallCarAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCallCarAddressCell.h; sourceTree = "<group>"; };
 		7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCallCarAddressCell.m; sourceTree = "<group>"; };
-		7FEC7E1C1F3182E800B070DC /* OCallCarAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OCallCarAddressCell.xib; sourceTree = "<group>"; };
 		7FF673A11DCCFF66000C4A97 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8834F21109378FBF43995B3 /* Pods-WCHProjects.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WCHProjects.release.xcconfig"; path = "Pods/Target Support Files/Pods-WCHProjects/Pods-WCHProjects.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -767,7 +763,6 @@
 			children = (
 				7F8F29601F1D0A8400C5DFF9 /* OCallCarTableViewCell.h */,
 				7F8F29611F1D0A8400C5DFF9 /* OCallCarTableViewCell.m */,
-				7F8F29621F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib */,
 				7F8F29651F1D0A9100C5DFF9 /* ORentCarTableViewCell.h */,
 				7F8F29661F1D0A9100C5DFF9 /* ORentCarTableViewCell.m */,
 				7F8F29671F1D0A9100C5DFF9 /* ORentCarTableViewCell.xib */,
@@ -776,7 +771,6 @@
 				7F8F296C1F1D0AA000C5DFF9 /* OBuyCarTableViewCell.xib */,
 				7FEC7E1A1F3182E800B070DC /* OCallCarAddressCell.h */,
 				7FEC7E1B1F3182E800B070DC /* OCallCarAddressCell.m */,
-				7FEC7E1C1F3182E800B070DC /* OCallCarAddressCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1571,14 +1565,12 @@
 				7F830B9F1DA37CE800F50B64 /* loading-14@2x.png in Resources */,
 				7FE9AC5E1DA1C8F100B4077B /* MyRouteViewController.xib in Resources */,
 				7FA96C491DA9484F00F5E00E /* ForgetViewController.xib in Resources */,
-				7F8F29641F1D0A8400C5DFF9 /* OCallCarTableViewCell.xib in Resources */,
 				7F830BA31DA37CE800F50B64 /* loading-1@2x.png in Resources */,
 				7FE501D61DAD3D3E002CF3CC /* WalletTableCell.xib in Resources */,
 				7F830BA01DA37CE800F50B64 /* loading-15@2x.png in Resources */,
 				7FE9AC7C1DA1D11300B4077B /* SystemNoticViewController.xib in Resources */,
 				7FEB20031D9EC010001E5F10 /* MineViewController.xib in Resources */,
 				7F830BA21DA37CE800F50B64 /* loading-17@2x.png in Resources */,
-				7FEC7E1E1F3182E800B070DC /* OCallCarAddressCell.xib in Resources */,
 				7F830BA81DA37CE800F50B64 /* loading-6@2x.png in Resources */,
 				7F4D38741DB5182C003C2E4B /* order.mp3 in Resources */,
 				7FE9AC721DA1D0EE00B4077B /* MyWalletViewController.xib in Resources */,

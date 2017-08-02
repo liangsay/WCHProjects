@@ -88,11 +88,18 @@
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
     if (statusf==3) {
-        //已支付
-        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
-        appraiseVC.orderObj =orderObj;
-        appraiseVC.viewType = 1;
-        kPushNav(appraiseVC, YES);
+        if (statusf==3) {
+            if (orderObj.isAssess.integerValue==0) {
+                //未评价
+                AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+                appraiseVC.orderObj =orderObj;
+                appraiseVC.viewType = 1;
+                kPushNav(appraiseVC, YES);
+            }else{
+                
+            }
+        }
+        
     }
 }
 

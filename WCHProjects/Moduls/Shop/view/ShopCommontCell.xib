@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGR-Ml-S0F">
-                        <rect key="frame" x="15" y="91" width="324" height="0.5"/>
+                        <rect key="frame" x="15" y="91" width="360" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="qBh-gm-HlX"/>
@@ -61,11 +61,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="31k-Gc-rxP" secondAttribute="trailing" constant="15" id="CX5-Ga-K8A"/>
                     <constraint firstItem="LZB-Fb-E1B" firstAttribute="top" secondItem="UUa-qO-Be1" secondAttribute="top" constant="10" id="FAG-wD-7s1"/>
                     <constraint firstAttribute="trailing" secondItem="MNa-Se-Yx1" secondAttribute="trailing" constant="15" id="LdS-Qb-P1O"/>
+                    <constraint firstAttribute="trailing" secondItem="aGR-Ml-S0F" secondAttribute="trailing" id="SFK-3g-f3Z"/>
                     <constraint firstItem="LZB-Fb-E1B" firstAttribute="leading" secondItem="UUa-qO-Be1" secondAttribute="leading" constant="15" id="Uok-CX-x3T"/>
                     <constraint firstItem="aGR-Ml-S0F" firstAttribute="leading" secondItem="UUa-qO-Be1" secondAttribute="leading" constant="15" id="WWO-la-6SS"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ixS-La-jRX" secondAttribute="trailing" constant="15" id="cbe-yo-Tox"/>
                     <constraint firstItem="31k-Gc-rxP" firstAttribute="centerY" secondItem="LZB-Fb-E1B" secondAttribute="centerY" id="rFY-1h-v77"/>
-                    <constraint firstItem="31k-Gc-rxP" firstAttribute="leading" secondItem="aGR-Ml-S0F" secondAttribute="trailing" id="w5M-ff-9RO"/>
                     <constraint firstItem="ixS-La-jRX" firstAttribute="top" secondItem="MNa-Se-Yx1" secondAttribute="bottom" constant="10" id="xhY-ld-pc3"/>
                 </constraints>
             </tableViewCellContentView>

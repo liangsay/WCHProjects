@@ -22,6 +22,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         [self setupViewsSet];
         [self setupContraintSet];
         self.hyb_lastViewInCell = self.lineV;
@@ -281,6 +282,13 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     }else{
         self.longPressGesture.enabled = NO;
         
+    }
+    if (statusf==3) {
+        if (orderObj.isAssess.integerValue==0) {
+            self.statueLab.text = @"未评价";
+        }else{
+            self.statueLab.text = @"已评价";
+        }
     }
 }
 

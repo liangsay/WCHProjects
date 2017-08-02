@@ -65,6 +65,7 @@
 @property (nonatomic, strong) NSString *payTypef;// 0;
 @property (nonatomic, strong) NSString *pricef;// "76.40000000000001";
 @property (nonatomic, strong) NSString *provincef;// "天津市";
+@property (nonatomic, strong) NSString *isAssess;
 @property (nonatomic, strong) NSString *startAddrNamef;// "天津市东丽区仁和路";
 @property (nonatomic, strong) NSString *startLocationf;// "39.21031,117.2643";
 @property (nonatomic, strong) NSString *statusTextf;// "已接单";

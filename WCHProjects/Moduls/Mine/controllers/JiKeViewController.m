@@ -9,6 +9,8 @@
 #import "JiKeViewController.h"
 #import "JiKeTableViewCell.h"
 #import "BaseTableView.h"
+#import "StoretoLocObj.h"
+#import "DutytoDecideObj.h"
 @interface JiKeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -43,6 +45,20 @@
     }
     return _dataArray;
 }
+
+- (IBAction)submitBtnAction:(UIButton *)sender {
+    BOOL isResult = TRUE;
+    for (OrderInfoObj *order in self.dataArray) {
+        if (kIsObjectEmpty(order.content)) {
+            isResult = NO;
+            [NSString toast:order.placeholder];
+            break;
+        }
+    }
+    [self sendCustomerdoInsert_API];
+    
+}
+
 
 #pragma mark --UITextFieldDelegate-------
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -92,6 +108,44 @@
     cell.contentTxtF.delegate = self;
     [cell setupCellInfoWith:orderObj];
     return cell;
+}
+
+
+/**
+ vo.deptIdf	2_38
+ vo.storeNamef	啦咯啦咯啦咯
+ requestType	app
+ vo.customerNamef	阿KKK
+ vo.trueNamef	安志伟
+ vo.categoryf	啦咯啦咯啦咯
+ vo.createIdf	d24845ab-4662-4ba7-9a18-009fdfa2139f
+ vo.intentionf	家里哈啊
+ vo.telephonef	558555
+ vo.tradingAreaf	空军建军节
+ */
+- (void)sendCustomerdoInsert_API {
+    WEAKSELF
+    
+    NSArray *keys = @[@"vo.telephonef",@"vo.customerNamef",@"vo.categoryf",@"vo.storeNamef",@"vo.tradingAreaf",@"vo.intentionf"];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    for (NSInteger i=0; i<self.dataArray.count; i++) {
+        OrderInfoObj *order = self.dataArray[i];
+        NSString *key = keys[i];
+        [params addUnEmptyString:order.content forKey:key];
+    }
+    [params addUnEmptyString:[UserInfoObj model].trueNamef forKey:@"vo.trueNamef"];
+    [params addUnEmptyString:[StoretoLocObj model].idf forKey:@"vo.deptIdf"];
+    [params addUnEmptyString:[DutytoDecideObj model].userIdf forKey:@"vo.createIdf"];
+    [OrderInfoObj sendCustomerdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.responseCode == 1) {
+            [weakSelf onBackButton];
+            [NSString toast:@"提交成功"];
+        }else{
+            [NSString toast:@"提交失败"];
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"提交失败"];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

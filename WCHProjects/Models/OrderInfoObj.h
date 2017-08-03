@@ -307,4 +307,9 @@
 #pragma mark --查询商品评价
 + (void)sendAssesstoCustomWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+
+#pragma mark --集客
++ (void)sendCustomerdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                               failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end

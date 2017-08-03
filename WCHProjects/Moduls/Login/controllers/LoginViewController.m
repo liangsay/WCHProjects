@@ -11,6 +11,7 @@
 #import "UserInfoObj.h"
 #import "ForgetViewController.h"
 #import "OtherWebViewController.h"
+#import "DutytoDecideObj.h"
 @implementation LoginModel
 
 @end
@@ -164,7 +165,15 @@
         if (weakSelf.loginAction) {
             weakSelf.loginAction(1);
         }
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params addUnEmptyString:weakSelf.userNameTxtF.text forKey:@"mobilef"];
+        [DutytoDecideObj sendDutytoDecideWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+            
+        } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+            
+        }];
         [NSString toast:@"登录成功"];
+        
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [NSString toast:response.responseMsg];

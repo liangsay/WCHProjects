@@ -285,3 +285,20 @@ CG_INLINE NSString *kAPI_RentorderdoCancel() {
 CG_INLINE NSString *kAPI_AssesstoCustom() {
     return @"AssesstoCustom.shtml";
 }
+
+#pragma mark --集客
+/*
+ vo.deptIdf	2_38
+ vo.storeNamef	啦咯啦咯啦咯
+ requestType	app
+ vo.customerNamef	阿KKK
+ vo.trueNamef	安志伟
+ vo.categoryf	啦咯啦咯啦咯
+ vo.createIdf	d24845ab-4662-4ba7-9a18-009fdfa2139f
+ vo.intentionf	家里哈啊
+ vo.telephonef	558555
+ vo.tradingAreaf	空军建军节
+ */
+CG_INLINE NSString *kAPI_CustomerdoInsert(){
+    return @"CustomerdoInsert.shtml";
+}

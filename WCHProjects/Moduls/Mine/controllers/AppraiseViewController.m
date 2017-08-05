@@ -38,6 +38,8 @@
 //    }else{
         self.priceLabel.text = [NSString stringWithFormat:@"%.2f",price.doubleValue];
 //    }
+    [self.contentTxtV setLayerBorderWidth:0.5 color:[UIColor borderColor]];
+    [self.contentTxtV setLayerCornerRadius:5];
     
     [self.commitBtn setLayerCornerRadius:4];
     [self.commitBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];

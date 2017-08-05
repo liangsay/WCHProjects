@@ -10,7 +10,7 @@
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
 
-
+@property (nonatomic, strong) NSString *maxCountf;
 @property (nonatomic, assign) CGFloat cellheight;
 @property (nonatomic, strong) NSMutableArray *orderPointList;
 @property (nonatomic, strong) NSString *positionf;

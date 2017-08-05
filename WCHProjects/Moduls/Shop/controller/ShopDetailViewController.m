@@ -10,7 +10,7 @@
 #import "ShopInfoViewController.h"
 #import "ShopDetailWebViewController.h"
 #import "ShopCommentViewController.h"
-
+#import "ShopDetailBuyView.h"
 @interface ShopDetailViewController ()
 {
     NSArray *list;
@@ -68,7 +68,7 @@
     ShopDetailWebViewController *one = [[ShopDetailWebViewController alloc]initWithNibName:@"ShopDetailWebViewController" bundle:nil];
     one.title = @"商品";
     one.orderObj = self.orderObj;
-    one.webUrlString = @"https://item.m.jd.com/product/2342601.html?sid=2b9de11ccb92d808eb2e1a39460f585d";
+    one.webUrlString = [NSString stringWithFormat:@"%@/MallgoodstoDetail.shtml?fk=%@",apiBaseURLString,self.orderObj.idf];//@"https://item.m.jd.com/product/2342601.html?sid=2b9de11ccb92d808eb2e1a39460f585d";
     one.index = 0;
     [arr addObject:one];
     
@@ -128,6 +128,13 @@
              @"ViewController"
              ];
 }
+
+- (IBAction)buyBtnAction:(id)sender {
+    [ShopDetailBuyView showAlertViewInVC:self orderObj:self.orderObj count:1 complete:^(NSInteger count) {
+        
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

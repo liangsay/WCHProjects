@@ -61,6 +61,9 @@ typedef NS_ENUM(NSUInteger, CellLineStyle)
  */
 @property (nonatomic, strong) UIView *topLine;
 
+@property (nonatomic, strong) IBOutlet UIView *baseTopLine;
+@property (nonatomic, strong) IBOutlet UIView *baseBottomLine;
+
 #pragma mark --cell数据
 /*!
  *  @author liujinliang, 16-09-13 11:09:54

@@ -20,6 +20,7 @@
     [super viewDidLoad];
     [JWCacheURLProtocol startListeningNetWorking];
     // Do any additional setup after loading the view from its nib.
+    self.webView.backgroundColor = [UIColor whiteColor];
     _webView.scalesPageToFit = YES;
     _webView.scrollView.directionalLockEnabled = YES;
     _webView.scrollView.showsHorizontalScrollIndicator = NO;

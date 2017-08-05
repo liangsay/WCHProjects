@@ -174,7 +174,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
         make.right.equalTo(@-15);
-        make.top.equalTo(weakSelf.startImgV.mas_bottom).offset(10);
+        make.top.equalTo(weakSelf.startLab.mas_bottom).offset(10);
     }];
     
     [self.endImgV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -210,7 +210,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     [self.lineV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(@0);
         make.top.equalTo(weakSelf.bgView.mas_bottom).offset(0);
-        make.height.equalTo(@0.5);
+        make.height.equalTo(@0);
     }];
 
 }
@@ -254,9 +254,9 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
         make.right.mas_equalTo(-15);
         make.height.mas_equalTo(tableviewHeight);
         if (tableviewHeight==0) {
-            make.top.equalTo(weakSelf.startImgV.mas_bottom).offset(0);
+            make.top.equalTo(weakSelf.startLab.mas_bottom).offset(0);
         }else{
-            make.top.equalTo(weakSelf.startImgV.mas_bottom).offset(10);
+            make.top.equalTo(weakSelf.startLab.mas_bottom).offset(10);
         }
     }];
     
@@ -271,8 +271,9 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
         self.typeLab.text = @"";
     }
     
-    self.startLab.text = orderObj.startAddrNamef;
-    self.endLab.text = orderObj.endAddrNamef;
+    self.startLab.text = kIsObjectEmpty(orderObj.startAddrNamef)?@"--":orderObj.startAddrNamef;
+    self.endLab.text = kIsObjectEmpty(orderObj.endAddrNamef)?@"--":orderObj.endAddrNamef;
+    
     NSString *price = orderObj.pricef;
     NSString *priceStr = [NSString stringWithFormat:@"运价：%@",price];
     NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:priceStr];

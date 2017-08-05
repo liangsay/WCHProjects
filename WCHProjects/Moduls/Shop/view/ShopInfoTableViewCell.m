@@ -14,7 +14,8 @@ CGFloat const kShopInfoTableViewCellHeight = 38;
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.contentLab.preferredMaxLayoutWidth = kScreenWidth - 90 - 15 - 15;
+    self.contentLab.preferredMaxLayoutWidth = kScreenWidth - 100 - 15 - 15 - 10;
+    self.typeLab.preferredMaxLayoutWidth = 100;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,5 +26,7 @@ CGFloat const kShopInfoTableViewCellHeight = 38;
 
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj {
     self.orderObj = orderObj;
+    self.typeLab.text = orderObj.typef;
+    self.contentLab.text = orderObj.content;
 }
 @end

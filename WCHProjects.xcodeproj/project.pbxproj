@@ -67,6 +67,8 @@
 		7F519C4B1F359D630026259A /* ShopInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F519C491F359D630026259A /* ShopInfoViewController.xib */; };
 		7F519C4F1F359FF20026259A /* ShopInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F519C4D1F359FF20026259A /* ShopInfoTableViewCell.m */; };
 		7F519C501F359FF20026259A /* ShopInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F519C4E1F359FF20026259A /* ShopInfoTableViewCell.xib */; };
+		7F52332A1F35BEE000CE5FE0 /* ShopDetailBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5233291F35BEE000CE5FE0 /* ShopDetailBuyView.m */; };
+		7F52332C1F35BEE900CE5FE0 /* ShopDetailBuyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F52332B1F35BEE900CE5FE0 /* ShopDetailBuyView.xib */; };
 		7F57EDDC1F30CCE600E82F87 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F57EDDA1F30CCE600E82F87 /* AddressViewController.m */; };
 		7F57EDDD1F30CCE600E82F87 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F57EDDB1F30CCE600E82F87 /* AddressViewController.xib */; };
 		7F58245F1F33407000CEB644 /* DutytoDecideObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F58245E1F33407000CEB644 /* DutytoDecideObj.m */; };
@@ -350,6 +352,9 @@
 		7F519C4C1F359FF20026259A /* ShopInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopInfoTableViewCell.h; sourceTree = "<group>"; };
 		7F519C4D1F359FF20026259A /* ShopInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopInfoTableViewCell.m; sourceTree = "<group>"; };
 		7F519C4E1F359FF20026259A /* ShopInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopInfoTableViewCell.xib; sourceTree = "<group>"; };
+		7F5233281F35BEE000CE5FE0 /* ShopDetailBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailBuyView.h; sourceTree = "<group>"; };
+		7F5233291F35BEE000CE5FE0 /* ShopDetailBuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailBuyView.m; sourceTree = "<group>"; };
+		7F52332B1F35BEE900CE5FE0 /* ShopDetailBuyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopDetailBuyView.xib; sourceTree = "<group>"; };
 		7F57EDD91F30CCE600E82F87 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
 		7F57EDDA1F30CCE600E82F87 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
 		7F57EDDB1F30CCE600E82F87 /* AddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
@@ -893,6 +898,9 @@
 				7F519C4C1F359FF20026259A /* ShopInfoTableViewCell.h */,
 				7F519C4D1F359FF20026259A /* ShopInfoTableViewCell.m */,
 				7F519C4E1F359FF20026259A /* ShopInfoTableViewCell.xib */,
+				7F5233281F35BEE000CE5FE0 /* ShopDetailBuyView.h */,
+				7F5233291F35BEE000CE5FE0 /* ShopDetailBuyView.m */,
+				7F52332B1F35BEE900CE5FE0 /* ShopDetailBuyView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1661,6 +1669,7 @@
 				7F4D38701DB50C6F003C2E4B /* OrderTableCell.xib in Resources */,
 				7FEC7E2F1F3204E800B070DC /* ShopCommontCell.xib in Resources */,
 				7F830BAD1DA37D6800F50B64 /* loading.gif in Resources */,
+				7F52332C1F35BEE900CE5FE0 /* ShopDetailBuyView.xib in Resources */,
 				7F830B9B1DA37CE800F50B64 /* loading-10@2x.png in Resources */,
 				7F4FB4C21F0E99E800B707DF /* Commodity.plist in Resources */,
 				7F830BAB1DA37CE800F50B64 /* loading-9@2x.png in Resources */,
@@ -1792,6 +1801,7 @@
 				7FEB200D1D9EC0AB001E5F10 /* BaseTableView.m in Sources */,
 				7F5CD98E1F112D3A00E37652 /* UIScrollView+JYPaging.m in Sources */,
 				7FEB1FFE1D9EC010001E5F10 /* OrderViewController.m in Sources */,
+				7F52332A1F35BEE000CE5FE0 /* ShopDetailBuyView.m in Sources */,
 				7F991EC21F1E6EC100B57437 /* JiKeViewController.m in Sources */,
 				7FAACC231D9036460028D0D6 /* HttpLoadServer.m in Sources */,
 				7F830B881DA33F3800F50B64 /* MyRouteTableCell.m in Sources */,

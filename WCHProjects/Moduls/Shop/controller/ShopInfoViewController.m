@@ -1,22 +1,23 @@
 //
-//  OBuyCarViewController.m
+//  ShopInfoViewController.m
 //  WCHProjects
 //
-//  Created by liujinliang on 2017/7/17.
+//  Created by liu jinliang on 2017/8/5.
 //  Copyright © 2017年 liujinliang. All rights reserved.
 //
 
-#import "OBuyCarViewController.h"
+#import "ShopInfoViewController.h"
 #import "BaseTableView.h"
-#import "OBuyCarTableViewCell.h"
-#import "MyPayTypeViewController.h"
-@interface OBuyCarViewController ()<UITableViewDelegate,UITableViewDataSource,MyPayTypeViewDelegate>
+#import "ShopInfoTableViewCell.h"
+#import "UITableView+FDTemplateLayoutCell.h"
+
+@interface ShopInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @end
 
-@implementation OBuyCarViewController
+@implementation ShopInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,15 +27,14 @@
 }
 
 - (void)setupTableViewSet {
-    [self.tableView registerNib:[UINib nibWithNibName:@"OBuyCarTableViewCell" bundle:nil] forCellReuseIdentifier:kOBuyCarTableViewCellID];
-    self.tableView.rowHeight = kOBuyCarTableViewCellHeight;
+    [self.tableView registerNib:[UINib nibWithNibName:@"ShopInfoTableViewCell" bundle:nil] forCellReuseIdentifier:kShopInfoTableViewCellID];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor backgroundColor];
     [self.tableView addHeaderRefreshTarget:self action:@selector(refreshHeaderData)];
 }
 
 - (void)refreshHeaderData {
-    [self sendMallordertoMember_API];
+    [self sendAssesstoCustom_API];
 }
 
 - (NSMutableArray *)dataArray {
@@ -57,44 +57,45 @@
     return self.dataArray.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    __block OrderInfoObj *orderObj = self.dataArray[indexPath.row];
+    CGFloat height = [self.tableView fd_heightForCellWithIdentifier:kShopInfoTableViewCellID configuration:^(id cell) {
+        ShopInfoTableViewCell *_cell = (ShopInfoTableViewCell *)cell;
+        [_cell setupCellInfoWithObj:orderObj];
+    }];
+    
+    return height;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    OBuyCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kOBuyCarTableViewCellID forIndexPath:indexPath];
-    
+    ShopInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kShopInfoTableViewCellID forIndexPath:indexPath];
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
-    [cell setupCellInfoWith:orderObj];
+    cell.cellIndexPath = indexPath;
+    
+    [cell setupCellInfoWithObj:orderObj];
+    
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //未支付
-    OrderInfoObj *orderObj = self.dataArray[indexPath.row];
-    MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
-    payVC.title = @"支付方式";
-    payVC.cellIndexPath = indexPath;
-    payVC.delegate = self;
-    payVC.orderObj = orderObj;
-    kPushNav(payVC, YES);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 
-#pragma mark --MyPayTypeViewDelegate----------
-- (void)myPayTypeViewController:(MyPayTypeViewController *)myPayTypeViewController payStatus:(NSInteger)payStatus orderObj:(OrderInfoObj *)orderObj {
-    [self.dataArray replaceObjectAtIndex:myPayTypeViewController.cellIndexPath.row withObject:orderObj];
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:@[myPayTypeViewController.cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
-}
-
-#pragma mark --查询品牌、车系下的数据
+#pragma mark --查询商品评价
 /**
- 查询品牌、车系下的数据
+ 查询商品评价
+ queryMap.goodIdf	0a3d5b19-5ac8-4f7d-a17a-516d2b5b4991
  */
-- (void)sendMallordertoMember_API{
+- (void)sendAssesstoCustom_API{
     WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"memberId"];
-    [OrderInfoObj sendMallordertoMemberWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [params addUnEmptyString:self.orderObj.idf forKey:@"queryMap.goodIdf"];
+    [OrderInfoObj sendAssesstoCustomWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         weakSelf.dataArray = [NSMutableArray arrayWithArray:response.responseModel];
         [weakSelf.tableView reloadData];
         [weakSelf.tableView endHeaderRefreshing];
@@ -104,6 +105,8 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

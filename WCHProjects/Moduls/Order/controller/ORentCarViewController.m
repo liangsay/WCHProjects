@@ -12,7 +12,9 @@
 #import "UIAlertController+Blocks.h"
 #import "MyPayTypeViewController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-@interface ORentCarViewController ()<UITableViewDelegate,UITableViewDataSource,ORentCarTableViewCellDelegate,MyPayTypeViewDelegate>
+#import "AppraiseViewController.h"
+
+@interface ORentCarViewController ()<UITableViewDelegate,UITableViewDataSource,ORentCarTableViewCellDelegate,MyPayTypeViewDelegate,AppraiseViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -83,20 +85,51 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
     OrderInfoObj *orderObj = self.dataArray[row];
-    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    //0：未支付  1:已支付 -1：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
-    if (statusf == 2) {
+    //1行程（货主），2订单（司机）
+    NSInteger userTypef = [UserInfoObj model].userTypef.integerValue;
+    //    0 未评价 1 已评价
+    NSInteger isAssess = orderObj.isAssess.integerValue;
+    if (statusf==1 && userTypef > 0) {
+//        if (isAssess==0) {
+//            //已支付
+//            AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+//            appraiseVC.orderObj =orderObj;
+//            appraiseVC.viewType = userTypef;
+//            appraiseVC.delegate = self;
+//            appraiseVC.cellIndexPath = indexPath;
+//            kPushNav(appraiseVC, YES);
+//            
+//        }else{
+//            [NSString toast:@"您已评价"];
+//        }
+    }else if (statusf == 0) {
+        //未支付
         MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
         payVC.title = @"支付方式";
+        payVC.cellIndexPath = indexPath;
         payVC.delegate = self;
         payVC.orderObj = orderObj;
         kPushNav(payVC, YES);
     }
 }
 
+
+#pragma mark --AppraiseViewControllerDelegate-----------
+- (void)appraiseViewController:(AppraiseViewController *)appraiseViewController orderObj:(OrderInfoObj *)orderObj {
+    [self.dataArray replaceObjectAtIndex:appraiseViewController.cellIndexPath.row withObject:orderObj];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[appraiseViewController.cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+}
+
 #pragma mark --MyPayTypeViewDelegate----------
 - (void)myPayTypeViewController:(MyPayTypeViewController *)myPayTypeViewController payStatus:(NSInteger)payStatus orderObj:(OrderInfoObj *)orderObj {
-    
+    [self.dataArray replaceObjectAtIndex:myPayTypeViewController.cellIndexPath.row withObject:orderObj];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[myPayTypeViewController.cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
 }
 
 

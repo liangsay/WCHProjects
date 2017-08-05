@@ -16,11 +16,13 @@ CGFloat const kORentCarTableViewCellHeight = 145;
     // Initialization code
     self.contentView.backgroundColor = [UIColor backgroundColor];
     self.nameLab.textColor = [UIColor mainColor];
-    [self.typeBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
-    [self.typeBtn addTarget:self action:@selector(typeBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.typeBtn setLayerCornerRadius:5];
     self.addressLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15;
 
+    //添加长按手势
+    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+    
+    longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
+    [self.pressView addGestureRecognizer:longPressGesture];
 }
 
 
@@ -54,20 +56,14 @@ CGFloat const kORentCarTableViewCellHeight = 145;
     [addrAtt setTextColor:[UIColor fontBlack] range:addressRange];
     [addrAtt setFont:[UIFont fontAssistant]];
     self.addressLab.attributedText = addrAtt;
+//    0：未支付  1:已支付 -1：已取消
     if (orderObj.statusf.integerValue == -1) {
-        self.typeBtnHeight.constant = 0;
-        self.typeBtnBottom.constant = 0;
-        self.pressView.userInteractionEnabled = NO;
+
+        self.pressView.alpha = 0;
     }else{
-        self.pressView.userInteractionEnabled = YES;
-        self.typeBtnHeight.constant = 30;
-        self.typeBtnBottom.constant = 10;
+        self.pressView.alpha = 1;
     }
-    //添加长按手势
-    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
     
-    longPressGesture.minimumPressDuration=1.5f;//设置长按 时间
-    [self.pressView addGestureRecognizer:longPressGesture];
     
 }
 - (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender {

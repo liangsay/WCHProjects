@@ -95,8 +95,8 @@
     NSInteger userTypef = [UserInfoObj model].userTypef.integerValue;
     //    0 未评价 1 已评价
     NSInteger isAssess = orderObj.isAssess.integerValue;
-    if (statusf==3 && userTypef > 0) {
-        if (isAssess==0 && userTypef == 1) {
+    if (statusf==3 && userTypef ==2 ) {
+        if (isAssess==0) {
             //已支付
             AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
             appraiseVC.orderObj =orderObj;
@@ -104,6 +104,7 @@
             appraiseVC.delegate = self;
             appraiseVC.cellIndexPath = indexPath;
             kPushNav(appraiseVC, YES);
+            
         }else{
             [NSString toast:@"您已评价"];
         }

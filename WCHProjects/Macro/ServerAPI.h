@@ -302,3 +302,8 @@ CG_INLINE NSString *kAPI_AssesstoCustom() {
 CG_INLINE NSString *kAPI_CustomerdoInsert(){
     return @"CustomerdoInsert.shtml";
 }
+
+#pragma mark --商品参数
+CG_INLINE NSString *kAPI_MallgoodstoView() {
+    return @"MallgoodstoView.shtml";
+}

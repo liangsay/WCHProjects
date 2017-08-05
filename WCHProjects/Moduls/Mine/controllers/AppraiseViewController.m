@@ -9,6 +9,7 @@
 #import "AppraiseViewController.h"
 #import "CWStarRateView.h"
 #import "OrderInfoObj.h"
+#import "IQTextView.h"
 @interface AppraiseViewController ()<CWStarRateViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *commitBtn;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLab;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *driverViewHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UIView *driverView;
+@property (weak, nonatomic) IBOutlet IQTextView *contentTxtV;
 
 @end
 
@@ -88,15 +90,27 @@
 }
 
 #pragma mark --用于提交评价
+
+/**
+ vo.objTypef	3
+ requestType	app
+ vo.assessContentf	测试啊
+ vo.orderIdf	1501694950479310
+ vo.scoref	5
+ vo.mobilef	13820633188
+ */
 - (void)sendAssessdoInsert{
     
     NSString *userTypef = [UserInfoObj model].userTypef;//如果当前用户是货主，那么评价的对象就是司机 ;1司机，0货主
     //当self.viewType==1时是货主进来，所以要对司机（1）评价；
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:_orderObj.orderNof forKey:@"vo.orderIdf"];
-    [params addUnEmptyString:self.viewType==1?@"1":@"0" forKey:@"vo.objTypef"];
+    [params addUnEmptyString:self.viewType==1?@"3":@"0" forKey:@"vo.objTypef"];
     [params addUnEmptyString:self.scoref forKey:@"vo.scoref"];
+    [params addUnEmptyString:self.contentTxtV.text forKey:@"vo.assessContentf"];
     [params addUnEmptyString:_orderObj.driverIdf forKey:@"vo.mobilef"];
+    
+    
     WEAKSELF
     [OrderInfoObj sendAssessdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.responseCode) {

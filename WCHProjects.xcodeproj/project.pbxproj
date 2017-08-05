@@ -63,6 +63,10 @@
 		7F4FB4DA1F0EA3FA00B707DF /* ShopCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FB4D91F0EA3FA00B707DF /* ShopCollectionViewLayout.m */; };
 		7F4FB4DE1F0EA42F00B707DF /* ShopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4FB4DC1F0EA42F00B707DF /* ShopCollectionViewCell.m */; };
 		7F4FB4DF1F0EA42F00B707DF /* ShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F4FB4DD1F0EA42F00B707DF /* ShopCollectionViewCell.xib */; };
+		7F519C4A1F359D630026259A /* ShopInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F519C481F359D630026259A /* ShopInfoViewController.m */; };
+		7F519C4B1F359D630026259A /* ShopInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F519C491F359D630026259A /* ShopInfoViewController.xib */; };
+		7F519C4F1F359FF20026259A /* ShopInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F519C4D1F359FF20026259A /* ShopInfoTableViewCell.m */; };
+		7F519C501F359FF20026259A /* ShopInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F519C4E1F359FF20026259A /* ShopInfoTableViewCell.xib */; };
 		7F57EDDC1F30CCE600E82F87 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F57EDDA1F30CCE600E82F87 /* AddressViewController.m */; };
 		7F57EDDD1F30CCE600E82F87 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F57EDDB1F30CCE600E82F87 /* AddressViewController.xib */; };
 		7F58245F1F33407000CEB644 /* DutytoDecideObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F58245E1F33407000CEB644 /* DutytoDecideObj.m */; };
@@ -340,6 +344,12 @@
 		7F4FB4DB1F0EA42F00B707DF /* ShopCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopCollectionViewCell.h; sourceTree = "<group>"; };
 		7F4FB4DC1F0EA42F00B707DF /* ShopCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCollectionViewCell.m; sourceTree = "<group>"; };
 		7F4FB4DD1F0EA42F00B707DF /* ShopCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopCollectionViewCell.xib; sourceTree = "<group>"; };
+		7F519C471F359D630026259A /* ShopInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopInfoViewController.h; sourceTree = "<group>"; };
+		7F519C481F359D630026259A /* ShopInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopInfoViewController.m; sourceTree = "<group>"; };
+		7F519C491F359D630026259A /* ShopInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopInfoViewController.xib; sourceTree = "<group>"; };
+		7F519C4C1F359FF20026259A /* ShopInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopInfoTableViewCell.h; sourceTree = "<group>"; };
+		7F519C4D1F359FF20026259A /* ShopInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopInfoTableViewCell.m; sourceTree = "<group>"; };
+		7F519C4E1F359FF20026259A /* ShopInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopInfoTableViewCell.xib; sourceTree = "<group>"; };
 		7F57EDD91F30CCE600E82F87 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
 		7F57EDDA1F30CCE600E82F87 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
 		7F57EDDB1F30CCE600E82F87 /* AddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
@@ -859,6 +869,9 @@
 				7F5CD9931F112D5A00E37652 /* ProductDetailViewController.h */,
 				7F5CD9941F112D5A00E37652 /* ProductDetailViewController.m */,
 				7F5CD9951F112D5A00E37652 /* ProductDetailViewController.xib */,
+				7F519C471F359D630026259A /* ShopInfoViewController.h */,
+				7F519C481F359D630026259A /* ShopInfoViewController.m */,
+				7F519C491F359D630026259A /* ShopInfoViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -877,6 +890,9 @@
 				7F2CC1FC1F13298400A7E65B /* ShopCommontCell.h */,
 				7F2CC1FD1F13298400A7E65B /* ShopCommontCell.m */,
 				7FEC7E2E1F3204E800B070DC /* ShopCommontCell.xib */,
+				7F519C4C1F359FF20026259A /* ShopInfoTableViewCell.h */,
+				7F519C4D1F359FF20026259A /* ShopInfoTableViewCell.m */,
+				7F519C4E1F359FF20026259A /* ShopInfoTableViewCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1584,6 +1600,7 @@
 				7F830BA11DA37CE800F50B64 /* loading-16@2x.png in Resources */,
 				7FE0E8021DDE146F008F5B0D /* b27_icon_star_yellow@2x.png in Resources */,
 				7FEB1FFB1D9EC010001E5F10 /* LoginViewController.xib in Resources */,
+				7F519C4B1F359D630026259A /* ShopInfoViewController.xib in Resources */,
 				7F0F7B621DB792FC00977A20 /* CitysTableCell.xib in Resources */,
 				7F830BA71DA37CE800F50B64 /* loading-5@2x.png in Resources */,
 				7F66D7511DAFE8E90076F204 /* AppraiseViewController.xib in Resources */,
@@ -1594,6 +1611,7 @@
 				7FE501D61DAD3D3E002CF3CC /* WalletTableCell.xib in Resources */,
 				7F830BA01DA37CE800F50B64 /* loading-15@2x.png in Resources */,
 				7FE9AC7C1DA1D11300B4077B /* SystemNoticViewController.xib in Resources */,
+				7F519C501F359FF20026259A /* ShopInfoTableViewCell.xib in Resources */,
 				7FEB20031D9EC010001E5F10 /* MineViewController.xib in Resources */,
 				7F830BA21DA37CE800F50B64 /* loading-17@2x.png in Resources */,
 				7F830BA81DA37CE800F50B64 /* loading-6@2x.png in Resources */,
@@ -1718,6 +1736,7 @@
 				7FEB1FE01D9EB866001E5F10 /* MKBorderImageView.m in Sources */,
 				7FAACC2A1D9036460028D0D6 /* UserInfoObj.m in Sources */,
 				7FAACC091D9036460028D0D6 /* NSDate+ICCategory.m in Sources */,
+				7F519C4A1F359D630026259A /* ShopInfoViewController.m in Sources */,
 				7F30ECC31DB10F840083A311 /* WXApiResponseHandler.m in Sources */,
 				7FAACC071D9036460028D0D6 /* JRSwizzle.m in Sources */,
 				7FEB20061D9EC04D001E5F10 /* TableViewController.m in Sources */,
@@ -1842,6 +1861,7 @@
 				7FAACC141D9036460028D0D6 /* UIColor+Category.m in Sources */,
 				7FAACC1E1D9036460028D0D6 /* UIView+Category.m in Sources */,
 				7FEB1FFA1D9EC010001E5F10 /* LoginViewController.m in Sources */,
+				7F519C4F1F359FF20026259A /* ShopInfoTableViewCell.m in Sources */,
 				7F3E80811F2DB3AF0020A969 /* RentCarDetailOtherCell.m in Sources */,
 				7F4FB4DA1F0EA3FA00B707DF /* ShopCollectionViewLayout.m in Sources */,
 				7F5CD9531F11210D00E37652 /* ShopDetailViewController.m in Sources */,

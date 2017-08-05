@@ -1,16 +1,14 @@
 //
-//  ShopDetailWebViewController.h
+//  ShopInfoViewController.h
 //  WCHProjects
 //
-//  Created by liujinliang on 2017/7/8.
+//  Created by liu jinliang on 2017/8/5.
 //  Copyright © 2017年 liujinliang. All rights reserved.
 //
 
 #import "BaseViewController.h"
 
-@interface ShopDetailWebViewController : BaseViewController
+@interface ShopInfoViewController : BaseViewController
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) OrderInfoObj *orderObj;
-@property (nonatomic, strong) NSString* webUrlString;
-
 @end

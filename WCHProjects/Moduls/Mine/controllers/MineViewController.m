@@ -70,7 +70,7 @@
 //                        @"钱包",@"优惠券",@"通知",@"联系我们",@"周边环境",@"退出登录"];
 //    }
     
-    _typesArray = @[@"优惠券",@"分享",@"司机招募",@"我的收入",@"个人设置",@"关于我们",@"客服中心4000-8000-966"];
+    _typesArray = @[@"优惠券",@"分享",@"司机招募",@"已接订单",@"个人设置",@"关于我们",@"客服中心4000-8000-966"];
     _othersArray = @[@"考勤打卡",@"集客"];
     
     [_tableView setRowHeight:kMineTableViewCellHeight];
@@ -115,11 +115,29 @@
     return _typesArray.count;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([UserInfoObj model].userTypef.integerValue == 2) {
+        if (indexPath.section==0 && indexPath.row==2) {
+            return 0;
+        }
+        if (indexPath.section==0 && indexPath.row==3) {
+            return kMineTableViewCellHeight;
+        }
+    }
+    if ([UserInfoObj model].userTypef.integerValue == 1) {
+        if (indexPath.section==0 && indexPath.row==2) {
+            return kMineTableViewCellHeight;
+        }
+        if (indexPath.section==0 && indexPath.row==3) {
+            return 0;
+        }
+    }
     return kMineTableViewCellHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
     return 10;
 }
 
@@ -170,7 +188,7 @@
         }else if (row==3){
             //我的收入
             MyIncomeViewController *vc = [[MyIncomeViewController alloc] initWithNibName:@"MyIncomeViewController" bundle:nil];
-            vc.navigationItem.title = @"我的收入";
+            vc.navigationItem.title = @"已接订单";
             kPushNav(vc, YES);
         }else if (row==4){
             //个人设置

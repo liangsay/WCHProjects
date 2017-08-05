@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonSetViewController">
             <connections>
                 <outlet property="emailTxtF" destination="Bb6-Pr-otb" id="ksx-0k-zLo"/>
-                <outlet property="goWorkBtn" destination="lcT-a9-ueH" id="bwh-jq-MTt"/>
-                <outlet property="offWorkBtn" destination="lf7-i4-V0H" id="wXu-kH-1tl"/>
                 <outlet property="subBtn" destination="jEx-Fh-7ZH" id="234-Mg-mUs"/>
                 <outlet property="userNameTxtF" destination="u5V-hp-GPd" id="0b1-f4-l8d"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,7 +26,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REY-Iq-9OF">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="286"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="178"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6K-vq-w28">
                                     <rect key="frame" x="20" y="30" width="43" height="17"/>
@@ -73,53 +71,21 @@
                                         <action selector="subBtnAction:" destination="-1" eventType="touchUpInside" id="ZSm-Ns-R62"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcT-a9-ueH">
-                                    <rect key="frame" x="20" y="168" width="374" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="gS4-e4-mvI"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="上班打卡">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="goWorkBtnAction:" destination="-1" eventType="touchUpInside" id="gYw-nG-Ih9"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lf7-i4-V0H">
-                                    <rect key="frame" x="20" y="222" width="374" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="OEU-Dc-uyh"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <state key="normal" title="下班打卡">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="offWorkBtnAction:" destination="-1" eventType="touchUpInside" id="4yC-g9-OpO"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="lf7-i4-V0H" firstAttribute="top" secondItem="lcT-a9-ueH" secondAttribute="bottom" constant="10" id="0y8-HJ-2aC"/>
                                 <constraint firstItem="Bb6-Pr-otb" firstAttribute="leading" secondItem="BYT-Td-pgH" secondAttribute="trailing" constant="10" id="6xa-Kp-iYQ"/>
                                 <constraint firstItem="jEx-Fh-7ZH" firstAttribute="leading" secondItem="REY-Iq-9OF" secondAttribute="leading" constant="20" id="7HX-Gh-ObM"/>
-                                <constraint firstItem="lf7-i4-V0H" firstAttribute="leading" secondItem="REY-Iq-9OF" secondAttribute="leading" constant="20" id="Asi-gg-wNy"/>
                                 <constraint firstItem="f6K-vq-w28" firstAttribute="leading" secondItem="REY-Iq-9OF" secondAttribute="leading" constant="20" id="CmI-08-Ina"/>
                                 <constraint firstAttribute="trailing" secondItem="Bb6-Pr-otb" secondAttribute="trailing" constant="20" id="EKF-cM-Om7"/>
                                 <constraint firstItem="jEx-Fh-7ZH" firstAttribute="top" secondItem="Bb6-Pr-otb" secondAttribute="bottom" constant="20" id="F3F-QH-XXN"/>
                                 <constraint firstAttribute="trailing" secondItem="u5V-hp-GPd" secondAttribute="trailing" constant="20" id="F8x-ji-GvR"/>
-                                <constraint firstAttribute="bottom" secondItem="lf7-i4-V0H" secondAttribute="bottom" constant="20" id="Imw-hc-KVt"/>
                                 <constraint firstItem="u5V-hp-GPd" firstAttribute="leading" secondItem="f6K-vq-w28" secondAttribute="trailing" constant="10" id="MW1-Xc-lVz"/>
-                                <constraint firstItem="lcT-a9-ueH" firstAttribute="top" secondItem="jEx-Fh-7ZH" secondAttribute="bottom" constant="10" id="OKA-Ca-xHJ"/>
-                                <constraint firstAttribute="trailing" secondItem="lf7-i4-V0H" secondAttribute="trailing" constant="20" id="Pl9-7w-VTF"/>
+                                <constraint firstAttribute="bottom" secondItem="jEx-Fh-7ZH" secondAttribute="bottom" constant="20" id="YoE-GY-Tt5"/>
                                 <constraint firstAttribute="trailing" secondItem="jEx-Fh-7ZH" secondAttribute="trailing" constant="20" id="bQq-GG-paM"/>
                                 <constraint firstItem="BYT-Td-pgH" firstAttribute="leading" secondItem="REY-Iq-9OF" secondAttribute="leading" constant="20" id="co6-bm-BVn"/>
                                 <constraint firstItem="u5V-hp-GPd" firstAttribute="centerY" secondItem="f6K-vq-w28" secondAttribute="centerY" id="e7g-Md-VEo"/>
-                                <constraint firstItem="lcT-a9-ueH" firstAttribute="leading" secondItem="REY-Iq-9OF" secondAttribute="leading" constant="20" id="eao-jG-cyh"/>
                                 <constraint firstItem="Bb6-Pr-otb" firstAttribute="top" secondItem="u5V-hp-GPd" secondAttribute="bottom" constant="10" id="fWJ-Cg-lvd"/>
-                                <constraint firstAttribute="trailing" secondItem="lcT-a9-ueH" secondAttribute="trailing" constant="20" id="lOw-Cd-FhZ"/>
                                 <constraint firstItem="Bb6-Pr-otb" firstAttribute="centerY" secondItem="BYT-Td-pgH" secondAttribute="centerY" id="qSu-S0-wJg"/>
                                 <constraint firstItem="f6K-vq-w28" firstAttribute="top" secondItem="REY-Iq-9OF" secondAttribute="top" constant="30" id="xVZ-VV-L47"/>
                             </constraints>

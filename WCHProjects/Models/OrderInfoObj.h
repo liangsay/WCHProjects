@@ -145,7 +145,55 @@
 @property (nonatomic, strong) NSString *orderIdf;//": "10371501320194005",
 @property (nonatomic, strong) NSString *replyContentf;//": "",
 
+@property (nonatomic, strong) NSString *brandIdf; //品牌编号
+@property (nonatomic, strong) NSString *brandNamef; //品牌编号
+@property (nonatomic, strong) NSString *serieIdf; //车系
+@property (nonatomic, strong) NSString *serieNamef; //车系
 
+@property (nonatomic, strong) NSString *carModelf; //车辆型号
+@property (nonatomic, strong) NSString *carColorf; //车身颜色
+@property (nonatomic, strong) NSString *engineModelf; //发动机型号
+@property (nonatomic, strong) NSString *fuelTypef; //燃料种类
+@property (nonatomic, strong) NSString *outputVolf; //排量
+@property (nonatomic, strong) NSString *powerf; //功率
+@property (nonatomic, strong) NSString *emissionStaf; //排放标准
+@property (nonatomic, strong) NSString *oilwearf; //油耗
+@property (nonatomic, strong) NSString *abroadLongf; //外轮廓长
+@property (nonatomic, strong) NSString *abroadHighf; //外轮廓高
+@property (nonatomic, strong) NSString *abroadWidthf; //外轮廓宽
+@property (nonatomic, strong) NSString *insideLongf; //货箱内部尺寸长
+@property (nonatomic, strong) NSString *insideHighf; //货箱内部尺寸高
+@property (nonatomic, strong) NSString *insideWidthf; //货箱内部尺寸宽
+@property (nonatomic, strong) NSString *qthNumf; //前钢板弹簧片数
+@property (nonatomic, strong) NSString *hthNumf; //后钢板弹簧片数
+@property (nonatomic, strong) NSString *tyreNumf; //轮胎数
+@property (nonatomic, strong) NSString *tyreRulef; //轮胎规格
+@property (nonatomic, strong) NSString *frontTyreDistf; //前轮距
+@property (nonatomic, strong) NSString *backTyreDistf; //后轮距
+@property (nonatomic, strong) NSString *wheelbasef; //轴距
+@property (nonatomic, strong) NSString *frontAxleWeightf; //轴荷1
+@property (nonatomic, strong) NSString *backtAxleWeightf; //轴荷2
+@property (nonatomic, strong) NSString *axisNumf; //轴数
+@property (nonatomic, strong) NSString *turnTypef; //转向形式
+@property (nonatomic, strong) NSString *totalWeightf; //总质量
+@property (nonatomic, strong) NSString *curbWeightf; //整备质量
+@property (nonatomic, strong) NSString *ratedWeightf; //额定载质量
+@property (nonatomic, strong) NSString *payloadFactorf; //载质量利用系数
+@property (nonatomic, strong) NSString *dragWeightf; //准牵引总质量
+@property (nonatomic, strong) NSString *bgcWeightf; //半挂车鞍座最大允许总质量
+@property (nonatomic, strong) NSString *travellerNumf; //额定载客
+@property (nonatomic, strong) NSString *maxSpeedf; //最高设计车速
+@property (nonatomic, strong) NSString *madeDatef; //车辆制造日期
+@property (nonatomic, strong) NSString *remarksf; //备注
+@property (nonatomic, strong) NSString *complyInfof; //车辆制企业信息
+@property (nonatomic, strong) NSString *isGroundingf; //是否上架
+@property (nonatomic, strong) NSString *depositRatiof; //订金比例
+@property (nonatomic, strong) NSString *depositf; //固定定金
+@property (nonatomic, strong) NSString *paymentRatiof; //分期首款比例
+@property (nonatomic, strong) NSString *paymentf; //固定分期首款
+@property (nonatomic, strong) NSString *loanRatiof; //贷款比例
+@property (nonatomic, strong) NSString *insurancef; //保险计算
+@property (nonatomic, strong) NSString *deptNamef; //部门名称
 
 #pragma mark --订单添加接口
 + (void)sendOrderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
@@ -312,4 +360,8 @@
 #pragma mark --集客
 + (void)sendCustomerdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --商品参数
++ (void)sendMallgoodstoViewWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                              failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end

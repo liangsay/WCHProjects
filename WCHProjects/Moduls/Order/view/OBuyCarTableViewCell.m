@@ -46,6 +46,10 @@ CGFloat const kOBuyCarTableViewCellHeight = 90;
     self.numLab.text = [NSString stringWithFormat:@"购买数量:%@辆",orderObj.numf];
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
+    if (statusf==1) {
+        //已付款
+        
+    }
     self.typeLab.text = orderObj.statusTextf.length ? orderObj.statusTextf : @"";
     if (statusf==1 || statusf==0) {//在已接单状态，司机或货主可取消订单
         //可以加入长按取消订单

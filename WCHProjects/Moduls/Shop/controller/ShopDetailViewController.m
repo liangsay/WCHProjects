@@ -7,7 +7,7 @@
 //
 
 #import "ShopDetailViewController.h"
-#import "ShopDetailOneViewController.h"
+#import "ShopInfoViewController.h"
 #import "ShopDetailWebViewController.h"
 #import "ShopCommentViewController.h"
 
@@ -36,7 +36,7 @@
         [self performSelector:sel];
     }
     
-    list = @[@"商品",@"详情",@"评价"];
+    list = @[@"商品",@"参数",@"评价"];
     
     _segHead = [[MLMSegmentHead alloc] initWithFrame:CGRectMake(0, 0, 200, 30) titles:list headStyle:_style layoutStyle:_layout];
     _segHead.headColor = [UIColor clearColor];
@@ -65,17 +65,17 @@
 #pragma mark - 数据源
 - (NSArray *)vcArr:(NSInteger)count {
     NSMutableArray *arr = [NSMutableArray array];
-    ShopDetailOneViewController *one = [[ShopDetailOneViewController alloc]initWithNibName:@"ShopDetailOneViewController" bundle:nil];
+    ShopDetailWebViewController *one = [[ShopDetailWebViewController alloc]initWithNibName:@"ShopDetailWebViewController" bundle:nil];
     one.title = @"商品";
     one.orderObj = self.orderObj;
+    one.webUrlString = @"https://item.m.jd.com/product/2342601.html?sid=2b9de11ccb92d808eb2e1a39460f585d";
     one.index = 0;
     [arr addObject:one];
     
-    ShopDetailWebViewController *two = [[ShopDetailWebViewController alloc]initWithNibName:@"ShopDetailWebViewController" bundle:nil];
+    ShopInfoViewController *two = [[ShopInfoViewController alloc]initWithNibName:@"ShopInfoViewController" bundle:nil];
     two.title = @"详情";
     two.index = 1;
     two.orderObj = self.orderObj;
-    two.webUrlString = @"https://item.m.jd.com/product/2342601.html?sid=2b9de11ccb92d808eb2e1a39460f585d";
     [arr addObject:two];
     
     ShopCommentViewController *three = [[ShopCommentViewController alloc]initWithNibName:@"ShopCommentViewController" bundle:nil];

@@ -24,10 +24,6 @@ FOUNDATION_EXPORT CGFloat const kORentCarTableViewCellHeight;
 @property (weak, nonatomic) IBOutlet UILabel *addressLab;
 @property (weak, nonatomic) IBOutlet UILabel *typeLab;
 
-@property (weak, nonatomic) IBOutlet UIButton *typeBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *typeBtnHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *typeBtnBottom;
-
 @property (nonatomic, strong) UILongPressGestureRecognizer * longPressGesture;
 
 @property (nonatomic, assign) id<ORentCarTableViewCellDelegate> oDelegate;

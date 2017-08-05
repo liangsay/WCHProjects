@@ -27,7 +27,6 @@ CGFloat const kMyRouteTableCellHeight = 80;
         self.backgroundView.backgroundColor = [UIColor backgroundColor];
         self.backgroundBtnView.userInteractionEnabled = YES;
         [self.backgroundBtnView setBackgroundImageColor:[UIColor whiteColor]];
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
 }

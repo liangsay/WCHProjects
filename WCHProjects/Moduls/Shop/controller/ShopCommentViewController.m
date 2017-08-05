@@ -72,7 +72,7 @@
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     cell.cellIndexPath = indexPath;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     [cell setupCellInfoWithObj:orderObj];
     
     return cell;

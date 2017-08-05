@@ -67,7 +67,6 @@
 }
 
 - (void)onBackButton {
-//    kAppDelegate.mainViewController.orderNof = @"";
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -100,11 +99,18 @@
     [params addUnEmptyString:_orderObj.driverIdf forKey:@"vo.mobilef"];
     WEAKSELF
     [OrderInfoObj sendAssessdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
-        [NSString toast:@"评价成功"];
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        if (response.responseCode) {
+            if ([weakSelf.delegate respondsToSelector:@selector(appraiseViewController:orderObj:)]) {
+                [weakSelf.delegate appraiseViewController:weakSelf orderObj:weakSelf.orderObj];
+            }
+            [weakSelf onBackButton];
+            [NSString toast:@"评价成功"];
+        }else{
+            [NSString toast:@"评价失败"];
+        }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        [NSString toast:@"评价成功"];
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        [NSString toast:@"评价失败"];
+        
     }];
 }
 
@@ -112,11 +118,15 @@
 - (void)sendDriverinfobyMobile {
     WEAKSELF
     [OrderInfoObj sendDriverinfobyMobileWithParameters:[NSMutableDictionary dictionaryWithObject:self.orderObj.driverIdf forKey:@"vo.linkPhonef"] successBlock:^(HttpRequest *request, HttpResponse *response) {
-        OrderInfoObj *orderObj = response.responseModel;
-        weakSelf.driverNameLab.text = orderObj.driverNamef;
-        weakSelf.carNumLab.text = [NSString stringWithFormat:@"车牌号：%@",orderObj.carNof];
-        weakSelf.scoreLab.text = [NSString stringWithFormat:@"评分：%.1f",orderObj.scoref.doubleValue];
-        weakSelf.countLab.text = [NSString stringWithFormat:@"订单数：%@",orderObj.orderCountf];
+        if (response.responseCode) {
+            OrderInfoObj *orderObj = response.responseModel;
+            weakSelf.driverNameLab.text = orderObj.driverNamef;
+            weakSelf.carNumLab.text = [NSString stringWithFormat:@"车牌号：%@",orderObj.carNof];
+            weakSelf.scoreLab.text = [NSString stringWithFormat:@"评分：%.1f",orderObj.scoref.doubleValue];
+            weakSelf.countLab.text = [NSString stringWithFormat:@"订单数：%@",orderObj.orderCountf];
+        }else{
+            [NSString toast:@"数据请求异常"];
+        }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [NSString toast:response.responseMsg];
     }];

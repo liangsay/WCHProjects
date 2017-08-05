@@ -17,10 +17,13 @@
         DutytoDecideObj *dutyObj = response.responseModel;
         if (dutyObj) {
             [dutyObj cache];
+        }else{
+            [DutytoDecideObj clear];
         }
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [DutytoDecideObj clear];
         failedBlock(request,response);
     }];
 }

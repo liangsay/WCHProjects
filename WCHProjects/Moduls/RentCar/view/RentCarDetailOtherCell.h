@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 FOUNDATION_EXPORT NSString * const kRentCarDetailOtherCellID;
 
-@interface RentCarDetailOtherCell : UITableViewCell
+@interface RentCarDetailOtherCell : BaseTableCell
 @property (nonatomic, strong) IBOutlet UILabel *contentLab;
 - (void)setupCellInfoWith:(OrderInfoObj *)orderObj;
 @end

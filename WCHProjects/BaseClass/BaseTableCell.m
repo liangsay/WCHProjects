@@ -29,6 +29,11 @@ CGFloat const kBaseTableCellHeight = 44;
     
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])
@@ -37,6 +42,7 @@ CGFloat const kBaseTableCellHeight = 44;
         
         // 背景
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         self.backgroundColor = [UIColor whiteColor];
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.contentView.userInteractionEnabled = YES;

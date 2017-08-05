@@ -21,8 +21,14 @@
 @property (nonatomic, assign) BOOL isReciveState;
 
 @property (nonatomic, strong) OrderViewController *orderVC;
+
+@property (nonatomic, strong) OrderInfoObj *orderHuozhuObj;
+@property (nonatomic, strong) OrderInfoObj *orderSiJiObj;
+
 @property (nonatomic, strong) NSMutableArray *orders;
 @property (nonatomic, strong) UIButton *orderBtn;
+
+@property (nonatomic, strong) dispatch_source_t checkTimer;
 @end
 
 @implementation CallCarViewController
@@ -134,7 +140,7 @@
 - (void)orderViewController:(OrderViewController *)orderViewController orderObj:(OrderInfoObj *)orderObj isOrderRecive:(BOOL)isOrderRecive {
     self.isReciveState = YES;
     if (isOrderRecive) {
-        
+        [self reciveOrderWithOrderObj:orderObj];
     }
     
 }
@@ -167,7 +173,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CallCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCallCarTableViewCellID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Configure the cell...
     OrderInfoObj *orderObj = self.dataArray[indexPath.row];
     [cell setupCellInfoWith:orderObj];
@@ -236,6 +241,91 @@
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         
     }];
+}
+
+
+- (void)setupCheckOrderState {
+    if (self.checkTimer) {
+        dispatch_source_cancel(self.checkTimer);
+        self.checkTimer = nil;
+    }
+    
+    WEAKSELF
+    
+    //如果接单则不需要有新订单提醒
+    // 队列（队列时用来确定该定时器存在哪个队列中）
+    dispatch_queue_t queue = dispatch_get_main_queue();
+    
+    // 创建GCD定时器
+    self.checkTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    // 开始时间
+    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, 0 * NSEC_PER_SEC);
+    // 时间间隔
+    uint64_t interval = 1 * NSEC_PER_SEC;
+    
+    // 设置GCD定时器开始时间，间隔时间
+    dispatch_source_set_timer(self.checkTimer, start, interval, 0);
+    // GCD定时器处理回调方法
+    dispatch_source_set_event_handler(self.checkTimer, ^{
+        DLog(@"sendOrdertoReLoad---------%@", [NSThread currentThread]);
+        [weakSelf checkOrderWithOrderObj:weakSelf.orderHuozhuObj];
+    });
+    
+    dispatch_source_set_cancel_handler(self.checkTimer, ^{
+        NSLog(@"cancel");
+        
+    });
+    
+    // GCD定时器启动，默认是关闭的
+    dispatch_resume(self.checkTimer);
+}
+
+#pragma mark --司机接单后检查订单状态
+- (void)checkOrderWithOrderObj:(OrderInfoObj *)orderObj{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:orderObj.provincef forKey:@"vo.provincef"];
+    [params addUnEmptyString:orderObj.cityf forKey:@"vo.cityf"];
+    [params addUnEmptyString:orderObj.ownerIdf forKey:@"vo.ownerIdf"];
+    [params addUnEmptyString:orderObj.orderNof forKey:@"vo.orderNof"];
+    [params addUnEmptyString:@"YES" forKey:kIsHideLoadingView];
+    
+    WEAKSELF
+    [OrderInfoObj sendOrdertoReLoadWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        NSDictionary *dic = response.responseObject;
+        OrderInfoObj *order = [OrderInfoObj mj_objectWithKeyValues:dic];
+        //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+        if (order.order){
+            
+            OrderInfoObj *obj = order.order;
+            if (obj.statusf.integerValue==4){
+                if (weakSelf.checkTimer) {
+                    dispatch_source_cancel(weakSelf.checkTimer);
+                    weakSelf.checkTimer = nil;
+                }
+                //发送通知到订单中心，刷新订单列表
+                [kNotificationCenter() postNotificationName:kNotificationCenter_CancelOrder object:nil];
+                if (obj.cancelManf.integerValue==0) {
+                    [NSString toast:@"订单已被货主取消"];
+                }else{
+                    [NSString toast:@"订单已被司机取消"];
+                }
+            }
+        }
+    }];
+}
+
+#pragma mark --已接单后显示
+- (void)reciveOrderWithOrderObj:(OrderInfoObj *)orderObj {
+    self.orderHuozhuObj = orderObj;
+    
+    self.isReciveState = YES;
+    
+    //接单后实时检查订单状态
+    [self setupCheckOrderState];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

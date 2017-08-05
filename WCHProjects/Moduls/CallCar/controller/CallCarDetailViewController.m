@@ -159,11 +159,9 @@
     OrderInfoObj *orderObj = self.dataArray[indexPath.row];
     if (orderObj.isTxt) {
         RentCarDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:kRentCarDetailCellID forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         // Configure the cell...
         
         [cell setupCellInfoWith:orderObj];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.contentLab.tag = row;
         if (row == self.dataArray.count - 1) {
             cell.contentLab.userInteractionEnabled = YES;
@@ -173,18 +171,17 @@
             [cell.contentLab setKeyboardType:UIKeyboardTypeDefault];
         }
         cell.contentLab.delegate = self;
+        
         return cell;
     }else{
         CallCarDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:kCallCarDetailCellID forIndexPath:indexPath];
         cell.cellIndexPath = indexPath;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         // Configure the cell...
         cell.cDelegate = self;
         if (!orderObj.isMust) {
             orderObj.placeholder = [NSString stringWithFormat:@"请选择途经点%ld",row - 1];
         }
         [cell setupCellInfoWith:orderObj];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.contentLab.userInteractionEnabled = NO;
         
         return cell;

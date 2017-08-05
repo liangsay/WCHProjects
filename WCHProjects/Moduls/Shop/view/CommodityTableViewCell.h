@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface CommodityTableViewCell : UITableViewCell
+@interface CommodityTableViewCell : BaseTableCell
 
 FOUNDATION_EXPORT NSString * const kCommodityTableViewCellID;
 FOUNDATION_EXPORT CGFloat const kCommodityTableViewCellHeight;

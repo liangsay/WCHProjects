@@ -10,6 +10,11 @@
 #import "BaseTableCell.h"
 @class BaseViewController;
 #define kNotificationCenter_LOGINSUCCESS @"kNotificationCenter_LOGINSUCCESS"
+
+FOUNDATION_EXPORT NSString * const kNotificationCenter_CancelOrder;
+
+
+
 //url缓存策略
 #define kNSURLRequestCachePolicy NSURLRequestUseProtocolCachePolicy//NSURLRequestReturnCacheDataElseLoad/NSURLRequestReloadIgnoringLocalCacheData
 
@@ -33,6 +38,12 @@ typedef void(^LoginVCAction)(NSInteger index);
 //};
 
 
+@protocol BaseViewControllerDelegate <NSObject>
+
+- (void)baseViewController:(BaseViewController *)baseViewController isBack:(BOOL)isBack;
+
+@end
+
 @interface BaseViewController : UIViewController
 
 /**
@@ -45,11 +56,13 @@ typedef void(^LoginVCAction)(NSInteger index);
  */
 @property (nonatomic, assign) BOOL needLoginBeforePush;
 @property (nonatomic, strong) BaseTableCell *prototypeCell;
+@property (nonatomic, strong) NSIndexPath *cellIndexPath;
 @property (nonatomic, copy) ResponseDatablock responseAction;
 @property (nonatomic, strong) NSDictionary *param;
 @property (nonatomic, strong) UIWebView *bWebView;
 
 @property (nonatomic, strong) NSMutableArray *carTypeArray;
+@property (nonatomic, assign) id<BaseViewControllerDelegate> baseDelegate;
 #pragma mark - 返回按钮
 /**
  *  添加返回按钮

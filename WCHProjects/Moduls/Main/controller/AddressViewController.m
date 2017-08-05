@@ -260,6 +260,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     // Configure the cell...
     [cell setupCellInfoWith:_dataArray[indexPath.row]];
     [cell setBottomLineStyle:row<_dataArray.count-1?CellLineStyleRightLong:CellLineStyleLong];
+    
     return cell;
 }
 

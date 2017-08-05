@@ -20,6 +20,17 @@
 @end
 
 @implementation OrderListViewController
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self hideToolBar:NO];
+}
+
+- (void)hideToolBar:(BOOL)hide{
+    if (hide != self.rdv_tabBarController.tabBarHidden) {
+        [self.rdv_tabBarController setTabBarHidden:hide animated:YES];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,9 +72,9 @@
         [self.view addSubview:_segScroll];
     }];
     
-    
-    
 }
+
+
 #pragma mark - 数据源
 - (NSArray *)vcArr:(NSInteger)count {
     NSMutableArray *arr = [NSMutableArray array];

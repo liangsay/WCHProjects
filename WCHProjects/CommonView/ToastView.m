@@ -46,7 +46,7 @@ static ToastView *_displayingView;
 {
     if (!message || message.length == 0) return nil;
     
-    UIWindow *keyWin = [UIApplication sharedApplication].keyWindow;
+    UIWindow *keyWin = [UIApplication sharedApplication].windows.lastObject;
     
     ToastView *view = [[ToastView alloc] init];
     view.text = message;

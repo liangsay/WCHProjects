@@ -11,7 +11,7 @@ FOUNDATION_EXPORT NSString * const kOBuyCarTableViewCellID;
 FOUNDATION_EXPORT CGFloat const kOBuyCarTableViewCellHeight;
 
 
-@interface OBuyCarTableViewCell : UITableViewCell
+@interface OBuyCarTableViewCell : BaseTableCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *typeImgV;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;

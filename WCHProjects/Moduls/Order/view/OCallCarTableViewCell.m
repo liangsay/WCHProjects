@@ -22,7 +22,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.contentView.backgroundColor = [UIColor whiteColor];
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         [self setupViewsSet];
         [self setupContraintSet];
         self.hyb_lastViewInCell = self.lineV;
@@ -55,12 +55,16 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 
 
 - (void)setupViewsSet {
+    UIView *touchView = [UIView new];
+    touchView.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:touchView];
+    self.touchView = touchView;
     
     //添加长按手势
     UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
     longPressGesture.delegate = self;
     longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
-    [self.contentView addGestureRecognizer:longPressGesture];
+    [touchView addGestureRecognizer:longPressGesture];
     self.longPressGesture = longPressGesture;
 //    
 //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
@@ -139,6 +143,10 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 
 - (void)setupContraintSet{
     WEAKSELF
+    
+    [self.touchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(weakSelf.contentView);
+    }];
     
     [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
@@ -278,10 +286,11 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     
     if (statusf==1 || statusf==0) {//在已接单状态，司机或货主可取消订单
         //可以加入长按取消订单
+        self.touchView.hidden = 1;
         self.longPressGesture.enabled = YES;
     }else{
+        self.touchView.hidden = 0;
         self.longPressGesture.enabled = NO;
-        
     }
     if (statusf==3) {
         if (orderObj.isAssess.integerValue==0) {
@@ -321,7 +330,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OCallCarAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:kOCallCarAddressCellID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     [cell setupCellInfoWithObj:orderObj];

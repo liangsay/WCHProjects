@@ -59,7 +59,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OBuyCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kOBuyCarTableViewCellID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     [cell setupCellInfoWith:orderObj];

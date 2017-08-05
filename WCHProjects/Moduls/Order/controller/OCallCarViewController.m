@@ -11,7 +11,10 @@
 #import "OCallCarTableViewCell.h"
 #import "UITableViewCell+HYBMasonryAutoCellHeight.h"
 #import "AppraiseViewController.h"
-@interface OCallCarViewController ()<UITableViewDelegate,UITableViewDataSource,OCallCarTableViewCellDelegate>
+#import "MyPayTypeViewController.h"
+
+
+@interface OCallCarViewController ()<UITableViewDelegate,UITableViewDataSource,OCallCarTableViewCellDelegate,MyPayTypeViewDelegate,AppraiseViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -24,6 +27,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
     [self refreshHeaderData];
+    [kNotificationCenter() addObserver:self selector:@selector(refreshHeaderData) name:kNotificationCenter_CancelOrder object:nil];
 }
 
 - (void)setupTableViewSet {
@@ -75,9 +79,9 @@
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     cell.cellIndexPath = indexPath;
     cell.oDelegate = self;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setupCellInfoWithObj:orderObj];
     
+    [cell setupCellInfoWithObj:orderObj];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -87,19 +91,30 @@
     OrderInfoObj *orderObj = self.dataArray[indexPath.row];
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
-    if (statusf==3) {
-        if (statusf==3) {
-            if (orderObj.isAssess.integerValue==0) {
-                //未评价
-                AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
-                appraiseVC.orderObj =orderObj;
-                appraiseVC.viewType = 1;
-                kPushNav(appraiseVC, YES);
-            }else{
-                
-            }
+    //1行程（货主），2订单（司机）
+    NSInteger userTypef = [UserInfoObj model].userTypef.integerValue;
+    //    0 未评价 1 已评价
+    NSInteger isAssess = orderObj.isAssess.integerValue;
+    if (statusf==3 && userTypef > 0) {
+        if (isAssess==0 && userTypef == 1) {
+            //已支付
+            AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+            appraiseVC.orderObj =orderObj;
+            appraiseVC.viewType = userTypef;
+            appraiseVC.delegate = self;
+            appraiseVC.cellIndexPath = indexPath;
+            kPushNav(appraiseVC, YES);
+        }else{
+            [NSString toast:@"您已评价"];
         }
-        
+    }else if (statusf == 2) {
+        //未支付
+        MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
+        payVC.title = @"支付方式";
+        payVC.cellIndexPath = indexPath;
+        payVC.delegate = self;
+        payVC.orderObj = orderObj;
+        kPushNav(payVC, YES);
     }
 }
 
@@ -122,18 +137,20 @@
     }];
 }
 
-#pragma mark --OCallCarTableViewCellDelegate--------
+#pragma mark --AppraiseViewControllerDelegate-----------
+- (void)appraiseViewController:(AppraiseViewController *)appraiseViewController orderObj:(OrderInfoObj *)orderObj {
+    [self.dataArray replaceObjectAtIndex:appraiseViewController.cellIndexPath.row withObject:orderObj];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[appraiseViewController.cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+}
 
-- (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell tapGesture:(BOOL)tapGesture orderObj:(OrderInfoObj *)orderObj {
-    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
-//    NSInteger statusf = orderObj.statusf.integerValue;
-//    if (statusf==3) {
-//        //已支付
-//        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
-//        appraiseVC.orderObj =orderObj;
-//        appraiseVC.viewType = 1;
-//        kPushNav(appraiseVC, YES);
-//    }
+#pragma mark --MyPayTypeViewDelegate----------
+- (void)myPayTypeViewController:(MyPayTypeViewController *)myPayTypeViewController payStatus:(NSInteger)payStatus orderObj:(OrderInfoObj *)orderObj {
+    [self.dataArray replaceObjectAtIndex:myPayTypeViewController.cellIndexPath.row withObject:orderObj];
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[myPayTypeViewController.cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
 }
 
 - (void)oCallCarTableViewCell:(OCallCarTableViewCell *)oCallCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj {

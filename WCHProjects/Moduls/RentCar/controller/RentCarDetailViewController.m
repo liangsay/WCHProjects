@@ -168,7 +168,7 @@
     NSInteger row = indexPath.row;
     if (row < 4) {
         RentCarDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:kRentCarDetailCellID forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         // Configure the cell...
         OrderInfoObj *orderObj = self.dataArray[indexPath.row];
         [cell setupCellInfoWith:orderObj];
@@ -183,7 +183,7 @@
         return cell;
     }else{
         RentCarDetailOtherCell *cell = [tableView dequeueReusableCellWithIdentifier:kRentCarDetailOtherCellID forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         // Configure the cell...
         OrderInfoObj *orderObj = self.dataArray[indexPath.row];
         [cell setupCellInfoWith:orderObj];

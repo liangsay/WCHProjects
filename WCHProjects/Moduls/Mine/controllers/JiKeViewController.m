@@ -134,7 +134,7 @@
         [params addUnEmptyString:order.content forKey:key];
     }
     [params addUnEmptyString:[UserInfoObj model].trueNamef forKey:@"vo.trueNamef"];
-    [params addUnEmptyString:[StoretoLocObj model].idf forKey:@"vo.deptIdf"];
+    [params addUnEmptyString:[DutytoDecideObj model].storeIdf forKey:@"vo.deptIdf"];
     [params addUnEmptyString:[DutytoDecideObj model].userIdf forKey:@"vo.createIdf"];
     [OrderInfoObj sendCustomerdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.responseCode == 1) {

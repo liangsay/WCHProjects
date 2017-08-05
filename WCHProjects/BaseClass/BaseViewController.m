@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 
+NSString * const kNotificationCenter_CancelOrder = @"kNotificationCenter_CancelOrder";
 
 @interface BaseViewController ()
 

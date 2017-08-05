@@ -22,6 +22,7 @@ FOUNDATION_EXPORT CGFloat const kOCallCarTableViewCellHeight;
 @interface OCallCarTableViewCell : BaseTableCell
 @property (nonatomic, assign) id<OCallCarTableViewCellDelegate> oDelegate;
 @property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UIView *touchView;
 @property (strong, nonatomic) UIView *lineV;
 @property (nonatomic, strong) BaseTableView *tableView;
 

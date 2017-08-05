@@ -288,7 +288,7 @@
 #pragma mark --用于定时查询订单
 + (void)sendOrdertoReLoadWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                             failedBlock:(RequestSessionCompletedBlock)failedBlock {
-    [self sendRequestWithAPI:kAPI_OrdertoReLoad() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_OrdertoReLoad() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {

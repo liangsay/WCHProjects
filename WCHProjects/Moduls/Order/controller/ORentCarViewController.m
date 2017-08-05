@@ -26,6 +26,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
     [self refreshHeaderData];
+    [kNotificationCenter() addObserver:self selector:@selector(refreshHeaderData) name:kNotificationCenter_CancelOrder object:nil];
 }
 
 - (void)setupTableViewSet {
@@ -69,10 +70,8 @@
     return height;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ORentCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kORentCarTableViewCellID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     cell.cellIndexPath = indexPath;
@@ -84,7 +83,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
     OrderInfoObj *orderObj = self.dataArray[row];
-    if ([orderObj.statusf isEqualToString:@"0"]) {
+    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    NSInteger statusf = orderObj.statusf.integerValue;
+    if (statusf == 2) {
         MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
         payVC.title = @"支付方式";
         payVC.delegate = self;

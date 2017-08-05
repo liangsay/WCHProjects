@@ -34,8 +34,7 @@ CGFloat const kCouponTableCellHeight = 70;
         self.backgroundView.backgroundColor = [UIColor backgroundColor];
         self.backgroundBtnView.userInteractionEnabled = YES;
         [self.backgroundBtnView setBackgroundImageColor:[UIColor mainColor]];
-        
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+       
     }
     return self;
 }

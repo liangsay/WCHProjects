@@ -72,11 +72,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RentCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRentCarTableViewCellID forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     // Configure the cell...
     OrderInfoObj *orderObj = self.dataArray[indexPath.row];
     [cell setupCellInfoWith:orderObj];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 

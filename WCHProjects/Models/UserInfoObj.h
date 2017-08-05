@@ -12,6 +12,7 @@
 
 
 @interface UserInfoObj : BaseModel
+@property(nonatomic, strong)NSString *storeIdf;
 @property(nonatomic, strong)NSString *userIdf;
 @property(nonatomic, strong)NSString *balancef;//0,
 @property(nonatomic, strong)NSString *checked;//false,

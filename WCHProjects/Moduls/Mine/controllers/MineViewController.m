@@ -27,6 +27,7 @@
 #import <UShareUI/UShareUI.h>
 #import "JiKeViewController.h"
 #import "PunchingTCViewController.h"
+#import "DutytoDecideObj.h"
 
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate>
 {
@@ -100,6 +101,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //#warning Incomplete implementation, return the number of sections
+    if ([DutytoDecideObj model]==nil) {
+        return 1;
+    }
     return 2;
 }
 

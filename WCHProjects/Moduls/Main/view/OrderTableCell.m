@@ -26,7 +26,7 @@ CGFloat const kOrderTableCellHeight = 91;
         self.backgroundColor = [UIColor backgroundColor];
         self.contentView.backgroundColor = [UIColor backgroundColor];
         self.backgroundView.backgroundColor = [UIColor backgroundColor];
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         [self.backgroundBtnView setBackgroundImageColor:[UIColor whiteColor]];
         [self.backgroundBtnView setTitleColor:[UIColor fontGray] forState:UIControlStateHighlighted];
     }

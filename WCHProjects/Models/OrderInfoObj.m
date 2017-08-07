@@ -509,4 +509,17 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         failedBlock(request,response);
     }];
 }
+
+#pragma mark --添加到购物车
++ (void)sendMallorderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                              failedBlock:(RequestSessionCompletedBlock)failedBlock{
+    [self sendRequestWithAPI:kAPI_MallorderdoInsert() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"数据请求异常"];
+        failedBlock(request,response);
+    }];
+}
+
 @end

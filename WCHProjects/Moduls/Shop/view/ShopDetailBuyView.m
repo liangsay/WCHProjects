@@ -32,8 +32,12 @@
     [showView.shopImgV sd_setImageWithURL:imgUrl placeholderImage:nil];
     [showView setupViewSet];
     [kWindow addSubview:showView];
+    [showView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.offset(0);
+    }];
     [showView layoutIfNeeded];
     [showView show];
+    
     return showView;
 }
 
@@ -55,12 +59,12 @@
 }
 
 - (void)setCount:(NSInteger)count {
-    _count = count;
     if (count>1) {
-        self.downBtn.enabled = YES;
+        _count = 1;
     }else{
-        self.downBtn.enabled = NO;
     }
+    _count = count;
+    
 }
 
 //立即购买
@@ -97,6 +101,7 @@
 
 
 - (void)show {
+    
     WEAKSELF
     weakSelf.alertViewBottom.constant = 0;
     [UIView animateWithDuration:0.35 animations:^{

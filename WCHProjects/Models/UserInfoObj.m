@@ -151,4 +151,24 @@
 //        failedBlock(request,response);
 //    }];
 //}
+
+
+#pragma mark --查询个人打卡信息
+/**
+ 查询个人打卡信息
+ 
+ @param parameters <#parameters description#>
+ @param successBlock <#successBlock description#>
+ @param failedBlock <#failedBlock description#>
+ */
++ (void)sendDutytoMobileWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                           failedBlock:(RequestSessionCompletedBlock)failedBlock{
+    [self sendRequestWithAPI:kAPI_DutytoMobile() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"数据请求异常"];
+        failedBlock(request,response);
+    }];
+}
 @end

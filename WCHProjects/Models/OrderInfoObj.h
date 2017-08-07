@@ -364,4 +364,9 @@
 #pragma mark --商品参数
 + (void)sendMallgoodstoViewWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                               failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --添加到购物车
++ (void)sendMallorderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
 @end

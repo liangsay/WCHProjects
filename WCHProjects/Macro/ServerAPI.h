@@ -307,3 +307,13 @@ CG_INLINE NSString *kAPI_CustomerdoInsert(){
 CG_INLINE NSString *kAPI_MallgoodstoView() {
     return @"MallgoodstoView.shtml";
 }
+
+#pragma mark --添加到购物车
+CG_INLINE NSString *kAPI_MallorderdoInsert() {
+    return @"MallorderdoInsert.shtml";
+}
+
+#pragma mark --查询个人打卡信息
+CG_INLINE NSString *kAPI_DutytoMobile() {
+    return @"DutytoMobile.shtml";
+}

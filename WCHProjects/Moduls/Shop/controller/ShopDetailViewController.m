@@ -11,7 +11,8 @@
 #import "ShopDetailWebViewController.h"
 #import "ShopCommentViewController.h"
 #import "ShopDetailBuyView.h"
-@interface ShopDetailViewController ()
+#import "MyPayTypeViewController.h"
+@interface ShopDetailViewController ()<MyPayTypeViewDelegate>
 {
     NSArray *list;
 }
@@ -130,11 +131,55 @@
 }
 
 - (IBAction)buyBtnAction:(id)sender {
+    WEAKSELF
     [ShopDetailBuyView showAlertViewInVC:self orderObj:self.orderObj count:1 complete:^(NSInteger count) {
-        
+        [weakSelf sendMallorderdoInsert:count];
     }];
 }
 
+- (void)sendMallorderdoInsert:(NSInteger)count {
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:kIntegerToString(count) forKey:@"vo.numf"];
+    [params addUnEmptyString:@"0" forKey:@"vo.statusf"];
+    [params addUnEmptyString:self.orderObj.orderIdf forKey:@"vo.orderIdf"];
+    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.userIdf"];
+    [params addUnEmptyString:self.orderObj.idf forKey:@"vo.goodsIdf"];
+    [OrderInfoObj sendMallorderdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.responseCode) {
+            //添加购物车成功
+            [weakSelf goPayAction];
+        }else{
+            [NSString toast:@"添加到购物车失败"];
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"网络请求异常"];
+    }];
+}
+
+- (void)goPayAction {
+    //未支付
+    MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
+    payVC.title = @"支付方式";
+    payVC.delegate = self;
+    payVC.orderObj = self.orderObj;
+    kPushNav(payVC, YES);
+}
+
+#pragma mark --MyPayTypeViewDelegate----------
+- (void)myPayTypeViewController:(MyPayTypeViewController *)myPayTypeViewController payStatus:(NSInteger)payStatus orderObj:(OrderInfoObj *)orderObj {
+    
+}
+//下单
+/*
+ http://www.66wch.com.cn/MallorderdoInsert.shtml
+ vo.numf	1
+ requestType	app
+ vo.statusf	0
+ vo.orderIdf	3101501931455437
+ vo.userIdf	13820633188
+ vo.goodsIdf	0a3d5b19-5ac8-4f7d-a17a-516d2b5b4991
+ */
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

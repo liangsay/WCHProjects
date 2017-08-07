@@ -13,6 +13,7 @@
 #import "OrderViewController.h"
 #import "UIButton+EnlargeTouchArea.h"
 #import "CallCarDetailViewController.h"
+#import "DutytoDecideObj.h"
 @interface CallCarViewController () <UITableViewDelegate,UITableViewDataSource,OrderViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -40,6 +41,8 @@
     [self setupTableViewSet];
     [self sendFreighttoCall_API];
     [self setupOrderCountSet];
+    
+    [self sendLogin_API];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.orderBtn];
     [self.orderBtn setTitle:@"0" forState:UIControlStateNormal];
 }
@@ -326,6 +329,27 @@
     [self setupCheckOrderState];
     
     
+}
+
+- (void)sendLogin_API {
+    if (kIsObjectEmpty([UserInfoObj model].mobilePhonef)) {
+        return;
+    }
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       [UserInfoObj model].mobilePhonef,@"vo.userNamef", nil];
+    [UserInfoObj sendLoginRequestWithParameters:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"mobilef"];
+        [DutytoDecideObj sendDutytoDecideWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+            
+        } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+            
+        }];
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:response.responseMsg];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

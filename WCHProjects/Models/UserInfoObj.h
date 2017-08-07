@@ -12,6 +12,8 @@
 
 
 @interface UserInfoObj : BaseModel
+@property(nonatomic, strong)NSString *startTimef;
+@property(nonatomic, strong)NSString *endTimef;
 @property(nonatomic, strong)NSString *storeIdf;
 @property(nonatomic, strong)NSString *userIdf;
 @property(nonatomic, strong)NSString *balancef;//0,
@@ -31,6 +33,32 @@
 
 @property(nonatomic, strong)NSString *provincef;
 @property(nonatomic, strong)NSString *cityf;
+
+@property(nonatomic, strong)NSString *amDistf;//"1876.98";
+@property(nonatomic, strong)NSString *amFinef;//40;
+@property(nonatomic, strong)NSString *amTimeDif;//152;
+@property(nonatomic, strong)NSString *amTimef;//"2017-08-07 08:30:00";
+//@property(nonatomic, strong)NSString *cityf;//"天津市";
+@property(nonatomic, strong)NSString *createIdf;//"d24845ab-4662-4ba7-9a18-009fdfa2139f";
+@property(nonatomic, strong)NSString *createTimef;//"2017-08-07";
+//@property(nonatomic, strong)NSString *dataSortNumf;//1502074943122;
+@property(nonatomic, strong)NSString *deptIdf;//"2_38";
+@property(nonatomic, strong)NSString *endLocationf;//"";
+@property(nonatomic, strong)NSString *endPicf;//"";
+//@property(nonatomic, strong)NSString *endTimef;//"2017-08-07 11:11:31";
+@property(nonatomic, strong)NSString *idNumf;//120105195908051535;
+//@property(nonatomic, strong)NSString *idf;//"aa06487a-1241-4940-af32-c52f02bd3fda";
+@property(nonatomic, strong)NSString *mobilef;//13820633188;
+@property(nonatomic, strong)NSString *pmDistf;//"1876.98";
+@property(nonatomic, strong)NSString *pmFinef;//40;
+@property(nonatomic, strong)NSString *pmTimeDif;//378;
+//@property(nonatomic, strong)NSString *provincef;//"天津市";
+@property(nonatomic, strong)NSString *startLocationf;//"";
+@property(nonatomic, strong)NSString *startPicf;//"";
+//@property(nonatomic, strong)NSString *startTimef;//"2017-08-07 11:02:23";
+@property(nonatomic, strong)NSString *storeNamef;//"天津韩家墅店";
+//@property(nonatomic, strong)NSString *trueNamef;//"安志伟";
+//@property(nonatomic, strong)NSString *userIdf;//"d24845ab-4662-4ba7-9a18-009fdfa2139f";
 
 
 
@@ -92,6 +120,17 @@
 #pragma mark --下班打卡
 +(void)sendDutydoOutWorkWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                           failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --查询个人打卡信息
+/**
+ 查询个人打卡信息
+ 
+ @param parameters <#parameters description#>
+ @param successBlock <#successBlock description#>
+ @param failedBlock <#failedBlock description#>
+ */
++ (void)sendDutytoMobileWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                           failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end
 
 #pragma mark --楼盘对象----------------------------------------------------------------------

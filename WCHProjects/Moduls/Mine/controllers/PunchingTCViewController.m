@@ -15,6 +15,13 @@
 
 @interface PunchingTCViewController ()<BMKLocationServiceDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *distanceLab;
+@property (weak, nonatomic) IBOutlet UILabel *locationLab;
+@property (weak, nonatomic) IBOutlet UILabel *ontTimeLab;
+@property (weak, nonatomic) IBOutlet UILabel *offTimeLab;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *onTimeTopLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *offTimeTopLayoutConstraint;
+
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
 @property (weak, nonatomic) IBOutlet UIButton *onWorkBtn;
 @property (weak, nonatomic) IBOutlet UIButton *offWorkBtn;
@@ -25,6 +32,7 @@
 @property (nonatomic, strong) BMKLocationService *locService;
 
 @property (nonatomic, assign) NSInteger workType;//打卡类型：1上班，2下班
+@property (nonatomic, strong) UserInfoObj *workObj;
 @end
 
 @implementation PunchingTCViewController
@@ -37,8 +45,11 @@
     [self.offWorkBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     _workType = 0;
     [self startLocationSet];
-    
-    
+    self.onTimeTopLayoutConstraint.constant = 0;
+    self.offTimeTopLayoutConstraint.constant = 0;
+    self.onWorkBtn.enabled = NO;
+    self.offWorkBtn.enabled = NO;
+    [self sendDutytoMobile_API];
 }
 
 //重新定位
@@ -152,6 +163,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         if (locations && locations.count>1) {
             NSString *latitude = locations[0];
             NSString *longitude = locations[1];
+            self.locationLab.text = [NSString stringWithFormat:@"您的当前位置是：%.6f,%.6f",latitude.floatValue,longitude.floatValue];
             BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue));
             BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude));
             CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
@@ -223,6 +235,40 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     }];
 }
 
+#pragma mark --查询个人打卡信息
+/**
+ 查询个人打卡信息
+ */
+- (void)sendDutytoMobile_API {
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"mobile"];
+    [UserInfoObj sendDutytoMobileWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        weakSelf.workObj = response.responseModel;
+        if (weakSelf.workObj) {
+            if (!kIsObjectEmpty(weakSelf.workObj.startTimef)) {
+                weakSelf.ontTimeLab.text = [NSString stringWithFormat:@"上班时间：%@",weakSelf.workObj.startTimef];
+                weakSelf.onTimeTopLayoutConstraint.constant = 10;
+                weakSelf.onWorkBtn.enabled = NO;
+            }else{
+                weakSelf.onTimeTopLayoutConstraint.constant = 0;
+                weakSelf.ontTimeLab.text = @"";
+                weakSelf.onWorkBtn.enabled = YES;
+            }
+            if (!kIsObjectEmpty(weakSelf.workObj.endTimef)) {
+                weakSelf.offTimeTopLayoutConstraint.constant = 10;
+                weakSelf.offTimeLab.text = [NSString stringWithFormat:@"下班时间：%@",weakSelf.workObj.endTimef];
+                weakSelf.offWorkBtn.enabled = NO;
+            }else{
+                weakSelf.offTimeTopLayoutConstraint.constant = 0;
+                weakSelf.offTimeLab.text = @"";
+                weakSelf.offWorkBtn.enabled = YES;
+            }
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:response.responseMsg];
+    }];
+}
 
 - (void)didFailToLocateUserWithError:(NSError *)error {
     [NSString toast:@"获取位置失败"];

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableCell.h"
 @class BaseViewController;
+
+
 #define kNotificationCenter_LOGINSUCCESS @"kNotificationCenter_LOGINSUCCESS"
 
 FOUNDATION_EXPORT NSString * const kNotificationCenter_CancelOrder;

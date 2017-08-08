@@ -14,6 +14,11 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "SearchAddressViewController.h"
 #import "AddressViewController.h"
+#import <BaiduMapAPI_Location/BMKLocationComponent.h>
+
+UIKIT_EXTERN CLLocationDistance BMKMetersBetweenMapPoints(BMKMapPoint a, BMKMapPoint b);
+UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordinate);
+
 @interface CallCarDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,SearchAddressViewControllerDelegate,CallCarDetailCellDelegate,AddressViewControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
@@ -23,6 +28,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *descLab;
 @property (nonatomic, strong) NSString *outTime;//用车时间
 @property (nonatomic, strong) NSIndexPath *selIndexPath;
+@property (nonatomic, strong) OrderInfoObj *bdtoOrderObj;
+
+@property (nonatomic, assign) CLLocationCoordinate2D startCoordinate;
+@property (nonatomic, assign) CLLocationCoordinate2D endCoordinate;
+
 @end
 
 @implementation CallCarDetailViewController
@@ -37,6 +47,7 @@
     [self.submitBtn setLayerCornerRadius:5];
     [self setupDataSet];
     [self setupTableSet];
+    [self sendBdtoApp_API];
     
     if (kScreenWidth == 320) {
         self.descLab.text = @"添加途经点请安卸货顺序填写";
@@ -320,8 +331,10 @@
     OrderInfoObj *orderObj = self.dataArray[self.selIndexPath.row];
     orderObj.content = searchObj.detail;
     if (self.selIndexPath.row==1) {
+        self.startCoordinate = searchObj.coordinate;
         orderObj.startLocationf = [NSString stringWithFormat:@"%.6f,%.6f",searchObj.coordinate.latitude,searchObj.coordinate.longitude];
     }else if (self.selIndexPath.row == self.dataArray.count - 2){
+        self.endCoordinate = searchObj.coordinate;
         orderObj.endLocationf = [NSString stringWithFormat:@"%.6f,%.6f",searchObj.coordinate.latitude,searchObj.coordinate.longitude];
     }
     [self.dataArray replaceObjectAtIndex:self.selIndexPath.row withObject:orderObj];
@@ -411,13 +424,18 @@
  }
  */
 - (void)sendOrderdoInsert{
-    NSString *kmCountf = @"";
-    NSString *pricef = @"";
+    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.startCoordinate.latitude, self.startCoordinate.longitude));
+    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.endCoordinate.latitude, self.endCoordinate.longitude));
+    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
+    
+    NSString *kmCountf = [NSString stringWithFormat:@"%.3f",distance/1000];
+    double pricef = 0.0;
     OrderInfoObj *timeObj = self.dataArray[0];
     OrderInfoObj *startObj = self.dataArray[1];
     OrderInfoObj *endObj = self.dataArray[self.dataArray.count - 2];
     OrderInfoObj *tonObj = self.dataArray[self.dataArray.count - 1];
-    
+    //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
+    pricef = (kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
     NSMutableArray *nodes = [NSMutableArray array];
     
     if (self.dataArray.count > 4) {
@@ -431,6 +449,8 @@
                 [orderDic addUnEmptyString:childObj.modelf forKey:@"phonef"];
                 [orderDic addUnEmptyString:childObj.positionf forKey:@"positionf"];
                 [nodes addObject:orderDic];
+                //每加一个节点+15元
+                pricef += 15;
             }
         }
     }
@@ -460,13 +480,23 @@
     [params addUnEmptyString:startObj.startLocationf forKey:@"vo.startLocationf"];
     [params addUnEmptyString:endObj.endLocationf forKey:@"vo.endLocationf"];
     [params addUnEmptyString:kmCountf forKey:@"vo.kmCountf"];
-    [params addUnEmptyString:pricef forKey:@"vo.pricef"];
+    [params addUnEmptyString:kDoubleToString(pricef) forKey:@"vo.pricef"];
     [params addUnEmptyString:@"0" forKey:@"vo.statusf"];
     [params addUnEmptyString:@"0" forKey:@"vo.payStatusf"];
     [params addUnEmptyString:tonObj.content forKey:@"vo.tonf"];
     [params addUnEmptyString:self.orderObj.namef forKey:@"vo.modelNamef"];
     [params addUnEmptyString:nodeStr forKey:@"vo.nodes"];
     [OrderInfoObj sendOrderdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
+    }];
+}
+
+#pragma mark --查询车型的节点价
+- (void)sendBdtoApp_API {
+    WEAKSELF
+    [OrderInfoObj sendBdtoAppWithParameters:[NSMutableDictionary dictionaryWithObject:@"" forKey:@"typeIdf"] successBlock:^(HttpRequest *request, HttpResponse *response) {
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         

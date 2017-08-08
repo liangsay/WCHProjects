@@ -317,3 +317,8 @@ CG_INLINE NSString *kAPI_MallorderdoInsert() {
 CG_INLINE NSString *kAPI_DutytoMobile() {
     return @"DutytoMobile.shtml";
 }
+
+#pragma mark --查询车型的节点价
+CG_INLINE NSString *kAPI_BdtoApp() {
+    return @"BdtoApp.shtml";
+}

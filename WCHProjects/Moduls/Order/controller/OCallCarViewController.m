@@ -91,6 +91,7 @@
     OrderInfoObj *orderObj = self.dataArray[indexPath.row];
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
+    
     //1行程（货主），2订单（司机）
     NSInteger userTypef = [UserInfoObj model].userTypef.integerValue;
     //    0 未评价 1 已评价

@@ -282,20 +282,21 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     self.priceLab.attributedText = priceAtt;
     
     self.statueLab.text = orderObj.statusTextf;
+//    (isAssess=0 未评价  1=已评价)
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
     
     if (statusf==1 || statusf==0) {//在已接单状态，司机或货主可取消订单
         //可以加入长按取消订单
-        self.touchView.hidden = 1;
+        self.touchView.hidden = NO;
         self.longPressGesture.enabled = YES;
     }else{
-        self.touchView.hidden = 0;
+        self.touchView.hidden = YES;
         self.longPressGesture.enabled = NO;
     }
     if (statusf==3) {
         if (orderObj.isAssess.integerValue==0) {
-            self.statueLab.text = @"未评价";
+            self.statueLab.text = @"待评价";
         }else{
             self.statueLab.text = @"已评价";
         }

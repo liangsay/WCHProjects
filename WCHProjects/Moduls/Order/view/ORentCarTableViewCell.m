@@ -19,10 +19,10 @@ CGFloat const kORentCarTableViewCellHeight = 145;
     self.addressLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15;
 
     //添加长按手势
-    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
-    
-    longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
-    [self.pressView addGestureRecognizer:longPressGesture];
+//    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+//    
+//    longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
+//    [self.pressView addGestureRecognizer:longPressGesture];
 }
 
 
@@ -44,10 +44,10 @@ CGFloat const kORentCarTableViewCellHeight = 145;
 
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj {
     self.orderObj = orderObj;
-    self.nameLab.text = kIsObjectEmpty(orderObj.vehicleModelTypef)?@"--":orderObj.vehicleModelTypef;
+    self.nameLab.text = [NSString stringWithFormat:@"%@[￥:%@元]",kIsObjectEmpty(orderObj.vehicleModelTypef)?@"--":orderObj.vehicleModelTypef,orderObj.rentMoneyf];
     self.startLab.text = orderObj.pickupDatef;
     self.endLab.text = orderObj.returnDatef;
-    self.typeLab.text = orderObj.statusTextf;
+    
     NSString *address = orderObj.returnLocationf;
     NSString *addressStr = [NSString stringWithFormat:@"取/还车地址:%@",address];
     NSMutableAttributedString *addrAtt = [[NSMutableAttributedString alloc] initWithString:addressStr];
@@ -56,8 +56,14 @@ CGFloat const kORentCarTableViewCellHeight = 145;
     [addrAtt setTextColor:[UIColor fontBlack] range:addressRange];
     [addrAtt setFont:[UIFont fontAssistant]];
     self.addressLab.attributedText = addrAtt;
-//    0：未支付  1:已支付 -1：已取消
-    if (orderObj.statusf.integerValue == -1) {
+    //    0=待支付 1=已付款 2=订单结束  (isAssess=0 未评价  1=已评价) -1=订单作废
+    NSInteger statusf = orderObj.statusf.integerValue;
+//    if (statusf==0) {
+//        self.typeLab.text = [NSString stringWithFormat:@"待支付金额:%@元",orderObj.rentMoneyf];
+//    }else{
+        self.typeLab.text = orderObj.statusTextf;
+//    }
+    if (statusf == -1) {
 
         self.pressView.alpha = 0;
     }else{

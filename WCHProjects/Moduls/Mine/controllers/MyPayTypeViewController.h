@@ -16,6 +16,7 @@
 @end
 
 @interface MyPayTypeViewController : BaseViewController
+@property (nonatomic, assign) NSInteger viewType;//3、租车；4、购车
 @property (nonatomic, strong) OrderInfoObj *orderObj;
 @property (nonatomic, assign) id<MyPayTypeViewDelegate> delegate;
 @end

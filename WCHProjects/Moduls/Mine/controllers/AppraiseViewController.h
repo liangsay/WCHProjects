@@ -18,6 +18,6 @@
 
 @interface AppraiseViewController : BaseViewController
 @property (nonatomic, strong) OrderInfoObj *orderObj;
-@property (nonatomic, assign) NSInteger viewType;//1行程（货主），2订单（司机）
+@property (nonatomic, assign) NSInteger viewType;//1行程（货主），2订单（司机）3、租车；4、购车
 @property (nonatomic, assign) id<AppraiseViewControllerDelegate> delegate;
 @end

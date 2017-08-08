@@ -44,7 +44,7 @@ CGFloat const kOBuyCarTableViewCellHeight = 90;
     self.priceLab.attributedText = priceAtt;
     
     self.numLab.text = [NSString stringWithFormat:@"购买数量:%@辆",orderObj.numf];
-    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    // 0=未支付 1=已支付 2=已交付 (isAssess=0 未评价  1=已评价) -1=已取消
     NSInteger statusf = orderObj.statusf.integerValue;
     if (statusf==1) {
         //已付款

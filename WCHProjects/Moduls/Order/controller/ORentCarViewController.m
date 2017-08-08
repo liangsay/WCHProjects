@@ -85,31 +85,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = indexPath.row;
     OrderInfoObj *orderObj = self.dataArray[row];
-    //0：未支付  1:已支付 -1：已取消
+    //    0=待支付 1=已付款 2=订单结束  (isAssess=0 未评价  1=已评价) -1=订单作废
     NSInteger statusf = orderObj.statusf.integerValue;
-    //1行程（货主），2订单（司机）
-    NSInteger userTypef = [UserInfoObj model].userTypef.integerValue;
+    
     //    0 未评价 1 已评价
     NSInteger isAssess = orderObj.isAssess.integerValue;
-    if (statusf==1 && userTypef > 0) {
-//        if (isAssess==0) {
-//            //已支付
-//            AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
-//            appraiseVC.orderObj =orderObj;
-//            appraiseVC.viewType = userTypef;
-//            appraiseVC.delegate = self;
-//            appraiseVC.cellIndexPath = indexPath;
-//            kPushNav(appraiseVC, YES);
-//            
-//        }else{
-//            [NSString toast:@"您已评价"];
-//        }
+    if (statusf==2) {
+        if (isAssess==0) {
+            //已支付
+            AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+            appraiseVC.orderObj =orderObj;
+            appraiseVC.viewType = 3;
+            appraiseVC.delegate = self;
+            appraiseVC.cellIndexPath = indexPath;
+            kPushNav(appraiseVC, YES);
+            
+        }else{
+            [NSString toast:@"您已评价"];
+        }
     }else if (statusf == 0) {
         //未支付
         MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
         payVC.title = @"支付方式";
         payVC.cellIndexPath = indexPath;
         payVC.delegate = self;
+        orderObj.pricef = orderObj.rentMoneyf;
         payVC.orderObj = orderObj;
         kPushNav(payVC, YES);
     }

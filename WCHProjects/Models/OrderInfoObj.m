@@ -522,4 +522,15 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
     }];
 }
 
+#pragma mark --查询车型的节点价
++ (void)sendBdtoAppWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                failedBlock:(RequestSessionCompletedBlock)failedBlock{
+    [self sendRequestWithAPI:kAPI_BdtoApp() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"数据请求异常"];
+        failedBlock(request,response);
+    }];
+}
 @end

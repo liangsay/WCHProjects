@@ -107,15 +107,22 @@
     self.isFinish = YES;
 //    kAppDelegate.mainViewController.orderNof = @"";
     [self sendDiscoupontoUse];
+    NSInteger statusf = self.orderObj.statusf.integerValue;
     if (self.delegate && [self.delegate respondsToSelector:@selector(myPayTypeViewController:payStatus:orderObj:)]) {
-        self.orderObj.statusf = @"3";
-        self.orderObj.statusTextf = @"已支付";
+        
+        if (self.viewType==3) {
+            self.orderObj.statusf = @"1";
+            self.orderObj.statusTextf = @"已付款";
+        }else if (self.viewType==4){
+            self.orderObj.statusf = @"1";
+            self.orderObj.statusTextf = @"已支付";
+        }
         [self.delegate myPayTypeViewController:self payStatus:1 orderObj:self.orderObj];
     }
     //已完成支付才可以评价
     AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
     appraiseVC.orderObj =self.orderObj;
-    appraiseVC.viewType = 1;
+    appraiseVC.viewType = self.viewType;
     kPushNav(appraiseVC, YES);
 }
 

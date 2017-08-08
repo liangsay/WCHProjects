@@ -9,7 +9,7 @@
 #import "BaseModel.h"
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
-
+@property (nonatomic, strong) NSString *rentMoneyf;
 @property (nonatomic, strong) NSString *maxCountf;
 @property (nonatomic, assign) CGFloat cellheight;
 @property (nonatomic, strong) NSMutableArray *orderPointList;
@@ -369,4 +369,7 @@
 + (void)sendMallorderdoInsertWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                                 failedBlock:(RequestSessionCompletedBlock)failedBlock;
 
+#pragma mark --查询车型的节点价
++ (void)sendBdtoAppWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                      failedBlock:(RequestSessionCompletedBlock)failedBlock;
 @end

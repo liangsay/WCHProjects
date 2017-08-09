@@ -93,7 +93,7 @@
     return cell;
 }
 
-- (void)cell:(BaseTableCell *)cell tableView:(UITableView *)tableView didSelectAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger section = indexPath.section;
     
     OrderInfoObj *obj = self.dataArray[section];
@@ -107,21 +107,21 @@
     
     if (obj.statusf.integerValue==2) {
         [self sendDiscoupontoUserWithOrderObj:obj];
-//        MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
-//        payVC.title = @"支付方式";
-//        payVC.delegate = self;
-//        payVC.orderObj = obj;
-//        kPushNav(payVC, YES);
+        //        MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
+        //        payVC.title = @"支付方式";
+        //        payVC.delegate = self;
+        //        payVC.orderObj = obj;
+        //        kPushNav(payVC, YES);
     }else{
         if (!assessDriverf && statusf==3) {
             AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
             appraiseVC.orderObj =obj;
             appraiseVC.viewType=1;
+            appraiseVC.objTypef = 1;
             kPushNav(appraiseVC, YES);
         }
-//        [NSString toast:obj.statusTextf];
+        //        [NSString toast:obj.statusTextf];
     }
-    
 }
 
 #pragma mark --MyRouteTableCellDelegate
@@ -185,6 +185,9 @@
                 MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
                 payVC.title = @"支付方式";
                 payVC.delegate = self;
+                payVC.payTitle = @"运费";
+                payVC.isCoupon = YES;
+                payVC.tradeTypef = 1;
                 payVC.orderObj = orderObj;
                 kPushNav(payVC, YES);
                 //                    [weakSelf.timer invalidate];
@@ -193,18 +196,16 @@
             MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
             payVC.title = @"支付方式";
             payVC.delegate = self;
+            payVC.payTitle = @"运费";
+            payVC.isCoupon = YES;
+            payVC.tradeTypef = 1;
             payVC.orderObj = orderObj;
             kPushNav(payVC, YES);
             //            [weakSelf.timer invalidate];
         }
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
-        payVC.title = @"支付方式";
-        payVC.delegate = self;
-        payVC.orderObj = orderObj;
-        kPushNav(payVC, YES);
-        //        [weakSelf.timer invalidate];
+        
     }];
 }
 
@@ -220,16 +221,12 @@
         AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
         appraiseVC.orderObj =orderObj;
         appraiseVC.viewType = 1;
+        appraiseVC.objTypef = 1;
         kPushNav(appraiseVC, YES);
         [NSString toast:@"您的订单已用优惠券抵扣"];
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        //已完成支付才可以评价
-        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
-        appraiseVC.orderObj =orderObj;
-        appraiseVC.viewType = 1;
-        kPushNav(appraiseVC, YES);
-        [NSString toast:@"您的订单已用优惠券抵扣"];
+        
     }];
 }
 

@@ -55,6 +55,13 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         self.descLab.text = @"添加途经点请安卸货顺序填写，以便估计价格";
     }
 }
+
+- (OrderInfoObj *)bdtoOrderObj {
+    if (!_bdtoOrderObj) {
+        _bdtoOrderObj = [OrderInfoObj new];
+    }
+    return _bdtoOrderObj;
+}
 #pragma mark --UIButtonAction------------------
 //添加途经点按钮事件
 - (IBAction)addBtnAction:(UIButton *)sender {
@@ -450,7 +457,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
                 [orderDic addUnEmptyString:childObj.positionf forKey:@"positionf"];
                 [nodes addObject:orderDic];
                 //每加一个节点+15元
-                pricef += 15;
+                pricef += self.bdtoOrderObj.bdValuef.doubleValue;
             }
         }
     }
@@ -496,7 +503,18 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
 #pragma mark --查询车型的节点价
 - (void)sendBdtoApp_API {
     WEAKSELF
-    [OrderInfoObj sendBdtoAppWithParameters:[NSMutableDictionary dictionaryWithObject:@"" forKey:@"typeIdf"] successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [OrderInfoObj sendBdtoAppWithParameters:[NSMutableDictionary dictionaryWithObject:@"aab84c27-0638-4701-8adf-52d6b2eecfc5" forKey:@"typeIdf"] successBlock:^(HttpRequest *request, HttpResponse *response) {
+        NSMutableArray *datas = [NSMutableArray arrayWithArray:response.responseModel];
+        NSInteger isColdf = weakSelf.orderObj.isColdf.integerValue;
+        for (OrderInfoObj *obj in datas) {
+            if (obj.sortNumf.integerValue==1 && isColdf==0) {
+                weakSelf.bdtoOrderObj = obj;
+                break;
+            }else{
+                weakSelf.bdtoOrderObj = obj;
+                break;
+            }
+        }
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         

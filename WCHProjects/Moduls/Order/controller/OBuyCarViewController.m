@@ -76,12 +76,13 @@
     NSInteger isAssess = orderObj.isAssess.integerValue;
     if (statusf==2) {
         if (isAssess==0) {
-            //已支付
+            //待评价
             AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
             appraiseVC.orderObj =orderObj;
             appraiseVC.viewType = 4;
             appraiseVC.delegate = self;
             appraiseVC.cellIndexPath = indexPath;
+            appraiseVC.objTypef = 3;
             kPushNav(appraiseVC, YES);
             
         }else{
@@ -94,6 +95,10 @@
         payVC.cellIndexPath = indexPath;
         payVC.delegate = self;
         payVC.orderObj = orderObj;
+        payVC.payTitle = @"订金";
+        payVC.tradeTypef = 3;
+        payVC.isCoupon = YES;
+        
         kPushNav(payVC, YES);
     }
 }

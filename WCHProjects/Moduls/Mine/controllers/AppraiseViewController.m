@@ -31,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.viewType = 2;
     // Do any additional setup after loading the view from its nib.
     NSString *price = _orderObj.pricef;
 //    if (_orderObj.tipPricef.doubleValue>0) {
@@ -88,6 +89,14 @@
 
 #pragma mark --提交评价事件
 - (IBAction)commitBtnAction:(id)sender {
+    if (self.scoref.integerValue==0) {
+        [NSString toast:@"请对服务进行打分(星级)"];
+        return;
+    }
+    if (kIsObjectEmpty(self.contentTxtV.text)) {
+        [NSString toast:self.contentTxtV.placeholder];
+        return;
+    }
     [self sendAssessdoInsert];
 }
 
@@ -106,16 +115,24 @@
     NSString *userTypef = [UserInfoObj model].userTypef;//如果当前用户是货主，那么评价的对象就是司机 ;1司机，0货主
     //当self.viewType==1时是货主进来，所以要对司机（1）评价；
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params addUnEmptyString:_orderObj.orderNof forKey:@"vo.orderIdf"];
-    [params addUnEmptyString:self.viewType==1?@"3":@"0" forKey:@"vo.objTypef"];
+    [params addUnEmptyString:_orderObj.orderIdf forKey:@"vo.orderIdf"];
+    [params addUnEmptyString:kIntegerToString(self.objTypef) forKey:@"vo.objTypef"];
     [params addUnEmptyString:self.scoref forKey:@"vo.scoref"];
     [params addUnEmptyString:self.contentTxtV.text forKey:@"vo.assessContentf"];
-    [params addUnEmptyString:_orderObj.driverIdf forKey:@"vo.mobilef"];
+    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.mobilef"];
     
     
     WEAKSELF
     [OrderInfoObj sendAssessdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.responseCode) {
+            weakSelf.orderObj.isAssess = @"1";
+            if (weakSelf.objTypef==1) {
+                
+            }else if (weakSelf.objTypef==2){
+                
+            }else if (weakSelf.objTypef==3){
+                
+            }
             if ([weakSelf.delegate respondsToSelector:@selector(appraiseViewController:orderObj:)]) {
                 [weakSelf.delegate appraiseViewController:weakSelf orderObj:weakSelf.orderObj];
             }

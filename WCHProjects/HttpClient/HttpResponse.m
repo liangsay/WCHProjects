@@ -55,6 +55,7 @@
 - (void)initializeWithDic:(NSDictionary *)response{
     self.responseCode = [response[@"status"] integerValue];
     self.responseMsg = response[@"desc"];
+    self.income = [response[@"income"] doubleValue];
     if (!self.responseMsg || self.responseMsg.isEmpty) {
         self.responseMsg = response[@"message"];
     }

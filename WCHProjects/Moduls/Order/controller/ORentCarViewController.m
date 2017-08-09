@@ -97,6 +97,7 @@
             appraiseVC.orderObj =orderObj;
             appraiseVC.viewType = 3;
             appraiseVC.delegate = self;
+            appraiseVC.objTypef = 2;
             appraiseVC.cellIndexPath = indexPath;
             kPushNav(appraiseVC, YES);
             
@@ -111,6 +112,8 @@
         payVC.delegate = self;
         orderObj.pricef = orderObj.rentMoneyf;
         payVC.orderObj = orderObj;
+        payVC.payTitle = @"租金";
+        payVC.tradeTypef = 2;
         kPushNav(payVC, YES);
     }
 }

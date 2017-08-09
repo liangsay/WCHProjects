@@ -40,11 +40,13 @@
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
     [self sendFreighttoCall_API];
-    [self setupOrderCountSet];
+//    [self setupOrderCountSet];
     
     [self sendLogin_API];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.orderBtn];
-    [self.orderBtn setTitle:@"0" forState:UIControlStateNormal];
+    if ([UserInfoObj model].userTypef.integerValue==2) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.orderBtn];
+        [self.orderBtn setTitle:@"0" forState:UIControlStateNormal];
+    }
 }
 
 - (void)setupTableViewSet {
@@ -322,9 +324,7 @@
 #pragma mark --已接单后显示
 - (void)reciveOrderWithOrderObj:(OrderInfoObj *)orderObj {
     self.orderHuozhuObj = orderObj;
-    
     self.isReciveState = YES;
-    
     //接单后实时检查订单状态
     [self setupCheckOrderState];
     

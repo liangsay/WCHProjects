@@ -29,6 +29,7 @@
 
 - (void)reloadOrderData {
     [self.tableView reloadData];
+    [self.tableView placeholderViewShow:!self.dataArray.count];
 }
 
 - (void)onBackButton {

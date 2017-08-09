@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *status;
 
 @property (nonatomic, assign) NSInteger total;
+@property (nonatomic, assign) double income;
 
 @property (nonatomic, assign) NSInteger totalCount;
 @property (nonatomic, strong) NSMutableArray *rows;

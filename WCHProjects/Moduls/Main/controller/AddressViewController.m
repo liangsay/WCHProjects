@@ -264,8 +264,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     return cell;
 }
 
-- (void)cell:(BaseTableCell *)cell tableView:(UITableView *)tableView didSelectAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchAddressObj *addObj = _dataArray[indexPath.row];
     if (_delegate && [_delegate respondsToSelector:@selector(addressViewController:searchAddressObj:selType:)]) {
         [_delegate addressViewController:self searchAddressObj:addObj selType:0];

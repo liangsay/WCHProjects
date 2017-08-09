@@ -7,12 +7,14 @@
 //
 
 #import "MyIncomeViewController.h"
-#import "MyRouteTableCell.h"
+#import "OrderInComeTableCell.h"
 #import "BaseTableView.h"
 #import "OrderInfoObj.h"
 #import "AppraiseViewController.h"//评价
 #import "UIViewController+MMDrawerController.h"
-@interface MyIncomeViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate,MyRouteTableCellDelegate>
+#import "UITableViewCell+HYBMasonryAutoCellHeight.h"
+
+@interface MyIncomeViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate,OrderInComeTableCellDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *totalView;
@@ -37,75 +39,95 @@
     [_totalView setLayerBorderWidth:5 color:[UIColor colorWithWhite:1 alpha:0.5]];
     _totalLabel.text = @"0.0";
     
-    _tableView.backgroundColor = [UIColor backgroundColor];
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [_tableView registerClass:[MyRouteTableCell class] forCellReuseIdentifier:kMyRouteTableCellID];
-    [_tableView setRowHeight:kMyRouteTableCellHeight];
-    
-    UIView *theView = [[UIView alloc] initWithFrame:self.tableView.frame];
-    [theView setBackgroundColor:[UIColor backgroundColor]];
-    [self.tableView setBackgroundView:theView];
-//    [self.tableView addHeaderRefreshTarget:self action:@selector(headerRefresh)];
+    [_tableView registerClass:[OrderInComeTableCell class] forCellReuseIdentifier:kOrderInComeTableCellID];
+    [self.tableView addHeaderRefreshTarget:self action:@selector(refreshHeaderData)];
 }
 
+- (void)refreshHeaderData {
+    [self sendOrdertoIncome];
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return _dataArray.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *footView = [UIView new];
-    footView.backgroundColor = [UIColor backgroundColor];
-    return footView;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataArray.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return kPadding;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    __block OrderInfoObj *orderObj = self.dataArray[indexPath.row];
+    CGFloat height = [OrderInComeTableCell hyb_heightForTableView:self.tableView config:^(UITableViewCell *sourceCell) {
+        OrderInComeTableCell *_cell = (OrderInComeTableCell *)sourceCell;
+        [_cell setupCellInfoWithObj:orderObj];
+    }];
+    
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger section = indexPath.section;
-    MyRouteTableCell *cell = [tableView dequeueReusableCellWithIdentifier:kMyRouteTableCellID forIndexPath:indexPath];
-    cell.delegate = self;
-    cell.inComeDelegate = self;
-    [cell setCellType:MyRouteTableCellTypeInCome];
+    NSInteger row = indexPath.row;
+    OrderInComeTableCell *cell = [tableView dequeueReusableCellWithIdentifier:kOrderInComeTableCellID forIndexPath:indexPath];
+    cell.oDelegate = self;
+    cell.cellIndexPath= indexPath;
     // Configure the cell...
-    OrderInfoObj *model = self.dataArray[section];
-    [cell setupCellInfoWith:model];
+    OrderInfoObj *model = self.dataArray[row];
+    [cell setupCellInfoWithObj:model];
     return cell;
 }
 
-- (void)cell:(BaseTableCell *)cell tableView:(UITableView *)tableView didSelectAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger section = indexPath.section;
-    OrderInfoObj *orderObj = self.dataArray[section];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger row = indexPath.row;
+    OrderInfoObj *orderObj = self.dataArray[row];
     //司机对货主评价
-    BOOL assessOwerf = orderObj.assessOwerf.boolValue;
-    if (orderObj.statusf.integerValue==3 && !assessOwerf) {
-        //已完成支付才可以评价
-        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
-        appraiseVC.orderObj =orderObj;
-        appraiseVC.viewType=2;
-        kPushNav(appraiseVC, YES);
-    }else if (orderObj.statusf.integerValue==1){
-        WEAKSELF
-        [self.mm_drawerController
-         closeDrawerAnimated:YES completion:^(BOOL finished) {
-             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-         }];
-//        [kAppDelegate.mainViewController reciveOrderWithOrderObj:orderObj];
-    }
-    
+//    BOOL assessOwerf = orderObj.assessOwerf.boolValue;
+//    if (orderObj.statusf.integerValue==3 && !assessOwerf) {
+//        //已完成支付才可以评价
+//        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
+//        appraiseVC.orderObj =orderObj;
+//        appraiseVC.viewType=2;
+//        appraiseVC.objTypef = 1;
+//        kPushNav(appraiseVC, YES);
+//    }else if (orderObj.statusf.integerValue==1){
+//        WEAKSELF
+//        [self.mm_drawerController
+//         closeDrawerAnimated:YES completion:^(BOOL finished) {
+//             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//         }];
+//        //        [kAppDelegate.mainViewController reciveOrderWithOrderObj:orderObj];
+//    }
 }
 
-#pragma mark --MyRouteTableCellDelegate
-- (void)myRouteTableCell:(MyRouteTableCell *)myRouteTableCell orderObj:(OrderInfoObj *)orderObj cancelOrder:(BOOL)cancelOrder {
-    [self sendOrderdoCancelWithOrderNof:orderObj.orderNof cancelManf:@""];
+#pragma mark --OrderInComeTableCellDelegate ----------
+/*
+ vo.ownerIdf	15889798801
+ requestType	app
+ vo.orderNof	15021969248834
+ vo.driverIdf	13820633188
+ */
+- (void)orderInComeTableCell:(OrderInComeTableCell *)orderInComeTableCell isFinish:(BOOL)isFinish orderObj:(OrderInfoObj *)orderObj {
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:orderObj.ownerIdf forKey:@"vo.ownerIdf"];
+    [params addUnEmptyString:orderObj.orderNof forKey:@"vo.orderNof"];
+    [params addUnEmptyString:orderObj.driverIdf forKey:@"vo.driverIdf"];
+    [OrderInfoObj sendOrderdoEndWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.responseCode==1) {
+            orderObj.statusf = @"2";
+            orderObj.statusTextf = @"未支付";
+            [weakSelf.dataArray replaceObjectAtIndex:orderInComeTableCell.cellIndexPath.row withObject:orderObj];
+            [weakSelf.tableView beginUpdates];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[orderInComeTableCell.cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [weakSelf.tableView endUpdates];
+            [NSString toast:@"该订单已完成"];
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"订单完成失败"];
+    }];
 }
 /*
  // Override to support conditional editing of the table view.
@@ -149,7 +171,7 @@
 - (void)sendOrdertoIncome {
     WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params addUnEmptyString:[UserInfoObj model].userNamef forKey:@"queryMap.driverIdf"];
+    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"queryMap.driverIdf"];
     [OrderInfoObj sendOrdertoIncomeWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         weakSelf.dataArray = [NSMutableArray arrayWithArray:response.responseModel];
         [weakSelf.tableView reloadData];
@@ -157,6 +179,8 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
         [weakSelf sendCalculateInCome];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [weakSelf.tableView endHeaderRefreshing];
+        [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
         [NSString toast:response.responseMsg];
     }];
 }

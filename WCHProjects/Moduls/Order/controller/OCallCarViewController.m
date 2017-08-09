@@ -81,7 +81,7 @@
     cell.oDelegate = self;
     
     [cell setupCellInfoWithObj:orderObj];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     return cell;
 }
 
@@ -104,6 +104,7 @@
             appraiseVC.viewType = userTypef;
             appraiseVC.delegate = self;
             appraiseVC.cellIndexPath = indexPath;
+            appraiseVC.objTypef = 1;
             kPushNav(appraiseVC, YES);
             
         }else{
@@ -116,6 +117,8 @@
         payVC.cellIndexPath = indexPath;
         payVC.delegate = self;
         payVC.orderObj = orderObj;
+        payVC.payTitle = @"运费";
+        payVC.tradeTypef = 1;
         kPushNav(payVC, YES);
     }
 }

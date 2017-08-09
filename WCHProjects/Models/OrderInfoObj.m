@@ -44,7 +44,7 @@
 #pragma mark --用于接单
 + (void)sendOrderdoTakeWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                           failedBlock:(RequestSessionCompletedBlock)failedBlock {
-    [self sendRequestWithAPI:kAPI_OrderdoTake() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_OrderdoTake() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
@@ -56,7 +56,7 @@
 #pragma mark --用于结束订单
 + (void)sendOrderdoEndWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                          failedBlock:(RequestSessionCompletedBlock)failedBlock {
-    [self sendRequestWithAPI:kAPI_OrderdoEnd() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_OrderdoEnd() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {

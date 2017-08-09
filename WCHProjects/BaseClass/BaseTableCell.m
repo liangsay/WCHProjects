@@ -47,7 +47,7 @@ CGFloat const kBaseTableCellHeight = 44;
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.contentView.userInteractionEnabled = YES;
         
-        [self backgroundView];
+//        [self backgroundView];
         
         [self topLine];
         // 分割线

@@ -92,6 +92,7 @@
         AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
         appraiseVC.orderObj =self.orderObj;
         appraiseVC.viewType = 1;
+        appraiseVC.objTypef = self.tradeTypef;
         kPushNav(appraiseVC, YES);
     }
 }
@@ -123,6 +124,7 @@
     AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
     appraiseVC.orderObj =self.orderObj;
     appraiseVC.viewType = self.viewType;
+    appraiseVC.objTypef = self.tradeTypef;
     kPushNav(appraiseVC, YES);
 }
 
@@ -142,15 +144,18 @@
     
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
-    
+    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoPayReturn.shtml",apiBaseURLString];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *orderNum = [NSString stringWithFormat:@"%@",self.orderObj.orderNof];
     if (self.couponObj && !kIsObjectEmpty(self.couponObj.idf)) {
         orderNum = [NSString stringWithFormat:@"%@-%@",self.orderObj.orderNof,self.couponObj.idf];
     }
     [params addUnEmptyString:orderNum forKey:@"vo.orderNof"];
-    [params addUnEmptyString:@"运费" forKey:@"vo.titlef"];
+    [params addUnEmptyString:self.payTitle forKey:@"vo.titlef"];
     [params addUnEmptyString:self.payLabel.text forKey:@"vo.pricef"];
+    [params addUnEmptyString:kIntegerToString(self.tradeTypef) forKey:@"vo.tradeTypef"];
+    [params addUnEmptyString:reUrlf forKey:@"vo.reUrlf"];
+    
 #if DEBUG
     [params addUnEmptyString:@"0.01" forKey:@"vo.pricef"];
 #endif
@@ -166,11 +171,15 @@
     if (self.couponObj && !kIsObjectEmpty(self.couponObj.idf)) {
         orderNum = [NSString stringWithFormat:@"%@-%@",self.orderObj.orderNof,self.couponObj.idf];
     }
-    
-    NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app",@"运费",orderNum,self.payLabel.text];
 #if DEBUG
-    paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app",@"运费",self.orderObj.orderNof,@"0.01"];
+    self.payLabel.text = @"0.01";
 #endif
+    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoAliPayReturn.shtml",apiBaseURLString];
+    NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app&vo.tradeTypef=%ld&vo.reUrlf=%@&vo.userNamef=%@",self.payTitle,orderNum,self.payLabel.text,self.tradeTypef,reUrlf,[UserInfoObj model].mobilePhonef];
+    if (self.couponObj) {
+        paraStr = [paraStr stringByAppendingFormat:@"&vo.couponIdf=%@",self.couponObj.idf];
+    }
+
     paraStr=[paraStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSData *postData = [paraStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     

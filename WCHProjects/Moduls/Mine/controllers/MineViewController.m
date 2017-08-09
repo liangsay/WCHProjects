@@ -151,7 +151,7 @@
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
     MineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kMineTableViewCellID forIndexPath:indexPath];
-    cell.delegate = self;
+    
     MineCellModel *mol = [MineCellModel new];
     if (section==0) {
         mol.typeName = _typesArray[indexPath.row];
@@ -164,7 +164,7 @@
     return cell;
 }
 
-- (void)cell:(BaseTableCell *)cell tableView:(UITableView *)tableView didSelectAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
     if (section == 0) {

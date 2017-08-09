@@ -132,11 +132,11 @@ MJCodingImplementation
 }
 
 + (void)sendRequestWithAPI:(NSString *)api isApp:(BOOL)isApp params:(NSMutableDictionary *)params successBlock:(RequestCompletedBlock)successBlock failedBlock:(RequestCompletedBlock)failedBlock{
-    DLog(@"params:%@",params);
+    
     if (isApp) {
         [params addUnEmptyString:@"app" forKey:@"requestType"];
     }
-    
+    DLog(@"params:%@",params);
     [[HttpClient sharedClient] getObjectWithDic:params apiName:api successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.isSuccess) {
             id data = response.result;

@@ -270,8 +270,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     return cell;
 }
 
-- (void)cell:(BaseTableCell *)cell tableView:(UITableView *)tableView didSelectAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchAddressObj *addObj = _dataArray[indexPath.row];
     if (self.searchType == SearchAddressTypeCallCar) {
         
@@ -279,12 +278,12 @@ UITextFieldDelegate,CitysViewControllerDelegate>
         self.cityObj.namef = self.nameTxtField.text;
         self.cityObj.modelf = self.mobileTxtField.text;
         self.cityObj.positionf = [NSString stringWithFormat:@"%.f,%.f",addObj.coordinate.latitude,addObj.coordinate.longitude];
-//        SearchAddressObj *obj = [SearchAddressObj new];
-//        obj.province = self.provinceName;
-//        obj.city = poi.city;
-//        obj.title = poi.name;
-//        obj.detail = poi.address;
-//        obj.coordinate = poi.pt;
+        //        SearchAddressObj *obj = [SearchAddressObj new];
+        //        obj.province = self.provinceName;
+        //        obj.city = poi.city;
+        //        obj.title = poi.name;
+        //        obj.detail = poi.address;
+        //        obj.coordinate = poi.pt;
         [self submitBtnAction:nil];
     }else{
         if (_delegate && [_delegate respondsToSelector:@selector(searchAddressViewController:searchAddressObj:selType:)]) {

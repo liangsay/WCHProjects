@@ -368,13 +368,15 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
     
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
-    
+    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoPayReturn.shtml",apiBaseURLString];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *orderNum = [NSString stringWithFormat:@"%@",self.idf];
     [params addUnEmptyString:orderNum forKey:@"vo.orderNof"];
     [params addUnEmptyString:@"充值" forKey:@"vo.titlef"];
     [params addUnEmptyString:self.moneyTxtF.text forKey:@"vo.pricef"];
     [params addUnEmptyString:@"app" forKey:@"requestType"];
+    [params addUnEmptyString:@"4" forKey:@"vo.tradeTypef"];
+    [params addUnEmptyString:reUrlf forKey:@"vo.reUrlf"];
     [self weixinpayAction:params];;
 }
 #pragma mark -
@@ -384,8 +386,8 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
 {
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
-    
-    NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app",@"充值",self.idf,self.moneyTxtF.text];
+    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoAliPayReturn.shtml",apiBaseURLString];
+    NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app&vo.reUrlf=%@&vo.tradeTypef=4&vo.userNamef=%@",@"充值",self.idf,self.moneyTxtF.text,reUrlf,[UserInfoObj model].mobilePhonef];
     paraStr=[paraStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSData *postData = [paraStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     

@@ -7,7 +7,7 @@
 //
 
 //错误提示
-
+#pragma mark -- 测试:http://www.66wch.com.cn  发布:http://www.66weihuo.com
 //static NSString * const apiBaseURLString = @"http://139.224.209.235:9080/";
 //static NSString *const apiBaseURLString = @"http://www.66weihuo.com/";
 static NSString *const apiBaseURLString = @"http://www.66wch.com.cn/";

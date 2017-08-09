@@ -163,6 +163,8 @@
     payVC.title = @"支付方式";
     payVC.delegate = self;
     payVC.orderObj = self.orderObj;
+    payVC.payTitle = @"售车";
+    payVC.tradeTypef = 3;
     kPushNav(payVC, YES);
 }
 

@@ -163,7 +163,7 @@
     [UIAlertController showAlertInViewController:self withTitle:@"取消订单" message:@"您确定要取消订单吗？" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
         if (buttonIndex==2) {
 //            //取消订单
-//            [weakSelf sendRentorderdoCancel_API:orderObj indexPath:oRentCarTableViewCell.cellIndexPath];
+            [weakSelf sendRentorderdoCancel_API:orderObj indexPath:oCallCarTableViewCell.cellIndexPath];
         }
     }];
 }
@@ -182,6 +182,7 @@
             orderObj.statusTextf = @"订单取消";
             [weakSelf.dataArray replaceObjectAtIndex:indexPath.row withObject:orderObj];
             [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [NSString toast:@"订单已取消"];
         }else{
             [NSString toast:@"取消失败"];
         }

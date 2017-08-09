@@ -36,7 +36,7 @@ NSString * const kSystemMessageTableCellID = @"kSystemMessageTableCellID";
 - (void)initUIViews {
     WEAKSELF
     
-    _contentLabel = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _contentLabel = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(kPadding);
         make.top.offset(kPadding);
         make.right.offset(-kPadding);
@@ -45,7 +45,7 @@ NSString * const kSystemMessageTableCellID = @"kSystemMessageTableCellID";
     _contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
 //    [_contentLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     
-    _timeLabel = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _timeLabel = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kPadding);
         make.left.offset(kPadding);
         make.bottom.offset(-kPadding);

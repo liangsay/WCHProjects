@@ -49,7 +49,8 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     [self setupBackButton];
     [self setupNavigator];
     [self setupTableViewSet];
-    
+    self.cityName = [LocationServer shared].cityf;
+    self.provinceName = [LocationServer shared].provincef;
     [self.submitBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     [self.submitBtn setLayerCornerRadius:5];
     

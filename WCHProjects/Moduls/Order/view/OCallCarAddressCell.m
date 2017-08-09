@@ -50,6 +50,13 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     [self.contentView addSubview:lineV];
     self.lineV = lineV;
     
+    UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mobileLabAction:)];
+    tapAction.delegate = self;
+    [mobileLab addGestureRecognizer:tapAction];
+}
+
+- (void)mobileLabAction:(UIGestureRecognizer *)sender {
+    kMakeCallWithPhone(self.orderObj.phonef, kWindow);
 }
 
 - (void)setupContraintSet{

@@ -34,7 +34,7 @@
 }
 
 - (void)setupTableViewSet {
-    
+    self.tableView.backgroundColor = [UIColor backgroundColor];
     [_totalView setLayerCornerRadius:35];
     [_totalView setLayerBorderWidth:5 color:[UIColor colorWithWhite:1 alpha:0.5]];
     _totalLabel.text = @"0.0";
@@ -67,6 +67,10 @@
     }];
     
     return height;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,6 +114,22 @@
  vo.driverIdf	13820633188
  */
 - (void)orderInComeTableCell:(OrderInComeTableCell *)orderInComeTableCell isFinish:(BOOL)isFinish orderObj:(OrderInfoObj *)orderObj {
+    
+}
+
+- (void)orderInComeTableCell:(OrderInComeTableCell *)orderInComeTableCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj {
+    WEAKSELF
+    [UIAlertController showAlertInViewController:self withTitle:@"完成订单" message:@"您确定要完成订单吗？" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+        if (buttonIndex==2) {
+            //完成订单
+            [weakSelf sendOrderdoEnd_API:orderObj indexPath:orderInComeTableCell.cellIndexPath];
+        }
+    }];
+    
+}
+
+#pragma mark --完成订单
+- (void)sendOrderdoEnd_API:(OrderInfoObj *)orderObj indexPath:(NSIndexPath *)indexPath{
     WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:orderObj.ownerIdf forKey:@"vo.ownerIdf"];
@@ -119,9 +139,9 @@
         if (response.responseCode==1) {
             orderObj.statusf = @"2";
             orderObj.statusTextf = @"未支付";
-            [weakSelf.dataArray replaceObjectAtIndex:orderInComeTableCell.cellIndexPath.row withObject:orderObj];
+            [weakSelf.dataArray replaceObjectAtIndex:indexPath.row withObject:orderObj];
             [weakSelf.tableView beginUpdates];
-            [weakSelf.tableView reloadRowsAtIndexPaths:@[orderInComeTableCell.cellIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             [weakSelf.tableView endUpdates];
             [NSString toast:@"该订单已完成"];
         }
@@ -129,6 +149,7 @@
         [NSString toast:@"订单完成失败"];
     }];
 }
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

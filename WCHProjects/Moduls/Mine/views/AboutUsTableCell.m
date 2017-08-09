@@ -34,13 +34,13 @@ CGFloat const kAboutUsTableCellHeight = 44;
 - (void)initUIViews {
     WEAKSELF
     
-    _keyLabel = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _keyLabel = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(kMargin);
         make.top.bottom.offset(0);
         make.width.mas_equalTo(72);
     }];
     
-    _valueLabel = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _valueLabel = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kMargin);
         make.centerY.equalTo(weakSelf.keyLabel);
         make.left.equalTo(weakSelf.keyLabel.mas_right);

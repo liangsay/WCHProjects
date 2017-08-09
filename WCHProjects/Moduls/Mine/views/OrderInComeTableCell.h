@@ -15,15 +15,19 @@ FOUNDATION_EXPORT CGFloat const kOrderInComeTableCellHeight;
 @protocol OrderInComeTableCellDelegate <NSObject>
 
 - (void)orderInComeTableCell:(OrderInComeTableCell *)orderInComeTableCell isFinish:(BOOL)isFinish orderObj:(OrderInfoObj *)orderObj;
-- (void)orderInComeTableCell:(OrderInComeTableCell *)orderInComeTableCell tapGesture:(BOOL)tapGesture orderObj:(OrderInfoObj *)orderObj;
+- (void)orderInComeTableCell:(OrderInComeTableCell *)orderInComeTableCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj;
 
 @end
 @interface OrderInComeTableCell : BaseTableCell
 @property (nonatomic, assign) id<OrderInComeTableCellDelegate> oDelegate;
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIView *touchView;
+@property (nonatomic, strong) UILongPressGestureRecognizer * longPressGesture;
 @property (strong, nonatomic) UIView *lineV;
 @property (nonatomic, strong) BaseTableView *tableView;
+
+@property (strong, nonatomic) UIButton *callBtn;
+@property (strong, nonatomic) UILabel *numLab;
 
 @property (strong, nonatomic) UILabel *timeLab;
 @property (strong, nonatomic) UILabel *typeLab;

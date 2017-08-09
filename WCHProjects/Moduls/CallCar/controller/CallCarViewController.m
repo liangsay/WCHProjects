@@ -40,7 +40,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
     [self sendFreighttoCall_API];
-//    [self setupOrderCountSet];
+    [self setupOrderCountSet];
     
     [self sendLogin_API];
     if ([UserInfoObj model].userTypef.integerValue==2) {
@@ -74,10 +74,10 @@
 
 #pragma mark    --查看未接订单列表
 - (void)orderBtnAction:(UIButton *)sender{
-    if (self.isReciveState) {
-        [NSString toast:@"您的订单正在进行中，不能继续接单哦"];
-        return;
-    }
+//    if (self.isReciveState) {
+//        [NSString toast:@"您的订单正在进行中，不能继续接单哦"];
+//        return;
+//    }
     if (self.orderVC != nil) {
         self.orderVC.dataArray = self.orders;
         kPushNav(self.orderVC, YES);

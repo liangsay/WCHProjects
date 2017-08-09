@@ -33,45 +33,45 @@ CGFloat const kMyRouteTableCellHeight = 80;
 
 - (void)initUIViews {
     WEAKSELF
-    _timeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _timeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.backgroundBtnView.mas_left).offset(kMargin).priorityHigh(1000);
         make.top.offset(kPadding);
     }];
     
-    _typeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor mainColor] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _typeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor mainColor] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.timeLab.mas_right).offset(kPadding/2).priorityHigh(1000);
         make.centerY.equalTo(weakSelf.timeLab);
     }];
     
-    _stateLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _stateLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-5);
         make.centerY.equalTo(weakSelf.timeLab);
         make.left.greaterThanOrEqualTo(weakSelf.typeLab.mas_right).offset(5);
     }];
     
-    _startImgV = [BaseViewServer addImageViewInView:self.backgroundBtnView image:kIMAGE(@"出发地") contentMode:UIViewContentModeScaleAspectFit mas_makeConstraints:^(MASConstraintMaker *make) {
+    _startImgV = [BaseViewServer addImageViewInView:self.contentView image:kIMAGE(@"出发地") contentMode:UIViewContentModeScaleAspectFit mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(kPadding);
         make.top.equalTo(weakSelf.timeLab.mas_bottom).offset(kPadding-2);
         make.width.height.mas_equalTo(8);
     }];
     
-    _startLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _startLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.timeLab).offset(kPadding);;
         make.centerY.equalTo(weakSelf.startImgV);
         make.right.equalTo(weakSelf.stateLab.mas_right);
     }];
     
-    _endImgV = [BaseViewServer addImageViewInView:self.backgroundBtnView image:kIMAGE(@"目的地") contentMode:UIViewContentModeScaleAspectFit mas_makeConstraints:^(MASConstraintMaker *make) {
+    _endImgV = [BaseViewServer addImageViewInView:self.contentView image:kIMAGE(@"目的地") contentMode:UIViewContentModeScaleAspectFit mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(kPadding);
         make.top.equalTo(weakSelf.startImgV.mas_bottom).offset(kMargin);
         make.width.height.mas_equalTo(8);
     }];
     
-    _endLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _endLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.endImgV.mas_right).offset(5);
         make.centerY.equalTo(weakSelf.endImgV);
     }];
-    _cancelBtn = [BaseViewServer addButtonInView:self.backgroundBtnView font:kFont(24) title:@"取消订单" titleColor:[UIColor mainColor] addTarget:self action:@selector(cancelBtnAction:) mas_makeConstraints:^(MASConstraintMaker *make) {
+    _cancelBtn = [BaseViewServer addButtonInView:self.contentView font:kFont(24) title:@"取消订单" titleColor:[UIColor mainColor] addTarget:self action:@selector(cancelBtnAction:) mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.endLab.mas_right).offset(5);
         make.right.offset(-5);
         make.width.mas_equalTo(60);

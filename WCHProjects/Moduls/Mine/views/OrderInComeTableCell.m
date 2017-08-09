@@ -46,9 +46,38 @@ CGFloat const kOrderInComeTableCellHeight = 110;
 
 - (void)setupViewsSet {
     
+    UIView *touchView = [UIView new];
+    touchView.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:touchView];
+    self.touchView = touchView;
+    
+    //添加长按手势
+    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+    longPressGesture.delegate = self;
+    longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
+    [touchView addGestureRecognizer:longPressGesture];
+    self.longPressGesture = longPressGesture;
+    
+    UILabel *numLab = [UILabel new];
+    numLab.font = [UIFont fontContent];
+    numLab.textColor = [UIColor fontBlack];
+    [self.contentView addSubview:numLab];
+    self.numLab = numLab;
+    
+    UIButton *callBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [callBtn setImage:kIMAGE(@"icon_card_call") forState:UIControlStateNormal];
+    [callBtn setTitle:@"联系货主" forState:UIControlStateNormal];
+    [callBtn setTitleColor:[UIColor mainColor] forState:UIControlStateNormal];
+    [callBtn.titleLabel setFont:[UIFont fontContent]];
+    [callBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [callBtn setContentEdgeInsets:(UIEdgeInsets){0,5,0,-5}];
+    [callBtn addTarget:self action:@selector(callBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:callBtn];
+    self.callBtn = callBtn;
+    
     UILabel *timeLab = [UILabel new];
     timeLab.font = [UIFont fontContent];
-    timeLab.textColor = [UIColor fontBlack];
+    timeLab.textColor = [UIColor fontGray];
     [self.contentView addSubview:timeLab];
     self.timeLab = timeLab;
     
@@ -63,7 +92,7 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     self.startImgV = startImgV;
     
     UILabel *startLab = [UILabel new];
-    startLab.font = [UIFont fontAssistant];
+    startLab.font = [UIFont fontContent];
     startLab.textColor = [UIColor fontGray];
     startLab.numberOfLines = 0;
     startLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15 - 12 -10;
@@ -85,7 +114,7 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     self.endImgV = endImgV;
     
     UILabel *endLab = [UILabel new];
-    endLab.font = [UIFont fontAssistant];
+    endLab.font = [UIFont fontContent];
     endLab.textColor = [UIColor fontGray];
     endLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15 - 12 -10;
     endLab.numberOfLines = 0;
@@ -93,17 +122,18 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     self.endLab = endLab;
     
     UILabel *priceLab = [UILabel new];
-    priceLab.font = [UIFont fontAssistant];
+    priceLab.font = [UIFont fontContent];
     priceLab.textColor = [UIColor fontBlack];
     [self.contentView addSubview:priceLab];
     self.priceLab = priceLab;
     
     UILabel *statueLab = [UILabel new];
-    statueLab.font = [UIFont fontAssistant];
+    statueLab.font = [UIFont fontContent];
     statueLab.textColor = [UIColor priceColor];
     [self.contentView addSubview:statueLab];
     self.statueLab = statueLab;
     
+    /*
     UIButton *submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [submitBtn setTitle:@"完成订单" forState:UIControlStateNormal];
     [submitBtn.titleLabel setFont:[UIFont fontContent]];
@@ -112,7 +142,7 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     [submitBtn setLayerCornerRadius:5];
     [submitBtn addTarget:self action:@selector(submitBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:submitBtn];
-    self.submitBtn = submitBtn;
+    self.submitBtn = submitBtn;*/
     
     UIView *bgView = [UIView new];
     bgView.backgroundColor = [UIColor backgroundColor];
@@ -133,20 +163,45 @@ CGFloat const kOrderInComeTableCellHeight = 110;
         make.edges.equalTo(weakSelf.contentView);
     }];
     
-    [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@-15);
+        make.width.equalTo(@80);
+        make.height.equalTo(@30);
+        make.centerY.equalTo(weakSelf.numLab);
+    }];
+    
+    [self.numLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
         make.top.equalTo(@10);
+        make.right.greaterThanOrEqualTo(weakSelf.callBtn.mas_left).offset(-10);
+    }];
+    
+    [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@15);
+        make.top.equalTo(weakSelf.numLab.mas_bottom).offset(5);
+    }];
+    
+    [self.statueLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@-15);
+        make.centerY.equalTo(weakSelf.priceLab);
+        make.left.greaterThanOrEqualTo(weakSelf.priceLab.mas_right).offset(10);
+    }];
+    
+    
+    [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@15);
+        make.top.equalTo(weakSelf.priceLab.mas_bottom).offset(5);
     }];
     
     [self.typeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@-15);
-        make.top.equalTo(@10);
+        make.centerY.equalTo(weakSelf.timeLab);
         make.left.greaterThanOrEqualTo(weakSelf.timeLab.mas_right).offset(10);
     }];
     
     [self.startImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
-        make.top.equalTo(weakSelf.timeLab.mas_bottom).offset(5);
+        make.top.equalTo(weakSelf.timeLab.mas_bottom).offset(10);
         make.width.height.equalTo(@12);
     }];
     
@@ -156,15 +211,9 @@ CGFloat const kOrderInComeTableCellHeight = 110;
         make.right.equalTo(@-15);
     }];
     
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@15);
-        make.right.equalTo(@-15);
-        make.top.equalTo(weakSelf.startLab.mas_bottom).offset(10);
-    }];
-    
     [self.endImgV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
-        make.top.equalTo(weakSelf.tableView.mas_bottom).offset(10);
+        make.top.equalTo(weakSelf.startLab.mas_bottom).offset(10);
         make.width.height.equalTo(@12);
     }];
     
@@ -175,27 +224,23 @@ CGFloat const kOrderInComeTableCellHeight = 110;
         //        make.bottom.equalTo(@-10);
     }];
     
-    [self.priceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
+        make.right.equalTo(@-15);
         make.top.equalTo(weakSelf.endLab.mas_bottom).offset(10);
     }];
     
-    [self.statueLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(@-15);
-        make.centerY.equalTo(weakSelf.priceLab);
-        make.left.greaterThanOrEqualTo(weakSelf.priceLab.mas_right).offset(10);
-    }];
     
-    [self.submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@15);
-        make.right.equalTo(@-15);
-        make.top.equalTo(weakSelf.priceLab.mas_bottom).offset(10);
-        make.height.equalTo(@40);
-    }];
-    
+//    [self.submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(@15);
+//        make.right.equalTo(@-15);
+//        make.top.equalTo(weakSelf.tableView.mas_bottom).offset(10);
+//        make.height.equalTo(@40);
+//    }];
+//    
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.offset(0);
-        make.top.equalTo(weakSelf.submitBtn.mas_bottom).offset(10);
+        make.top.equalTo(weakSelf.tableView.mas_bottom).offset(10);
         make.height.equalTo(@10);
     }];
     
@@ -219,6 +264,13 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     }
     return _dataArray;
 }
+
+- (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender {
+    if ([self.oDelegate respondsToSelector:@selector(orderInComeTableCell:longPress:orderObj:)]) {
+        [self.oDelegate orderInComeTableCell:self longPress:YES orderObj:self.orderObj];
+    }
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -252,9 +304,9 @@ CGFloat const kOrderInComeTableCellHeight = 110;
         make.right.mas_equalTo(-15);
         make.height.mas_equalTo(tableviewHeight);
         if (tableviewHeight==0) {
-            make.top.equalTo(weakSelf.startLab.mas_bottom).offset(0);
+            make.top.equalTo(weakSelf.endLab.mas_bottom).offset(0);
         }else{
-            make.top.equalTo(weakSelf.startLab.mas_bottom).offset(10);
+            make.top.equalTo(weakSelf.endLab.mas_bottom).offset(10);
         }
     }];
     
@@ -262,7 +314,8 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     self.tableView.delegate = self;
     [self.tableView reloadData];
     
-    self.timeLab.text = [NSString stringWithFormat:@"%@",orderObj.createTimef];
+    self.numLab.text = [NSString stringWithFormat:@"订单号:%@",orderObj.orderNof];
+    self.timeLab.text = [NSString stringWithFormat:@"下单时间:%@",orderObj.createTimef];
     if (!kIsObjectEmpty(orderObj.modelNamef)) {
         self.typeLab.text = orderObj.modelNamef;
     }else{
@@ -285,19 +338,19 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     NSInteger statusf = orderObj.statusf.integerValue;
     
     if (statusf==1) {//在已接单状态，司机或货主可取消订单
-        [self.submitBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@40);
-        }];
-        [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.submitBtn.mas_bottom).offset(10);
-        }];
+//        [self.submitBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.equalTo(@40);
+//        }];
+//        [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(weakSelf.tableView.mas_bottom).offset(10);
+//        }];
     }else{
-        [self.submitBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@0);
-        }];
-        [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(weakSelf.submitBtn.mas_bottom).offset(0);
-        }];
+//        [self.submitBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.equalTo(@0);
+//        }];
+//        [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(weakSelf.tableView.mas_bottom).offset(0);
+//        }];
     }
     if (statusf==3) {
         if (orderObj.isAssess.integerValue==0) {
@@ -342,5 +395,10 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     [cell setupCellInfoWithObj:orderObj];
     return cell;
+}
+
+#pragma mark --callBtnAction:
+- (void)callBtnAction:(UIButton *)sender{
+    kMakeCallWithPhone(self.orderObj.ownerIdf, kWindow);
 }
 @end

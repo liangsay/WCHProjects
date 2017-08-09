@@ -53,18 +53,18 @@ CGFloat const kCouponTableCellHeight = 70;
 - (void)initUIViews {
     WEAKSELF
     
-    _moneyLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentCenter mas_makeConstraints:^(MASConstraintMaker *make) {
+    _moneyLab = [BaseViewServer addLabelInView:self.contentView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentCenter mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
         make.centerY.equalTo(weakSelf.backgroundBtnView);
     }];
     
-    _typeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _typeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kMargin);
 //        make.left.equalTo(weakSelf.iconImgV.mas_right).offset(kPadding);
         make.top.mas_equalTo(kPadding);
     }];
     
-    _timeLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _timeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kMargin);
 //        make.left.equalTo(weakSelf.iconImgV.mas_right).offset(kPadding);
         make.bottom.mas_equalTo(-kPadding);

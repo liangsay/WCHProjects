@@ -272,16 +272,18 @@ static inline NSString* kCleanPhoneNumber(NSString *phoneNumber)
 
 static inline void kMakeCallWithPhone(NSString *phone, UIView *view)
 {
+//    NSString* numberAfterClear = kCleanPhoneNumber(phone);
     NSString* numberAfterClear = kCleanPhoneNumber(phone);
-
-    NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", numberAfterClear]];
-    //NSLog(@"make call, URL=%@", phoneNumberURL);
-
-    UIWebView*callWebview =[[UIWebView alloc] init];
-
-    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
-    //记得添加到view上
-    [view addSubview:callWebview];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",numberAfterClear];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//    NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", numberAfterClear]];
+//    //NSLog(@"make call, URL=%@", phoneNumberURL);
+//
+//    UIWebView*callWebview =[[UIWebView alloc] init];
+//
+//    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+//    //记得添加到view上
+//    [view addSubview:callWebview];
 }
 
 #pragma mark----------------------App版本Version--------------------------

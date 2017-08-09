@@ -11,6 +11,8 @@ FOUNDATION_EXPORT NSString * const kOCallCarAddressCellID;
 FOUNDATION_EXPORT CGFloat const kOCallCarAddressCellHeight;
 
 @interface OCallCarAddressCell : BaseTableCell
+
+
 @property (strong, nonatomic) UILabel *nameLab;
 @property (strong, nonatomic) UILabel *mobileLab;
 @property (strong, nonatomic) UILabel *addressLab;

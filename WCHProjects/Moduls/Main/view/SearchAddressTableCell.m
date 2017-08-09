@@ -21,13 +21,13 @@ CGFloat const kSearchAddressTableCellHeight = 60;
 
 - (void)initUIViews {
     
-    _titleLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _titleLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(kMargin);
         make.right.offset(-kMargin);
         make.top.offset(kPadding);
     }];
     
-    _detailLab = [BaseViewServer addLabelInView:self.backgroundBtnView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
+    _detailLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(kMargin);
         make.right.offset(-kMargin);
         make.bottom.offset(-kPadding);

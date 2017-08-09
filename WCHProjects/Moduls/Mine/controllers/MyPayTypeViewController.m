@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *weixinBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (nonatomic, strong) CoupontoUserObj *couponObj;
+@property (weak, nonatomic) IBOutlet UILabel *typeLab;
+
 @property (assign, nonatomic) BOOL isFinish;
 @end
 
@@ -43,6 +45,7 @@
     [self sendDiscoupontoUser];
     [self addNotic];
     kAppDelegate.payType = 2;
+    self.typeLab.text = kIsObjectEmpty(self.payTitle)?@"运费":self.payTitle;
 }
 
 - (void)onBackButton{

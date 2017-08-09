@@ -15,6 +15,7 @@
                 <outlet property="fareLabel" destination="P3r-PW-rW6" id="Q3Z-qm-Mdb"/>
                 <outlet property="favorableLabel" destination="SG1-qV-6iW" id="UJh-rd-PRs"/>
                 <outlet property="payLabel" destination="4K9-dK-Zst" id="ODr-jV-TZZ"/>
+                <outlet property="typeLab" destination="xcH-nE-PpQ" id="oQz-g7-CgG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weixinBtn" destination="nWe-5m-G6W" id="psO-7o-q0Q"/>
                 <outlet property="zhifubaoBtn" destination="Q1Q-d0-R4s" id="ddd-lr-OSK"/>

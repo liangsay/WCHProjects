@@ -70,6 +70,23 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)];
 //    [self.contentView addGestureRecognizer:tapGesture];
     
+    UILabel *numLab = [UILabel new];
+    numLab.font = [UIFont fontContent];
+    numLab.textColor = [UIColor fontBlack];
+    [self.contentView addSubview:numLab];
+    self.numLab = numLab;
+    
+    UIButton *callBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [callBtn setImage:kIMAGE(@"icon_card_call") forState:UIControlStateNormal];
+    [callBtn setTitle:@"联系司机" forState:UIControlStateNormal];
+    [callBtn setTitleColor:[UIColor mainColor] forState:UIControlStateNormal];
+    [callBtn.titleLabel setFont:[UIFont fontContent]];
+    [callBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [callBtn setContentEdgeInsets:(UIEdgeInsets){0,5,0,-5}];
+    [callBtn addTarget:self action:@selector(callBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:callBtn];
+    self.callBtn = callBtn;
+    
     UILabel *timeLab = [UILabel new];
     timeLab.font = [UIFont fontContent];
     timeLab.textColor = [UIColor fontBlack];
@@ -78,7 +95,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     
     UILabel *typeLab = [UILabel new];
     typeLab.font = [UIFont fontContent];
-    typeLab.textColor = [UIColor mainColor];
+    typeLab.textColor = [UIColor fontGray];
     [self.contentView addSubview:typeLab];
     self.typeLab = typeLab;
     
@@ -95,9 +112,8 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     self.startLab = startLab;
     
     BaseTableView *tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.scrollEnabled = NO;
-    tableView.userInteractionEnabled = NO;
+    tableView.userInteractionEnabled = YES;
     [tableView setLayerCornerRadius:5];
     [tableView setLayerBorderWidth:0.5 color:[UIColor borderColor]];
     [tableView registerClass:NSClassFromString(@"OCallCarAddressCell") forCellReuseIdentifier:kOCallCarAddressCellID];
@@ -148,14 +164,28 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
         make.edges.equalTo(weakSelf.contentView);
     }];
     
-    [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.callBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(@-15);
+        make.width.equalTo(@80);
+        make.height.equalTo(@30);
+        make.centerY.equalTo(weakSelf.numLab);
+    }];
+    
+    [self.numLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
         make.top.equalTo(@10);
+        make.right.greaterThanOrEqualTo(weakSelf.callBtn.mas_left).offset(-10);
+    }];
+    
+    [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@15);
+        make.top.equalTo(weakSelf.numLab.mas_bottom).offset(5);
     }];
     
     [self.typeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@-15);
-        make.top.equalTo(@10);
+        make.centerY.equalTo(weakSelf.timeLab);
         make.left.greaterThanOrEqualTo(weakSelf.timeLab.mas_right).offset(10);
     }];
     
@@ -262,8 +292,9 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView reloadData];
     
+    [self.tableView reloadData];
+    self.numLab.text = [NSString stringWithFormat:@"订单号:%@",orderObj.orderNof];
     self.timeLab.text = [NSString stringWithFormat:@"下单时间:%@",orderObj.createTimef];
     if (!kIsObjectEmpty(orderObj.modelNamef)) {
         self.typeLab.text = orderObj.modelNamef;
@@ -285,7 +316,11 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 //    (isAssess=0 未评价  1=已评价)
     //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
     NSInteger statusf = orderObj.statusf.integerValue;
-    
+    if (statusf==1) {
+        self.callBtn.alpha=1;
+    }else{
+        self.callBtn.alpha=0;
+    }
     if (statusf==1 || statusf==0) {//在已接单状态，司机或货主可取消订单
         //可以加入长按取消订单
         self.touchView.hidden = NO;
@@ -337,5 +372,11 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
     [cell setupCellInfoWithObj:orderObj];
     return cell;
+}
+
+
+#pragma mark --callBtnAction:
+- (void)callBtnAction:(UIButton *)sender{
+    kMakeCallWithPhone(self.orderObj.ownerIdf, kWindow);
 }
 @end

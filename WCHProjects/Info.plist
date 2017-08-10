@@ -313,6 +313,10 @@
 	<string>只有开启定位功能才能正常使用百度导航</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>允许此权限才能保存图片</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -26,6 +26,9 @@ FOUNDATION_EXPORT CGFloat const kOCallCarTableViewCellHeight;
 @property (strong, nonatomic) UIView *lineV;
 @property (nonatomic, strong) BaseTableView *tableView;
 
+@property (strong, nonatomic) UILabel *numLab;
+@property (strong, nonatomic) UIButton *callBtn;
+
 @property (strong, nonatomic) UILabel *timeLab;
 @property (strong, nonatomic) UILabel *typeLab;
 @property (strong, nonatomic) UIView *typeView;
@@ -35,6 +38,7 @@ FOUNDATION_EXPORT CGFloat const kOCallCarTableViewCellHeight;
 
 @property (strong, nonatomic) UIImageView *endImgV;
 @property (strong, nonatomic) UILabel *endLab;
+
 @property (strong, nonatomic) UILabel *priceLab;
 @property (strong, nonatomic) UILabel *statueLab;
 

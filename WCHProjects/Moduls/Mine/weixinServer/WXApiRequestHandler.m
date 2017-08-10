@@ -235,7 +235,7 @@
     // 更新时间：2015年11月20日
     
     //============================================================
-    NSString *urlString   = [NSString stringWithFormat:@"%@OrdertoPay.shtml",apiBaseURLString];//@"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php?plat=ios";
+    NSString *urlString   = [NSString stringWithFormat:@"%@OrdertoPay.shtml",apiBaseURLString()];//@"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php?plat=ios";
     
         //解析服务端返回json数据
         NSError *error;

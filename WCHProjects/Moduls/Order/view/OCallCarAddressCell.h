@@ -17,6 +17,7 @@ FOUNDATION_EXPORT CGFloat const kOCallCarAddressCellHeight;
 @property (strong, nonatomic) UILabel *mobileLab;
 @property (strong, nonatomic) UILabel *addressLab;
 @property (strong, nonatomic) UIView *lineV;
+@property (nonatomic, strong) UIImageView *iconImgV;
 
 @property (nonatomic, strong) OrderInfoObj *orderObj;
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj;

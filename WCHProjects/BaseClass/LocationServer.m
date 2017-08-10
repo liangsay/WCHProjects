@@ -114,18 +114,18 @@
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     self.userLocation = userLocation;
-//#if DEBUG
-//    OrderInfoObj *orderObj = [OrderInfoObj new];
-//    orderObj.provincef = @"天津市";
-//    orderObj.cityf = @"天津市";
-//    self.provincef = orderObj.provincef;
-//    self.cityf = orderObj.cityf;
-//    if (self.orderBlock) {
-//        self.orderBlock(orderObj);
-//        self.orderBlock = nil;
-//    }
-//    return;
-//#endif
+#if DEBUG
+    OrderInfoObj *orderObj = [OrderInfoObj new];
+    orderObj.provincef = @"天津市";
+    orderObj.cityf = @"天津市";
+    self.provincef = orderObj.provincef;
+    self.cityf = orderObj.cityf;
+    if (self.orderBlock) {
+        self.orderBlock(orderObj);
+        self.orderBlock = nil;
+    }
+    return;
+#endif
     DLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     
     

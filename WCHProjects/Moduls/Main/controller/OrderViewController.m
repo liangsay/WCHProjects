@@ -10,6 +10,7 @@
 #import "OrderTableCell.h"
 #import "OrderInfoObj.h"
 #import "BaseTableView.h"
+#import "UITableViewCell+HYBMasonryAutoCellHeight.h"
 @interface OrderViewController ()
 <UITableViewDelegate,UITableViewDataSource,OrderTableCellDelegate>
 
@@ -25,6 +26,13 @@
     self.title = @"订单";
     
     [self setupTableViewSet];
+}
+
+- (NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
 }
 
 - (void)reloadOrderData {
@@ -49,8 +57,7 @@
     
     _tableView.backgroundColor = [UIColor backgroundColor];
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [_tableView registerNib:[UINib nibWithNibName:NSStringFromClass([OrderTableCell class]) bundle:nil] forCellReuseIdentifier:kOrderTableCellID];
-    [_tableView setRowHeight:kOrderTableCellHeight];
+    [_tableView registerClass:[OrderTableCell class] forCellReuseIdentifier:kOrderTableCellID];
     [self.tableView addHeaderRefreshTarget:self action:@selector(headerRefresh)];
 }
 
@@ -64,14 +71,20 @@
     return 1;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *footView = [UIView new];
-    footView.backgroundColor = [UIColor backgroundColor];
-    return footView;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return kPadding;
+    return 0.01;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    __block OrderInfoObj *orderObj = self.dataArray[indexPath.row];
+    CGFloat height = [OrderTableCell hyb_heightForTableView:self.tableView config:^(UITableViewCell *sourceCell) {
+        OrderTableCell *_cell = (OrderTableCell *)sourceCell;
+        [_cell setupCellInfoWith:orderObj];
+    }];
+    
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -85,10 +98,10 @@
 
 #pragma mark --OrderTableCellDelegate
 - (void)orderTableCell:(OrderTableCell *)orderTableCell orderObj:(OrderInfoObj *)orderObj {
-    if (self.isReceive) {
-        [NSString toast:@"您正在接单中"];
-        return;
-    }
+//    if (self.isReceive) {
+//        [NSString toast:@"您正在接单中"];
+//        return;
+//    }
     self.orderObj = orderObj;
     [self sendOrderdoTakeWithOrderObj:orderObj];
 }
@@ -110,6 +123,7 @@
             [weakSelf.delegate orderViewController:weakSelf orderObj:weakSelf.orderObj isOrderRecive:YES];
         }
         [weakSelf onBackButton];
+        [NSString toast:@"接单成功"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
          [NSString toast:@"网络请求异常"];
     }];

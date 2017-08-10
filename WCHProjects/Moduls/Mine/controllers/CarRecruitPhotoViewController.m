@@ -31,10 +31,10 @@
     UIButton *typeBtn2 = kViewWithTag(self.containView, 101);
     UIButton *typeBtn3 = kViewWithTag(self.containView, 102);
     UIButton *typeBtn4 = kViewWithTag(self.containView, 103);
-    NSString *photo1 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString,_orderObj.routeCarImage];
-    NSString *photo2 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString,_orderObj.driverCarImage];
-    NSString *photo3 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString,_orderObj.idImage];
-    NSString *photo4 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString,_orderObj.carImage];
+    NSString *photo1 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString(),_orderObj.routeCarImage];
+    NSString *photo2 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString(),_orderObj.driverCarImage];
+    NSString *photo3 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString(),_orderObj.idImage];
+    NSString *photo4 = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString(),_orderObj.carImage];
     [typeBtn1 setImageForState:UIControlStateNormal withURL:kURLFromString(photo1)];
     [typeBtn2 setImageForState:UIControlStateNormal withURL:kURLFromString(photo2)];
     [typeBtn3 setImageForState:UIControlStateNormal withURL:kURLFromString(photo3)];

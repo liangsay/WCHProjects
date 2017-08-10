@@ -174,8 +174,8 @@
             vc.navigationItem.title = @"优惠券";
             kPushNav(vc, YES);
         }else if (row==1){
-            
-            [self showBottomNormalView];
+            [NSString toast:@"敬请期待"];
+//            [self showBottomNormalView];
 //            [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
 //                // 根据获取的platformType确定所选平台进行下一步操作
 //                

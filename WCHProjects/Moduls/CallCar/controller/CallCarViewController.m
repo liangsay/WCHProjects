@@ -14,11 +14,14 @@
 #import "UIButton+EnlargeTouchArea.h"
 #import "CallCarDetailViewController.h"
 #import "DutytoDecideObj.h"
+#import <AVFoundation/AVFoundation.h>
 @interface CallCarViewController () <UITableViewDelegate,UITableViewDataSource,OrderViewControllerDelegate>
+{
+    AVAudioPlayer *player;
+}
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 /** 定时器(这里不用带*，因为dispatch_source_t就是个类，内部已经包含了*) */
-@property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic, assign) BOOL isReciveState;
 
 @property (nonatomic, strong) OrderViewController *orderVC;
@@ -30,6 +33,8 @@
 @property (nonatomic, strong) UIButton *orderBtn;
 
 @property (nonatomic, strong) dispatch_source_t checkTimer;
+@property (nonatomic, strong) dispatch_source_t disTimer;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation CallCarViewController
@@ -43,6 +48,7 @@
     [self setupOrderCountSet];
     
     [self sendLogin_API];
+    
     if ([UserInfoObj model].userTypef.integerValue==2) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.orderBtn];
         [self.orderBtn setTitle:@"0" forState:UIControlStateNormal];
@@ -72,6 +78,17 @@
     return _orderBtn;
 }
 
+- (OrderViewController *)orderVC {
+    if (!_orderVC) {
+        OrderViewController *orderVC = [[OrderViewController alloc] initWithNibName:@"OrderViewController" bundle:nil];
+        orderVC.delegate = self;
+        orderVC.dataArray = self.orders;
+        _orderVC = orderVC;
+        self.orderVC = orderVC;
+    }
+    return _orderVC;
+}
+
 #pragma mark    --查看未接订单列表
 - (void)orderBtnAction:(UIButton *)sender{
 //    if (self.isReciveState) {
@@ -83,11 +100,7 @@
         kPushNav(self.orderVC, YES);
         return;
     }
-    OrderViewController *orderVC = [[OrderViewController alloc] initWithNibName:@"OrderViewController" bundle:nil];
-    orderVC.delegate = self;
-    orderVC.dataArray = self.orders;
-    self.orderVC = orderVC;
-    kPushNav(orderVC, YES);
+    
 }
 
 #pragma mark    --定时请求当前订单
@@ -98,7 +111,7 @@
     dispatch_queue_t queue = dispatch_get_main_queue();
     
     // 创建一个定时器(dispatch_source_t本质还是个OC对象)
-    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    self.checkTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     
     // 设置定时器的各种属性（几时开始任务，每隔多长时间执行一次）
     // GCD的时间参数，一般是纳秒（1秒 == 10的9次方纳秒）
@@ -106,10 +119,10 @@
     // dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC) 比当前时间晚3秒
     dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
     uint64_t interval = (uint64_t)(3.0 * NSEC_PER_SEC);
-    dispatch_source_set_timer(self.timer, start, interval, 0);
+    dispatch_source_set_timer(self.checkTimer, start, interval, 0);
     
     // 设置回调
-    dispatch_source_set_event_handler(self.timer, ^{
+    dispatch_source_set_event_handler(self.checkTimer, ^{
         [weakSelf sendOrdertoDone_API];
         
         // 取消定时器
@@ -118,15 +131,57 @@
     });
     
     // 启动定时器
-    dispatch_resume(self.timer);
+    dispatch_resume(self.checkTimer);
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(playSound) userInfo:nil repeats:YES];
+    [self.timer setFireDate:[NSDate distantPast]];
+    NSRunLoop *runLoop=[NSRunLoop currentRunLoop];
+    [runLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    
+}
+
+- (void)playSound {
+    if ([UserInfoObj model].userTypef.integerValue!=2 || self.orderVC.dataArray.count==0 || [kAppDelegate.currentViewController isKindOfClass:[OrderViewController class]]) {
+        if (player) {
+            player.currentTime = 0;
+            [player stop];
+        }
+        return;
+    }
+    NSString *filepath = [[NSBundle mainBundle]pathForResource:@"order" ofType:@"mp3"];
+    NSData *data = [[NSData data]initWithContentsOfFile:filepath];
+    if (!player) {
+        player = [[AVAudioPlayer alloc]initWithData:data error:nil];
+        player.numberOfLoops = 0;
+    }
+    if (player.isPlaying) {
+        player.currentTime = 0;
+    }
+    [player play];
+    
+    //设置锁屏仍能继续播放
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error:nil];
+    [[AVAudioSession sharedInstance] setActive: YES error:nil];
     
 }
 
 //去掉定时器
 - (void)cancelTimer {
+    if (self.checkTimer) {
+        dispatch_cancel(self.checkTimer);
+        self.checkTimer = nil;
+    }
     if (self.timer) {
-        dispatch_cancel(self.timer);
+        //关闭定时器
+        //        [self.timer setFireDate:[NSDate distantFuture]];
+        player.currentTime = 0;
+        [player stop];
+        player = nil;
+        [self.timer setFireDate:[NSDate distantFuture]];
+        [self.timer invalidate];
         self.timer = nil;
+        
+        //        _timer = nil; // 将 dispatch_source_t 置为nil
     }
 }
 
@@ -239,50 +294,13 @@
     [OrderInfoObj sendOrdertoDoneWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         weakSelf.orders = response.responseModel;
         if (weakSelf.orderVC) {
-            weakSelf.dataArray = weakSelf.orders;
+            weakSelf.orderVC.dataArray = weakSelf.orders;
             [weakSelf.orderVC reloadOrderData];
         }
         [weakSelf.orderBtn setTitle:kIntegerToString(response.totalCount) forState:UIControlStateNormal];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         
     }];
-}
-
-
-- (void)setupCheckOrderState {
-    if (self.checkTimer) {
-        dispatch_source_cancel(self.checkTimer);
-        self.checkTimer = nil;
-    }
-    
-    WEAKSELF
-    
-    //如果接单则不需要有新订单提醒
-    // 队列（队列时用来确定该定时器存在哪个队列中）
-    dispatch_queue_t queue = dispatch_get_main_queue();
-    
-    // 创建GCD定时器
-    self.checkTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    // 开始时间
-    dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, 0 * NSEC_PER_SEC);
-    // 时间间隔
-    uint64_t interval = 1 * NSEC_PER_SEC;
-    
-    // 设置GCD定时器开始时间，间隔时间
-    dispatch_source_set_timer(self.checkTimer, start, interval, 0);
-    // GCD定时器处理回调方法
-    dispatch_source_set_event_handler(self.checkTimer, ^{
-        DLog(@"sendOrdertoReLoad---------%@", [NSThread currentThread]);
-        [weakSelf checkOrderWithOrderObj:weakSelf.orderHuozhuObj];
-    });
-    
-    dispatch_source_set_cancel_handler(self.checkTimer, ^{
-        NSLog(@"cancel");
-        
-    });
-    
-    // GCD定时器启动，默认是关闭的
-    dispatch_resume(self.checkTimer);
 }
 
 #pragma mark --司机接单后检查订单状态
@@ -326,7 +344,7 @@
     self.orderHuozhuObj = orderObj;
     self.isReciveState = YES;
     //接单后实时检查订单状态
-    [self setupCheckOrderState];
+    [self setupOrderCountSet];
     
     
 }

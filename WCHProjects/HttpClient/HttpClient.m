@@ -24,7 +24,7 @@
     static HttpClient *_sharedURLClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSURL *baseURL = [NSURL URLWithString:apiBaseURLString];
+        NSURL *baseURL = [NSURL URLWithString:apiBaseURLString()];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         //                [config setHTTPAdditionalHeaders:@{@"User-Agent":@"TuneStore iOS 1.0"}];
         
@@ -85,7 +85,7 @@
         [parameters removeObjectForKey:kIsHideLoadingView];
     }
     request.params = parameters;
-    request.baseUrlStr = apiBaseURLString;
+    request.baseUrlStr = apiBaseURLString();
     DLog(@"request:%@",request);
     
     [request startRequestWithSucessBlock:sucessBlock withFailedBlock:failedBlock];

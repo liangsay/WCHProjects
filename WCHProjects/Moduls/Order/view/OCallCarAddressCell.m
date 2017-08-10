@@ -31,6 +31,12 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     [self.contentView addSubview:nameLab];
     self.nameLab = nameLab;
     
+    UIImageView *iconImgV = [[UIImageView alloc] initWithImage:kIMAGE(@"icon_card_call")];
+    iconImgV.userInteractionEnabled = YES;
+    iconImgV.multipleTouchEnabled = YES;
+    [self.contentView addSubview:iconImgV];
+    self.iconImgV = iconImgV;
+    
     UILabel *mobileLab = [UILabel new];
     mobileLab.font = [UIFont fontContent];
     mobileLab.userInteractionEnabled = YES;
@@ -56,10 +62,12 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mobileLabAction:)];
     tapAction.delegate = self;
     [mobileLab addGestureRecognizer:tapAction];
+    [iconImgV addGestureRecognizer:tapAction];
     
     UITapGestureRecognizer *startTapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startTapAction:)];
     startTapAction.delegate = self;
     [addressLab addGestureRecognizer:startTapAction];
+    
 }
 
 - (void)mobileLabAction:(UIGestureRecognizer *)sender {
@@ -84,10 +92,15 @@ CGFloat const kOCallCarAddressCellHeight = 58;
         make.top.equalTo(@10);
     }];
     
+    [self.iconImgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.greaterThanOrEqualTo(weakSelf.nameLab.mas_right).offset(10);
+        make.centerY.equalTo(weakSelf.nameLab);
+    }];
+    
     [self.mobileLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@-15);
         make.centerY.equalTo(weakSelf.nameLab);
-        make.left.greaterThanOrEqualTo(weakSelf.nameLab.mas_right).offset(10);
+        make.left.equalTo(weakSelf.iconImgV.mas_right).offset(2);
     }];
     
     [self.addressLab mas_makeConstraints:^(MASConstraintMaker *make) {

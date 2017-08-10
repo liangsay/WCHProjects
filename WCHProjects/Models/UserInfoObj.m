@@ -12,6 +12,33 @@
 
 @implementation UserInfoObj
 
+
++ (void)sendAppToAccess{
+    WEAKSELF
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //申明返回的结果是json类型
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //申明请求的数据是json类型
+    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+    //如果报接受类型不一致请替换一致text/html或别的
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/plain", nil];
+    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    [manager POST:@"http://www.66weihuo.com/ApptoAccess.shtml?requestType=app" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dic = responseObject;
+            NSString *result = dic[@"result"];
+            if (dic && !kIsObjectEmpty(result)) {
+//                apiBaseURLString() = result;
+                kSetObjectForKey(result, @"apiBaseURLString");
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+}
 #pragma mark --发起用户登录请求
 /*!
  *  @author liujinliang, 16-04-12 17:04:11

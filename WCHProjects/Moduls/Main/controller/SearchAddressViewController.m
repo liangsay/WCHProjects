@@ -273,8 +273,12 @@ UITextFieldDelegate,CitysViewControllerDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchAddressObj *addObj = _dataArray[indexPath.row];
+    
     if (self.searchType == SearchAddressTypeCallCar) {
-        
+        if (!kIsMobilePhone(self.mobileTxtField.text)) {
+            [NSString toast:@"请输入正确的手机号码"];
+            return;
+        }
         self.cityObj.addrf = addObj.detail;
         self.cityObj.namef = self.nameTxtField.text;
         self.cityObj.modelf = self.mobileTxtField.text;

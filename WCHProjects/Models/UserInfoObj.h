@@ -62,6 +62,7 @@
 
 
 
++ (void)sendAppToAccess;
 #pragma mark --3.2登陆接口
 /*!
  *  @author liujinliang, 16-04-12 17:04:11

@@ -69,7 +69,7 @@
     ShopDetailWebViewController *one = [[ShopDetailWebViewController alloc]initWithNibName:@"ShopDetailWebViewController" bundle:nil];
     one.title = @"商品";
     one.orderObj = self.orderObj;
-    one.webUrlString = [NSString stringWithFormat:@"%@/MallgoodstoDetail.shtml?fk=%@",apiBaseURLString,self.orderObj.idf];//@"https://item.m.jd.com/product/2342601.html?sid=2b9de11ccb92d808eb2e1a39460f585d";
+    one.webUrlString = [NSString stringWithFormat:@"%@/MallgoodstoDetail.shtml?fk=%@",apiBaseURLString(),self.orderObj.idf];//@"https://item.m.jd.com/product/2342601.html?sid=2b9de11ccb92d808eb2e1a39460f585d";
     one.index = 0;
     [arr addObject:one];
     

@@ -147,7 +147,7 @@
     
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
-    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoPayReturn.shtml",apiBaseURLString];
+    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoPayReturn.shtml",apiBaseURLString()];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *orderNum = [NSString stringWithFormat:@"%@",self.orderObj.orderNof];
     if (self.couponObj && !kIsObjectEmpty(self.couponObj.idf)) {
@@ -177,7 +177,7 @@
 #if DEBUG
     self.payLabel.text = @"0.01";
 #endif
-    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoAliPayReturn.shtml",apiBaseURLString];
+    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoAliPayReturn.shtml",apiBaseURLString()];
     NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app&vo.tradeTypef=%ld&vo.reUrlf=%@&vo.userNamef=%@",self.payTitle,orderNum,self.payLabel.text,self.tradeTypef,reUrlf,[UserInfoObj model].mobilePhonef];
     if (self.couponObj) {
         paraStr = [paraStr stringByAppendingFormat:@"&vo.couponIdf=%@",self.couponObj.idf];
@@ -187,7 +187,7 @@
     NSData *postData = [paraStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
     NSString *postLength = [NSString stringWithFormat:@"%zd", [postData length]];
-    NSString *url = [NSString stringWithFormat:@"%@/OrdertoAliPay.shtml",apiBaseURLString];
+    NSString *url = [NSString stringWithFormat:@"%@/OrdertoAliPay.shtml",apiBaseURLString()];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];

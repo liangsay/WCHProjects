@@ -19,7 +19,7 @@
     static HttpUrlClient *_sharedURLClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        //        NSURL *baseURL = [NSURL URLWithString:apiBaseURLString];
+        //        NSURL *baseURL = [NSURL URLWithString:apiBaseURLString()];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         //        [config setHTTPAdditionalHeaders:@{@"User-Agent":@"TuneStore iOS 1.0"}];
         
@@ -141,7 +141,7 @@
     if (postData){
         postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     }
-    NSString *reqUrl = [NSString stringWithFormat:@"%@%@",apiBaseURLString,path];
+    NSString *reqUrl = [NSString stringWithFormat:@"%@%@",apiBaseURLString(),path];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:kURLFromString(reqUrl)];
     [req setHTTPBody:postData];
     [req setHTTPMethod:isPost?@"POST":@"GET"];
@@ -155,7 +155,7 @@
     request.requestPath = [NSString stringWithFormat:@"%@",path];
     request.params = parameters;
     request.urlRequest = req;
-    request.baseUrlStr = apiBaseURLString;
+    request.baseUrlStr = apiBaseURLString();
     
     DLog(@"request:%@",request);
     if ([parameters[kIsHideLoadingView] boolValue]) {

@@ -33,6 +33,11 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
 @property (nonatomic, assign) CLLocationCoordinate2D startCoordinate;
 @property (nonatomic, assign) CLLocationCoordinate2D endCoordinate;
 
+@property (weak, nonatomic) IBOutlet UILabel *shuomingLab;
+
+@property (nonatomic, strong) NSString *kmCountf;
+
+
 @end
 
 @implementation CallCarDetailViewController
@@ -260,6 +265,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
     [self.tableView endUpdates];
+    
 }
 
 - (void)showSelectDateViewIn:(NSIndexPath *)indexPath {
@@ -329,8 +335,40 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
             return NO;
     }
     
-    
     return YES;
+}
+
+- (void)changeShowShuoMing{
+    if (self.startCoordinate.latitude==0 || self.endCoordinate.latitude==0) {
+        return;
+    }
+    double pricef = 0.0;
+    //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
+    pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
+    
+    if (self.dataArray.count > 4) {
+        //大于3代表有途经点数据
+        for (NSInteger i = 2; i<self.dataArray.count-2; i++) {
+            OrderInfoObj *childObj = self.dataArray[i];
+            if (!kIsObjectEmpty(childObj.content)) {
+                //每加一个节点+15元
+                pricef += self.bdtoOrderObj.bdValuef.doubleValue;
+            }
+        }
+    }
+    
+    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.startCoordinate.latitude, self.startCoordinate.longitude));
+    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.endCoordinate.latitude, self.endCoordinate.longitude));
+    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
+    
+    self.kmCountf = [NSString stringWithFormat:@"%.3f",distance/1000];
+    if (distance) {
+        self.shuomingLab.text = [NSString stringWithFormat:@"全程约%@公里 费用估计：%.2f元",self.kmCountf,pricef];
+        self.shuomingLab.textColor = [UIColor priceColor];
+    }else{
+        self.shuomingLab.textColor = [UIColor fontGray];
+        self.shuomingLab.text = @"实际价格会因实际情况而有所变化";
+    }
 }
 
 #pragma mark --AddressViewControllerDelegate------
@@ -348,6 +386,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:@[self.selIndexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+    [self changeShowShuoMing];
 }
 
 #pragma mark --SearchAddressViewControllerDelegate--------
@@ -369,6 +408,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:@[self.selIndexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+    [self changeShowShuoMing];
 }
 
 #pragma mark --CallCarDetailCellDelegate-------------
@@ -377,6 +417,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     //    [self.tableView beginUpdates];
     [self.dataArray removeObjectAtIndex:index];
     [self.tableView reloadData];
+    [self changeShowShuoMing];
     //    self.selIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
     //    [self.tableView deleteRowsAtIndexPaths:@[self.selIndexPath] withRowAnimation:UITableViewRowAnimationRight];
     //    [self.tableView endUpdates];
@@ -431,18 +472,16 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
  }
  */
 - (void)sendOrderdoInsert{
-    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.startCoordinate.latitude, self.startCoordinate.longitude));
-    BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.endCoordinate.latitude, self.endCoordinate.longitude));
-    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
     
-    NSString *kmCountf = [NSString stringWithFormat:@"%.3f",distance/1000];
-    double pricef = 0.0;
+    
+    
     OrderInfoObj *timeObj = self.dataArray[0];
     OrderInfoObj *startObj = self.dataArray[1];
     OrderInfoObj *endObj = self.dataArray[self.dataArray.count - 2];
     OrderInfoObj *tonObj = self.dataArray[self.dataArray.count - 1];
+    double pricef = 0.0;
     //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
-    pricef = (kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
+    pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
     NSMutableArray *nodes = [NSMutableArray array];
     
     if (self.dataArray.count > 4) {
@@ -486,7 +525,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.mobilePhonef"];
     [params addUnEmptyString:startObj.startLocationf forKey:@"vo.startLocationf"];
     [params addUnEmptyString:endObj.endLocationf forKey:@"vo.endLocationf"];
-    [params addUnEmptyString:kmCountf forKey:@"vo.kmCountf"];
+    [params addUnEmptyString:self.kmCountf forKey:@"vo.kmCountf"];
     [params addUnEmptyString:kDoubleToString(pricef) forKey:@"vo.pricef"];
     [params addUnEmptyString:@"0" forKey:@"vo.statusf"];
     [params addUnEmptyString:@"0" forKey:@"vo.payStatusf"];

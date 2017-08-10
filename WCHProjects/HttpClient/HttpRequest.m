@@ -177,7 +177,7 @@ static BOOL canCheckNetwork = NO;
         [self startDownloadBtnClick:nil];
     }
     
-    DLog(@"request:%@",[NSString stringWithFormat:@"%@/%@",apiBaseURLString,restUrl]);
+    DLog(@"request:%@",[NSString stringWithFormat:@"%@/%@",apiBaseURLString(),restUrl]);
 }
 
 

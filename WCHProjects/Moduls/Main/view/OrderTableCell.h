@@ -8,6 +8,7 @@
 
 #import "BaseTableCell.h"
 #import "OrderInfoObj.h"
+#import "BaseTableView.h"
 FOUNDATION_EXPORT NSString * const kOrderTableCellID;
 FOUNDATION_EXPORT CGFloat const kOrderTableCellHeight;
 
@@ -19,12 +20,19 @@ FOUNDATION_EXPORT CGFloat const kOrderTableCellHeight;
 
 @interface OrderTableCell : BaseTableCell
 @property (nonatomic, weak) IBOutlet UIView *bgView;//终点位置
-@property (nonatomic, weak) IBOutlet UILabel *startLab;//起点位置
-@property (nonatomic, weak) IBOutlet UILabel *endLab;//终点位置
-@property (nonatomic, weak) IBOutlet UILabel *carLab;//起点位置
-@property (nonatomic, weak) IBOutlet UILabel *priceLab;//终点位置
-@property (nonatomic, weak) IBOutlet UIButton *orderBtn;
+
+@property (strong, nonatomic) UIImageView *startImgV;
+@property (strong, nonatomic) UILabel *startLab;
+@property (strong, nonatomic) UIImageView *endImgV;
+@property (strong, nonatomic) UILabel *endLab;
+@property (strong, nonatomic) UILabel *typeLab;
+
+@property (nonatomic, strong) BaseTableView *tableView;
+
+@property (strong, nonatomic) UILabel *priceLab;
+@property (nonatomic, strong) UIButton *orderBtn;
 @property (nonatomic, strong) OrderInfoObj *orderObj;
+@property (strong, nonatomic) UIView *lineV;
 
 @property (nonatomic, assign) id<OrderTableCellDelegate> orderDelegate;
 - (void)setupCellInfoWith:(OrderInfoObj *)model;

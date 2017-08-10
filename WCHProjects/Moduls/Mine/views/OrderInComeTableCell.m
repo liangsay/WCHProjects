@@ -43,6 +43,27 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     return  YES;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    for (UIView *subView in self.subviews) {
+        
+        if ([NSStringFromClass([subView class]) isEqualToString:@"UITableViewCellDeleteConfirmationView"]) {
+            ((UIView *)[subView.subviews firstObject]).backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
+            NSLog(@"%@", NSStringFromCGRect(((UIView *)[subView.subviews firstObject].superview).frame));
+            NSLog(@"%@", (UIView *)[subView.subviews firstObject].superview);
+            
+            CGRect frame =  self.contentView.subviews[0].frame;
+            
+            frame.size.width = [UIScreen mainScreen].bounds.size.width - ((UIView *)[subView.subviews firstObject]).superview.frame.size.width;
+            
+            self.contentView.subviews[0].frame = frame;
+            NSLog(@"--%@", NSStringFromCGRect(self.contentView.subviews[0].bounds));
+        }
+    }
+    
+}
 
 - (void)setupViewsSet {
     
@@ -95,6 +116,7 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     startLab.font = [UIFont fontContent];
     startLab.textColor = [UIColor fontGray];
     startLab.numberOfLines = 0;
+    startLab.userInteractionEnabled = YES;
     startLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15 - 12 -10;
     [self.contentView addSubview:startLab];
     self.startLab = startLab;
@@ -102,7 +124,8 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     BaseTableView *tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.scrollEnabled = NO;
-    tableView.userInteractionEnabled = NO;
+    tableView.userInteractionEnabled = YES;
+    tableView.multipleTouchEnabled = YES;
     [tableView setLayerCornerRadius:5];
     [tableView setLayerBorderWidth:0.5 color:[UIColor borderColor]];
     [tableView registerClass:NSClassFromString(@"OCallCarAddressCell") forCellReuseIdentifier:kOCallCarAddressCellID];
@@ -117,6 +140,7 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     endLab.font = [UIFont fontContent];
     endLab.textColor = [UIColor fontGray];
     endLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15 - 12 -10;
+    endLab.userInteractionEnabled = YES;
     endLab.numberOfLines = 0;
     [self.contentView addSubview:endLab];
     self.endLab = endLab;
@@ -153,6 +177,14 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     lineV.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:lineV];
     self.lineV = lineV;
+    
+    UITapGestureRecognizer *startTapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startTapAction:)];
+    startTapAction.delegate = self;
+    [startLab addGestureRecognizer:startTapAction];
+    
+    UITapGestureRecognizer *endTapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(endTapAction:)];
+    endTapAction.delegate = self;
+    [endLab addGestureRecognizer:endTapAction];
     
 }
 
@@ -271,6 +303,27 @@ CGFloat const kOrderInComeTableCellHeight = 110;
     }
 }
 
+#pragma mark --地址导航
+- (void)startTapAction:(UIGestureRecognizer *)sender{
+    
+    NSArray *points = [self.orderObj.startLocationf componentsSeparatedByString:@","];
+    CLLocationCoordinate2D coord;
+    coord.latitude = [[points firstObject] doubleValue];
+    coord.longitude = [[points lastObject] doubleValue];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    self.orderObj.starLocation = location;
+    [[LocationServer shared] carLocationWith:location orderObj:self.orderObj seleIndex:2];
+}
+
+- (void)endTapAction:(UIGestureRecognizer *)sender{
+    NSArray *points = [self.orderObj.endLocationf componentsSeparatedByString:@","];
+    CLLocationCoordinate2D coord;
+    coord.latitude = [[points firstObject] doubleValue];
+    coord.longitude = [[points lastObject] doubleValue];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    self.orderObj.endLocation = location;
+    [[LocationServer shared] carLocationWith:location orderObj:self.orderObj seleIndex:2];
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -352,6 +405,7 @@ CGFloat const kOrderInComeTableCellHeight = 110;
 //            make.top.equalTo(weakSelf.tableView.mas_bottom).offset(0);
 //        }];
     }
+    
     if (statusf==3) {
         if (orderObj.isAssess.integerValue==0) {
             self.statueLab.text = @"待评价";

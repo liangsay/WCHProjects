@@ -29,4 +29,24 @@ BMKGeoCodeSearchDelegate>
 - (void)setupLocationServiceWithComplete:(LocationServerBlock)complete;
 
 - (void)reload;
+
+
+#pragma mark --检查是否有高德地图
+/**
+ 检查是否有高德地图
+ 
+ @return <#return value description#>
+ */
++ (BOOL)checkGaoDeCanOpen;
+
+#pragma mark --检查是否有百度地图
+/**
+ 检查是否有百度地图
+ 
+ @return <#return value description#>
+ */
++ (BOOL)checkBaiDuCanOpen;
+
+#pragma mark --打开手机导航系统或web订单导航
+- (IBAction)carLocationWith:(CLLocation *)location orderObj:(OrderInfoObj *)orderObj seleIndex:(NSInteger)seleIndex;
 @end

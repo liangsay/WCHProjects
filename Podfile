@@ -8,7 +8,7 @@ target "WCHProjects" do
     pod 'RDVTabBarController'
     pod 'MJExtension', '~> 3.0.13'
     pod 'IQKeyboardManager'
-    pod 'UMengAnalytics'
+    
     pod 'Masonry'
     pod 'UITableView+FDTemplateLayoutCell'
     pod 'AFNetworking'
@@ -36,6 +36,7 @@ target "WCHProjects" do
     pod 'SDCycleScrollView'
     
     #友盟统计
+    pod 'UMengAnalytics-NO-IDFA'
     # U-Share SDK UI模块（分享面板，建议添加）
     pod 'UMengUShare/UI'
     # 集成微信(精简版0.2M)

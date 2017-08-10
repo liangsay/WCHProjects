@@ -19,8 +19,9 @@
 #import "ActionSheetStringPicker.h"
 #import <AVFoundation/AVFoundation.h>
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
-#import "UIImage+Rotate.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import "UIImage+Rotate.h"
+
 #import "EndOrderLocationServer.h"
 #import "MyPayTypeViewController.h"
 #import "OrderPointAnnotation.h"

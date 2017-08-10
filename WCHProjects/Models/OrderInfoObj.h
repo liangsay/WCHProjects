@@ -37,6 +37,7 @@
 @property (nonatomic, strong) OrderInfoObj *order;
 @property (nonatomic, strong) CLLocation *starLocation;
 @property (nonatomic, strong) CLLocation *endLocation;
+@property (nonatomic, strong) CLLocation *pointLocation;
 @property (nonatomic, strong) NSString *amountf;
 @property (nonatomic, strong) NSString *kmPricef;//;// "2.8";
 @property (nonatomic, strong) NSString *namef;//;// "\U5c0f\U9762";

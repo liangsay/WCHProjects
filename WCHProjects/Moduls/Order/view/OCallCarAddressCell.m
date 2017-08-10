@@ -33,6 +33,8 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     
     UILabel *mobileLab = [UILabel new];
     mobileLab.font = [UIFont fontContent];
+    mobileLab.userInteractionEnabled = YES;
+    mobileLab.multipleTouchEnabled = YES;
     mobileLab.textColor = [UIColor priceColor];
     [self.contentView addSubview:mobileLab];
     self.mobileLab = mobileLab;
@@ -42,6 +44,7 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     addressLab.textColor = [UIColor fontGray];
     addressLab.numberOfLines = 0;
     addressLab.preferredMaxLayoutWidth = kScreenWidth - 15 * 4;
+    addressLab.userInteractionEnabled = YES;
     [self.contentView addSubview:addressLab];
     self.addressLab = addressLab;
     
@@ -53,10 +56,25 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mobileLabAction:)];
     tapAction.delegate = self;
     [mobileLab addGestureRecognizer:tapAction];
+    
+    UITapGestureRecognizer *startTapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startTapAction:)];
+    startTapAction.delegate = self;
+    [addressLab addGestureRecognizer:startTapAction];
 }
 
 - (void)mobileLabAction:(UIGestureRecognizer *)sender {
     kMakeCallWithPhone(self.orderObj.phonef, kWindow);
+}
+
+#pragma mark --地址导航
+- (void)startTapAction:(UIGestureRecognizer *)sender{
+    NSArray *points = [self.orderObj.positionf componentsSeparatedByString:@","];
+    CLLocationCoordinate2D coord;
+    coord.latitude = [[points firstObject] doubleValue];
+    coord.longitude = [[points lastObject] doubleValue];
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    self.orderObj.pointLocation = location;
+    [[LocationServer shared] carLocationWith:location orderObj:self.orderObj seleIndex:2];
 }
 
 - (void)setupContraintSet{
@@ -96,6 +114,15 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    // 若点击了tableViewCell，则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    return  YES;
 }
 
 

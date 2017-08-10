@@ -174,12 +174,12 @@
             vc.navigationItem.title = @"优惠券";
             kPushNav(vc, YES);
         }else if (row==1){
-            //分享
-            [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_WechatSession)]];
-            [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-                // 根据获取的platformType确定所选平台进行下一步操作
-                
-            }];
+            
+            [self showBottomNormalView];
+//            [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+//                // 根据获取的platformType确定所选平台进行下一步操作
+//                
+//            }];
         }else if (row==2){
             //司机招募
             CarRecruitViewController *vc = [[CarRecruitViewController alloc] initWithNibName:@"CarRecruitViewController" bundle:nil];
@@ -230,6 +230,74 @@
     {
         scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
+}
+
+- (void)showBottomNormalView
+{
+    WEAKSELF
+    //加入copy的操作
+    
+    //@see http://dev.umeng.com/social/ios/进阶文档#6
+    //分享
+    [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_Sina),@(UMSocialPlatformType_QQ),@(UMSocialPlatformType_WechatSession)]];
+    
+//    [UMSocialUIManager addCustomPlatformWithoutFilted:UMSocialPlatformType_UserDefine_Begin+2
+//                                     withPlatformIcon:[UIImage imageNamed:@"logo"]
+//                                     withPlatformName:@"六六微货"];
+    
+    [UMSocialShareUIConfig shareInstance].sharePageGroupViewConfig.sharePageGroupViewPostionType = UMSocialSharePageGroupViewPositionType_Bottom;
+    [UMSocialShareUIConfig shareInstance].sharePageScrollViewConfig.shareScrollViewPageItemStyleType = UMSocialPlatformItemViewBackgroudType_None;
+    
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        
+        //在回调里面获得点击的
+        if (platformType == UMSocialPlatformType_UserDefine_Begin+2) {
+            DLog(@"点击演示添加Icon后该做的操作");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"添加自定义icon"
+                                                                message:@"具体操作方法请参考UShareUI内接口文档"
+                                                               delegate:nil
+                                                      cancelButtonTitle:NSLocalizedString(@"确定", nil)
+                                                      otherButtonTitles:nil];
+                [alert show];
+                
+            });
+        }
+        else{
+            [weakSelf shareTextToPlatformType:platformType];
+        }
+    }];
+}
+
+#pragma mark - share type
+//分享文本
+- (void)shareTextToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    //设置文本
+    messageObject.text = @"这里要分享文案";
+
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        
+        if (error) {
+            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+        }else{
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                UMSocialLogInfo(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
+                
+            }else{
+                UMSocialLogInfo(@"response data is %@",data);
+            }
+        }
+        [NSString toast:error.description];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -49,10 +49,14 @@ static NSString *kLaunchImg = @"kLaunchImg";
     
     UMConfigInstance.appKey = @"57dff57e67e58e2a52003099";
     UMConfigInstance.channelId = @"AppStore";
+    [[UMSocialManager defaultManager] setUmSocialAppkey:UMConfigInstance.appKey];
+    
     [self configUSharePlatforms];
     
     [self confitUShareSettings];
 
+    [MobClick startWithConfigure:UMConfigInstance];
+    
     
 #if DEBUG
     [MobClick setLogEnabled:YES];

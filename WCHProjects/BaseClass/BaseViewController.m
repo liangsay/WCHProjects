@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import <UMMobClick/MobClick.h>
 NSString * const kNotificationCenter_CancelOrder = @"kNotificationCenter_CancelOrder";
 
 @interface BaseViewController ()
@@ -42,6 +42,15 @@ NSString * const kNotificationCenter_CancelOrder = @"kNotificationCenter_CancelO
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [MobClick beginLogPageView:NSStringFromClass(self.class)];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [MobClick endLogPageView:NSStringFromClass(self.class)];
+}
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleDefault;

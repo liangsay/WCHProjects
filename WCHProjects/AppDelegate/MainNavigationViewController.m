@@ -236,7 +236,7 @@
 
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
-    
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     return [super popToRootViewControllerAnimated:animated];
 }
 

@@ -162,7 +162,6 @@
     ShopDetailViewController *shopVC = [[ShopDetailViewController alloc] initWithNibName:@"ShopDetailViewController" bundle:nil];
     shopVC.style = 1;
     shopVC.layout = 1;
-    shopVC.hidesBottomBarWhenPushed = YES;
     shopVC.orderObj = self.dataSource[indexPath.row];
     kPushNav(shopVC, YES);
 }

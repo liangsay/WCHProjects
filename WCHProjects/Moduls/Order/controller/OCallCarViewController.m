@@ -96,7 +96,7 @@
     NSInteger userTypef = [UserInfoObj model].userTypef.integerValue;
     //    0 未评价 1 已评价
     NSInteger isAssess = orderObj.isAssess.integerValue;
-    if (statusf==3 && userTypef ==2 ) {
+    if (statusf==3) {
         if (isAssess==0) {
             //已支付
             AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];

@@ -13,6 +13,7 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "ActionSheetDatePicker.h"
 #import "StoretoLocObj.h"
+#import "MyPayTypeViewController.h"
 @interface RentCarDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
@@ -273,6 +274,25 @@
  vo.rentCerTypef	72e41a6e-f7d4-4da1-916d-8f6686f3ac02
  vo.mobilef	13820633188
  */
+/*
+ vo.rentCerNof	445222198812111111
+ requestType	app
+ vo.pickupDatef	2017-08-10
+ vo.pickupLocationf	天津市北辰区韩家墅海吉星农产品批发市场
+ vo.orderNof	3101502377239146
+ vo.pickupPersonf	模特
+ vo.rentMoneyf	198
+ vo.deptIdf	2_38
+ vo.returnLocationf	天津市北辰区韩家墅海吉星农产品批发市场
+ vo.returnDatef	2017-08-12
+ vo.trueNamef	13820633188
+ vo.days	2
+ vo.createIdf	defbe3fb-96a2-491a-80c8-3197dc34277e
+ vo.vehicleModelf	055bd1d1-3b37-4e80-980e-64b85705b1c1
+ vo.hirerf	模特
+ vo.rentCerTypef	72e41a6e-f7d4-4da1-916d-8f6686f3ac02
+ vo.mobilef	13820633188
+ */
 #pragma mark --添加租车订单
 - (void)sendRentorderdoInsert_API{
     WEAKSELF
@@ -280,7 +300,7 @@
     OrderInfoObj *cardObj = self.dataArray[1];
     UserInfoObj *userObj = [UserInfoObj model];
     NSInteger days = ABS([NSDate getTheCountOfTwoDaysWithBeginDate:self.inTime endDate:self.outTime]);
-    
+    __block NSString *pricef = kDoubleToString(days*self.orderObj.startPricef.doubleValue);
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:cardObj.content forKey:@"vo.rentCerNof"];
     [params addUnEmptyString:self.outTime forKey:@"vo.pickupDatef"];
@@ -288,7 +308,7 @@
     NSString *orderNof = [NSString stringWithFormat:@"%@%@",userObj.sortNumf,[NSDate getNowTimeTimestamp2]];
     [params addUnEmptyString:orderNof forKey:@"vo.orderNof"];
     [params addUnEmptyString:nameObj.content forKey:@"vo.pickupPersonf"];
-    [params addUnEmptyString:kDoubleToString(days*self.orderObj.startPricef.doubleValue) forKey:@"vo.rentMoneyf"];
+    [params addUnEmptyString:pricef forKey:@"vo.rentMoneyf"];
     [params addUnEmptyString:_storeObj.idf forKey:@"vo.deptIdf"];
     [params addUnEmptyString:_storeObj.storeNamef forKey:@"vo.returnLocationf"];
     [params addUnEmptyString:self.inTime forKey:@"vo.returnDatef"];
@@ -298,17 +318,30 @@
     [params addUnEmptyString:_storeObj.createIdf forKey:@"vo.createIdf"];
     [params addUnEmptyString:nameObj.content forKey:@"vo.hirerf"];
     [params addUnEmptyString:@"72e41a6e-f7d4-4da1-916d-8f6686f3ac02" forKey:@"vo.rentCerTypef"];
+    [params addUnEmptyString:self.orderObj.modelIdf forKey:@"vo.vehicleModelf"];
     [params addUnEmptyString:userObj.mobilePhonef forKey:@"vo.mobilef"];
     [OrderInfoObj sendRentorderdoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.isSuccess) {
-            [self onBackButton];
-            [NSString toast:@"租车成功"];
+//            [self onBackButton];
+            [weakSelf payAction:pricef];
+            [NSString toast:@"租车订单提交成功"];
         }else{
             [NSString toast:@"租车失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         [NSString toast:@"租车失败"];
     }];
+}
+
+- (void)payAction:(NSString *)pricef{
+    //未支付
+    MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
+    payVC.title = @"支付方式";
+    self.orderObj.pricef = pricef;
+    payVC.orderObj = self.orderObj;
+    payVC.payTitle = @"租金";
+    payVC.tradeTypef = 2;
+    kPushNav(payVC, YES);
 }
 
 - (void)didReceiveMemoryWarning {

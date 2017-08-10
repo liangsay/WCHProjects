@@ -9,6 +9,7 @@
 #import "BaseModel.h"
 #import <CoreLocation/CLLocation.h>
 @interface OrderInfoObj : BaseModel
+@property (nonatomic, strong) NSString *modelIdf;
 @property (nonatomic, strong) NSString *isColdf;
 @property (nonatomic, strong) NSString *rentMoneyf;
 @property (nonatomic, strong) NSString *maxCountf;

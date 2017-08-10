@@ -193,6 +193,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
 
 //上班打卡
 - (void)sendDutydoInWork {
+    WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.mobilef"];
     [params addUnEmptyString:self.startLocationf forKey:@"vo.startLocationf"];
@@ -203,6 +204,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         if (kISKIND_OF_CLASS_NSDICTIONARY(dict)) {
             NSDictionary *dic = dict;
             if ([[NSString toString:dic[@"status"]] isEqual:@"1"]) {
+                [weakSelf sendDutytoMobile_API];
                 [NSString toast:@"上班打卡成功!"];
                 return;
             }
@@ -215,6 +217,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
 
 //下班打卡
 - (void)sendDutydoOutWork {
+    WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.mobilef"];
     [params addUnEmptyString:self.endLocationf forKey:@"vo.endLocationf"];
@@ -225,6 +228,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         if (kISKIND_OF_CLASS_NSDICTIONARY(dict)) {
             NSDictionary *dic = dict;
             if ([[NSString toString:dic[@"status"]] isEqual:@"1"]) {
+                [weakSelf sendDutytoMobile_API];
                 [NSString toast:@"下班打卡成功!"];
                 return;
             }
@@ -250,6 +254,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
                 weakSelf.ontTimeLab.text = [NSString stringWithFormat:@"上班时间：%@",weakSelf.workObj.startTimef];
                 weakSelf.onTimeTopLayoutConstraint.constant = 10;
                 weakSelf.onWorkBtn.enabled = NO;
+                
             }else{
                 weakSelf.onTimeTopLayoutConstraint.constant = 0;
                 weakSelf.ontTimeLab.text = @"";
@@ -266,6 +271,14 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
             }
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if ([response.responseObject isKindOfClass:[NSDictionary class]]) {
+            weakSelf.onTimeTopLayoutConstraint.constant = 0;
+            weakSelf.offTimeTopLayoutConstraint.constant = 0;
+            weakSelf.onWorkBtn.enabled = YES;
+            weakSelf.offTimeLab.text = @"";
+            weakSelf.ontTimeLab.text = @"";
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }

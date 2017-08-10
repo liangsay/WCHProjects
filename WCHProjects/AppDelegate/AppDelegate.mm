@@ -202,10 +202,10 @@ static NSString *kLaunchImg = @"kLaunchImg";
 - (void)sendAdgetLatest {
     
     [BannerInfoObj sendAdgetLatestWithParameters:[NSMutableDictionary dictionary] successBlock:^(HttpRequest *request, HttpResponse *response) {
-        NSString *launchImgUrl = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString(),response.result];
+        NSString *launchImgUrl = [NSString stringWithFormat:@"%@/upimages/%@",apiBaseURLString(),response.result];
         kSetObjectForKey(launchImgUrl, kLaunchImgUrl);
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        NSString *launchImgUrl = [NSString stringWithFormat:@"%@upimages/%@",apiBaseURLString(),response.result];
+        NSString *launchImgUrl = [NSString stringWithFormat:@"%@/upimages/%@",apiBaseURLString(),response.result];
         kSetObjectForKey(launchImgUrl, kLaunchImgUrl);
     }];
 }

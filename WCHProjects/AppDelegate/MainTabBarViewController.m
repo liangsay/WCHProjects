@@ -69,6 +69,7 @@ const CGFloat kMainTabBarContentHeight = 98 / 2;
     RentCarViewController *tabVC2 = [[RentCarViewController alloc] initWithNibName:@"RentCarViewController" bundle:nil];
     tabVC2.navigationItem.title = @"租车";
     //    tabVC2.needLoginBeforePush = YES;
+    
     MainNavigationViewController *navVC2 = [[MainNavigationViewController alloc] initWithRootViewController:tabVC2];
     
     ShopViewController *tabVC3 = [[ShopViewController alloc] initWithNibName:@"ShopViewController" bundle:nil];

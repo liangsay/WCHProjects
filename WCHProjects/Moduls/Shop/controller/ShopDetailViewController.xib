@@ -40,6 +40,7 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="LjR-pR-jsF" secondAttribute="bottom" id="J7m-UO-izs"/>
                                 <constraint firstItem="LjR-pR-jsF" firstAttribute="top" secondItem="PFt-BY-EOM" secondAttribute="bottom" id="LJe-o9-UFm"/>
@@ -47,6 +48,9 @@
                                 <constraint firstItem="PFt-BY-EOM" firstAttribute="top" secondItem="fEn-AB-RKr" secondAttribute="top" constant="6" id="qNr-9X-aBC"/>
                                 <constraint firstItem="LjR-pR-jsF" firstAttribute="centerX" secondItem="PFt-BY-EOM" secondAttribute="centerX" id="uJh-v1-u51"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="t2d-gh-Hwt" appends="YES" id="5U1-WX-T6r"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgL-za-wn1">
                             <rect key="frame" x="150" y="0.0" width="225" height="48"/>
@@ -107,6 +111,11 @@
             </constraints>
             <point key="canvasLocation" x="53.5" y="78.5"/>
         </view>
+        <tapGestureRecognizer id="t2d-gh-Hwt">
+            <connections>
+                <action selector="callAction:" destination="-1" id="FP2-Gc-Jhs"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="XGMapicon_shopping" width="22" height="22"/>

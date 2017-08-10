@@ -368,7 +368,7 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
     
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
-    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoPayReturn.shtml",apiBaseURLString()];
+    NSString *reUrlf = [NSString stringWithFormat:@"%@/OrdertoPayReturn.shtml",apiBaseURLString()];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *orderNum = [NSString stringWithFormat:@"%@",self.idf];
     [params addUnEmptyString:orderNum forKey:@"vo.orderNof"];
@@ -386,7 +386,7 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
 {
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
-    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoAliPayReturn.shtml",apiBaseURLString()];
+    NSString *reUrlf = [NSString stringWithFormat:@"%@/OrdertoAliPayReturn.shtml",apiBaseURLString()];
     NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app&vo.reUrlf=%@&vo.tradeTypef=4&vo.userNamef=%@",@"充值",self.idf,self.moneyTxtF.text,reUrlf,[UserInfoObj model].mobilePhonef];
     paraStr=[paraStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSData *postData = [paraStr dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];

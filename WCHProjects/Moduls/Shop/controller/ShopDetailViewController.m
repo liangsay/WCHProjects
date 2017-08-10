@@ -130,6 +130,11 @@
              ];
 }
 
+- (IBAction)callAction:(UITapGestureRecognizer *)sender {
+    kMakeCallWithPhone(@"4000300966", kWindow);
+}
+
+
 - (IBAction)buyBtnAction:(id)sender {
     WEAKSELF
     [ShopDetailBuyView showAlertViewInVC:self orderObj:self.orderObj count:1 complete:^(NSInteger count) {

@@ -56,12 +56,15 @@
         } onCancel:^{
 //            kAppDelegate.mainViewController.orderNof = @"";
             [kNotificationCenter() removeObserver:weakSelf];
-            [super onBackButton];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            
+//            [super onBackButton];
         }];
         return;
     }
     [kNotificationCenter() removeObserver:self];
-    [super onBackButton];
+//    [super onBackButton];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
 
@@ -120,6 +123,9 @@
         }else if (self.viewType==4){
             self.orderObj.statusf = @"1";
             self.orderObj.statusTextf = @"已支付";
+        }else{
+            self.orderObj.statusf = @"3";
+            self.orderObj.statusf = @"待评价";
         }
         [self.delegate myPayTypeViewController:self payStatus:1 orderObj:self.orderObj];
     }
@@ -145,6 +151,9 @@
 #pragma mark --用于查询微信支付
 - (void)sendOrdertoPay {
     
+    if (kIsObjectEmpty(self.orderObj.orderNof)) {
+        self.orderObj.orderNof = self.orderObj.dataSortNumf;
+    }
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
     NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoPayReturn.shtml",apiBaseURLString()];
@@ -170,6 +179,9 @@
 
 - (void)doAlipayAuth
 {
+    if (kIsObjectEmpty(self.orderObj.orderNof)) {
+        self.orderObj.orderNof = self.orderObj.dataSortNumf;
+    }
     NSString *orderNum = [NSString stringWithFormat:@"%@",self.orderObj.orderNof];
     if (self.couponObj && !kIsObjectEmpty(self.couponObj.idf)) {
         orderNum = [NSString stringWithFormat:@"%@-%@",self.orderObj.orderNof,self.couponObj.idf];
@@ -177,7 +189,7 @@
 #if DEBUG
     self.payLabel.text = @"0.01";
 #endif
-    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoAliPayReturn.shtml",apiBaseURLString()];
+    NSString *reUrlf = [NSString stringWithFormat:@"%@/OrdertoAliPayReturn.shtml",apiBaseURLString()];
     NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app&vo.tradeTypef=%ld&vo.reUrlf=%@&vo.userNamef=%@",self.payTitle,orderNum,self.payLabel.text,self.tradeTypef,reUrlf,[UserInfoObj model].mobilePhonef];
     if (self.couponObj) {
         paraStr = [paraStr stringByAppendingFormat:@"&vo.couponIdf=%@",self.couponObj.idf];

@@ -316,9 +316,6 @@ CGFloat const kOrderTableCellHeight = 91;
     [self.orderBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self.bgView setLayerCornerRadius:8];
-    self.backgroundColor = [UIColor backgroundColor];
-    self.contentView.backgroundColor = [UIColor backgroundColor];
-    self.backgroundView.backgroundColor = [UIColor backgroundColor];
 }
 
 #pragma mark --行数据显示
@@ -381,13 +378,4 @@ CGFloat const kOrderTableCellHeight = 91;
 //    self.priceLab.text = kDoubleToString([[NSString toString:model.tipPricef] doubleValue]+[[NSString toString:model.pricef] doubleValue]);
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [super layoutIfNeeded];
-    [self.backgroundBtnView setLayerCornerRadius:4];
-    WEAKSELF
-    [self.backgroundBtnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(0, kPadding, 0, kPadding));
-    }];
-}
 @end

@@ -22,11 +22,6 @@ CGFloat const kMyRouteTableCellHeight = 80;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self initUIViews];
-        self.backgroundColor = [UIColor backgroundColor];
-        self.contentView.backgroundColor = [UIColor backgroundColor];
-        self.backgroundView.backgroundColor = [UIColor backgroundColor];
-        self.backgroundBtnView.userInteractionEnabled = YES;
-        [self.backgroundBtnView setBackgroundImageColor:[UIColor whiteColor]];
     }
     return self;
 }
@@ -34,7 +29,7 @@ CGFloat const kMyRouteTableCellHeight = 80;
 - (void)initUIViews {
     WEAKSELF
     _timeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentLeft mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.backgroundBtnView.mas_left).offset(kMargin).priorityHigh(1000);
+        make.left.equalTo(weakSelf.contentView.mas_left).offset(kMargin).priorityHigh(1000);
         make.top.offset(kPadding);
     }];
     
@@ -172,14 +167,4 @@ CGFloat const kMyRouteTableCellHeight = 80;
 }
 
 
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [super layoutIfNeeded];
-    [self.backgroundBtnView setLayerCornerRadius:4];
-    WEAKSELF
-    [self.backgroundBtnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(0, kPadding, 0, kPadding));
-    }];
-}
 @end

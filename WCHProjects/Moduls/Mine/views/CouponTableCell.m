@@ -29,42 +29,29 @@ CGFloat const kCouponTableCellHeight = 70;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self initUIViews];
-        self.backgroundColor = [UIColor backgroundColor];
-        self.contentView.backgroundColor = [UIColor backgroundColor];
-        self.backgroundView.backgroundColor = [UIColor backgroundColor];
-        self.backgroundBtnView.userInteractionEnabled = YES;
-        [self.backgroundBtnView setBackgroundImageColor:[UIColor mainColor]];
-       
+        
+        
     }
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [super layoutIfNeeded];
-    [self.backgroundBtnView setLayerCornerRadius:10];
-    WEAKSELF
-    [self.backgroundBtnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(0, kPadding, 0, kPadding));
-    }];
-}
 
 
 - (void)initUIViews {
     WEAKSELF
     
-    _moneyLab = [BaseViewServer addLabelInView:self.contentView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentCenter mas_makeConstraints:^(MASConstraintMaker *make) {
+    _moneyLab = [BaseViewServer addLabelInView:self.contentView font:kFont(32) text:@"" textColor:[UIColor priceColor] textAilgnment:NSTextAlignmentCenter mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@15);
-        make.centerY.equalTo(weakSelf.backgroundBtnView);
+        make.centerY.equalTo(weakSelf.contentView);
     }];
     
-    _typeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(32) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _typeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(32) text:@"" textColor:[UIColor fontBlack] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kMargin);
 //        make.left.equalTo(weakSelf.iconImgV.mas_right).offset(kPadding);
         make.top.mas_equalTo(kPadding);
     }];
     
-    _timeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor whiteColor] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
+    _timeLab = [BaseViewServer addLabelInView:self.contentView font:kFont(28) text:@"" textColor:[UIColor fontGray] textAilgnment:NSTextAlignmentRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(-kMargin);
 //        make.left.equalTo(weakSelf.iconImgV.mas_right).offset(kPadding);
         make.bottom.mas_equalTo(-kPadding);

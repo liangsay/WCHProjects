@@ -23,12 +23,7 @@ NSString * const kSystemMessageTableCellID = @"kSystemMessageTableCellID";
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self initUIViews];
-        self.backgroundColor = [UIColor backgroundColor];
-        self.contentView.backgroundColor = [UIColor backgroundColor];
-        self.backgroundView.backgroundColor = [UIColor backgroundColor];
-        self.backgroundBtnView.userInteractionEnabled = YES;
-        [self.backgroundBtnView setBackgroundImageColor:[UIColor whiteColor]];
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
     }
     return self;
 }
@@ -54,15 +49,6 @@ NSString * const kSystemMessageTableCellID = @"kSystemMessageTableCellID";
 //    [self.contentView layoutIfNeeded];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [super layoutIfNeeded];
-    [self.backgroundBtnView setLayerCornerRadius:4];
-    WEAKSELF
-    [self.backgroundBtnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.contentView).insets(UIEdgeInsetsMake(0, kPadding, 0, kPadding));
-    }];
-}
 
 - (NSMutableAttributedString *)getAttributesWithString1:(NSString *)str1 str2:(NSString *)str2 lab:(UILabel *)lab isOpen:(BOOL)isOpen{
     NSString *strDisplayText = [NSString stringWithFormat:@"%@%@",str1,str2];
@@ -95,7 +81,7 @@ NSString * const kSystemMessageTableCellID = @"kSystemMessageTableCellID";
 ///当你是使用计算frame模式的时候，需要在cell里面实现sizeThatFits这个方法
 - (CGSize)sizeThatFits:(CGSize)size {
     CGFloat totalHeight = 0;
-    size = (CGSize){self.backgroundBtnView.width-4*kPadding,size.height};
+    size = (CGSize){self.contentView.width-4*kPadding,size.height};
     totalHeight += [self.contentLabel sizeThatFits:size].height;
     totalHeight += [self.timeLabel sizeThatFits:size].height;
     totalHeight += kPadding*2+5; // margins

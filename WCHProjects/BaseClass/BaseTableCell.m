@@ -105,37 +105,6 @@ CGFloat const kBaseTableCellHeight = 44;
         [self.delegate cell:self tableView:tableView didSelectAtIndexPath:indexPath];
     }
 }
-
-- (UIButton *)backgroundView
-{
-    if (!_backgroundBtnView)
-    {
-        _backgroundBtnView = [[UIButton alloc] initWithFrame:self.bounds];
-        [_backgroundBtnView setBackgroundColor:[UIColor clearColor]];
-        [_backgroundBtnView setBackgroundImageColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_backgroundBtnView setBackgroundImageColor:[UIColor backgroundColor] forState:UIControlStateHighlighted];
-        [_backgroundBtnView setBackgroundImageColor:[UIColor backgroundColor] forState:UIControlStateSelected];
-        _backgroundBtnView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        [_backgroundBtnView addTarget:self action:@selector(onBackgroundView) forControlEvents:UIControlEventTouchUpInside];
-        
-        if (self.contentView.subviews.count > 0)
-        {
-            [self.contentView insertSubview:_backgroundBtnView atIndex:0];
-        }
-        else
-        {
-            [self.contentView addSubview:_backgroundBtnView];
-        }
-    }
-    return _backgroundBtnView;
-}
-
-- (void)setBackgroundView:(UIButton *)backgroundView
-{
-    _backgroundBtnView = backgroundView;
-}
-
 #pragma mark - 分割线
 - (UIView *)bottomLine
 {

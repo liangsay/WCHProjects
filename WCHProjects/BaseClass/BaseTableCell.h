@@ -40,13 +40,6 @@ typedef NS_ENUM(NSUInteger, CellLineStyle)
 
 
 /**
- *  修改backgroundView为Button。
- *  去掉选中高亮效果方法：设backgroundView.enable = NO或removeFromSuperVie
- *  TableView的回调方法didSelectRowAtIndexPath将无效
- */
-@property (nonatomic, strong) UIButton *backgroundBtnView;
-
-/**
  *  底部分割线，初始长为整个cell。
  */
 @property (nonatomic, strong) UIView *bottomLine;

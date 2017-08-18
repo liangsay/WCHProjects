@@ -305,7 +305,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     self.startLab.text = kIsObjectEmpty(orderObj.startAddrNamef)?@"--":orderObj.startAddrNamef;
     self.endLab.text = kIsObjectEmpty(orderObj.endAddrNamef)?@"--":orderObj.endAddrNamef;
     
-    NSString *price = orderObj.pricef;
+    NSString *price = [NSString stringWithFormat:@"%.2f元",orderObj.pricef.doubleValue];
     NSString *priceStr = [NSString stringWithFormat:@"运价：%@",price];
     NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:priceStr];
     NSRange priceRange = [priceStr rangeOfString:price];
@@ -321,7 +321,7 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
     }else{
         self.callBtn.alpha=0;
     }
-    if (statusf==1 || statusf==0) {//在已接单状态，司机或货主可取消订单
+    if (statusf==0) {//在已接单状态，司机或货主可取消订单
         //可以加入长按取消订单
         self.touchView.hidden = NO;
         self.longPressGesture.enabled = YES;
@@ -377,6 +377,6 @@ CGFloat const kOCallCarTableViewCellHeight = 110;
 
 #pragma mark --callBtnAction:
 - (void)callBtnAction:(UIButton *)sender{
-    kMakeCallWithPhone(self.orderObj.ownerIdf, kWindow);
+    kMakeCallWithPhone(self.orderObj.driverIdf, kWindow);
 }
 @end

@@ -116,6 +116,10 @@ typedef NS_ENUM(NSInteger, FDSimulatedCacheMode) {
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
         [weakSelf.tableView endHeaderRefreshing];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }

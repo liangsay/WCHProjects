@@ -9,7 +9,6 @@
 #import "JiKeViewController.h"
 #import "JiKeTableViewCell.h"
 #import "BaseTableView.h"
-#import "StoretoLocObj.h"
 #import "DutytoDecideObj.h"
 @interface JiKeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, weak) IBOutlet BaseTableView *tableView;
@@ -144,6 +143,10 @@
             [NSString toast:@"提交失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:@"提交失败"];
     }];
 }

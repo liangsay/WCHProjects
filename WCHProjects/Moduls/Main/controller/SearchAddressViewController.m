@@ -206,11 +206,11 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     long leg = [toBeString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length;
     if (tag == 100) {
         if (leg>10) {
-            textField.text = [textField.text substringToIndex:10];
+            textField.text = [toBeString substringToIndex:10];
         }
     }else if (tag==101){
         if (leg>10) {
-            textField.text = [textField.text substringToIndex:10];
+            textField.text = [toBeString substringToIndex:10];
         }
         if (![textField ChenkInputNSCharacterSet:string typeInt:2]) {
             return NO;
@@ -282,7 +282,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
         self.cityObj.addrf = addObj.detail;
         self.cityObj.namef = self.nameTxtField.text;
         self.cityObj.modelf = self.mobileTxtField.text;
-        self.cityObj.positionf = [NSString stringWithFormat:@"%.f,%.f",addObj.coordinate.latitude,addObj.coordinate.longitude];
+        self.cityObj.positionf = [NSString stringWithFormat:@"%.6f,%.6f",addObj.coordinate.latitude,addObj.coordinate.longitude];
         //        SearchAddressObj *obj = [SearchAddressObj new];
         //        obj.province = self.provinceName;
         //        obj.city = poi.city;

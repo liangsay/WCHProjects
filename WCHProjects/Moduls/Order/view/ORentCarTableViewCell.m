@@ -19,10 +19,10 @@ CGFloat const kORentCarTableViewCellHeight = 145;
     self.addressLab.preferredMaxLayoutWidth = kScreenWidth - 15 - 15;
 
     //添加长按手势
-//    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
-//    
-//    longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
-//    [self.pressView addGestureRecognizer:longPressGesture];
+    UILongPressGestureRecognizer * longPressGesture =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+    
+    longPressGesture.minimumPressDuration=0.5f;//设置长按 时间
+    [self.pressView addGestureRecognizer:longPressGesture];
 }
 
 
@@ -44,7 +44,7 @@ CGFloat const kORentCarTableViewCellHeight = 145;
 
 - (void)setupCellInfoWithObj:(OrderInfoObj *)orderObj {
     self.orderObj = orderObj;
-    self.nameLab.text = [NSString stringWithFormat:@"%@[￥:%@元]",kIsObjectEmpty(orderObj.vehicleModelTypef)?@"--":orderObj.vehicleModelTypef,orderObj.rentMoneyf];
+    self.nameLab.text = [NSString stringWithFormat:@"%@[￥:%.2f元]",kIsObjectEmpty(orderObj.vehicleModelTypef)?@"--":orderObj.vehicleModelTypef,orderObj.rentMoneyf.doubleValue];
     self.startLab.text = orderObj.pickupDatef;
     self.endLab.text = orderObj.returnDatef;
     
@@ -63,11 +63,11 @@ CGFloat const kORentCarTableViewCellHeight = 145;
 //    }else{
         self.typeLab.text = orderObj.statusTextf;
 //    }
-    if (statusf == -1) {
+    if (statusf == 0) {
 
-        self.pressView.alpha = 0;
-    }else{
         self.pressView.alpha = 1;
+    }else{
+        self.pressView.alpha = 0;
     }
     
     

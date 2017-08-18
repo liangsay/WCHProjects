@@ -51,12 +51,17 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    _userNameLab.text = [UserInfoObj model].trueNamef;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.outBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     [self.outBtn setLayerCornerRadius:5];
-    _userNameLab.text = [UserInfoObj model].trueNamef;
+    
     _mobileLab.text = [UserInfoObj model].mobilePhonef;
     
 //    if ([UserInfoObj model].userTypef.integerValue!=2) {
@@ -202,7 +207,7 @@
             kPushNav(vc, YES);
         }else if (row==6){
             //客服中心
-            [self.view makeCallWithPhone:@"4000800966"];
+            [self.view makeCallWithPhone:@"40008000966"];
         }
     }else{
         if (row==0){

@@ -90,10 +90,10 @@ static NSString *kLaunchImg = @"kLaunchImg";
             if (obj) {
                 [obj cache];
             }else{
-                [[StoretoLocObj new] cache];
+                [StoretoLocObj clear];
             }
         } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-            [[StoretoLocObj new] cache];
+            [StoretoLocObj clear];
         }];
     }];
     

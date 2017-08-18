@@ -161,6 +161,7 @@
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
@@ -169,6 +170,8 @@
 #pragma mark --取消订单租车
 /**
  取消订单租车
+ vo.idf	26617b40324144878b594a8cb99a1c62
+ requestType	app
  */
 - (void)sendRentorderdoCancel_API:(OrderInfoObj *)orderObj indexPath:(NSIndexPath *)indexPath{
     WEAKSELF
@@ -184,6 +187,10 @@
             [NSString toast:@"取消失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:@"取消失败"];
     }];
 }

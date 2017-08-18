@@ -10,7 +10,6 @@
 #import "UIAlertController+Blocks.h"
 #import <CoreLocation/CoreLocation.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
-#import "StoretoLocObj.h"
 #import "DutytoDecideObj.h"
 
 @interface PunchingTCViewController ()<BMKLocationServiceDelegate>
@@ -55,7 +54,7 @@
 //重新定位
 - (IBAction)locationBtnAction:(UIButton *)sender {
     _workType = 0;
-    [_locService startUserLocationService];
+    [self startLocationSet];
     
 }
 
@@ -158,12 +157,12 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
     if (_workType==0) {
         
-        NSString *locationf = [StoretoLocObj model].locationf;
+        NSString *locationf = [DutytoDecideObj model].locationf;
         NSArray *locations = [locationf componentsSeparatedByString:@","];
         if (locations && locations.count>1) {
             NSString *latitude = locations[0];
             NSString *longitude = locations[1];
-            self.locationLab.text = [NSString stringWithFormat:@"您的当前位置是：%.6f,%.6f",latitude.floatValue,longitude.floatValue];
+            self.locationLab.text = [NSString stringWithFormat:@"您的当前位置是：%.6f,%.6f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
             BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue));
             BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude));
             CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
@@ -211,6 +210,10 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         }
         [NSString toast:@"上班打卡失败!"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -235,6 +238,10 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         }
         [NSString toast:@"下班打卡失败!"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -271,15 +278,18 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
             }
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if ([response.responseObject isKindOfClass:[NSDictionary class]]) {
+        
+        if (response.responseCode==0) {
             weakSelf.onTimeTopLayoutConstraint.constant = 0;
             weakSelf.offTimeTopLayoutConstraint.constant = 0;
             weakSelf.onWorkBtn.enabled = YES;
             weakSelf.offTimeLab.text = @"";
             weakSelf.ontTimeLab.text = @"";
             return ;
+        }else{
+            [NSString toast:response.responseMsg];
         }
-        [NSString toast:response.responseMsg];
+        
     }];
 }
 

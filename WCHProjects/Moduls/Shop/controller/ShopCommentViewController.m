@@ -99,6 +99,10 @@
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];

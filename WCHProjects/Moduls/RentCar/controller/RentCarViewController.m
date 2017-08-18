@@ -33,7 +33,15 @@
 }
 
 - (void)refreshHeaderData {
-    [self sendFreighttoRent_API];
+    WEAKSELF
+    [[LocationServer shared] setupLocationServiceWithComplete:^(OrderInfoObj *oderObj) {
+        if (!kIsObjectEmpty(oderObj.provincef)) {
+            [weakSelf sendFreighttoRent_API];
+        }else{
+            [weakSelf.tableView endHeaderRefreshing];
+            [NSString toast:@"获取城市信息失败，请下拉刷新"];
+        }
+    }];
 }
 
 - (NSMutableArray *)dataArray {
@@ -115,6 +123,7 @@
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];

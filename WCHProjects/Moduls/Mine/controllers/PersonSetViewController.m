@@ -81,6 +81,10 @@
         [UserInfoObj model].emailf= self.emailTxtF.text;
         [[UserInfoObj model] cache];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }

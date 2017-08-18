@@ -98,7 +98,7 @@ static BOOL canCheckNetwork = NO;
     
     //    __block HttpRequest *bHttpRequest = self;
     
-    
+    WEAKSELF
     if (!self.isAsyncDownload.boolValue) {
         //普通数据请求
         
@@ -108,7 +108,7 @@ static BOOL canCheckNetwork = NO;
             if (kISKIND_OF_CLASS_NSDICTIONARY(responseObject)) {
                 //处理成功时的请求
                 NSMutableDictionary *responseDic = responseObject;
-                DLog(@"responseObject:%@",[responseObject description]);
+                DLog(@"responseObject:%@  :%@",weakSelf.requestPath,[responseObject description]);
                 HttpResponse *response = [[HttpResponse alloc] initWithResponseDic:responseDic];
                 response.responseName = [NSString stringWithFormat:@"%@响应",self.requestName];
                 response.responseObject = responseObject;

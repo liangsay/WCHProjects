@@ -105,14 +105,22 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         OrderInfoObj *order = [OrderInfoObj new];
         order.placeholder = datas[i];
         order.isMust = YES;
-        order.iconName = @"行驶证";
+        
         order.index = i;
         order.content = @"";
         if (i==0) {
+            order.iconName = @"starttime";
             self.outTime =[nowDate formatStringWithFormat:@"yyyy-MM-dd"];
             order.content = self.outTime;
         }
+        if (i==1) {
+            order.iconName = @"startpoint";
+        }
+        if (i==datas.count-2) {
+            order.iconName = @"endpoint";
+        }
         if (i==datas.count-1) {
+            order.iconName = @"weight";
             order.isTxt = YES;
         }else{
             order.isTxt = NO;
@@ -256,7 +264,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     OrderInfoObj *order = [OrderInfoObj new];
     order.placeholder = [NSString stringWithFormat:@"请选择途经点%ld",(self.dataArray.count - 4) + 1];
     order.isMust = NO;
-    order.iconName = @"行驶证";
+    order.iconName = @"passpoint";
     order.content = @"";
     order.isTxt = NO;
     [self.dataArray insertObject:order atIndex:row];
@@ -346,6 +354,10 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
     pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
     
+    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.startCoordinate.latitude, self.startCoordinate.longitude));
+    BMKMapPoint lastPoint = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(0.0, 0.0));
+    CGFloat distance = 0;
+    BOOL isPoit = FALSE;
     if (self.dataArray.count > 4) {
         //大于3代表有途经点数据
         for (NSInteger i = 2; i<self.dataArray.count-2; i++) {
@@ -353,13 +365,32 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
             if (!kIsObjectEmpty(childObj.content)) {
                 //每加一个节点+15元
                 pricef += self.bdtoOrderObj.bdValuef.doubleValue;
+                NSArray *points = [childObj.positionf componentsSeparatedByString:@","];
+                if (points.count>1) {
+                    NSString *lat = points[0];
+                    NSString *log = points[1];
+                    if (isPoit) {
+                        
+                        BMKMapPoint lastP = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(lat.floatValue, log.floatValue));
+                        distance += BMKMetersBetweenMapPoints(lastPoint,lastP);
+                        lastPoint = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(lat.floatValue, log.floatValue));
+                    }else{
+                        isPoit = YES;
+                        lastPoint = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(lat.floatValue, log.floatValue));
+                        distance += BMKMetersBetweenMapPoints(point1,lastPoint);
+                    }
+                    
+                }
+                
             }
         }
     }
-    
-    BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.startCoordinate.latitude, self.startCoordinate.longitude));
     BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.endCoordinate.latitude, self.endCoordinate.longitude));
-    CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
+    if (distance>0 && isPoit) {
+        distance += BMKMetersBetweenMapPoints(lastPoint,point2);
+    }else{
+        distance = BMKMetersBetweenMapPoints(point1,point2);
+    }
     
     self.kmCountf = [NSString stringWithFormat:@"%.3f",distance/1000];
     if (distance) {
@@ -540,6 +571,11 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
             [NSString toast:@"您的叫车订单已提交失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:@"您的叫车订单已提交失败"];
     }];
 }
@@ -561,6 +597,10 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         }
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         
     }];
 }

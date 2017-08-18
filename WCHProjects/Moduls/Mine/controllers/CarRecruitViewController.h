@@ -9,5 +9,4 @@
 #import "BaseViewController.h"
 
 @interface CarRecruitViewController : BaseViewController
-@property (nonatomic, strong) NSMutableArray *carTypeArray;
 @end

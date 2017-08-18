@@ -10,6 +10,7 @@
 #import "CarRecruitPhotoViewController.h"
 #import "OrderInfoObj.h"
 #import "ActionSheetStringPicker.h"
+#import "LocationServer.h"
 @interface CarRecruitViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userTxtF;
 @property (weak, nonatomic) IBOutlet UITextField *carTypeTxtF;
@@ -29,6 +30,7 @@
     self.title = @"司机审核";
     // Do any additional setup after loading the view from its nib.
     [self sendDriverinfobyMobile];
+    [self sendFreighttoPrice_API];
 }
 
 
@@ -104,6 +106,10 @@
         weakSelf.identityTxtF.text =[NSString toString:orderObj.idNof];
         weakSelf.orderObj = orderObj;
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -152,6 +158,39 @@
     [OrderInfoObj sendDriverinfodoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
 //        [NSString toast:@"您的信息已提交，我们会尽快为您的车主招募审核作处理"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
+        [NSString toast:response.responseMsg];
+    }];
+}
+
+#pragma mark --服务器数据请求
+#pragma mark --运价查询接口
+/**
+ 运价查询接口
+ 
+ @param provincef <#provincef description#>
+ @param cityf     <#cityf description#>
+ */
+- (void)sendFreighttoPrice_API{
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:[LocationServer shared].provincef forKey:@"vo.provincef"];
+    [params addUnEmptyString:[LocationServer shared].cityf forKey:@"vo.cityf"];
+    
+    [OrderInfoObj sendFreighttoPriceWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (kISKIND_OF_CLASS_NSARRAY(response.responseModel)) {
+            
+            weakSelf.carTypeArray = response.responseModel;
+            //            weakSelf.selectIndex = 0;
+            //            OrderInfoObj *obj = weakSelf.carTypeArray[0];
+            //            weakSelf.carTypeTextField.text = obj.namef;
+        }
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
         [NSString toast:response.responseMsg];
     }];
 }

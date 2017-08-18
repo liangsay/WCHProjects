@@ -59,10 +59,14 @@ CGFloat const kOCallCarAddressCellHeight = 58;
     [self.contentView addSubview:lineV];
     self.lineV = lineV;
     
+    
     UITapGestureRecognizer *tapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mobileLabAction:)];
     tapAction.delegate = self;
-    [mobileLab addGestureRecognizer:tapAction];
     [iconImgV addGestureRecognizer:tapAction];
+    
+    UITapGestureRecognizer *tapAction1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mobileLabAction:)];
+    tapAction1.delegate = self;
+    [mobileLab addGestureRecognizer:tapAction1];
     
     UITapGestureRecognizer *startTapAction = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(startTapAction:)];
     startTapAction.delegate = self;

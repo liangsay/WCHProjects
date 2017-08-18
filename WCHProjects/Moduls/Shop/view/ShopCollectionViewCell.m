@@ -86,7 +86,7 @@ NSString * const kShopCollectionViewCellID = @"kShopCollectionViewCellID";
     NSURL *imgUrl = kURLFromString(fullImageUrl(model.diskFilePathf));
     [_imageV sd_setImageWithURL:imgUrl placeholderImage:nil];
     _titleLabel.text = model.carNamef;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%@",model.pricef];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%.2f元",model.pricef.doubleValue];
 }
 
 @end

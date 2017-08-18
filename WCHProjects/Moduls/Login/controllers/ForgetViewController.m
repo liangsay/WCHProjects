@@ -71,14 +71,14 @@
     
     if (tag==100) {
         if (leg>10) {
-            textField.text = [textField.text substringToIndex:10];
+            textField.text = [toBeString substringToIndex:10];
         }
         if (![textField ChenkInputNSCharacterSet:string typeInt:2]) {
             return NO;
         }
     }else if (tag==101){
         if (leg>5) {
-            textField.text = [textField.text substringToIndex:5];
+            textField.text = [toBeString substringToIndex:5];
         }
         if (![textField ChenkInputNSCharacterSet:string typeInt:2]) {
             return NO;
@@ -88,7 +88,7 @@
         //        }
     }else if (tag==102){
         if (leg>7) {
-            textField.text = [textField.text substringToIndex:7];
+            textField.text = [toBeString substringToIndex:7];
         }
         if (![textField ChenkInputNSCharacterSet:string typeInt:2]) {
             return NO;
@@ -156,6 +156,10 @@
         [weakSelf.getCodeBtn setTheCountdownButton:weakSelf.getCodeBtn startWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:[UIColor mainColor] countColor:[UIColor backgroundColor]];
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -170,6 +174,10 @@ WEAKSELF
         [NSString toast:@"重置成功，请您用新密码登录使用"];
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }

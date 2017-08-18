@@ -139,7 +139,11 @@
 
 - (void)setupViewStyle {
     
-    self.fareLabel.text = kDoubleToString(_orderObj.pricef.doubleValue);
+    if (self.tradeTypef==3) {
+        self.fareLabel.text = kDoubleToString(_orderObj.depositf.doubleValue);
+    }else{
+        self.fareLabel.text = kDoubleToString(_orderObj.pricef.doubleValue);
+    }
     self.payLabel.text = kDoubleToString(_fareLabel.text.doubleValue-_favorableLabel.text.doubleValue);
     [self.cancelBtn setLayerCornerRadius:35/2];
     self.fareLabel.textColor = self.favorableLabel.textColor = self.payLabel.textColor = [UIColor mainColor];
@@ -149,6 +153,16 @@
 }
 
 #pragma mark --用于查询微信支付
+/*
+ vo.tradeTypef	2
+ requestType	app
+ vo.orderNof	3101502377239146
+ vo.couponIdf
+ vo.pricef	198.0
+ vo.titlef	租金
+ vo.userNamef	13820633188
+ vo.reUrlf	http://www.66wch.com.cn/OrdertoPayReturn.shtml
+ */
 - (void)sendOrdertoPay {
     
     if (kIsObjectEmpty(self.orderObj.orderNof)) {
@@ -156,18 +170,22 @@
     }
     NSString *nowdatetime = [NSDate timeIntervalWithNow:@""];
     NSString *timeStr = [NSDate timeIntervalToDataString:nowdatetime.doubleValue formate:@"yyyyMMddHHmmssS"];
-    NSString *reUrlf = [NSString stringWithFormat:@"%@OrdertoPayReturn.shtml",apiBaseURLString()];
+    NSString *reUrlf = [NSString stringWithFormat:@"%@/OrdertoPayReturn.shtml",apiBaseURLString()];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     NSString *orderNum = [NSString stringWithFormat:@"%@",self.orderObj.orderNof];
     if (self.couponObj && !kIsObjectEmpty(self.couponObj.idf)) {
         orderNum = [NSString stringWithFormat:@"%@-%@",self.orderObj.orderNof,self.couponObj.idf];
+        [params addUnEmptyString:self.couponObj.idf forKey:@"vo.couponIdf"];
+    }else{
+        [params addUnEmptyString:@"" forKey:@"vo.couponIdf"];
     }
+    
     [params addUnEmptyString:orderNum forKey:@"vo.orderNof"];
     [params addUnEmptyString:self.payTitle forKey:@"vo.titlef"];
     [params addUnEmptyString:self.payLabel.text forKey:@"vo.pricef"];
     [params addUnEmptyString:kIntegerToString(self.tradeTypef) forKey:@"vo.tradeTypef"];
     [params addUnEmptyString:reUrlf forKey:@"vo.reUrlf"];
-    
+    [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.userNamef"];
 #if DEBUG
     [params addUnEmptyString:@"0.01" forKey:@"vo.pricef"];
 #endif
@@ -193,6 +211,8 @@
     NSString *paraStr = [NSString stringWithFormat:@"vo.titlef=%@&vo.orderNof=%@&vo.pricef=%@&requestType=app&vo.tradeTypef=%ld&vo.reUrlf=%@&vo.userNamef=%@",self.payTitle,orderNum,self.payLabel.text,self.tradeTypef,reUrlf,[UserInfoObj model].mobilePhonef];
     if (self.couponObj) {
         paraStr = [paraStr stringByAppendingFormat:@"&vo.couponIdf=%@",self.couponObj.idf];
+    }else{
+        paraStr = [paraStr stringByAppendingString:@"&vo.couponIdf="""];
     }
 
     paraStr=[paraStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -316,6 +336,7 @@
         req.sign                = [dict objectForKey:@"sign"];
         [WXApi sendReq:req];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
         NSDictionary *dict = response.responseObject;
         NSString *error = @"支付失败";
         if(dict) {
@@ -380,6 +401,10 @@
             }];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -395,6 +420,10 @@
         
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }

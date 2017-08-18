@@ -14,6 +14,7 @@
 #import "ActionSheetDatePicker.h"
 #import "StoretoLocObj.h"
 #import "MyPayTypeViewController.h"
+#import "LocationServer.h"
 @interface RentCarDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
@@ -34,6 +35,10 @@
     [self.submitBtn setLayerCornerRadius:5];
     [self setupDataSet];
     [self setupTableSet];
+    if ([StoretoLocObj model]==nil) {
+        self.submitBtn.enabled = NO;
+        [self.submitBtn setBackgroundImageColor:[UIColor buttonDisable]];
+    }
 }
 
 //提交租车资料
@@ -70,12 +75,19 @@
         OrderInfoObj *order = [OrderInfoObj new];
         order.placeholder = datas[i];
         order.isMust = YES;
-        order.iconName = @"行驶证";
+        if (i==0) {
+            order.iconName = @"icon_personal";
+        }else
+        if (i==1) {
+            order.iconName = @"idnum";
+        }
         
         if (i==2) {
+            order.iconName = @"starttime";
             self.outTime =[nowDate formatStringWithFormat:@"yyyy-MM-dd"];
             order.content = self.outTime;
         }else if (i==3){
+            order.iconName = @"endtime";
             double otherDate = [NSDate getNowTimeTimestamp2].doubleValue + ((24 * 3600) * 2);
             self.inTime = [NSDate dateFormTimestampString:[NSString stringWithFormat:@"%.0f",otherDate * 1000] format:@"yyyy-MM-dd"];
             order.content = self.inTime;
@@ -295,6 +307,11 @@
  */
 #pragma mark --添加租车订单
 - (void)sendRentorderdoInsert_API{
+    if ([StoretoLocObj model]==nil) {
+        NSString *msg = [NSString stringWithFormat:@"您所在的%@暂不支持租车",[LocationServer shared].provincef];
+        [NSString toast:msg];
+        return;
+    }
     WEAKSELF
     OrderInfoObj *nameObj = self.dataArray[0];
     OrderInfoObj *cardObj = self.dataArray[1];
@@ -329,6 +346,10 @@
             [NSString toast:@"租车失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:@"租车失败"];
     }];
 }

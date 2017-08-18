@@ -86,6 +86,10 @@
         [weakSelf.tableView reloadData];
         [weakSelf.tableView placeholderViewShow:!weakSelf.cityArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
      
     }];
 }

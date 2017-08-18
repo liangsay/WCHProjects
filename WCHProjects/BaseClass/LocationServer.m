@@ -32,16 +32,15 @@
  *  @since <#1.0#>
  */
 - (void)setupLocationServiceWithComplete:(LocationServerBlock)complete{
-    
+    self.orderBlock = complete;
     //判断定位是否开启
     if ([CLLocationManager locationServicesEnabled])
     {
         if ([CLLocationManager locationServicesEnabled] && ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)) {
+            
             //定位功能可用
             DLog(@"定位功能可用");
-            
-            self.provincef = @"天津市";
-            self.cityf = @"天津市";
+           
             _locSearch = [[BMKGeoCodeSearch alloc] init];
             _locSearch.delegate = self;
             
@@ -52,7 +51,7 @@
             
             //启动LocationService
             [_locService startUserLocationService];
-            self.orderBlock = complete;
+            
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
             
             //定位不能用
@@ -114,18 +113,7 @@
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     self.userLocation = userLocation;
-#if DEBUG
-    OrderInfoObj *orderObj = [OrderInfoObj new];
-    orderObj.provincef = @"天津市";
-    orderObj.cityf = @"天津市";
-    self.provincef = orderObj.provincef;
-    self.cityf = orderObj.cityf;
-    if (self.orderBlock) {
-        self.orderBlock(orderObj);
-        self.orderBlock = nil;
-    }
-    return;
-#endif
+
     DLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     
     
@@ -143,10 +131,6 @@
 
 - (void)didFailToLocateUserWithError:(NSError *)error {
     OrderInfoObj *orderObj = [OrderInfoObj new];
-    orderObj.provincef = @"天津市";
-    orderObj.cityf = @"天津市";
-    self.provincef = orderObj.provincef;
-    self.cityf = orderObj.cityf;
     if (self.orderBlock) {
         self.orderBlock(orderObj);
         self.orderBlock = nil;

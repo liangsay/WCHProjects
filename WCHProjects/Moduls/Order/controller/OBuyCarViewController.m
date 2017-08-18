@@ -11,7 +11,7 @@
 #import "OBuyCarTableViewCell.h"
 #import "MyPayTypeViewController.h"
 #import "AppraiseViewController.h"
-@interface OBuyCarViewController ()<UITableViewDelegate,UITableViewDataSource,MyPayTypeViewDelegate,AppraiseViewControllerDelegate>
+@interface OBuyCarViewController ()<UITableViewDelegate,UITableViewDataSource,MyPayTypeViewDelegate,AppraiseViewControllerDelegate,OBuyCarTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -64,6 +64,8 @@
     
     // Configure the cell...
     OrderInfoObj *orderObj = _dataArray[indexPath.row];
+    cell.cellIndexPath = indexPath;
+    cell.oDelegate = self;
     [cell setupCellInfoWith:orderObj];
     return cell;
 }
@@ -121,6 +123,17 @@
     [self.tableView endUpdates];
 }
 
+#pragma mark --OBuyCarTableViewCellDelegate-----
+- (void)oBuyCarTableViewCell:(OBuyCarTableViewCell *)oBuyCarTableViewCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj {
+    WEAKSELF
+    [UIAlertController showAlertInViewController:self withTitle:@"取消订单" message:@"您确定要取消订单吗？" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+        if (buttonIndex==2) {
+            //取消订单
+            [weakSelf sendRentorderdoCancel_API:orderObj indexPath:oBuyCarTableViewCell.cellIndexPath];
+        }
+    }];
+}
+
 #pragma mark --查询品牌、车系下的数据
 /**
  查询品牌、车系下的数据
@@ -135,10 +148,38 @@
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
 }
+
+#pragma mark --取消订单租车
+/**
+ 取消订单租车
+ */
+- (void)sendRentorderdoCancel_API:(OrderInfoObj *)orderObj indexPath:(NSIndexPath *)indexPath{
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:orderObj.idf forKey:@"vo.idf"];
+    [OrderInfoObj sendRentorderdoCancelWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.isSuccess) {
+            orderObj.statusf = @"-1";
+            orderObj.statusTextf = @"订单取消";
+            [weakSelf.dataArray replaceObjectAtIndex:indexPath.row withObject:orderObj];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }else{
+            [NSString toast:@"取消失败"];
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
+        [NSString toast:@"取消失败"];
+    }];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -171,11 +171,15 @@
 #pragma mark --取消订单租车
 /**
  取消订单租车
+ requestType	app
+ vo.cancelManf	0
+ vo.orderNof	1503063093352310
  */
 - (void)sendRentorderdoCancel_API:(OrderInfoObj *)orderObj indexPath:(NSIndexPath *)indexPath{
     WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params addUnEmptyString:orderObj.idf forKey:@"vo.idf"];
+    [params addUnEmptyString:orderObj.orderNof forKey:@"vo.orderNof"];
+    [params addUnEmptyString:@"0" forKey:@"vo.cancelManf"];
     [OrderInfoObj sendRentorderdoCancelWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.isSuccess) {
             orderObj.statusf = @"-1";
@@ -187,6 +191,10 @@
             [NSString toast:@"取消失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:@"取消失败"];
     }];
 }

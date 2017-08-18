@@ -453,6 +453,6 @@ CGFloat const kOrderInComeTableCellHeight = 110;
 
 #pragma mark --callBtnAction:
 - (void)callBtnAction:(UIButton *)sender{
-    kMakeCallWithPhone(self.orderObj.ownerIdf, kWindow);
+    kMakeCallWithPhone(self.orderObj.driverIdf, kWindow);
 }
 @end

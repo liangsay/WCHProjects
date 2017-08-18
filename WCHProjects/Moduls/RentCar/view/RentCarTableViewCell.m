@@ -31,8 +31,8 @@ CGFloat const kRentCarTableViewCellHeight = 90;
     self.orderObj = oderObj;
     self.nameLab.text = oderObj.namef;
     
-    NSString *startPricef = oderObj.startPricef;
-    NSString *price = [NSString stringWithFormat:@"￥%@元日均",startPricef];
+    NSString *startPricef = [NSString stringWithFormat:@"%.2f元",oderObj.startPricef.doubleValue];
+    NSString *price = [NSString stringWithFormat:@"￥%@日均",startPricef];
     NSRange priceR = [price rangeOfString:startPricef];
     NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:price];
     [priceAtt setTextColor:[UIColor fontGray]];

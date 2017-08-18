@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +22,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqi-WG-Na9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TyC-Y2-rMc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-2a-Pod">
                                 <rect key="frame" x="10" y="0.0" width="80" height="79.5"/>
                             </imageView>
@@ -57,6 +62,10 @@
                             <constraint firstItem="dMJ-2a-Pod" firstAttribute="width" secondItem="Bqi-WG-Na9" secondAttribute="width" multiplier="1/4" id="8rE-Vj-cqS"/>
                             <constraint firstAttribute="trailing" secondItem="PWP-p3-SIf" secondAttribute="trailing" constant="10" id="BQw-76-1Jz"/>
                             <constraint firstItem="PWP-p3-SIf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3My-bt-Vjn" secondAttribute="trailing" constant="5" id="Hz3-u5-AiM"/>
+                            <constraint firstAttribute="bottom" secondItem="TyC-Y2-rMc" secondAttribute="bottom" id="IbD-lN-qTG"/>
+                            <constraint firstItem="TyC-Y2-rMc" firstAttribute="leading" secondItem="Bqi-WG-Na9" secondAttribute="leading" id="L2b-1B-BQK"/>
+                            <constraint firstItem="TyC-Y2-rMc" firstAttribute="top" secondItem="Bqi-WG-Na9" secondAttribute="top" id="P43-7s-A0j"/>
+                            <constraint firstAttribute="trailing" secondItem="TyC-Y2-rMc" secondAttribute="trailing" id="STb-q5-pjM"/>
                             <constraint firstAttribute="bottom" secondItem="dMJ-2a-Pod" secondAttribute="bottom" id="UsI-Tk-Ubw"/>
                             <constraint firstItem="X8c-Uv-aWP" firstAttribute="leading" secondItem="dMJ-2a-Pod" secondAttribute="trailing" constant="10" id="WJE-Dz-Vbn"/>
                             <constraint firstItem="dMJ-2a-Pod" firstAttribute="top" secondItem="Bqi-WG-Na9" secondAttribute="top" id="dO2-S0-Uhb"/>
@@ -81,6 +90,7 @@
             <connections>
                 <outlet property="nameLab" destination="X8c-Uv-aWP" id="dkS-Q6-64P"/>
                 <outlet property="numLab" destination="Tcq-qR-gwB" id="TLe-UI-bnw"/>
+                <outlet property="pressView" destination="TyC-Y2-rMc" id="K7W-nA-Cgp"/>
                 <outlet property="priceLab" destination="3My-bt-Vjn" id="znZ-Dx-IbG"/>
                 <outlet property="typeImgV" destination="dMJ-2a-Pod" id="baq-eZ-3JC"/>
                 <outlet property="typeLab" destination="PWP-p3-SIf" id="3rp-Xl-h7u"/>

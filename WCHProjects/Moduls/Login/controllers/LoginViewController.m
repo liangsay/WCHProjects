@@ -146,6 +146,10 @@
 #endif
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -160,7 +164,13 @@
         [NSString toast:@"请输入验证码"];
         return;
     }
-    if (self.passwordTxtF.text != self.codeNum && ![self.userNameTxtF.text isEqualToString:@"18202536913"]) {
+    
+#if DEBUG
+    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13820633188"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]) {
+        
+    }else
+#endif
+    if (self.passwordTxtF.text != self.codeNum) {
         [NSString toast:@"请输入正确的验证码"];
         return;
     }
@@ -184,6 +194,10 @@
         
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -208,14 +222,14 @@
     
     if (tag==100) {
         if (leg>10) {
-            textField.text = [textField.text substringToIndex:10];
+            textField.text = [toBeString substringToIndex:10];
         }
         if (![textField ChenkInputNSCharacterSet:string typeInt:2]) {
             return NO;
         }
     }else if (tag==101){
         if (leg>5) {
-            textField.text = [textField.text substringToIndex:5];
+            textField.text = [toBeString substringToIndex:5];
         }
         //        if (![textField ChenkInputNSCharacterSet:string typeInt:4]) {
         //            return NO;

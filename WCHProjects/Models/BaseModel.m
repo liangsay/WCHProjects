@@ -119,6 +119,10 @@ MJCodingImplementation
 //            [response.responseMsg toast];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         if (response.responseCode==6) {
             
             [kAppDelegate showLoginVCWithLoginAction:^(NSInteger index) {
@@ -185,12 +189,12 @@ MJCodingImplementation
             //            [response.responseMsg toast];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
         if (response.responseCode==6) {
             
             [kAppDelegate showLoginVCWithLoginAction:^(NSInteger index) {
                 
             }];
-            //            [NSString toast:response.responseMsg];
             return;
         }
         failedBlock(request,response);
@@ -348,6 +352,10 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         failedBlock(request,response);
     }];
 }
@@ -375,6 +383,10 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
         failedBlock(request,response);
     }];
@@ -387,6 +399,10 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         failedBlock(request,response);
     }];
 }
@@ -401,6 +417,10 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         failedBlock(request,response);
     }];
 }

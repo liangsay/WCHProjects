@@ -26,6 +26,8 @@
     self.title = @"订单";
     
     [self setupTableViewSet];
+    [self.tableView reloadData];
+    [self.tableView placeholderViewShow:!self.dataArray.count];
 }
 
 - (NSMutableArray *)dataArray{
@@ -58,7 +60,7 @@
     _tableView.backgroundColor = [UIColor backgroundColor];
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_tableView registerClass:[OrderTableCell class] forCellReuseIdentifier:kOrderTableCellID];
-    [self.tableView addHeaderRefreshTarget:self action:@selector(headerRefresh)];
+//    [self.tableView addHeaderRefreshTarget:self action:@selector(headerRefresh)];
 }
 
 #pragma mark - Table view data source
@@ -125,6 +127,10 @@
         [weakSelf onBackButton];
         [NSString toast:@"接单成功"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
          [NSString toast:@"网络请求异常"];
     }];
 }

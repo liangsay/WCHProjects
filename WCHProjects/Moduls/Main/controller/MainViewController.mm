@@ -1269,6 +1269,10 @@ MyPayTypeViewDelegate>
     [OrderInfoObj sendOrdertoReLoadWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         NSDictionary *dic = response.responseObject;
         OrderInfoObj *order = [OrderInfoObj mj_objectWithKeyValues:dic];
         //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
@@ -1426,6 +1430,10 @@ MyPayTypeViewDelegate>
             }
             
         } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
             if (kISKIND_OF_CLASS_NSARRAY(response.responseModel)) {
                 
                 NSArray *modelf =  response.responseModel;
@@ -1499,6 +1507,10 @@ MyPayTypeViewDelegate>
             }
             
         } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
             if (kISKIND_OF_CLASS_NSARRAY(response.responseModel)) {
                 
                 NSArray *modelf =  response.responseModel;
@@ -1558,6 +1570,10 @@ MyPayTypeViewDelegate>
         }
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         MyPayTypeViewController *payVC = [[MyPayTypeViewController alloc] initWithNibName:@"MyPayTypeViewController" bundle:nil];
         payVC.title = @"支付方式";
         payVC.delegate = self;
@@ -1585,6 +1601,10 @@ MyPayTypeViewDelegate>
         
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
          [self pCarorderBtnAction:nil];
         //已完成支付才可以评价
 //        AppraiseViewController *appraiseVC = [[AppraiseViewController alloc] initWithNibName:@"AppraiseViewController" bundle:nil];
@@ -1734,6 +1754,10 @@ MyPayTypeViewDelegate>
         }
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -1756,6 +1780,10 @@ MyPayTypeViewDelegate>
         
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -1804,6 +1832,10 @@ MyPayTypeViewDelegate>
         }];
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [UIView animateWithDuration:.35 animations:^{
 //            weakSelf.orderView.alpha = 0;
 //            weakSelf.mapBottomLayoutConstraint.constant = 0;
@@ -1883,6 +1915,10 @@ MyPayTypeViewDelegate>
 
 //        }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
 //        if (!kIsObjectEmpty(response.result)) {
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];
@@ -1977,6 +2013,10 @@ MyPayTypeViewDelegate>
             
         } origin:weakSelf.navigationController.view];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -1997,6 +2037,10 @@ MyPayTypeViewDelegate>
         }
         [weakSelf addMapPointViewWithArray:response.responseModel];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -2050,6 +2094,10 @@ MyPayTypeViewDelegate>
         [NSString toast:@"订单完成"];
         [weakSelf pCarorderBtnAction:nil];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
          [NSString toast:@"网络请求异常"];
     }];
 }
@@ -2067,6 +2115,10 @@ MyPayTypeViewDelegate>
     [OrderInfoObj sendOrdertoReLoadWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         NSDictionary *dic = response.responseObject;
         OrderInfoObj *order = [OrderInfoObj mj_objectWithKeyValues:dic];
         if (order.driverinfoVo.statusf.integerValue==1) {

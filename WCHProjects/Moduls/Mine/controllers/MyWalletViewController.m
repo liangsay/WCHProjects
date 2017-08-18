@@ -277,6 +277,10 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
         [weakSelf.tableView reloadData];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -289,6 +293,10 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
     [OrderInfoObj sendRechargetoBalanceWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         weakSelf.totalLabel.text = kDoubleToString([response.result doubleValue]);
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -305,6 +313,10 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
         [weakSelf headerRefresh];
         weakSelf.moneyTxtF.text = @"";
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [weakSelf headerRefresh];
         weakSelf.moneyTxtF.text = @"";
     }];
@@ -319,6 +331,10 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
         weakSelf.payKey = response.result;
         weakSelf.idf = [NSString stringWithFormat:@"%@_%@",response.result,[UserInfoObj model].mobilePhonef];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }
@@ -500,6 +516,10 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
         req.sign                = [dict objectForKey:@"sign"];
         [WXApi sendReq:req];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         NSDictionary *dict = response.responseObject;
         if (!kISKIND_OF_CLASS_NSDICTIONARY(dict) && !dict.count) {
             [NSString toast:@"支付失败"];

@@ -44,10 +44,8 @@
     kAppDelegate.callCarVC = self;
     // Do any additional setup after loading the view from its nib.
     [self setupTableViewSet];
-    [self sendFreighttoCall_API];
-    [self setupOrderCountSet];
-    
     [self sendLogin_API];
+    [self refreshHeaderData];
     
     if ([UserInfoObj model].userTypef.integerValue==2) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.orderBtn];
@@ -186,7 +184,16 @@
 }
 
 - (void)refreshHeaderData {
-    [self sendFreighttoCall_API];
+    WEAKSELF
+    [[LocationServer shared] setupLocationServiceWithComplete:^(OrderInfoObj *oderObj) {
+        if (!kIsObjectEmpty(oderObj.provincef)) {
+            [weakSelf sendFreighttoCall_API];
+            [weakSelf setupOrderCountSet];
+        }else{
+            [weakSelf.tableView endHeaderRefreshing];
+            [NSString toast:@"获取城市信息失败，请下拉刷新"];
+        }
+    }];
 }
 
 - (NSMutableArray *)dataArray {
@@ -276,6 +283,10 @@
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     }];
@@ -299,6 +310,10 @@
         }
         [weakSelf.orderBtn setTitle:kIntegerToString(response.totalCount) forState:UIControlStateNormal];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         
     }];
 }
@@ -314,8 +329,10 @@
     
     WEAKSELF
     [OrderInfoObj sendOrdertoReLoadWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
-        
-    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         NSDictionary *dic = response.responseObject;
         OrderInfoObj *order = [OrderInfoObj mj_objectWithKeyValues:dic];
         //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
@@ -336,6 +353,8 @@
                 }
             }
         }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
     }];
 }
 
@@ -362,10 +381,12 @@
         [DutytoDecideObj sendDutytoDecideWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
             
         } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+       
             
         }];
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        
         [NSString toast:response.responseMsg];
     }];
 }

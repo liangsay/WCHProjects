@@ -28,8 +28,8 @@ CGFloat const kCallCarTableViewCellHeight = 110;
     self.orderObj = oderObj;
     self.nameLab.text = oderObj.namef;
     
-    NSString *startPricef = oderObj.startPricef;
-    NSString *price = [NSString stringWithFormat:@"￥%@元(%@公里)",startPricef,oderObj.startKmf];
+    NSString *startPricef = [NSString stringWithFormat:@"%.2f元",oderObj.startPricef.doubleValue];
+    NSString *price = [NSString stringWithFormat:@"￥%@(%@公里)",startPricef,oderObj.startKmf];
     NSRange priceR = [price rangeOfString:startPricef];
     NSMutableAttributedString *priceAtt = [[NSMutableAttributedString alloc] initWithString:price];
     [priceAtt setTextColor:[UIColor fontGray]];
@@ -40,7 +40,7 @@ CGFloat const kCallCarTableViewCellHeight = 110;
     
     self.tonfLab.text = [NSString stringWithFormat:@"载重:%@吨",oderObj.tonf];
     self.remarkfLab.text = [NSString stringWithFormat:@"长*宽*高:%@", oderObj.remarkf];
-    self.kmPricefLab.text = [NSString stringWithFormat:@"超公里费:%@元/公里",oderObj.kmPricef];
+    self.kmPricefLab.text = [NSString stringWithFormat:@"超公里费:%.2f元/公里",oderObj.kmPricef.doubleValue];
     
     NSURL *imgUrl = kURLFromString(fullImageUrl(oderObj.diskFilePathf));
     [self.typeImgV sd_setImageWithURL:imgUrl placeholderImage:nil];

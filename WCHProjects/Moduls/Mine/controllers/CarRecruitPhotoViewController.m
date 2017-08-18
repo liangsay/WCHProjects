@@ -176,6 +176,10 @@
     [OrderInfoObj sendDriverinfotoUploadWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:response.responseMsg];
     }];
 }

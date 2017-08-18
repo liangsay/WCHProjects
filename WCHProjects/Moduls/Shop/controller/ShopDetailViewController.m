@@ -131,7 +131,7 @@
 }
 
 - (IBAction)callAction:(UITapGestureRecognizer *)sender {
-    kMakeCallWithPhone(@"4000300966", kWindow);
+    kMakeCallWithPhone(@"40003000966", kWindow);
 }
 
 
@@ -158,6 +158,10 @@
             [NSString toast:@"添加到购物车失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (!kIsObjectEmpty(response.responseMsg)) {
+            [NSString toast:response.responseMsg];
+            return ;
+        }
         [NSString toast:@"网络请求异常"];
     }];
 }

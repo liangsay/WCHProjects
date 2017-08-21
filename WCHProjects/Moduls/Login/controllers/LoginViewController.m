@@ -165,11 +165,11 @@
         return;
     }
     
-#if DEBUG
+//#if DEBUG
     if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13820633188"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]) {
         
     }else
-#endif
+//#endif
     if (self.passwordTxtF.text != self.codeNum) {
         [NSString toast:@"请输入正确的验证码"];
         return;

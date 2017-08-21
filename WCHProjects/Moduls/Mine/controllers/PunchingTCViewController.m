@@ -32,6 +32,8 @@
 
 @property (nonatomic, assign) NSInteger workType;//打卡类型：1上班，2下班
 @property (nonatomic, strong) UserInfoObj *workObj;
+
+@property (nonatomic, assign) CLLocationDistance distance;
 @end
 
 @implementation PunchingTCViewController
@@ -79,6 +81,7 @@
         }
     }];
 }
+
 
 
 - (void)startLocationSet {
@@ -166,6 +169,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
             BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue));
             BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude));
             CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
+            self.distance = distance;
             if (distance>=1000) {
                 self.distanceLab.text = [NSString stringWithFormat:@"偏离门店距离:%.2f公里",distance/1000];
             }else{
@@ -197,7 +201,12 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"vo.mobilef"];
     [params addUnEmptyString:self.startLocationf forKey:@"vo.startLocationf"];
     [params addUnEmptyString:[DutytoDecideObj model].userIdf forKey:@"vo.createIdf"];
-    [params addUnEmptyString:[UserInfoObj model].trueNamef forKey:@"vo.trueNamef"];
+    [params addUnEmptyString:[DutytoDecideObj model].storeTrueNamef forKey:@"vo.trueNamef"];
+    [params addUnEmptyString:[DutytoDecideObj model].userIdf forKey:@"vo.userIdf"];
+    [params addUnEmptyString:[DutytoDecideObj model].storeIdf forKey:@"vo.deptIdf"];
+    [params addUnEmptyString:[DutytoDecideObj model].locationf forKey:@"vo.storeLocf"];
+    [params addUnEmptyString:kDoubleToString(self.distance/1000) forKey:@"vo.amDistf"];
+    
     [UserInfoObj sendDutydoInWorkWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         id dict = response.responseObject;
         if (kISKIND_OF_CLASS_NSDICTIONARY(dict)) {
@@ -226,6 +235,10 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     [params addUnEmptyString:self.endLocationf forKey:@"vo.endLocationf"];
     [params addUnEmptyString:[DutytoDecideObj model].userIdf forKey:@"vo.createIdf"];
     [params addUnEmptyString:[UserInfoObj model].trueNamef forKey:@"vo.trueNamef"];
+    [params addUnEmptyString:[DutytoDecideObj model].userIdf forKey:@"vo.userIdf"];
+    [params addUnEmptyString:[DutytoDecideObj model].storeIdf forKey:@"vo.deptIdf"];
+    [params addUnEmptyString:[DutytoDecideObj model].locationf forKey:@"vo.storeLocf"];
+    [params addUnEmptyString:kDoubleToString(self.distance/1000) forKey:@"vo.amDistf"];
     [UserInfoObj sendDutydoOutWorkWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         id dict = response.responseObject;
         if (kISKIND_OF_CLASS_NSDICTIONARY(dict)) {

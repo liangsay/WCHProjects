@@ -12,6 +12,7 @@
 
 
 @interface UserInfoObj : BaseModel
+@property(nonatomic, strong)NSString *storeTrueNamef;
 @property(nonatomic, strong)NSString *startTimef;
 @property(nonatomic, strong)NSString *endTimef;
 @property(nonatomic, strong)NSString *storeIdf;

@@ -167,7 +167,7 @@
 #pragma mark --上班打卡
 +(void)sendDutydoInWorkWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                           failedBlock:(RequestSessionCompletedBlock)failedBlock{
-    [self sendRequestWithAPI:kAPI_DutydoInWork() params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_DutydoInWork() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {

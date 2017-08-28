@@ -106,10 +106,7 @@
         weakSelf.identityTxtF.text =[NSString toString:orderObj.idNof];
         weakSelf.orderObj = orderObj;
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:response.responseMsg];
     }];
 }
@@ -158,10 +155,7 @@
     [OrderInfoObj sendDriverinfodoInsertWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
 //        [NSString toast:@"您的信息已提交，我们会尽快为您的车主招募审核作处理"];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:response.responseMsg];
     }];
 }

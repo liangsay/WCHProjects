@@ -121,7 +121,7 @@ MJCodingImplementation
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];
-            return ;
+//            return ;
         }
         if (response.responseCode==6) {
             
@@ -352,10 +352,7 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         failedBlock(request,response);
     }];
 }
@@ -383,11 +380,7 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
-        [NSString toast:response.responseMsg];
+        
         failedBlock(request,response);
     }];
 }
@@ -399,10 +392,7 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         failedBlock(request,response);
     }];
 }
@@ -417,10 +407,7 @@ static NSMutableDictionary *_cahceDict;
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         failedBlock(request,response);
     }];
 }

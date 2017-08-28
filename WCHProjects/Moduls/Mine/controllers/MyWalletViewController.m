@@ -315,7 +315,7 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];
-            return ;
+//            return ;
         }
         [weakSelf headerRefresh];
         weakSelf.moneyTxtF.text = @"";
@@ -518,7 +518,7 @@ static inline NSMutableArray *kSortArray(NSMutableArray *array,NSMutableDictiona
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];
-            return ;
+//            return ;
         }
         NSDictionary *dict = response.responseObject;
         if (!kISKIND_OF_CLASS_NSDICTIONARY(dict) && !dict.count) {

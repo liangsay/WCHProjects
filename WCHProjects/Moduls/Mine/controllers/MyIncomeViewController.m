@@ -205,10 +205,7 @@
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
         [weakSelf sendCalculateInCome];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
         [NSString toast:response.responseMsg];
@@ -238,10 +235,7 @@
         }
         [weakSelf sendOrdertoIncome];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         kAppDelegate.mainViewController.isReciveState = NO;
         if ([kAppDelegate.mainViewController.reciveOrder.orderNof isEqual:orderNof]) {
             [kAppDelegate.mainViewController pCarorderBtnAction:nil];

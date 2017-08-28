@@ -42,7 +42,7 @@ static NSString *kLaunchImg = @"kLaunchImg";
     NSString *apiBase = kGetObjectForKey(@"apiBaseURLString");
     if(kIsObjectEmpty(apiBase)==NO){
     }else{
-        kSetObjectForKey(@"http://www.66wch.com.cn", @"apiBaseURLString");
+        kSetObjectForKey(@"http://www.66weihuo.com", @"apiBaseURLString");
     }
     [UserInfoObj sendAppToAccess];
     

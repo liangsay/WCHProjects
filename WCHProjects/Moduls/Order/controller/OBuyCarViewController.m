@@ -161,8 +161,8 @@
 - (void)sendRentorderdoCancel_API:(OrderInfoObj *)orderObj indexPath:(NSIndexPath *)indexPath{
     WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params addUnEmptyString:orderObj.idf forKey:@"vo.idf"];
-    [OrderInfoObj sendRentorderdoCancelWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [params addUnEmptyString:orderObj.idf forKey:@"idfs"];
+    [OrderInfoObj sendMallorderdoCancelBuyWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         if (response.isSuccess) {
             orderObj.statusf = @"-1";
             orderObj.statusTextf = @"订单取消";

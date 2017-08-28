@@ -142,10 +142,7 @@
             [NSString toast:@"评价失败"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:@"评价失败"];
         
     }];
@@ -165,10 +162,7 @@
             [NSString toast:@"数据请求异常"];
         }
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:response.responseMsg];
     }];
 }

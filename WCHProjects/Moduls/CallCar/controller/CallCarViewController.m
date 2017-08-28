@@ -283,9 +283,12 @@
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.responseCode==0) {
+            
+        }else
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];
-            return ;
+//            return ;
         }
         [weakSelf.tableView endHeaderRefreshing];
         [weakSelf.tableView placeholderViewShow:!weakSelf.dataArray.count];

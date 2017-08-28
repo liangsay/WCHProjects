@@ -26,10 +26,7 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         failedBlock(request,response);
     }];
 }
@@ -41,10 +38,7 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         failedBlock(request,response);
     }];
 }
@@ -56,10 +50,7 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         failedBlock(request,response);
     }];
 
@@ -72,10 +63,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 
@@ -100,10 +87,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -127,10 +110,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -142,10 +121,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -157,10 +132,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -172,10 +143,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -187,10 +154,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -202,10 +165,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -217,10 +176,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -232,10 +187,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -247,10 +198,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -262,10 +209,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -277,10 +220,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -292,10 +231,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -307,10 +242,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -322,10 +253,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -337,10 +264,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -364,10 +287,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -379,10 +298,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -394,10 +309,6 @@
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -409,10 +320,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -425,10 +332,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -452,10 +355,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -467,10 +366,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -482,10 +377,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -497,10 +388,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -512,10 +399,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -539,10 +422,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -553,10 +432,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
     [self sendRequestWithAPI:kAPI_CollectdoDelete() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -568,10 +443,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -595,10 +466,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
         failedBlock(request,response);
     }];
 }
@@ -610,11 +477,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
-        [NSString toast:@"数据请求异常"];
         failedBlock(request,response);
     }];
 }
@@ -627,11 +489,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
-        [NSString toast:@"数据请求异常"];
         failedBlock(request,response);
     }];
 }
@@ -643,11 +500,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
-        [NSString toast:@"数据请求异常"];
         failedBlock(request,response);
     }];
 }
@@ -659,11 +511,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
-        [NSString toast:@"数据请求异常"];
         failedBlock(request,response);
     }];
 }
@@ -675,11 +522,6 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
-        [NSString toast:@"数据请求异常"];
         failedBlock(request,response);
     }];
 }
@@ -691,11 +533,18 @@ failedBlock:(RequestSessionCompletedBlock)failedBlock {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
-        [NSString toast:@"数据请求异常"];
+        
+        failedBlock(request,response);
+    }];
+}
+
+#pragma mark --查询车型的节点价
++ (void)sendMallorderdoCancelBuyWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
+                                   failedBlock:(RequestSessionCompletedBlock)failedBlock{
+    [self sendRequestWithAPI:kAPI_MallorderdoCancelBuy() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         failedBlock(request,response);
     }];
 }

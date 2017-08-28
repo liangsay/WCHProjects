@@ -238,7 +238,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     [params addUnEmptyString:[DutytoDecideObj model].userIdf forKey:@"vo.userIdf"];
     [params addUnEmptyString:[DutytoDecideObj model].storeIdf forKey:@"vo.deptIdf"];
     [params addUnEmptyString:[DutytoDecideObj model].locationf forKey:@"vo.storeLocf"];
-    [params addUnEmptyString:kDoubleToString(self.distance/1000) forKey:@"vo.amDistf"];
+    [params addUnEmptyString:kDoubleToString(self.distance/1000) forKey:@"vo.pmDistf"];
     [UserInfoObj sendDutydoOutWorkWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         id dict = response.responseObject;
         if (kISKIND_OF_CLASS_NSDICTIONARY(dict)) {

@@ -146,10 +146,7 @@
 #endif
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:response.responseMsg];
     }];
 }
@@ -166,7 +163,7 @@
     }
     
 //#if DEBUG
-    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13820633188"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]) {
+    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]) {
         
     }else
 //#endif
@@ -194,10 +191,7 @@
         
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:response.responseMsg];
     }];
 }

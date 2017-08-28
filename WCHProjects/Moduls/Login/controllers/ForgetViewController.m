@@ -156,10 +156,7 @@
         [weakSelf.getCodeBtn setTheCountdownButton:weakSelf.getCodeBtn startWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:[UIColor mainColor] countColor:[UIColor backgroundColor]];
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:response.responseMsg];
     }];
 }
@@ -174,10 +171,7 @@ WEAKSELF
         [NSString toast:@"重置成功，请您用新密码登录使用"];
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
-        if (!kIsObjectEmpty(response.responseMsg)) {
-            [NSString toast:response.responseMsg];
-            return ;
-        }
+        
         [NSString toast:response.responseMsg];
     }];
 }

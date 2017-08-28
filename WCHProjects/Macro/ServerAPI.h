@@ -11,7 +11,7 @@
 //static NSString * const apiBaseURLString() = @"http://139.224.209.235:9080/";
 //static NSString *const apiBaseURLString() = @"http://www.66weihuo.com/";
 CG_INLINE NSString *apiBaseURLString(){
-    return kGetObjectForKey(@"apiBaseURLString");
+    return @"http://www.66weihuo.com";//kGetObjectForKey(@"apiBaseURLString");
 } // @"http://www.66wch.com.cn/";
 //static NSString *const apiBaseURLString() = @"http://106.14.238.209/";
 //商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再在APP里面调起支付。
@@ -328,4 +328,9 @@ CG_INLINE NSString *kAPI_BdtoApp() {
 #pragma mark -- 查询使用哪个域名
 CG_INLINE NSString *kAPI_ApptoAccess() {
     return @"/ApptoAccess.shtml?";
+}
+
+#pragma mark --售车订单取消
+CG_INLINE NSString *kAPI_MallorderdoCancelBuy() {
+    return @"/MallorderdoCancelBuy.shtml";
 }

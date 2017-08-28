@@ -272,7 +272,7 @@
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];
-            return ;
+//            return ;
         }
         [weakSelf.tableView endFooterRefreshing];
     }];

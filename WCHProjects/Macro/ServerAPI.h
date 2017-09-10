@@ -258,9 +258,19 @@ CG_INLINE NSString *kAPI_CollecttoCustom() {
     return @"/CollecttoCustom.shtml";
 }
 
-#pragma mark --
+#pragma mark --登陆接口
 CG_INLINE NSString *kAPI_UsertoLogin4App() {
     return @"/UsertoLogin4App.shtml";
+}
+
+#pragma mark --验证值接口
+CG_INLINE NSString *kAPI_ApptoAccessKey() {
+    return @"/ApptoAccessKey.shtml";
+}
+
+#pragma mark --短信接口
+CG_INLINE NSString *kAPI_SmstoLoginSend() {
+    return @"/SmstoLoginSend.shtml";
 }
 
 #pragma mark --订单租车
@@ -323,11 +333,6 @@ CG_INLINE NSString *kAPI_DutytoMobile() {
 #pragma mark --查询车型的节点价
 CG_INLINE NSString *kAPI_BdtoApp() {
     return @"/BdtoApp.shtml";
-}
-
-#pragma mark -- 查询使用哪个域名
-CG_INLINE NSString *kAPI_ApptoAccess() {
-    return @"/ApptoAccess.shtml?";
 }
 
 #pragma mark --售车订单取消

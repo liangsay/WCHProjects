@@ -11,15 +11,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import "DutytoDecideObj.h"
+#import "BaseTableView.h"
 
-@interface PunchingTCViewController ()<BMKLocationServiceDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *distanceLab;
-@property (weak, nonatomic) IBOutlet UILabel *locationLab;
-@property (weak, nonatomic) IBOutlet UILabel *ontTimeLab;
-@property (weak, nonatomic) IBOutlet UILabel *offTimeLab;
+#import "DutyDoTableViewCell.h"
+#import "DutyLocationTableViewCell.h"
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *onTimeTopLayoutConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *offTimeTopLayoutConstraint;
+@interface PunchingTCViewController ()<BMKLocationServiceDelegate,UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet BaseTableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
 @property (weak, nonatomic) IBOutlet UIButton *onWorkBtn;
@@ -34,6 +32,9 @@
 @property (nonatomic, strong) UserInfoObj *workObj;
 
 @property (nonatomic, assign) CLLocationDistance distance;
+
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
 @end
 
 @implementation PunchingTCViewController
@@ -41,16 +42,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self setupTableViewSet];
     [self.locationBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     [self.onWorkBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     [self.offWorkBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
     _workType = 0;
     [self startLocationSet];
-    self.onTimeTopLayoutConstraint.constant = 0;
-    self.offTimeTopLayoutConstraint.constant = 0;
+    
     self.onWorkBtn.enabled = NO;
     self.offWorkBtn.enabled = NO;
     [self sendDutytoMobile_API];
+}
+
+- (void)setupTableViewSet {
+    [self.tableView registerNib:[UINib nibWithNibName:kDutyDoTableViewCellID bundle:nil] forCellReuseIdentifier:kDutyDoTableViewCellID];
+    [self.tableView registerNib:[UINib nibWithNibName:kDutyLocationTableViewCellID bundle:nil] forCellReuseIdentifier:kDutyLocationTableViewCellID];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+}
+
+- (NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+        [_dataArray addObject:[DutytoDecideObj new]];
+        [_dataArray addObject:[DutytoDecideObj new]];
+        [_dataArray addObject:[DutytoDecideObj new]];
+    }
+    return _dataArray;
 }
 
 //重新定位
@@ -165,16 +183,24 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         if (locations && locations.count>1) {
             NSString *latitude = locations[0];
             NSString *longitude = locations[1];
-            self.locationLab.text = [NSString stringWithFormat:@"您的当前位置是：%.6f,%.6f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
             BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue));
             BMKMapPoint point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude));
             CLLocationDistance distance = BMKMetersBetweenMapPoints(point1,point2);
             self.distance = distance;
+            DutytoDecideObj *dutyObj = [[DutytoDecideObj alloc] init];
             if (distance>=1000) {
-                self.distanceLab.text = [NSString stringWithFormat:@"偏离门店距离:%.2f公里",distance/1000];
+                
+                dutyObj.otherLocationf = [NSString stringWithFormat:@"偏离门店距离:%.2f公里",distance/1000];
             }else{
-                self.distanceLab.text = [NSString stringWithFormat:@"偏离门店距离:%.2f米",distance];
+                
+                dutyObj.otherLocationf = [NSString stringWithFormat:@"偏离门店距离:%.2f米",distance];
             }
+            
+            dutyObj.locationf = [NSString stringWithFormat:@"您的当前位置是：%.6f,%.6f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+            
+            [self.dataArray replaceObjectAtIndex:0 withObject:dutyObj];
+            
+            [self.tableView reloadData];
             NSLog(@"距离: %0.2f米", distance);
    
         }
@@ -268,36 +294,44 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:[UserInfoObj model].mobilePhonef forKey:@"mobile"];
     [UserInfoObj sendDutytoMobileWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
-        weakSelf.workObj = response.responseModel;
+        UserInfoObj *workObj = response.responseModel;
+        weakSelf.workObj = workObj;
         if (weakSelf.workObj) {
-            if (!kIsObjectEmpty(weakSelf.workObj.startTimef)) {
-                weakSelf.ontTimeLab.text = [NSString stringWithFormat:@"上班时间：%@",weakSelf.workObj.startTimef];
-                weakSelf.onTimeTopLayoutConstraint.constant = 10;
+            if (!kIsObjectEmpty(workObj.amTimef)) {
+//                weakSelf.ontTimeLab.text = [NSString stringWithFormat:@"上班时间：%@",weakSelf.workObj.startTimef];
+//                weakSelf.onTimeTopLayoutConstraint.constant = 10;
+                DutytoDecideObj *dutyObj = [DutytoDecideObj new];
+                dutyObj.dutyTime = [NSString stringWithFormat:@"上班时间：%@",weakSelf.workObj.amTimef];
+                dutyObj.chargeMoney = [NSString stringWithFormat:@"扣款:%.2f",workObj.amFinef.doubleValue];
+                dutyObj.dutyOtherLocationf = [NSString stringWithFormat:@"上班偏离:%.2fkm",workObj.amDistf.doubleValue];
+                dutyObj.lateTime = [NSString stringWithFormat:@"迟到:%ld分钟",(long)workObj.amTimeDif.integerValue];
+                [weakSelf.dataArray replaceObjectAtIndex:1 withObject:dutyObj];
+                
                 weakSelf.onWorkBtn.enabled = NO;
                 
             }else{
-                weakSelf.onTimeTopLayoutConstraint.constant = 0;
-                weakSelf.ontTimeLab.text = @"";
                 weakSelf.onWorkBtn.enabled = YES;
             }
-            if (!kIsObjectEmpty(weakSelf.workObj.endTimef)) {
-                weakSelf.offTimeTopLayoutConstraint.constant = 10;
-                weakSelf.offTimeLab.text = [NSString stringWithFormat:@"下班时间：%@",weakSelf.workObj.endTimef];
+            if (!kIsObjectEmpty(weakSelf.workObj.pmTimef)) {
+//                weakSelf.offTimeTopLayoutConstraint.constant = 10;
+//                weakSelf.offTimeLab.text = [NSString stringWithFormat:@"下班时间：%@",weakSelf.workObj.pmTimef];
                 weakSelf.offWorkBtn.enabled = NO;
+                DutytoDecideObj *dutyObj = [DutytoDecideObj new];
+                dutyObj.dutyTime = [NSString stringWithFormat:@"下班时间：%@",weakSelf.workObj.pmTimef];
+                dutyObj.chargeMoney = [NSString stringWithFormat:@"扣款:%.2f",workObj.pmFinef.doubleValue];
+                dutyObj.dutyOtherLocationf = [NSString stringWithFormat:@"下班偏离:%.2fkm",workObj.pmDistf.doubleValue];
+                dutyObj.lateTime = [NSString stringWithFormat:@"迟到:%ld分钟",(long)workObj.pmTimeDif.integerValue];
+                [weakSelf.dataArray replaceObjectAtIndex:2 withObject:dutyObj];
             }else{
-                weakSelf.offTimeTopLayoutConstraint.constant = 0;
-                weakSelf.offTimeLab.text = @"";
                 weakSelf.offWorkBtn.enabled = YES;
             }
         }
+        [weakSelf.tableView reloadData];
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         
         if (response.responseCode==0) {
-            weakSelf.onTimeTopLayoutConstraint.constant = 0;
-            weakSelf.offTimeTopLayoutConstraint.constant = 0;
             weakSelf.onWorkBtn.enabled = YES;
-            weakSelf.offTimeLab.text = @"";
-            weakSelf.ontTimeLab.text = @"";
+            
             return ;
         }else{
             [NSString toast:response.responseMsg];
@@ -305,6 +339,57 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         
     }];
 }
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    //#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return self.dataArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    if (row == 0) {
+        return kDutyLocationTableViewCellHeight;
+    }else{
+        DutytoDecideObj *model = self.dataArray[row];
+        if (model.dutyTime.length > 10) {
+            return kDutyDoTableViewCellHeight;
+        }else{
+            return 0;
+        }
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = indexPath.row;
+    DutytoDecideObj *model = self.dataArray[row];
+    if (row == 0) {
+        DutyLocationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDutyLocationTableViewCellID forIndexPath:indexPath];
+        // Configure the cell...
+        cell.type1Lab.text = model.otherLocationf;
+        cell.type2Lab.text = model.locationf;
+        return cell;
+    }else{
+        DutyDoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDutyDoTableViewCellID forIndexPath:indexPath];
+        // Configure the cell...
+        cell.type1Lab.text = model.dutyTime;
+        cell.type2Lab.text = model.chargeMoney;
+        cell.type3Lab.text = model.dutyOtherLocationf;
+        cell.type4Lab.text = model.lateTime;
+        return cell;
+    }
+    
+}
+
 
 - (void)didFailToLocateUserWithError:(NSError *)error {
     [NSString toast:@"获取位置失败"];

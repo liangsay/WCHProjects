@@ -206,6 +206,7 @@
         [weakSelf.collectionView reloadData];
         [weakSelf.collectionView.mj_header endRefreshing];
         
+        
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];

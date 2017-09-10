@@ -204,6 +204,12 @@
 		7FCC1A2D1DA085B90001E342 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCC1A2B1DA085B90001E342 /* RegisterViewController.m */; };
 		7FCC1A2E1DA085B90001E342 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCC1A2C1DA085B90001E342 /* RegisterViewController.xib */; };
 		7FD81DBD1F2645FF00D029F4 /* LocationServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FD81DBC1F2645FF00D029F4 /* LocationServer.m */; };
+		7FDC51241F64E33400E978EB /* DutyDoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC51221F64E33400E978EB /* DutyDoTableViewCell.m */; };
+		7FDC51251F64E33400E978EB /* DutyDoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDC51231F64E33400E978EB /* DutyDoTableViewCell.xib */; };
+		7FDC51291F64E36200E978EB /* DutyLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC51271F64E36200E978EB /* DutyLocationTableViewCell.m */; };
+		7FDC512A1F64E36200E978EB /* DutyLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDC51281F64E36200E978EB /* DutyLocationTableViewCell.xib */; };
+		7FDC512E1F653D0B00E978EB /* MyOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC512C1F653D0B00E978EB /* MyOrderDetailViewController.m */; };
+		7FDC512F1F653D0B00E978EB /* MyOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDC512D1F653D0B00E978EB /* MyOrderDetailViewController.xib */; };
 		7FE0E8011DDE146F008F5B0D /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0E7FD1DDE146F008F5B0D /* b27_icon_star_gray@2x.png */; };
 		7FE0E8021DDE146F008F5B0D /* b27_icon_star_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0E7FE1DDE146F008F5B0D /* b27_icon_star_yellow@2x.png */; };
 		7FE0E8031DDE146F008F5B0D /* CWStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0E8001DDE146F008F5B0D /* CWStarRateView.m */; };
@@ -589,6 +595,15 @@
 		7FCC1A2C1DA085B90001E342 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		7FD81DBB1F2645FF00D029F4 /* LocationServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationServer.h; sourceTree = "<group>"; };
 		7FD81DBC1F2645FF00D029F4 /* LocationServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationServer.m; sourceTree = "<group>"; };
+		7FDC51211F64E33400E978EB /* DutyDoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DutyDoTableViewCell.h; sourceTree = "<group>"; };
+		7FDC51221F64E33400E978EB /* DutyDoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DutyDoTableViewCell.m; sourceTree = "<group>"; };
+		7FDC51231F64E33400E978EB /* DutyDoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DutyDoTableViewCell.xib; sourceTree = "<group>"; };
+		7FDC51261F64E36200E978EB /* DutyLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DutyLocationTableViewCell.h; sourceTree = "<group>"; };
+		7FDC51271F64E36200E978EB /* DutyLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DutyLocationTableViewCell.m; sourceTree = "<group>"; };
+		7FDC51281F64E36200E978EB /* DutyLocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DutyLocationTableViewCell.xib; sourceTree = "<group>"; };
+		7FDC512B1F653D0B00E978EB /* MyOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderDetailViewController.h; sourceTree = "<group>"; };
+		7FDC512C1F653D0B00E978EB /* MyOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderDetailViewController.m; sourceTree = "<group>"; };
+		7FDC512D1F653D0B00E978EB /* MyOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderDetailViewController.xib; sourceTree = "<group>"; };
 		7FE0E7FD1DDE146F008F5B0D /* b27_icon_star_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_gray@2x.png"; sourceTree = "<group>"; };
 		7FE0E7FE1DDE146F008F5B0D /* b27_icon_star_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_yellow@2x.png"; sourceTree = "<group>"; };
 		7FE0E7FF1DDE146F008F5B0D /* CWStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStarRateView.h; sourceTree = "<group>"; };
@@ -1494,6 +1509,9 @@
 				7FEC7E291F3201C900B070DC /* PunchingTCViewController.h */,
 				7FEC7E2A1F3201C900B070DC /* PunchingTCViewController.m */,
 				7FEC7E2B1F3201C900B070DC /* PunchingTCViewController.xib */,
+				7FDC512B1F653D0B00E978EB /* MyOrderDetailViewController.h */,
+				7FDC512C1F653D0B00E978EB /* MyOrderDetailViewController.m */,
+				7FDC512D1F653D0B00E978EB /* MyOrderDetailViewController.xib */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -1519,6 +1537,12 @@
 				7FEC7E261F31FD9B00B070DC /* JiKeTableViewCell.xib */,
 				7F2693491F3AA7FE00326619 /* OrderInComeTableCell.h */,
 				7F26934A1F3AA7FE00326619 /* OrderInComeTableCell.m */,
+				7FDC51211F64E33400E978EB /* DutyDoTableViewCell.h */,
+				7FDC51221F64E33400E978EB /* DutyDoTableViewCell.m */,
+				7FDC51231F64E33400E978EB /* DutyDoTableViewCell.xib */,
+				7FDC51261F64E36200E978EB /* DutyLocationTableViewCell.h */,
+				7FDC51271F64E36200E978EB /* DutyLocationTableViewCell.m */,
+				7FDC51281F64E36200E978EB /* DutyLocationTableViewCell.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1608,6 +1632,7 @@
 				7F3E80781F2DAB4E0020A969 /* RentCarDetailViewController.xib in Resources */,
 				7F5CD9591F1121D400E37652 /* ShopDetailWebViewController.xib in Resources */,
 				7FC4406B1DBBC154006A3993 /* OtherWebViewController.xib in Resources */,
+				7FDC512F1F653D0B00E978EB /* MyOrderDetailViewController.xib in Resources */,
 				7F5CD9971F112D5A00E37652 /* ProductDetailViewController.xib in Resources */,
 				7FEB1FFF1D9EC010001E5F10 /* OrderViewController.xib in Resources */,
 				7F29067B1F302B1500216041 /* CallCarDetailCell.xib in Resources */,
@@ -1641,6 +1666,7 @@
 				7FE9AC721DA1D0EE00B4077B /* MyWalletViewController.xib in Resources */,
 				7F4FB4C11F0E99E800B707DF /* Category.plist in Resources */,
 				7FEB1FFD1D9EC010001E5F10 /* MainViewController.xib in Resources */,
+				7FDC512A1F64E36200E978EB /* DutyLocationTableViewCell.xib in Resources */,
 				7FEB20011D9EC010001E5F10 /* SearchAddressViewController.xib in Resources */,
 				7F8F295A1F1D097C00C5DFF9 /* ORentCarViewController.xib in Resources */,
 				7F5CD9541F11210D00E37652 /* ShopDetailViewController.xib in Resources */,
@@ -1650,6 +1676,7 @@
 				7FE9AC811DA1D13900B4077B /* LinkmanUsViewController.xib in Resources */,
 				7FE9AC681DA1D09D00B4077B /* MyInfoViewController.xib in Resources */,
 				7FEC7E281F31FD9B00B070DC /* JiKeTableViewCell.xib in Resources */,
+				7FDC51251F64E33400E978EB /* DutyDoTableViewCell.xib in Resources */,
 				7FAACAAA1D902F0E0028D0D6 /* Assets.xcassets in Resources */,
 				7F4FB4BE1F0D404300B707DF /* OrderListViewController.xib in Resources */,
 				7FCC0A001EB392BB00D110F3 /* PersonSetViewController.xib in Resources */,
@@ -1801,6 +1828,7 @@
 				7F0F7B5C1DB790E200977A20 /* CitysViewController.m in Sources */,
 				7F5CD9771F112ABA00E37652 /* UIWebView+Clean.m in Sources */,
 				7F3E80771F2DAB4E0020A969 /* RentCarDetailViewController.m in Sources */,
+				7FDC51241F64E33400E978EB /* DutyDoTableViewCell.m in Sources */,
 				7FAACC2D1D9036460028D0D6 /* desc.md in Sources */,
 				7F7ACCB81DA54C4F00B1968F /* OrderTableCell.m in Sources */,
 				7FAACC1A1D9036460028D0D6 /* UILabel+Category.m in Sources */,
@@ -1844,6 +1872,7 @@
 				7F8F29631F1D0A8400C5DFF9 /* OCallCarTableViewCell.m in Sources */,
 				7F4FB4A91F0D3C6100B707DF /* CallCarViewController.m in Sources */,
 				7FAACC061D9036460028D0D6 /* BaseViewServer.m in Sources */,
+				7FDC512E1F653D0B00E978EB /* MyOrderDetailViewController.m in Sources */,
 				7F7ACCB21DA4CBEA00B1968F /* CouponTableCell.m in Sources */,
 				7FAACC111D9036460028D0D6 /* NSUserDefaults+Category.m in Sources */,
 				7FEB200F1D9EC0AB001E5F10 /* BaseTableViewController.m in Sources */,
@@ -1885,6 +1914,7 @@
 				7FAACC291D9036460028D0D6 /* UpdateVersion.m in Sources */,
 				7FAACC1B1D9036460028D0D6 /* UINavigationBar+Category.m in Sources */,
 				7FAACC141D9036460028D0D6 /* UIColor+Category.m in Sources */,
+				7FDC51291F64E36200E978EB /* DutyLocationTableViewCell.m in Sources */,
 				7FAACC1E1D9036460028D0D6 /* UIView+Category.m in Sources */,
 				7FEB1FFA1D9EC010001E5F10 /* LoginViewController.m in Sources */,
 				7F519C4F1F359FF20026259A /* ShopInfoTableViewCell.m in Sources */,

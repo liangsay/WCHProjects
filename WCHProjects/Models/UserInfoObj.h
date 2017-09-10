@@ -60,8 +60,25 @@
 @property(nonatomic, strong)NSString *storeNamef;//"天津韩家墅店";
 //@property(nonatomic, strong)NSString *trueNamef;//"安志伟";
 //@property(nonatomic, strong)NSString *userIdf;//"d24845ab-4662-4ba7-9a18-009fdfa2139f";
-
-
+//
+//@property(nonatomic, strong)NSString *endPicf;// = "";
+//@property(nonatomic, strong)NSString *endTimef;// = "";
+@property(nonatomic, strong)NSString *idNumTextf;// = "120105195908051535 ";
+@property(nonatomic, strong)NSString *pmTimef;
+//@property(nonatomic, strong)NSString *idNumf;// = 120105195908051535;
+//@property(nonatomic, strong)NSString *idf;// = "671eb489-a8fa-44e1-bb91-1974c1e52d95";
+//@property(nonatomic, strong)NSString *mobilef;// = 13820633188;
+//@property(nonatomic, strong)NSString *pmDistf;// = 0;
+//@property(nonatomic, strong)NSString *pmFinef;// = 0;
+//@property(nonatomic, strong)NSString *pmTimeDif;// = 0;
+//@property(nonatomic, strong)NSString *provincef;// = "天津市";
+//@property(nonatomic, strong)NSString *startLocationf;// = "";
+//@property(nonatomic, strong)NSString *startPicf;// = "";
+//@property(nonatomic, strong)NSString *startTimef;// = "2017-09-10 08:19:51";
+//@property(nonatomic, strong)NSString *storeNamef;// = "天津韩家墅店";
+//@property(nonatomic, strong)NSString *storeTrueNamef;// = "安志伟";
+//@property(nonatomic, strong)NSString *trueNamef;// = "安志伟";
+//@property(nonatomic, strong)NSString *userIdf;// = "d24845ab-4662-4ba7-9a18-009fdfa2139f";
 
 + (void)sendAppToAccess;
 #pragma mark --3.2登陆接口
@@ -97,6 +114,20 @@
 #pragma mark --用户信息更新接口
 +(void)sendUsertoUpdateInfoWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock
                               failedBlock:(RequestSessionCompletedBlock)failedBlock;
+
+#pragma mark --验证值接口
+/*!
+ *  @author liujinliang, 16-04-12 17:04:11
+ *
+ *  @brief 发起用户登录请求
+ *
+ *  @param params       <#params description#>
+ *  @param successBlock <#successBlock description#>
+ *  @param failedBlock  <#failedBlock description#>
+ *
+ *  @since <#1.0#>
+ */
++ (void)sendApptoAccessKeyRequestWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock failedBlock:(RequestSessionCompletedBlock)failedBlock;
 
 #pragma mark --发送短信的接口
 + (void)sendSmstoSendWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock failedBlock:(RequestSessionCompletedBlock)failedBlock;

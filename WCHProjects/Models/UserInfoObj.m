@@ -65,6 +65,28 @@
     }];
 }
 
+#pragma mark --验证值接口
+/*!
+ *  @author liujinliang, 16-04-12 17:04:11
+ *
+ *  @brief 发起用户登录请求
+ *
+ *  @param params       <#params description#>
+ *  @param successBlock <#successBlock description#>
+ *  @param failedBlock  <#failedBlock description#>
+ *
+ *  @since <#1.0#>
+ */
++ (void)sendApptoAccessKeyRequestWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock failedBlock:(RequestSessionCompletedBlock)failedBlock{
+    [self sendRequestWithAPI:kAPI_ApptoAccessKey() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+        
+        successBlock(request,response);
+        
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        failedBlock(request,response);
+    }];
+}
+
 #pragma mark --用户信息更新接口
 /**
  用户信息更新接口
@@ -105,7 +127,7 @@
 
 #pragma mark --发送短信的接口
 + (void)sendSmstoSendWithParameters:(NSMutableDictionary *)parameters successBlock:(RequestSessionCompletedBlock)successBlock failedBlock:(RequestSessionCompletedBlock)failedBlock{
-    [self sendRequestWithAPI:kAPI_SmstoSend() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
+    [self sendRequestWithAPI:kAPI_SmstoLoginSend() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         successBlock(request,response);
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {

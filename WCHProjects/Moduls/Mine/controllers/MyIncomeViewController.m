@@ -13,7 +13,7 @@
 #import "AppraiseViewController.h"//评价
 #import "UIViewController+MMDrawerController.h"
 #import "UITableViewCell+HYBMasonryAutoCellHeight.h"
-
+#import "MyOrderDetailViewController.h"
 @interface MyIncomeViewController ()<UITableViewDelegate,UITableViewDataSource,BaseTableCellDelegate,OrderInComeTableCellDelegate>
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (weak, nonatomic) IBOutlet BaseTableView *tableView;
@@ -23,13 +23,18 @@
 
 @implementation MyIncomeViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self sendOrdertoIncome];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setupBackButton];
     [self setupTableViewSet];
 //    if (self.viewType==2) {
-        [self sendOrdertoIncome];
+//        [self sendOrdertoIncome];
 //    }
 }
 
@@ -88,6 +93,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger row = indexPath.row;
     OrderInfoObj *orderObj = self.dataArray[row];
+    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    NSInteger statusf = orderObj.statusf.integerValue;
+    if (statusf == 1) {
+        MyOrderDetailViewController *vc = [[MyOrderDetailViewController alloc] initWithNibName:@"MyOrderDetailViewController" bundle:nil];
+        vc.navigationItem.title = @"订单详情";
+        vc.dataArray = [NSMutableArray arrayWithObject:orderObj];
+        kPushNav(vc, YES);
+    }
     //司机对货主评价
 //    BOOL assessOwerf = orderObj.assessOwerf.boolValue;
 //    if (orderObj.statusf.integerValue==3 && !assessOwerf) {
@@ -119,6 +132,11 @@
 }
 
 - (void)orderInComeTableCell:(OrderInComeTableCell *)orderInComeTableCell longPress:(BOOL)longPress orderObj:(OrderInfoObj *)orderObj {
+    //0:未接单 1：已接单 2：未支付  3:已支付 4：已取消
+    NSInteger statusf = orderObj.statusf.integerValue;
+    if (statusf != 1) {
+        return;
+    }
     WEAKSELF
     [UIAlertController showAlertInViewController:self withTitle:@"完成订单" message:@"您确定要完成订单吗？" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"确定"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
         if (buttonIndex==2) {

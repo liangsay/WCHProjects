@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,6 +34,30 @@
                         <outlet property="delegate" destination="-1" id="cA8-GH-XNu"/>
                     </connections>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qO0-bI-I2R">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="te9-zX-POE">
+                            <rect key="frame" x="79" y="300" width="240" height="172"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8k-cu-7GU">
+                                    <rect key="frame" x="99" y="143" width="42" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_nodata" translatesAutoresizingMaskIntoConstraints="NO" id="ey1-w0-ifE">
+                                    <rect key="frame" x="70" y="8" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -41,7 +65,15 @@
                 <constraint firstItem="tV2-TB-Q6H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CiE-fg-fWg"/>
                 <constraint firstAttribute="trailing" secondItem="tV2-TB-Q6H" secondAttribute="trailing" id="Fpq-Ce-and"/>
                 <constraint firstAttribute="bottom" secondItem="tV2-TB-Q6H" secondAttribute="bottom" id="PuH-C4-nE7"/>
+                <constraint firstAttribute="trailing" secondItem="qO0-bI-I2R" secondAttribute="trailing" id="Q6u-CN-qJR"/>
+                <constraint firstItem="qO0-bI-I2R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ygy-Gi-btI"/>
+                <constraint firstAttribute="bottom" secondItem="qO0-bI-I2R" secondAttribute="bottom" id="Za0-mu-hC6"/>
+                <constraint firstItem="qO0-bI-I2R" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aiB-ko-K46"/>
             </constraints>
+            <point key="canvasLocation" x="93.5" y="109.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_nodata" width="100" height="100"/>
+    </resources>
 </document>

@@ -351,8 +351,8 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         return;
     }
     double pricef = 0.0;
-    //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
-    pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
+    
+    
     
     BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(self.startCoordinate.latitude, self.startCoordinate.longitude));
     BMKMapPoint lastPoint = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(0.0, 0.0));
@@ -393,6 +393,10 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     }
     
     self.kmCountf = [NSString stringWithFormat:@"%.3f",distance/1000];
+    
+    //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
+    pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
+    
     if (distance) {
         self.shuomingLab.text = [NSString stringWithFormat:@"全程约%@公里 费用估计：%.2f元",self.kmCountf,pricef];
         self.shuomingLab.textColor = [UIColor priceColor];

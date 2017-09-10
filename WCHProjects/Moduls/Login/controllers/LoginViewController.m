@@ -77,8 +77,7 @@
 
 #pragma mark --显示或隐藏密码
 - (IBAction)codeBtnAction:(UIButton *)sender {
-    [self sendSmstoSend];
-    
+    [self sendSmstoSend_API];
     
 }
 
@@ -127,15 +126,40 @@
 /**
  发送短信的接口
  */
-- (void)sendSmstoSend {
+- (void)sendSmstoSend_API {
     [self.view endEditing:YES];
     WEAKSELF
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:@"1" forKey:@"vo.smsTypef"];
+    [params addUnEmptyString:[NSString UDIDString] forKey:@"deviceNo"];
+    
+    
+    [UserInfoObj sendApptoAccessKeyRequestWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
+        if (response.responseCode == 1) {
+            if ([response.result isKindOfClass:[NSString class]]) {
+                [weakSelf sendLogin_API:response.result];
+            }else{
+                [NSString toast:@"登陆异常"];
+            }
+        }else{
+            [NSString toast:@"登陆异常"];
+        }
+    } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [NSString toast:@"服务器请求异常"];
+    }];
+    
+}
+
+- (void)sendLogin_API:(NSString *)key {
+    WEAKSELF
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params addUnEmptyString:@"1" forKey:@"vo.smsTypef"];
     [params addUnEmptyString:self.userNameTxtF.text forKey:@"vo.mobilef"];
+    [params addUnEmptyString:[NSString UDIDString] forKey:@"deviceNo"];
+    [params addUnEmptyString:[key md5] forKey:@"key"];
     [UserInfoObj sendSmstoSendWithParameters:params successBlock:^(HttpRequest *request, HttpResponse *response) {
         weakSelf.codeNum = response.result;
-
+        
         [weakSelf downTimeSet];
         NSString *msg = [NSString stringWithFormat:@"验证码已发送至手机号为%@，请注意查收并登陆/注册使用",weakSelf.userNameTxtF.text];
         [NSString toast:msg];
@@ -163,7 +187,7 @@
     }
     
 //#if DEBUG
-    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]) {
+    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]) {
         
     }else
 //#endif

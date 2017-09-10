@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowlayout;
 /** 布局属性 */
 @property (nonatomic, strong) NSMutableArray *attrsArray;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
 @property (strong, nonatomic) UIButton *swithBtn;
 @end
 
@@ -205,14 +206,24 @@
         weakSelf.dataSource = [NSMutableArray arrayWithArray:response.responseModel];
         [weakSelf.collectionView reloadData];
         [weakSelf.collectionView.mj_header endRefreshing];
-        
+        if (weakSelf.dataSource.count== 0) {
+            weakSelf.errorView.alpha = 1;
+        }else{
+            weakSelf.errorView.alpha = 0;
+        }
         
     } failedBlock:^(HttpRequest *request, HttpResponse *response) {
+        [weakSelf.collectionView.mj_header endRefreshing];
+        if (weakSelf.dataSource.count== 0) {
+            weakSelf.errorView.alpha = 1;
+        }else{
+            weakSelf.errorView.alpha = 0;
+        }
         if (!kIsObjectEmpty(response.responseMsg)) {
             [NSString toast:response.responseMsg];
             return ;
         }
-        [weakSelf.collectionView.mj_header endRefreshing];
+        
         
     }];
 }

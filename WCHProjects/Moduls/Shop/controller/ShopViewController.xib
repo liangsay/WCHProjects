@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopViewController">
             <connections>
                 <outlet property="collectionView" destination="tV2-TB-Q6H" id="hvO-qV-gCM"/>
+                <outlet property="errorView" destination="qO0-bI-I2R" id="MCZ-a1-lk7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,26 +38,40 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qO0-bI-I2R">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="te9-zX-POE">
-                            <rect key="frame" x="79" y="300" width="240" height="172"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="te9-zX-POE">
+                            <rect key="frame" x="20" y="265" width="335" height="137"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8k-cu-7GU">
-                                    <rect key="frame" x="99" y="143" width="42" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8k-cu-7GU">
+                                    <rect key="frame" x="139" y="120" width="57.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.50095313789999996" green="0.53303974870000004" blue="0.55807179210000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_nodata" translatesAutoresizingMaskIntoConstraints="NO" id="ey1-w0-ifE">
-                                    <rect key="frame" x="70" y="8" width="100" height="100"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_nodata" translatesAutoresizingMaskIntoConstraints="NO" id="ey1-w0-ifE">
+                                    <rect key="frame" x="117.5" y="0.0" width="100" height="100"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="Hnl-qx-qcg"/>
+                                        <constraint firstAttribute="width" constant="100" id="aim-Lr-ach"/>
+                                    </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="ey1-w0-ifE" firstAttribute="top" secondItem="te9-zX-POE" secondAttribute="top" id="BLt-th-58V"/>
+                                <constraint firstAttribute="bottom" secondItem="d8k-cu-7GU" secondAttribute="bottom" id="FAs-aG-0jN"/>
+                                <constraint firstItem="ey1-w0-ifE" firstAttribute="centerX" secondItem="te9-zX-POE" secondAttribute="centerX" id="M1D-8c-xpC"/>
+                                <constraint firstItem="d8k-cu-7GU" firstAttribute="top" secondItem="ey1-w0-ifE" secondAttribute="bottom" constant="20" id="Ouf-KS-eu8"/>
+                                <constraint firstItem="d8k-cu-7GU" firstAttribute="centerX" secondItem="te9-zX-POE" secondAttribute="centerX" id="lt6-dK-IlV"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="te9-zX-POE" firstAttribute="centerX" secondItem="qO0-bI-I2R" secondAttribute="centerX" id="8bB-sF-uXF"/>
+                        <constraint firstItem="te9-zX-POE" firstAttribute="leading" secondItem="qO0-bI-I2R" secondAttribute="leading" constant="20" id="C3D-fa-eyS"/>
+                        <constraint firstAttribute="trailing" secondItem="te9-zX-POE" secondAttribute="trailing" constant="20" id="pfb-cQ-O8v"/>
+                        <constraint firstItem="te9-zX-POE" firstAttribute="centerY" secondItem="qO0-bI-I2R" secondAttribute="centerY" id="uGK-ad-hKx"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

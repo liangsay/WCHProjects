@@ -28,10 +28,32 @@
 }
 
 - (void)setupTableStyle {
+    
+    self.cityTextField.enablesReturnKeyAutomatically = YES;
     [self.cityTextField addTarget:self action:@selector(textFieldShouldReturn:) forControlEvents:UIControlEventEditingChanged];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CitysTableCell class]) bundle:nil] forCellReuseIdentifier:kCitysTableCellID];
     [self.tableView setRowHeight:kCitysTableCellHeight];
 }
+
+
+- (void)textFieldDidChange:(UITextField *)textField {
+    //防止输入拼音状态时查询
+    NSString *str = [textField textInRange:textField.markedTextRange];
+    NSLog(@"textChangeAction str = %@",str);
+    
+    if (![str isEqualToString:@""]) {
+        return;
+    }
+    WEAKSELF
+    [self.dataArray enumerateObjectsUsingBlock:^(OrderInfoObj *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.namef containsString:self.cityTextField.text]) {
+            [weakSelf.cityArray addObject:obj];
+        }
+    }];
+    [self.tableView placeholderViewShow:!self.cityArray.count];
+    [self.tableView reloadData];
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     WEAKSELF

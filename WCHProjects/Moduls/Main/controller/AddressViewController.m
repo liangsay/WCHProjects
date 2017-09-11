@@ -55,6 +55,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     [self.submitBtn setLayerCornerRadius:5];
     
     [self.cityTxtField becomeFirstResponder];
+    self.cityTxtField.enablesReturnKeyAutomatically = YES;
     [self.cityTxtField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     _poisearch = [[BMKPoiSearch alloc]init];
     [self onHeaderRefreshing];
@@ -221,7 +222,11 @@ UITextFieldDelegate,CitysViewControllerDelegate>
         return;
     }
     [self onHeaderRefreshing];
-    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self onHeaderRefreshing];
+    return YES;
 }
 
 #pragma mark --UISearchBarDelegate---------
@@ -280,6 +285,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
 #pragma mark --CitysViewControllerDelegate
 - (void)citysViewController:(CitysViewController *)citysViewController cityObj:(OrderInfoObj *)cityObj {
     self.cityName = cityObj.namef;
+    [self.cityBtn setTitle:cityObj.namef forState:UIControlStateNormal];
     self.provinceName = cityObj.provincialNamef;
 //    [self.cityBtn setTitle:cityObj.cityf forState:UIControlStateNormal];
     self.cityTxtField.text = @"";

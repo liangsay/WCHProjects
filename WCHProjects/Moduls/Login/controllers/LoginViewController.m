@@ -23,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registBtn;
 @property (weak, nonatomic) IBOutlet UIButton *codeBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *checkBtn;
+
 @property (nonatomic, strong) NSString *codeNum;
 
 /** 定时器(这里不用带*，因为dispatch_source_t就是个类，内部已经包含了*) */
@@ -71,9 +74,17 @@
     [self.loginBtn setLayerCornerRadius:4];
 //    [self.registBtn setLayerCornerRadius:4];
 //    [self.registBtn setLayerBorderWidth:.5 color:[UIColor mainColor]];
-    
+    [self.checkBtn setSelected:YES];
+    [self.checkBtn setImage:kIMAGE(@"logincheck") forState:UIControlStateNormal];
+    [self.checkBtn setImage:kIMAGE(@"loginchecked") forState:UIControlStateSelected];
    
 }
+
+- (IBAction)checkBtnAction:(UIButton *)sender {
+    self.checkBtn.selected = !self.checkBtn.selected;
+    
+}
+
 
 #pragma mark --显示或隐藏密码
 - (IBAction)codeBtnAction:(UIButton *)sender {
@@ -187,12 +198,17 @@
     }
     
 //#if DEBUG
-    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]) {
+    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]||[self.userNameTxtF.text isEqualToString:@"13820633188"]||[self.userNameTxtF.text isEqualToString:@"13922163927"]) {
         
     }else
 //#endif
     if (self.passwordTxtF.text != self.codeNum) {
         [NSString toast:@"请输入正确的验证码"];
+        return;
+    }
+    
+    if (!self.checkBtn.isSelected) {
+        [NSString toast:@"同意服务标准及违约责任约定才可以登录！"];
         return;
     }
     

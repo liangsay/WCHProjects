@@ -49,6 +49,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     [self setupBackButton];
     [self setupNavigator];
     [self setupTableViewSet];
+    
     self.cityName = [LocationServer shared].cityf;
     self.provinceName = [LocationServer shared].provincef;
     [self.submitBtn setBackgroundImage:[UIImage imageWithColor:[UIColor mainColor]] forState:UIControlStateNormal];
@@ -57,6 +58,12 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     [self.cityTxtField becomeFirstResponder];
     [self.cityTxtField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     _poisearch = [[BMKPoiSearch alloc]init];
+    
+    self.cityObj.namef = self.curOrderInfoObj.namef;
+    self.cityObj.modelf = self.curOrderInfoObj.modelf;
+    self.nameTxtField.text = self.cityObj.namef;
+    self.mobileTxtField.text = self.cityObj.modelf;
+    self.cityTxtField.enablesReturnKeyAutomatically = YES;
     [self onHeaderRefreshing];
     
 }
@@ -231,6 +238,20 @@ UITextFieldDelegate,CitysViewControllerDelegate>
     
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (kIsObjectEmpty(_nameTxtField.text)) {
+        return NO;
+    }
+    if (kIsObjectEmpty(_mobileTxtField.text)) {
+        return NO;
+    }
+    if (kIsObjectEmpty(_cityTxtField.text)) {
+        return NO;
+    }
+    [self onHeaderRefreshing];
+    return YES;
+}
+
 #pragma mark --UISearchBarDelegate---------
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     [self onHeaderRefreshing];
@@ -305,6 +326,7 @@ UITextFieldDelegate,CitysViewControllerDelegate>
 #pragma mark --CitysViewControllerDelegate
 - (void)citysViewController:(CitysViewController *)citysViewController cityObj:(OrderInfoObj *)cityObj {
     self.cityName = cityObj.namef;
+    [self.cityBtn setTitle:cityObj.namef forState:UIControlStateNormal];
     self.provinceName = cityObj.provincialNamef;
 //    [self.cityBtn setTitle:cityObj.cityf forState:UIControlStateNormal];
     self.cityTxtField.text = @"";

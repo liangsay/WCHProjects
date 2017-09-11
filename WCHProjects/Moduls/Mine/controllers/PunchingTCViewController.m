@@ -312,15 +312,15 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
             }else{
                 weakSelf.onWorkBtn.enabled = YES;
             }
-            if (!kIsObjectEmpty(weakSelf.workObj.pmTimef)) {
+            if (!kIsObjectEmpty(weakSelf.workObj.endTimef)) {
 //                weakSelf.offTimeTopLayoutConstraint.constant = 10;
 //                weakSelf.offTimeLab.text = [NSString stringWithFormat:@"下班时间：%@",weakSelf.workObj.pmTimef];
                 weakSelf.offWorkBtn.enabled = NO;
                 DutytoDecideObj *dutyObj = [DutytoDecideObj new];
-                dutyObj.dutyTime = [NSString stringWithFormat:@"下班时间：%@",weakSelf.workObj.pmTimef];
+                dutyObj.dutyTime = [NSString stringWithFormat:@"下班时间：%@",weakSelf.workObj.endTimef];
                 dutyObj.chargeMoney = [NSString stringWithFormat:@"扣款:%.2f",workObj.pmFinef.doubleValue];
                 dutyObj.dutyOtherLocationf = [NSString stringWithFormat:@"下班偏离:%.2fkm",workObj.pmDistf.doubleValue];
-                dutyObj.lateTime = [NSString stringWithFormat:@"迟到:%ld分钟",(long)workObj.pmTimeDif.integerValue];
+                dutyObj.lateTime = [NSString stringWithFormat:@"早退:%ld分钟",(long)workObj.pmTimeDif.integerValue];
                 [weakSelf.dataArray replaceObjectAtIndex:2 withObject:dutyObj];
             }else{
                 weakSelf.offWorkBtn.enabled = YES;

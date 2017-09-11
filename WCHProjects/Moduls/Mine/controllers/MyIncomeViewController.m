@@ -86,6 +86,10 @@
     // Configure the cell...
     OrderInfoObj *model = self.dataArray[row];
     [cell setupCellInfoWithObj:model];
+    cell.startLab.userInteractionEnabled = NO;
+    cell.endLab.userInteractionEnabled = NO;
+    cell.startImgV.userInteractionEnabled = NO;
+    cell.endImgV.userInteractionEnabled = NO;
     return cell;
 }
 

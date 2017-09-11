@@ -110,8 +110,8 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         order.content = @"";
         if (i==0) {
             order.iconName = @"starttime";
-            self.outTime =[nowDate formatStringWithFormat:@"yyyy-MM-dd"];
-            order.content = self.outTime;
+//            self.outTime =[nowDate formatStringWithFormat:@"yyyy-MM-dd HH:mm"];
+//            order.content = self.outTime;
         }
         if (i==1) {
             order.iconName = @"startpoint";
@@ -196,7 +196,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         cell.contentLab.tag = row;
         if (row == self.dataArray.count - 1) {
             cell.contentLab.userInteractionEnabled = YES;
-            [cell.contentLab setKeyboardType:UIKeyboardTypeNumberPad];
+            [cell.contentLab setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
         }else{
             cell.contentLab.userInteractionEnabled = NO;
             [cell.contentLab setKeyboardType:UIKeyboardTypeDefault];
@@ -243,17 +243,30 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         kPushNav(addressVC, YES);
     }else{
         //途径地点
-        [self goAddressSelector];
+        [self goAddressSelector:row];
     }
 }
 
 //选择地址
-- (void)goAddressSelector {
+- (void)goAddressSelector:(NSInteger)row {
     //搜索地址
     SearchAddressViewController *addressVC = [[SearchAddressViewController alloc] initWithNibName:@"SearchAddressViewController" bundle:nil];
     addressVC.delegate = self;
     addressVC.provinceName = [UserInfoObj model].provincef;
     addressVC.searchType = SearchAddressTypeCallCar;
+    OrderInfoObj *curObj = self.dataArray[2];
+    OrderInfoObj *obj = self.dataArray[row];
+    if (kIsObjectEmpty(obj.namef)) {
+        addressVC.curOrderInfoObj = curObj;
+    }else{
+        addressVC.curOrderInfoObj = obj;
+    }
+    if (kIsObjectEmpty(obj.modelf)) {
+        addressVC.curOrderInfoObj = curObj;
+    }else{
+        addressVC.curOrderInfoObj = obj;
+    }
+    
     kPushNav(addressVC, YES);
 }
 
@@ -286,12 +299,12 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     NSDate *maximumDate = nil;
     
     __block OrderInfoObj *order = self.dataArray[row];
-    if (order.content) {
-        selDate = [NSDate dateWithString:order.content formatString:@"yyyy-MM-dd"];
+    if (!kIsObjectEmpty(order.content)) {
+        selDate = [NSDate dateWithString:order.content formatString:@"yyyy-MM-dd HH:mm"];
     }
-    [ActionSheetDatePicker showPickerWithTitle:title datePickerMode:UIDatePickerModeDate selectedDate:selDate minimumDate:minimumDate maximumDate:maximumDate doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+    [ActionSheetDatePicker showPickerWithTitle:title datePickerMode:UIDatePickerModeDateAndTime selectedDate:selDate minimumDate:minimumDate maximumDate:maximumDate doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
         if (row == 0) {
-            weakSelf.outTime = [selectedDate formattedDateWithFormatString:@"yyyy-MM-dd"];
+            weakSelf.outTime = [selectedDate formattedDateWithFormatString:@"yyyy-MM-dd HH:mm"];
             order.content = weakSelf.outTime;
         }
         
@@ -358,7 +371,7 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     BMKMapPoint lastPoint = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(0.0, 0.0));
     CGFloat distance = 0;
     BOOL isPoit = FALSE;
-    if (self.dataArray.count > 4) {
+    if (self.dataArray.count > 3) {
         //大于3代表有途经点数据
         for (NSInteger i = 2; i<self.dataArray.count-2; i++) {
             OrderInfoObj *childObj = self.dataArray[i];
@@ -392,10 +405,18 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
         distance = BMKMetersBetweenMapPoints(point1,point2);
     }
     
-    self.kmCountf = [NSString stringWithFormat:@"%.3f",distance/1000];
+    self.kmCountf = [NSString stringWithFormat:@"%.2f",distance/1000];
+    double kmValue = (distance/1000);
+    if ( kmValue <= self.orderObj.startKmf.doubleValue) {
+        pricef = self.orderObj.startPricef.doubleValue;
+    }else{
+        /*
+         计价不对，小于最小公里数据，按起步价，超过起步公里数；公式是:起步价+(总公里-起步公里)*超过的每公里价格;
+         */
+        //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
+        pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
+    }
     
-    //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
-    pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
     
     if (distance) {
         self.shuomingLab.text = [NSString stringWithFormat:@"全程约%@公里 费用估计：%.2f元",self.kmCountf,pricef];

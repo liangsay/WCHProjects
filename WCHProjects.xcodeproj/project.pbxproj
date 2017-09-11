@@ -1592,7 +1592,8 @@
 				TargetAttributes = {
 					7FAACA991D902F0E0028D0D6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = GCLW2374BE;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2327,8 +2328,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bing Liang (GCLW2374BE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = GCLW2374BE;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WCHProjects/PrefixHeader.pch;
 				INFOPLIST_FILE = WCHProjects/Info.plist;
@@ -2431,8 +2432,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc66sc.WCHProjects;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "63ca0a30-3884-47a1-86f5-fd141e383386";
-				PROVISIONING_PROFILE_SPECIFIER = LiuLiuWeiHuo_AdHoc;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				USER_HEADER_SEARCH_PATHS = "\"$(PODS_ROOT)\"/** \"${SRCROOT}\"/**";
 			};
 			name = AdHoc;

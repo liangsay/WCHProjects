@@ -31,5 +31,7 @@ typedef NS_ENUM(NSUInteger, SearchAddressType) {
 @property (nonatomic, strong) BMKPoiSearch* poisearch;
 @property(nonatomic, strong) NSString *provinceName;//当前省名称
 @property(nonatomic, strong) NSString *cityName;//当前城市名称
+@property (nonatomic, strong) OrderInfoObj *curOrderInfoObj;
+
 @property (nonatomic, assign) id<SearchAddressViewControllerDelegate> delegate;
 @end

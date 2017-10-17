@@ -14,8 +14,6 @@ enum {
 };
 typedef NSUInteger BMKPinAnnotationColor;
 
-
-
 ///提供类似大头针效果的annotation view
 @interface BMKPinAnnotationView : BMKAnnotationView
 {

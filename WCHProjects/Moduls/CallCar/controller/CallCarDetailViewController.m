@@ -77,18 +77,20 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
 
 //提交租车资料
 - (IBAction)submitBtnAction:(UIButton *)sender {
-    OrderInfoObj *nameObj = self.dataArray[0];
-    OrderInfoObj *cardObj = self.dataArray[1];
-    if (kIsObjectEmpty(nameObj.content)) {
-        [NSString toast:@"请输入承租人姓名"];
+    OrderInfoObj *timeObj = self.dataArray[0];
+    OrderInfoObj *startObj = self.dataArray[1];
+    OrderInfoObj *endObj = self.dataArray[self.dataArray.count - 2];
+    OrderInfoObj *tonObj = self.dataArray[self.dataArray.count - 1];
+    if (kIsObjectEmpty(startObj.content)) {
+        [NSString toast:@"请选择起点"];
         return;
     }
-    if (kIsObjectEmpty(cardObj.content)) {
-        [NSString toast:@"请输入身份证号"];
+    if (kIsObjectEmpty(startObj.content)) {
+        [NSString toast:startObj.placeholder];
         return;
     }
-    if (kIsObjectEmpty(self.outTime)) {
-        [NSString toast:@"请选择用车时间"];
+    if (kIsObjectEmpty(endObj.content)) {
+        [NSString toast:startObj.placeholder];
         return;
     }
     
@@ -321,7 +323,8 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     long leg = [toBeString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length;
     NSInteger tag = textField.tag;
     if (tag == self.dataArray.count - 1) {
-        if([string chenkInputNSCharacterSetWithType:3])//kNumbersPeriod
+        BOOL check  = [string chenkInputNSCharacterSetWithType:3];
+        if(check)//kNumbersPeriod
         {
             NSArray  *arr =[textField.text componentsSeparatedByString:@"."];
             if(arr.count == 1)
@@ -408,13 +411,13 @@ UIKIT_EXTERN BMKMapPoint BMKMapPointForCoordinate(CLLocationCoordinate2D coordin
     self.kmCountf = [NSString stringWithFormat:@"%.2f",distance/1000];
     double kmValue = (distance/1000);
     if ( kmValue <= self.orderObj.startKmf.doubleValue) {
-        pricef = self.orderObj.startPricef.doubleValue;
+        pricef += self.orderObj.startPricef.doubleValue;
     }else{
         /*
          计价不对，小于最小公里数据，按起步价，超过起步公里数；公式是:起步价+(总公里-起步公里)*超过的每公里价格;
          */
         //(总公里数-起步公里数)*每公里价格 + 起步价格  下面有节点，则累加每加一个节点的价格
-        pricef = (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
+        pricef += (self.kmCountf.doubleValue - self.orderObj.startKmf.doubleValue) * self.orderObj.kmPricef.doubleValue + self.orderObj.startPricef.doubleValue;
     }
     
     

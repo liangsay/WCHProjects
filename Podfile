@@ -48,6 +48,8 @@ target "WCHProjects" do
     
     # 集成微信(精简版0.2M)
     pod ‘UMengUShare/Social/ReducedWeChat'
+    
+    pod 'Toast'
 #    pod 'UMengAnalytics'
 #    pod 'UMengAnalytics-NO-IDFA'
     #友盟社会化分享

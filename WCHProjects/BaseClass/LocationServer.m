@@ -17,7 +17,10 @@
     static LocationServer *_sharedLServer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        
         _sharedLServer = [self new];
+        _sharedLServer.provincef = @"天津市";
+        _sharedLServer.cityf = @"天津市";
     });
     
     return _sharedLServer;
@@ -53,7 +56,7 @@
             [_locService startUserLocationService];
             
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
-            
+            [self didFailToLocateUserWithError:nil];
             //定位不能用
             DLog(@"定位不能用");
             //用户拒绝开启用户权限
@@ -72,6 +75,7 @@
         }
     
     }else{
+        [self didFailToLocateUserWithError:nil];
         [UIAlertController showAlertInViewController:kAppDelegate.tabBarVC withTitle:@"打开[定位服务]来允许[六六微货]确定您的位置" message:@"请在系统设置中开启定位服务(设置>隐私>定位服务>六六微货>始终)" cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@[@"去设置"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
             if (buttonIndex==2) {
                 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.000000) {
@@ -131,6 +135,10 @@
 
 - (void)didFailToLocateUserWithError:(NSError *)error {
     OrderInfoObj *orderObj = [OrderInfoObj new];
+    orderObj.cityf = @"天津市";
+    orderObj.provincef = @"天津市";
+    self.provincef = @"天津市";
+    self.cityf = @"天津市";
     if (self.orderBlock) {
         self.orderBlock(orderObj);
         self.orderBlock = nil;

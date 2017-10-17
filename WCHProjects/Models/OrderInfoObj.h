@@ -41,6 +41,7 @@
 @property (nonatomic, strong) CLLocation *pointLocation;
 @property (nonatomic, strong) NSString *amountf;
 @property (nonatomic, strong) NSString *kmPricef;//;// "2.8";
+@property (nonatomic, strong) NSString *rentPricef;
 @property (nonatomic, strong) NSString *namef;//;// "\U5c0f\U9762";
 
 @property (nonatomic, strong) NSString *startKmf;//;// 6;

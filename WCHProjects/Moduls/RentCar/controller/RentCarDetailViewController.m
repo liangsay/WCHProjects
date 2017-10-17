@@ -317,7 +317,7 @@
     OrderInfoObj *cardObj = self.dataArray[1];
     UserInfoObj *userObj = [UserInfoObj model];
     NSInteger days = ABS([NSDate getTheCountOfTwoDaysWithBeginDate:self.inTime endDate:self.outTime]);
-    __block NSString *pricef = kDoubleToString(days*self.orderObj.startPricef.doubleValue);
+    __block NSString *pricef = kDoubleToString(days*self.orderObj.rentPricef.doubleValue);
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params addUnEmptyString:cardObj.content forKey:@"vo.rentCerNof"];
     [params addUnEmptyString:self.outTime forKey:@"vo.pickupDatef"];

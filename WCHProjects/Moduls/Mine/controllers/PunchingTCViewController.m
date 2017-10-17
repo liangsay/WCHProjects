@@ -117,8 +117,8 @@
                 _locService = [[BMKLocationService alloc] init];
             }
             _locService.delegate = self;
-            _locService.distanceFilter = 100.0;
-            _locService.allowsBackgroundLocationUpdates = NO;
+            //_locService.distanceFilter = 100.0;
+            //_locService.allowsBackgroundLocationUpdates = NO;
             [_locService startUserLocationService];
         }else if ([CLLocationManager authorizationStatus] ==kCLAuthorizationStatusDenied) {
             

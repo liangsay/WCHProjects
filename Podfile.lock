@@ -18,7 +18,7 @@ PODS:
   - AlipaySDK-2.0 (15.0.2):
     - AlipaySDK-2.0/Core (= 15.0.2)
   - AlipaySDK-2.0/Core (15.0.2)
-  - BaiduMapKit (3.0.0)
+  - BaiduMapKit (3.2.1)
   - CRToast (0.0.9)
   - DateTools (1.7.0)
   - IQKeyboardManager (4.0.4)
@@ -49,6 +49,7 @@ PODS:
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
   - SVProgressHUD (2.0.3)
+  - Toast (3.1.0)
   - UIAlertController+Blocks (0.9)
   - UIImage-Helpers (0.0.3)
   - UITableView+FDTemplateLayoutCell (1.4)
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage
   - SVProgressHUD
+  - Toast
   - UIAlertController+Blocks
   - UIImage-Helpers
   - UITableView+FDTemplateLayoutCell
@@ -101,7 +103,7 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AlipaySDK-2.0: 346e006fd2999d5ca5dd8869d03bc0a260fc48e0
-  BaiduMapKit: de2a726d5296d6b2dc0e974b683af73153608dcd
+  BaiduMapKit: 9c748785aa3dddfc41dcb70c14b21ce32f680930
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   IQKeyboardManager: 4a6f83b540283c2645aaeba2bd8dc0f09b5c77f8
@@ -118,6 +120,7 @@ SPEC CHECKSUMS:
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
   UIAlertController+Blocks: b48c673ff60726da468b32ab21bbc7683512d45b
   UIImage-Helpers: 06b04a42bdd222844035602e87e936765c80f620
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
@@ -125,6 +128,6 @@ SPEC CHECKSUMS:
   UMengUShare: 740664d1dd5cc2fb2cc3325d61e4b35539aa9c78
   WeChat: 93915b3be360b5bdfe48e8a9d64ff0315a28c240
 
-PODFILE CHECKSUM: 60c3faf5ff025312a17a772053f10d2e3c8e87d3
+PODFILE CHECKSUM: 4b7701e9c1b4882014fce736c6fad8e5b608c058
 
 COCOAPODS: 1.2.1

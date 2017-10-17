@@ -188,6 +188,7 @@
 
 #pragma mark --登录
 - (IBAction)loginBtnAction:(id)sender {
+    [self.view endEditing:YES];
     if (self.userNameTxtF.text.isEmpty) {
         [NSString toast:@"请输入用户名"];
         return;
@@ -198,10 +199,15 @@
     }
     
 //#if DEBUG
-    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]||[self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]||[self.userNameTxtF.text isEqualToString:@"13820633188"]||[self.userNameTxtF.text isEqualToString:@"13922163927"]) {
+    if ([self.userNameTxtF.text isEqualToString:@"15889798801"]) {
         
     }else
 //#endif
+#if DEBUG
+        if ([self.userNameTxtF.text isEqualToString:@"18202536913"]||[self.userNameTxtF.text isEqualToString:@"13349078667"]||[self.userNameTxtF.text isEqualToString:@"13820633188"]||[self.userNameTxtF.text isEqualToString:@"17798142060"]||[self.userNameTxtF.text isEqualToString:@"18974144528"]){
+            
+        }else
+#endif
     if (self.passwordTxtF.text != self.codeNum) {
         [NSString toast:@"请输入正确的验证码"];
         return;

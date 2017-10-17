@@ -10,6 +10,7 @@
 #import <SAMKeychain/SAMKeychain.h>
 //#import "SAMKeychain.h"
 #import "ToastView.h"
+#import "UIView+Toast.h"
 
 //定义宏（限制输入内容）
 #define kAlphaNum   @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
@@ -65,7 +66,9 @@
 
 + (void)toast:(NSString *)message
 {
-    [message toast];
+    
+    [kAppDelegate.window makeToast:message];
+    //[message toast];
 }
 
 #pragma mark - JSON

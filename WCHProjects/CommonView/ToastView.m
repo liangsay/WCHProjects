@@ -8,6 +8,7 @@
 
 #import "ToastView.h"
 #import "Masonry.h"
+#import "UIView+Toast.h"
 static ToastView *_displayingView;
 @implementation ToastView
 
@@ -60,6 +61,7 @@ static ToastView *_displayingView;
     //    view.frame = CGRectMake(x, y, width, height);
     
     [keyWin addSubview:view];
+    
     
     __weak ToastView *weakSelf = view;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {

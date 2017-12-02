@@ -305,6 +305,13 @@
 				<key>NSTemporaryExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>
+			<key>jpush.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
@@ -313,6 +320,10 @@
 	<string>只有开启定位功能才能正常使用百度导航</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>允许此权限才能保存图片</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

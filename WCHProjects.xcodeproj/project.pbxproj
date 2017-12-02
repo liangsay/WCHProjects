@@ -210,6 +210,7 @@
 		7FDC512A1F64E36200E978EB /* DutyLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDC51281F64E36200E978EB /* DutyLocationTableViewCell.xib */; };
 		7FDC512E1F653D0B00E978EB /* MyOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDC512C1F653D0B00E978EB /* MyOrderDetailViewController.m */; };
 		7FDC512F1F653D0B00E978EB /* MyOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FDC512D1F653D0B00E978EB /* MyOrderDetailViewController.xib */; };
+		7FDE5A401FD2FC580043023E /* JPushObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDE5A3F1FD2FC580043023E /* JPushObj.m */; };
 		7FE0E8011DDE146F008F5B0D /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0E7FD1DDE146F008F5B0D /* b27_icon_star_gray@2x.png */; };
 		7FE0E8021DDE146F008F5B0D /* b27_icon_star_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7FE0E7FE1DDE146F008F5B0D /* b27_icon_star_yellow@2x.png */; };
 		7FE0E8031DDE146F008F5B0D /* CWStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE0E8001DDE146F008F5B0D /* CWStarRateView.m */; };
@@ -604,6 +605,10 @@
 		7FDC512B1F653D0B00E978EB /* MyOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderDetailViewController.h; sourceTree = "<group>"; };
 		7FDC512C1F653D0B00E978EB /* MyOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderDetailViewController.m; sourceTree = "<group>"; };
 		7FDC512D1F653D0B00E978EB /* MyOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderDetailViewController.xib; sourceTree = "<group>"; };
+		7FDE5A3C1FD2F43B0043023E /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		7FDE5A3D1FD2F4430043023E /* WCHProjects.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WCHProjects.entitlements; sourceTree = "<group>"; };
+		7FDE5A3E1FD2FC580043023E /* JPushObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JPushObj.h; sourceTree = "<group>"; };
+		7FDE5A3F1FD2FC580043023E /* JPushObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JPushObj.m; sourceTree = "<group>"; };
 		7FE0E7FD1DDE146F008F5B0D /* b27_icon_star_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_gray@2x.png"; sourceTree = "<group>"; };
 		7FE0E7FE1DDE146F008F5B0D /* b27_icon_star_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_yellow@2x.png"; sourceTree = "<group>"; };
 		7FE0E7FF1DDE146F008F5B0D /* CWStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStarRateView.h; sourceTree = "<group>"; };
@@ -1023,6 +1028,7 @@
 		7FAACA9C1D902F0E0028D0D6 /* WCHProjects */ = {
 			isa = PBXGroup;
 			children = (
+				7FDE5A3D1FD2F4430043023E /* WCHProjects.entitlements */,
 				7FAACC311D9044E90028D0D6 /* AppDelegate */,
 				7FEB1FE11D9EC00F001E5F10 /* Moduls */,
 				7FAACB921D9036460028D0D6 /* BaseClass */,
@@ -1219,6 +1225,8 @@
 				7F29066B1F2F002100216041 /* StoretoLocObj.m */,
 				7F58245D1F33407000CEB644 /* DutytoDecideObj.h */,
 				7F58245E1F33407000CEB644 /* DutytoDecideObj.m */,
+				7FDE5A3E1FD2FC580043023E /* JPushObj.h */,
+				7FDE5A3F1FD2FC580043023E /* JPushObj.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1550,6 +1558,7 @@
 		8E68273C72F51EE7213E77C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FDE5A3C1FD2F43B0043023E /* UserNotifications.framework */,
 				7F29066D1F2F443100216041 /* CoreLocation.framework */,
 				7FF673A11DCCFF66000C4A97 /* MapKit.framework */,
 				7F4D38711DB517E4003C2E4B /* AVFoundation.framework */,
@@ -1596,7 +1605,10 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1800,6 +1812,7 @@
 				7FA96C481DA9484F00F5E00E /* ForgetViewController.m in Sources */,
 				7FAACC211D9036460028D0D6 /* desc.md in Sources */,
 				7F2906711F2F956F00216041 /* UIButton+EnlargeTouchArea.m in Sources */,
+				7FDE5A401FD2FC580043023E /* JPushObj.m in Sources */,
 				7F8F29591F1D097C00C5DFF9 /* ORentCarViewController.m in Sources */,
 				7FE9AC761DA1D10400B4077B /* CouponViewController.m in Sources */,
 				7FAACC181D9036460028D0D6 /* UIImage+ICCategory.m in Sources */,
@@ -2062,6 +2075,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = WCHProjects/WCHProjects.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Liang (SGYX4WKZQ7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2181,6 +2195,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = WCHProjects/WCHProjects.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bing Liang (GCLW2374BE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -2347,6 +2362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = WCHProjects/WCHProjects.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bing Liang (GCLW2374BE)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

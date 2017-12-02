@@ -25,8 +25,16 @@
 #import <UMSocialCore/UMSocialManager.h>
 #import "MainNavigationViewController.h"
 #import "StoretoLocObj.h"
-@interface AppDelegate ()<WXApiDelegate>
-
+#import "JPUSHService.h"
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+#import "JPushObj.h"
+#import "UIAlertController+Blocks.h"
+@interface AppDelegate ()<WXApiDelegate,JPUSHRegisterDelegate>
+{
+    NSDictionary *_curLaunchOptions;
+}
 @end
 static AppDelegate *appDelegate = nil;
 static NSString *kLaunchImgUrl = @"kLaunchImgUrl";
@@ -40,6 +48,7 @@ static NSString *kLaunchImg = @"kLaunchImg";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSString *apiBase = kGetObjectForKey(@"apiBaseURLString");
+    _curLaunchOptions = launchOptions;
     if(kIsObjectEmpty(apiBase)==NO){
     }else{
         kSetObjectForKey(@"http://www.66weihuo.com", @"apiBaseURLString");
@@ -58,6 +67,44 @@ static NSString *kLaunchImg = @"kLaunchImg";
     UMConfigInstance.appKey = @"57dff57e67e58e2a52003099";
     UMConfigInstance.channelId = @"AppStore";
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMConfigInstance.appKey];
+    
+    //Required
+    //notice: 3.0.0及以后版本注册可以这样写，也可以继续用之前的注册方式
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 可以添加自定义categories
+        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    }
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    
+    // Optional
+    // 获取IDFA
+    // 如需使用IDFA功能请添加此代码并在初始化方法的advertisingIdentifier参数中填写对应值
+//    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    
+    // Required
+    // init Push
+    // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
+    // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。
+    [JPUSHService setupWithOption:launchOptions appKey:@"f5ceaa485aa81532747b95da"
+                          channel:@"AppStore"
+                 apsForProduction:NO
+            advertisingIdentifier:nil];
+
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter addObserver:self selector:@selector(networkDidReceiveMessage:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+
+    /*
+     RegistrationID 定义
+     
+     集成了 JPush SDK 的应用程序在第一次成功注册到 JPush 服务器时，JPush 服务器会给客户端返回一个唯一的该设备的标识 - RegistrationID。JPush SDK 会以广播的形式发送 RegistrationID 到应用程序。
+     应用程序可以把此 RegistrationID 保存以自己的应用服务器上，然后就可以根据 RegistrationID 来向设备推送消息或者通知。
+     */
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        DLog(@"resCode : %d,registrationID: %@",resCode,registrationID);
+    }];
     
     [self configUSharePlatforms];
     
@@ -507,4 +554,90 @@ static NSString *kLaunchImg = @"kLaunchImg";
         }
     }
 }
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    DLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
+#pragma mark- JPUSHRegisterDelegate
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        JPushObj *obj = [JPushObj mj_objectWithKeyValues:userInfo];
+        [self pushUserInfoWith:obj];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+        JPushObj *obj = [JPushObj mj_objectWithKeyValues:userInfo];
+        [self pushUserInfoWith:obj];
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // Required, iOS 7 Support
+    JPushObj *obj = [JPushObj mj_objectWithKeyValues:userInfo];
+    [self pushUserInfoWith:obj];
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required,For systems with less than or equal to iOS6
+    JPushObj *obj = [JPushObj mj_objectWithKeyValues:userInfo];
+    [self pushUserInfoWith:obj];
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
+- (void)pushUserInfoWith:(JPushObj *)pushObj {
+    if (_curLaunchOptions != nil) {
+        pushObj = [JPushObj mj_objectWithKeyValues:_curLaunchOptions];;
+    }
+    NSString *message = @"您的订单状态已发生变化，是否查看?";
+    if (pushObj.msgType.integerValue == 1){
+        
+    }else if (pushObj.msgType.integerValue == 2){
+        
+    }
+    
+    [UIAlertController showAlertInViewController:self.tabBarVC withTitle:@"新消息提醒" message:message cancelButtonTitle:@"忽略" destructiveButtonTitle:nil otherButtonTitles:@[@"查看"] tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+        DLog(@"buttonIndex:%d",buttonIndex);
+        if (buttonIndex == 2) {
+            
+        }
+    }];
+}
+
+- (void)networkDidReceiveMessage:(NSNotification *)notification {
+    NSDictionary * userInfo = [notification userInfo];
+    JPushObj *obj = [JPushObj mj_objectWithKeyValues:userInfo];
+    [self pushUserInfoWith:obj];
+    /*NSString *content = [userInfo valueForKey:@"content"];
+    NSDictionary *extras = [userInfo valueForKey:@"extras"];
+    NSString *customizeField1 = [extras valueForKey:@"customizeField1"]; //服务端传递的Extras附加字段，key是自己定义的
+     */
+    
+}
+
 @end

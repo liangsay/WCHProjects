@@ -12,6 +12,7 @@
 #import "ForgetViewController.h"
 #import "OtherWebViewController.h"
 #import "DutytoDecideObj.h"
+#import "JPUSHService.h"
 @implementation LoginModel
 
 @end
@@ -40,6 +41,7 @@
     if (kAppDelegate.callCarVC) {
         [kAppDelegate.callCarVC cancelTimer];
     }
+
     [UserInfoObj clear];
 }
 

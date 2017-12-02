@@ -7,7 +7,7 @@
 //
 
 #import "DutytoDecideObj.h"
-
+#import "JPUSHService.h"
 @implementation DutytoDecideObj
 
 #pragma mark --验证当前用户是否是系统用户
@@ -15,6 +15,7 @@
                           failedBlock:(RequestSessionCompletedBlock)failedBlock{
     [self sendRequestWithAPI:kAPI_DutytoDecide() isApp:YES params:parameters successBlock:^(HttpRequest *request, HttpResponse *response) {
         DutytoDecideObj *dutyObj = response.responseModel;
+        [JPUSHService setAlias:dutyObj.mobilef callbackSelector:nil object:nil];
         if (dutyObj) {
             [dutyObj cache];
         }else{

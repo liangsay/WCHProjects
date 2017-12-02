@@ -65,4 +65,5 @@ target "WCHProjects" do
 #    pod 'UMengUShare/Social/Email'
 #    # 集成短信
 #    pod 'UMengUShare/Social/SMS'
+pod 'JPush'
 end

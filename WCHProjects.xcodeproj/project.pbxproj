@@ -1593,7 +1593,7 @@
 					7FAACA991D902F0E0028D0D6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = GCLW2374BE;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -2064,6 +2064,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Liang (SGYX4WKZQ7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GCLW2374BE;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WCHProjects/PrefixHeader.pch;
@@ -2167,8 +2168,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc66sc.WCHProjects;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e066af61-9920-43e7-9fac-a79be77204d2";
+				PROVISIONING_PROFILE_SPECIFIER = 66WeiHuo;
 				USER_HEADER_SEARCH_PATHS = "\"$(PODS_ROOT)\"/** \"${SRCROOT}\"/**";
 			};
 			name = Debug;
@@ -2181,7 +2182,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bing Liang (GCLW2374BE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GCLW2374BE;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WCHProjects/PrefixHeader.pch;
@@ -2285,8 +2287,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc66sc.WCHProjects;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e371901b-8df8-4c91-94b1-d101b589445c";
+				PROVISIONING_PROFILE_SPECIFIER = 66WeiHuoRelease;
 				USER_HEADER_SEARCH_PATHS = "\"$(PODS_ROOT)\"/** \"${SRCROOT}\"/**";
 			};
 			name = Release;
@@ -2346,7 +2348,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bing Liang (GCLW2374BE)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GCLW2374BE;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WCHProjects/PrefixHeader.pch;
@@ -2450,8 +2453,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc66sc.WCHProjects;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e371901b-8df8-4c91-94b1-d101b589445c";
+				PROVISIONING_PROFILE_SPECIFIER = 66WeiHuoRelease;
 				USER_HEADER_SEARCH_PATHS = "\"$(PODS_ROOT)\"/** \"${SRCROOT}\"/**";
 			};
 			name = AdHoc;
